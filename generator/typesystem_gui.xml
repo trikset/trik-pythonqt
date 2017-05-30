@@ -5,7 +5,7 @@
   <rejection class="QTextBlock::iterator"/>
   <rejection class="QTextFrame::iterator"/>
   <rejection class="QTreeWidgetItemIterator"/>
-  <rejection class="QAccessibleFactoryInterface"/>
+  <!--<rejection class="QAccessibleFactoryInterface"/>-->
   <rejection class="QIconEngineFactoryInterfaceV2"/>
   <rejection class="QImageIOHandlerFactoryInterface"/>
   <rejection class="QInputContextFactoryInterface"/>
@@ -19,7 +19,7 @@
 
   <rejection class="QWheelEvent" enum-name="enum_1"/>
 
-<rejection class="QAccessible"/>
+<!--<rejection class="QAccessible"/>
 <rejection class="QAccessibleActionInterface"/>
 <rejection class="QAccessibleBridge"/>
 <rejection class="QAccessibleImageInterface"/>
@@ -36,7 +36,7 @@
 <rejection class="QAccessibleTextSelectionEvent"/>
 <rejection class="QAccessibleTextUpdateEvent"/>
 <rejection class="QAccessibleValueChangeEvent"/>
-<rejection class="QAccessibleWidget"/>
+<rejection class="QAccessibleWidget"/>-->
 <rejection class="QOpenGLDebugLogger"/>
 <rejection class="QOpenGLDebugMessage"/>
 <rejection class="QOpenGLExtraFunctions"/>
@@ -82,7 +82,7 @@
   <rejection class="QWindowsCEStyle"/>
   <rejection class="QWindowsMobileStyle"/>
   <rejection class="QAbstractUndoItem"/>
-  <rejection class="QAccessibleApplication"/>
+  <!-- <rejection class="QAccessibleApplication"/> -->
   <rejection class="QBrushData"/>
   <rejection class="QImageTextKeyLang"/>
   <rejection class="QItemEditorCreator"/>
@@ -107,19 +107,19 @@
   <rejection class="QWSEmbedWidget"/>
   <rejection class="QRegion::QRegionData"/>
   <rejection class="JObject_key"/>
-  <rejection class="QAccessibleEditableTextInterface"/>
+<!--   <rejection class="QAccessibleEditableTextInterface"/>
   <rejection class="QAccessibleSimpleEditableTextInterface"/>
   <rejection class="QAccessibleTextInterface"/>
-  <rejection class="QAccessibleValueInterface"/>
+  <rejection class="QAccessibleValueInterface"/> -->
   <rejection class="QIconEngineFactoryInterface"/>
   <rejection class="QIconEnginePlugin"/>
   <rejection class="QWidgetItemV2"/>
   <rejection class="QAbstractItemDelegate" function-name="operator="/>
-  <rejection class="QAccessible" function-name="installFactory"/>
+<!--   <rejection class="QAccessible" function-name="installFactory"/>
   <rejection class="QAccessible" function-name="installRootObjectHandler"/>
   <rejection class="QAccessible" function-name="installUpdateHandler"/>
   <rejection class="QAccessible" function-name="removeFactory"/>
-  <rejection class="QApplication" function-name="compressEvent"/>
+  <rejection class="QApplication" function-name="compressEvent"/> -->
   <rejection class="QBrush" function-name="cleanUp"/>
   <rejection class="QPictureIO" function-name="defineIOHandler"/>
   <rejection class="QPolygon" function-name="putPoints"/>
@@ -140,7 +140,7 @@
   <rejection class="QTreeModel" function-name="initializeNode"/>
   <rejection class="QTreeModel" function-name="queryChildren"/>
   <rejection class="QTextObjectInterface"/>
-  <rejection class="QAccessible" function-name="cast_helper"/>
+<!--   <rejection class="QAccessible" function-name="cast_helper"/>
   <rejection class="QAccessible2"/>
   <rejection class="QAccessibleInterface" function-name="backgroundColor"/>
   <rejection class="QAccessibleInterface" function-name="foregroundColor"/>
@@ -151,7 +151,7 @@
   <rejection class="QAccessibleInterface" function-name="cast_helper"/>
   <rejection class="QAccessibleInterfaceEx" function-name="interface_cast"/>
   <rejection class="QAccessibleBridgePlugin"/>
-  <rejection class="QAccessibleBridgeFactoryInterface"/>
+  <rejection class="QAccessibleBridgeFactoryInterface"/> -->
   <rejection class="QTabletEvent" field-name="mExtra"/>
   <rejection class="QWidgetItem" field-name="wid"/>
   <rejection class="QFont" enum-name="ResolveProperties"/>
@@ -191,13 +191,13 @@
   <enum-type name="QAbstractSpinBox::ButtonSymbols"/>
   <enum-type name="QAbstractSpinBox::CorrectionMode"/>
   <enum-type name="QAbstractSpinBox::StepEnabledFlag" flags="QAbstractSpinBox::StepEnabled"/>
-  <enum-type name="QAccessible::Event"/>
+<!--   <enum-type name="QAccessible::Event"/>
   <enum-type name="QAccessible::Method"/>
   <enum-type name="QAccessible::RelationFlag" flags="QAccessible::Relation"/>
   <enum-type name="QAccessible::Role"/>
   <enum-type name="QAccessible::StateFlag" flags="QAccessible::State"/>
   <enum-type name="QAccessible::Text"/>
-  <enum-type name="QDesktopServices::StandardLocation"/>
+  <enum-type name="QDesktopServices::StandardLocation"/> -->
   <enum-type name="QDirModel::Roles"/>
   <enum-type name="QFont::Capitalization"/>
   <enum-type name="QFont::SpacingType"/>
@@ -505,10 +505,10 @@
     <reject-enum-value name="NButtons"/>
   </enum-type>
 
-  <enum-type name="QAccessible::Action">
+<!--   <enum-type name="QAccessible::Action">
     <reject-enum-value name="FirstStandardAction"/>
     <reject-enum-value name="LastStandardAction"/>
-  </enum-type>
+  </enum-type> -->
 
   <enum-type name="QBoxLayout::Direction">
     <reject-enum-value name="Down"/>
@@ -1699,7 +1699,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QKeyEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::KeyPress || %1-&gt;type() == QEvent::KeyRelease"/>
   <object-type name="QMouseEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::MouseButtonDblClick || %1-&gt;type() == QEvent::MouseButtonPress || %1-&gt;type() == QEvent::MouseButtonRelease || %1-&gt;type() == QEvent::MouseMove"/>
   <object-type name="QPaintEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Paint"/>
-  <object-type name="QAccessibleEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::AccessibilityDescription || %1-&gt;type() == QEvent::AccessibilityHelp"/>
+  <!--<object-type name="QAccessibleEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::AccessibilityDescription || %1-&gt;type() == QEvent::AccessibilityHelp"/>-->
 
   <object-type name="QAbstractButton"/>
 
@@ -3003,7 +3003,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QStyledItemDelegate">
   </object-type>
 
-  <interface-type name="QAccessibleFactoryInterface" java-name="QAbstractAccessibleFactory"/>
+  <!--<interface-type name="QAccessibleFactoryInterface" java-name="QAbstractAccessibleFactory"/>-->
   <interface-type name="QIconEngineFactoryInterfaceV2" java-name="QAbstractIconEngineFactoryV2"/>
   <interface-type name="QImageIOHandlerFactoryInterface" java-name="QAbstractImageIOHandlerFactory"/>
   <interface-type name="QInputContextFactoryInterface" java-name="QAbstractInputContextFactory"/>

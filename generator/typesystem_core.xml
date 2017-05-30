@@ -1916,8 +1916,8 @@
   <enum-type name="QTextCharFormat::FontPropertiesInheritanceBehavior"/>
   <enum-type name="QLocalServer::SocketOption" flags="QLocalServer::SocketOptions"/>
   <enum-type name="QState::RestorePolicy"/>
-  <enum-type name="QAccessible::TextBoundaryType"/>
-  <enum-type name="QAccessible::InterfaceType"/>
+  <!--<enum-type name="QAccessible::TextBoundaryType"/>-->
+  <!--<enum-type name="QAccessible::InterfaceType"/>-->
   <enum-type name="QFileDevice::MemoryMapFlags"/>
   <enum-type name="QFileDevice::Permission" flags="QFileDevice::Permissions"/>
   <enum-type name="QFileDevice::FileError"/>
