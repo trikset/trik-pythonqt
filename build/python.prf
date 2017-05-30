@@ -40,7 +40,6 @@ macx {
   # on linux, python-config is used to autodetect Python.
   # make sure that you have installed a matching python-dev package.
 
-  unix:LIBS += $$system(python$${PYTHON_VERSION}-config --libs)
-  unix:QMAKE_CXXFLAGS += $$system(python$${PYTHON_VERSION}-config --includes)
+  CONFIG += link_pkgconfig
+  PKGCONFIG += python-2.7
 }
-
