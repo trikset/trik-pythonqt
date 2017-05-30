@@ -69,7 +69,7 @@ namespace PythonQt_QtAll
     PythonQt_init_QtQml(0);
     PythonQt_init_QtQuick(0);
     PythonQt_init_QtUiTools(0);
-  };
-};
+  }
+}
 
 

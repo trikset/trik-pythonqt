@@ -13,9 +13,14 @@
 #CONFIG += debug
 
 # for all debug builds, add "_d" extension to target
+
+!include (../../../global.pri)
+
 CONFIG(debug, debug|release) {
   TARGET = $${TARGET}_d 
 }
+
+warning(architecture is $$ARCHITECTURE)
 
 equals(ARCHITECTURE, "arm") {
   PYTHONQT_GENERATED_PATH = $$PWD/../arm-trik_generated_cpp_56/generated_cpp
