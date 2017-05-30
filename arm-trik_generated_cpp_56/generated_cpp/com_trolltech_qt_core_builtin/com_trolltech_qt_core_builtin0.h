@@ -26,7 +26,9 @@
 #include <qurl.h>
 #include <qurlquery.h>
 
-
+#ifdef truncate
+#undef truncate
+#endif
 
 class PythonQtWrapper_QBitArray : public QObject
 { Q_OBJECT
