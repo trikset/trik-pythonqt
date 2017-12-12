@@ -8,7 +8,7 @@ TARGET   = PythonQt
 TEMPLATE = lib
 
 
-DESTDIR    = ../lib
+#DESTDIR    = ../lib
 
 CONFIG += qt
 CONFIG -= flat

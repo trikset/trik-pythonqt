@@ -19,7 +19,8 @@ HEADERS +=                \
 SOURCES +=                \
   PythonQt_QtAll.cpp
 
-QT += gui svg sql network xml xmlpatterns opengl
+QT += gui svg sql network xml xmlpatterns
+#QT += opengl
 QT += widgets printsupport multimedia multimediawidgets
 QT += quick qml quickwidgets uitools
 
