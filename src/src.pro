@@ -8,7 +8,7 @@ TARGET   = PythonQt-Qt5-PythonXY
 TEMPLATE = lib
 
 
-DESTDIR    = ../lib
+#DESTDIR    = ../lib
 
 CONFIG += qt
 CONFIG -= flat

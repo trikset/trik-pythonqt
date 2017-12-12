@@ -42,7 +42,7 @@ SOURCES +=                \
   PythonQt_QtAll.cpp
 
 # TODO: add these only when needed by configuration below
-QT += gui svg sql network xml xmlpatterns opengl
+QT += gui svg sql network xml xmlpatterns
 QT += widgets printsupport multimedia multimediawidgets
 QT += quick qml quickwidgets uitools
 
@@ -89,6 +89,7 @@ include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_network/com_trolltech_qt_net
 
 PythonQtOpengl {
   DEFINES += PYTHONQT_WITH_OPENGL
+  QT += opengl
   PythonQtCore: include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_opengl/com_trolltech_qt_opengl.pri)
 }
 
