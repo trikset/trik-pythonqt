@@ -49,14 +49,14 @@ unix {
   QMAKE_PKGCONFIG_PREFIX = $$INSTALLBASE
   QMAKE_PKGCONFIG_LIBDIR = $$target.path
   QMAKE_PKGCONFIG_INCDIR = $$headers.path
-  QMAKE_PKGCONFIG_INCDIR += $$PREFIX/include/PythonQt5
+  QMAKE_PKGCONFIG_INCDIR += ${prefix}/include/PythonQt5
   QMAKE_PKGCONFIG_VERSION = $$VERSION
 }
 
-unix: target.path = /lib
+#unix: target.path = /lib
 win32: target.path = /
 
 headers.files = $${HEADERS} $$PWD/PythonQtPythonInclude.h
-headers.path = /include
+#headers.path = /include
 
 INSTALLS += target headers
