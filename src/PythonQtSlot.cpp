@@ -52,6 +52,10 @@
 
 #include <QByteArray>
 
+#if defined(__GNUG__) && !defined(__clang__)
+#include <cxxabi.h>
+#endif
+
 #define PYTHONQT_MAX_ARGS 32
 
 
@@ -208,6 +212,10 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
         what += e.what();
         PyErr_SetString(PyExc_RuntimeError, what.constData());
 #ifdef PYTHONQT_CATCH_ALL_EXCEPTIONS
+  #if defined(__GNUG__) && !defined(__clang__)
+      } catch (abi::__forced_unwind &) {
+        throw;
+  #endif
       } catch (...) {
         hadException = true;
         PyErr_SetString(PyExc_RuntimeError, "Unknown C++ exception.");
@@ -232,7 +240,7 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
         }
       } else {
         QString e = QString("Called ") + info->fullSignature() + ", return type '" + returnValueParam.name + "' is ignored because it is unknown to PythonQt. Probably you should register it using qRegisterMetaType() or add a default constructor decorator to the class.";
-        PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
+        PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(e));
         result = NULL;
         ok = false;
       }
@@ -282,7 +290,7 @@ PyObject *PythonQtMemberFunction_Call(PythonQtSlotInfo* info, PyObject* m_self, 
     PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*) m_self;
     if (!info->isClassDecorator() && (self->_obj==NULL && self->_wrappedPtr==NULL)) {
       QString error = QString("Trying to call '") + info->slotName() + "' on a destroyed " + self->classInfo()->className() + " object";
-      PyErr_SetString(PyExc_ValueError, error.toLatin1().data());
+      PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(error));
       return NULL;
     } else {
       PythonQtPassThisOwnershipType ownership;
@@ -308,7 +316,7 @@ PyObject *PythonQtMemberFunction_Call(PythonQtSlotInfo* info, PyObject* m_self, 
           PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*)firstArg;
           if (!info->isClassDecorator() && (self->_obj==NULL && self->_wrappedPtr==NULL)) {
             QString error = QString("Trying to call '") + info->slotName() + "' on a destroyed " + self->classInfo()->className() + " object";
-            PyErr_SetString(PyExc_ValueError, error.toLatin1().data());
+            PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(error));
             return NULL;
           }
           // strip the first argument...
@@ -325,13 +333,13 @@ PyObject *PythonQtMemberFunction_Call(PythonQtSlotInfo* info, PyObject* m_self, 
         } else {
           // first arg is not of correct type!
           QString error = "slot " + info->fullSignature() + " requires " + type->classInfo()->className() + " instance as first argument, got " + firstArg->ob_type->tp_name;
-          PyErr_SetString(PyExc_ValueError, error.toLatin1().data());
+          PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(error));
           return NULL;
         }
       } else {
         // wrong number of args
         QString error = "slot " + info->fullSignature() + " requires " + type->classInfo()->className() + " instance as first argument.";
-        PyErr_SetString(PyExc_ValueError, error.toLatin1().data());
+        PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(error));
         return NULL;
       }
     }
@@ -393,11 +401,11 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
       ok = PythonQtCallSlot(classInfo, objectToCall, combinedArgs, false, slotInfo, firstArg, &r, directReturnValuePointer, passThisOwnershipToCPP);
       if (!ok && !PyErr_Occurred()) {
         QString e = QString("Called ") + info->fullSignature() + " with wrong arguments: " + PythonQtConv::PyObjGetString(args);
-        PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
+        PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(e));
       }
     } else {
       QString e = QString("Called ") + info->fullSignature() + " with keyword arguments, but called slot does not support kwargs.";
-      PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
+      PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(e));
     }
 
     Py_DECREF(combinedArgs);
@@ -430,7 +438,7 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
           e += QString(i->fullSignature()) + "\n";
           i = i->nextInfo();
         }
-        PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
+        PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(e));
       }
     } else {
       // simple (non-overloaded) slot call
@@ -443,11 +451,11 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
         ok = PythonQtCallSlot(classInfo, objectToCall, args, false, info, firstArg, &r, directReturnValuePointer, passThisOwnershipToCPP);
         if (!ok && !PyErr_Occurred()) {
           QString e = QString("Called ") + info->fullSignature() + " with wrong arguments: " + PythonQtConv::PyObjGetString(args);
-          PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
+          PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(e));
         }
       } else {
         QString e = QString("Called ") + info->fullSignature() + " with wrong number of arguments: " + PythonQtConv::PyObjGetString(args);
-        PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
+        PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(e));
       }
     }
   }
