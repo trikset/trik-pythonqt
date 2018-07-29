@@ -42,6 +42,7 @@
 */
 //----------------------------------------------------------------------------------
 
+#include "PythonQtPythonInclude.h"
 #include "PythonQtUtils.h"
 #include "PythonQtSystem.h"
 #include "PythonQtInstanceWrapper.h"
@@ -72,6 +73,7 @@ typedef void  PythonQtVoidPtrCB(void* object);
 typedef void  PythonQtQObjectWrappedCB(QObject* object);
 typedef void  PythonQtQObjectNoLongerWrappedCB(QObject* object);
 typedef void* PythonQtPolymorphicHandlerCB(const void *ptr, const char **class_name);
+typedef QString PythonQtQObjectMissingAttributeCB(QObject* object, const QString& attribute);
 
 typedef void PythonQtShellSetInstanceWrapperCB(void* object, PythonQtInstanceWrapper* wrapper);
 
@@ -142,6 +144,17 @@ typedef QObject* PythonQtQObjectCreatorFunctionCB();
 
 //! helper template to create a derived QObject class
 template<class T> QObject* PythonQtCreateObject() { return new T(); };
+
+//! Helper define to convert from QString to Python C-API
+#ifdef PY3K
+#define QStringToPythonConstCharPointer(arg) ((arg).toUtf8().constData())
+#define QStringToPythonCharPointer(arg) ((arg).toUtf8().data())
+#define QStringToPythonEncoding(arg) ((arg).toUtf8())
+#else
+#define QStringToPythonConstCharPointer(arg) ((arg).toLatin1().constData())
+#define QStringToPythonCharPointer(arg) ((arg).toLatin1().data())
+#define QStringToPythonEncoding(arg) ((arg).toLatin1())
+#endif
 
 //! The main interface to the Python Qt binding, realized as a singleton
 /*!
@@ -334,8 +347,14 @@ public:
   //! \name Script Parsing and Evaluation
   //@{
 
-  //! parses the given file and returns the python code object, this can then be used to call evalCode()
+  //! parses the given file (using PythonQt's own import mechanism) and returns the python code object, this can then be used to call evalCode()
   PythonQtObjectPtr parseFile(const QString& filename);
+
+  //! Parses the given file and returns the python code object, this can then be used to call evalCode()
+  //! It uses Python's importlib machinery to load the file's code and supports source and sourceless loading
+  //! and generation of cache files.
+  //! This method is PY3K only!
+  PythonQtObjectPtr parseFileWithPythonLoaders(const QString& filename);
 
   //! evaluates the given code and returns the result value (use Py_Compile etc. to create pycode from string)
   //! If pycode is NULL, a python error is printed.
@@ -343,6 +362,9 @@ public:
 
   //! evaluates the given script code and returns the result value
   QVariant evalScript(PyObject* object, const QString& script, int start = Py_file_input);
+  
+  //! evaluates the given script code in context of given globals and locals and returns the result value
+  QVariant evalScript(const QString& script, PyObject* globals, PyObject* locals, int start);
 
   //! evaluates the given script code from file
   void evalFile(PyObject* object, const QString& filename);
@@ -385,6 +407,9 @@ public:
 
   //! get the variable with the \c name of the \c object, returns an invalid QVariant on error
   QVariant getVariable(PyObject* object, const QString& name);
+
+  //! get the variable with the \c name of the \c object as QVariant of type PythonQtObjectPtr, returns an invalid QVariant on error
+  QVariant getNativeVariable(PyObject* object, const QString& name);
 
   //! read vars etc. in scope of an \c object, optional looking inside of an object \c objectname
   QStringList introspection(PyObject* object, const QString& objectname, ObjectType type);
@@ -534,7 +559,7 @@ public:
 
   //! handle a python error, call this when a python function fails. If no error occurred, it returns false.
   //! The error is currently just output to the python stderr, future version might implement better trace printing
-  bool handleError();
+  bool handleError(bool printStack = true);
 
   //! return \a true if \a handleError() has been called and an error occurred.
   bool hadError()const;
@@ -558,6 +583,12 @@ public:
 
   //! call the callback if it is set
   static void qObjectNoLongerWrappedCB(QObject* o);
+
+  //! set a callback that is called when a QObject does not have a specific attribute.
+  void setQObjectMissingAttributeCallback(PythonQtQObjectMissingAttributeCB* cb);
+
+  //! call the callback if it is set
+  static QString qObjectMissingAttributeCallback(QObject* o, const QString& attribute);
 
   //! called by internal help methods
   PyObject* helpCalled(PythonQtClassInfo* info);
@@ -796,9 +827,13 @@ private:
 
   PythonQtQObjectNoLongerWrappedCB* _noLongerWrappedCB;
   PythonQtQObjectWrappedCB* _wrappedCB;
+  PythonQtQObjectMissingAttributeCB* _qObjectMissingAttribCB;
 
   QStringList _importIgnorePaths;
   QStringList _sharedLibrarySuffixes;
+
+  PythonQtObjectPtr _pySourceFileLoader;
+  PythonQtObjectPtr _pySourcelessFileLoader;
 
   //! the cpp object wrapper factories
   QList<PythonQtCppWrapperFactory*> _cppWrapperFactories;
