@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.5)
 
 #-----------------------------------------------------------------------------
 project(PythonQtGenerator)
@@ -9,23 +9,19 @@ include(CTestUseLaunchers OPTIONAL)
 #-----------------------------------------------------------------------------
 # Setup Qt
 
-set(minimum_required_qt_version "4.6.2")
+set(minimum_required_qt_version "5.6.0")
 
-find_package(Qt4)
+find_package(Qt5 CONFIG COMPONENTS REQUIRED Core Widgets Xml)
 
-if(QT4_FOUND)
+if(Qt5_FOUND)
 
-  set(found_qt_version ${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_PATCH})
+  set(found_qt_version ${Qt5Core_VERSION})
 
   if(${found_qt_version} VERSION_LESS ${minimum_required_qt_version})
       message(FATAL_ERROR "error: PythonQt requires Qt >= ${minimum_required_qt_version} -- you cannot use Qt ${found_qt_version}.")
   endif()
-  
-  set(QT_USE_QTXML ON)
-  
-  include(${QT_USE_FILE})
 else()
-  message(FATAL_ERROR "error: Qt4 was not found on your system. You probably need to set the QT_QMAKE_EXECUTABLE variable")
+  message(FATAL_ERROR "error: Qt5 was not found on your system. You probably need to set the QT_QMAKE_EXECUTABLE variable")
 endif()
 
 #-----------------------------------------------------------------------------
@@ -50,7 +46,7 @@ set(sources
   parser/tokens.cpp
   parser/type_compiler.cpp
   parser/visitor.cpp
-  
+
   abstractmetabuilder.cpp
   abstractmetalang.cpp
   asttoxml.cpp
@@ -72,7 +68,7 @@ set(sources
   typeparser.cpp
   typesystem.cpp
   )
-  
+
 #-----------------------------------------------------------------------------
 # List headers.  This list is used for the install command.
 
@@ -93,7 +89,7 @@ set(moc_sources
   shellheadergenerator.h
   shellimplgenerator.h
   )
-  
+
 #-----------------------------------------------------------------------------
 # UI files
 
@@ -108,9 +104,9 @@ set(qrc_sources
 
 #-----------------------------------------------------------------------------
 # Do wrapping
-qt4_wrap_cpp(gen_moc_sources ${moc_sources})
-qt4_wrap_ui(gen_ui_sources ${ui_sources})
-qt4_add_resources(gen_qrc_sources ${qrc_sources})
+qt5_wrap_cpp(gen_moc_sources ${moc_sources})
+qt5_wrap_ui(gen_ui_sources ${ui_sources})
+qt5_add_resources(gen_qrc_sources ${qrc_sources})
 
 #-----------------------------------------------------------------------------
 # Copy file expected by the generator and specify install rules
@@ -140,10 +136,11 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}/parser
   ${CMAKE_CURRENT_SOURCE_DIR}/parser/rpp
+  ${Qt5Xml_INCLUDE_DIRS}
   )
-  
+
 add_definitions(-DRXX_ALLOCATOR_INIT_0)
-  
+
 add_executable(${PROJECT_NAME}
   ${sources}
   ${gen_moc_sources}
@@ -151,7 +148,7 @@ add_executable(${PROJECT_NAME}
   ${gen_qrc_sources}
 )
 
-target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${Qt5Xml_LIBRARIES})
 
 #-----------------------------------------------------------------------------
 # Install library (on windows, put the dll in 'bin' and the archive in 'lib')
