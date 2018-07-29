@@ -4,7 +4,7 @@
 # $Source$
 # --------------------------------------------------
 
-TARGET   = PythonQt-Qt5-PythonXY
+TARGET   = PythonQt-QtXY-PythonXY
 TEMPLATE = lib
 
 
@@ -36,6 +36,8 @@ INCLUDEPATH += $$PWD
 include ( ../build/common.prf )  
 include ( ../build/python.prf )
 TARGET = $$replace(TARGET, PythonXY, Python$${PYTHON_VERSION})
+TARGET = $$replace(TARGET, QtXY, Qt$${QT_MAJOR_VERSION}$${QT_MINOR_VERSION})
+
 
 include ( src.pri )  
 
@@ -44,7 +46,7 @@ include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_gui_builtin/com_trolltech_q
 
 unix {
   CONFIG += create_pc create_prl no_install_prl
-  QMAKE_PKGCONFIG_NAME = PythonQt-Qt$${QT_MAJOR_VERSION}-Python$${PYTHON_VERSION}
+  QMAKE_PKGCONFIG_NAME = $${TARGET}
   QMAKE_PKGCONFIG_DESCRIPTION = Dynamic Python binding for the Qt framework
   QMAKE_PKGCONFIG_PREFIX = $$INSTALLBASE
   QMAKE_PKGCONFIG_LIBDIR = $$target.path
