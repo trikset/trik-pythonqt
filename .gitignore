@@ -1,3 +1,5 @@
+src/pkg-config_wrapper.sh
+src/.build/*
 # C++ objects and libs
 
 *.slo
