@@ -24,14 +24,6 @@ macx {
   # set PYTHON_PATH = c:\yourDir\Python-2.6.1\
   # set PYTHON_LIB  = c:\yourDir\Python-2.6.1\PCbuild8\Win32
 
-  # check if debug or release
-
-  CONFIG(debug, debug|release) {
-    DEBUG_EXT = _d 
-  } else {
-    DEBUG_EXT = 
-  }
-
   win32:INCLUDEPATH += $$(PYTHON_PATH)/PC $$(PYTHON_PATH)/include
   win32:LIBS += $$(PYTHON_LIB)/python$${PYTHON_VERSION}$${DEBUG_EXT}.lib
 

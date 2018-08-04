@@ -17,10 +17,6 @@
 !include (../../../global.pri)
 QMAKE_CXXFLAGS -= -Werror=pedantic -pedantic-errors -Werror=write-strings
 
-CONFIG(debug, debug|release) {
-  TARGET = $${TARGET}_d 
-}
-
 warning(architecture is $$ARCHITECTURE)
 
 warning(flags are $$QMAKE_CXXFLAGS)
