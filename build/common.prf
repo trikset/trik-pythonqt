@@ -52,7 +52,7 @@ equals(ARCHITECTURE, "arm") {
 #        else:contains( QT_MINOR_VERSION, 6 ) { 
 #          PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
 #        } else {
-          PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
+          PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_511
 #        }
 #      }
     }
