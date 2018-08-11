@@ -16,6 +16,7 @@
 
 !include (../../../global.pri)
 QMAKE_CXXFLAGS -= -Werror=pedantic -pedantic-errors -Werror=write-strings
+clang:QMAKE_CXXFLAGS += -Wno-error=sometimes-uninitialized
 
 warning(architecture is $$ARCHITECTURE)
 
