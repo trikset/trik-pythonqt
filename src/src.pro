@@ -33,7 +33,7 @@ QMAKE_CXXFLAGS_RELEASE -= -Zc:strictStrings
  
 INCLUDEPATH += $$PWD
 
-include ( ../build/common.prf )  
+include ( ../build/common.prf )
 include ( ../build/python.prf )
 TARGET = $$replace(TARGET, PythonXY, Python$${PYTHON_VERSION})
 TARGET = $$replace(TARGET, QtXY, Qt$${QT_MAJOR_VERSION}$${QT_MINOR_VERSION})

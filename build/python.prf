@@ -23,9 +23,12 @@ macx {
   # When using the python sources, this will be something like:
   # set PYTHON_PATH = c:\yourDir\Python-2.6.1\
   # set PYTHON_LIB  = c:\yourDir\Python-2.6.1\PCbuild8\Win32
-
-  win32:INCLUDEPATH += $$(PYTHON_PATH)/PC $$(PYTHON_PATH)/include
-  win32:LIBS += $$(PYTHON_LIB)/python$${PYTHON_VERSION}$${DEBUG_EXT}.lib
+  isEmpty(PYTHON_PATH):PYTHON_PATH=$$(PYTHON_PATH)
+  isEmpty(PYTHON_LIB):PYTHON_LIB=$$(PYTHON_LIB)
+  isEmpty(PYTHON_PATH):error("Set PYTHON_PATH, please")
+  isEmpty(PYTHON_LIB):error("Set PYTHON_LIB, please")
+  INCLUDEPATH += $$(PYTHON_PATH)/PC $$(PYTHON_PATH)/include
+  LIBS += -L$$(PYTHON_LIB) -lpython$${PYTHON_VERSION}$${DEBUG_EXT}
 
 } else:unix {
 

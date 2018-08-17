@@ -18,6 +18,8 @@
 QMAKE_CXXFLAGS -= -Werror=pedantic -pedantic-errors -Werror=write-strings
 clang:QMAKE_CXXFLAGS += -Wno-error=sometimes-uninitialized
 QMAKE_CXXFLAGS += -Wno-error=cast-qual
+#Mingw 4.9 complains...
+win32:gcc:QMAKE_CXXFLAGS += -Wno-error=redundant-decls
 
 warning(architecture is $$ARCHITECTURE)
 
