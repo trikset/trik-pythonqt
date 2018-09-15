@@ -467,10 +467,7 @@ public:
 public slots:
 QXmlName* new_QXmlName();
 QXmlName* new_QXmlName(QXmlNamePool&  namePool, const QString&  localName, const QString&  namespaceURI = QString(), const QString&  prefix = QString());
-QXmlName* new_QXmlName(const QXmlName& other) {
-QXmlName* a = new QXmlName();
-*((QXmlName*)a) = other;
-return a; }
+QXmlName* new_QXmlName(const QXmlName&  other);
 void delete_QXmlName(QXmlName* obj) { delete obj; } 
    QXmlName  static_QXmlName_fromClarkName(const QString&  clarkName, const QXmlNamePool&  namePool);
    bool  static_QXmlName_isNCName(const QString&  candidate);
