@@ -2029,6 +2029,10 @@ QXmlName* PythonQtWrapper_QXmlName::new_QXmlName(QXmlNamePool&  namePool, const 
 { 
 return new QXmlName(namePool, localName, namespaceURI, prefix); }
 
+QXmlName* PythonQtWrapper_QXmlName::new_QXmlName(const QXmlName&  other)
+{ 
+return new QXmlName(other); }
+
 QXmlName  PythonQtWrapper_QXmlName::static_QXmlName_fromClarkName(const QString&  clarkName, const QXmlNamePool&  namePool)
 {
   return (QXmlName::fromClarkName(clarkName, namePool));

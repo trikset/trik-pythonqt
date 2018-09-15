@@ -47,7 +47,6 @@
 #include <qpaintdevice.h>
 #include <qpaintengine.h>
 #include <qpainter.h>
-#include <qpair.h>
 #include <qpalette.h>
 #include <qpen.h>
 #include <qpixmap.h>
@@ -62,7 +61,6 @@
 #include <qstringlist.h>
 #include <qstyle.h>
 #include <qstyleoption.h>
-#include <qsurfaceformat.h>
 #include <qsyntaxhighlighter.h>
 #include <qsystemtrayicon.h>
 #include <qtabbar.h>
@@ -86,73 +84,6 @@
 #include <qvector.h>
 #include <qwidget.h>
 #include <qwindow.h>
-
-
-
-class PythonQtWrapper_QSurfaceFormat : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(FormatOption OpenGLContextProfile RenderableType SwapBehavior )
-Q_FLAGS(FormatOptions )
-enum FormatOption{
-  StereoBuffers = QSurfaceFormat::StereoBuffers,   DebugContext = QSurfaceFormat::DebugContext,   DeprecatedFunctions = QSurfaceFormat::DeprecatedFunctions,   ResetNotification = QSurfaceFormat::ResetNotification};
-enum OpenGLContextProfile{
-  NoProfile = QSurfaceFormat::NoProfile,   CoreProfile = QSurfaceFormat::CoreProfile,   CompatibilityProfile = QSurfaceFormat::CompatibilityProfile};
-enum RenderableType{
-  DefaultRenderableType = QSurfaceFormat::DefaultRenderableType,   OpenGL = QSurfaceFormat::OpenGL,   OpenGLES = QSurfaceFormat::OpenGLES,   OpenVG = QSurfaceFormat::OpenVG};
-enum SwapBehavior{
-  DefaultSwapBehavior = QSurfaceFormat::DefaultSwapBehavior,   SingleBuffer = QSurfaceFormat::SingleBuffer,   DoubleBuffer = QSurfaceFormat::DoubleBuffer,   TripleBuffer = QSurfaceFormat::TripleBuffer};
-Q_DECLARE_FLAGS(FormatOptions, FormatOption)
-public slots:
-QSurfaceFormat* new_QSurfaceFormat();
-QSurfaceFormat* new_QSurfaceFormat(QSurfaceFormat::FormatOptions  options);
-QSurfaceFormat* new_QSurfaceFormat(const QSurfaceFormat&  other);
-void delete_QSurfaceFormat(QSurfaceFormat* obj) { delete obj; } 
-   int  alphaBufferSize(QSurfaceFormat* theWrappedObject) const;
-   int  blueBufferSize(QSurfaceFormat* theWrappedObject) const;
-   QSurfaceFormat  static_QSurfaceFormat_defaultFormat();
-   int  depthBufferSize(QSurfaceFormat* theWrappedObject) const;
-   int  greenBufferSize(QSurfaceFormat* theWrappedObject) const;
-   bool  hasAlpha(QSurfaceFormat* theWrappedObject) const;
-   int  majorVersion(QSurfaceFormat* theWrappedObject) const;
-   int  minorVersion(QSurfaceFormat* theWrappedObject) const;
-   QSurfaceFormat*  operator_assign(QSurfaceFormat* theWrappedObject, const QSurfaceFormat&  other);
-   bool  __eq__(QSurfaceFormat* theWrappedObject, const QSurfaceFormat&  arg__2);
-   QSurfaceFormat::FormatOptions  options(QSurfaceFormat* theWrappedObject) const;
-   QSurfaceFormat::OpenGLContextProfile  profile(QSurfaceFormat* theWrappedObject) const;
-   int  redBufferSize(QSurfaceFormat* theWrappedObject) const;
-   QSurfaceFormat::RenderableType  renderableType(QSurfaceFormat* theWrappedObject) const;
-   int  samples(QSurfaceFormat* theWrappedObject) const;
-   void setAlphaBufferSize(QSurfaceFormat* theWrappedObject, int  size);
-   void setBlueBufferSize(QSurfaceFormat* theWrappedObject, int  size);
-   void static_QSurfaceFormat_setDefaultFormat(const QSurfaceFormat&  format);
-   void setDepthBufferSize(QSurfaceFormat* theWrappedObject, int  size);
-   void setGreenBufferSize(QSurfaceFormat* theWrappedObject, int  size);
-   void setMajorVersion(QSurfaceFormat* theWrappedObject, int  majorVersion);
-   void setMinorVersion(QSurfaceFormat* theWrappedObject, int  minorVersion);
-   void setOption(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOptions  opt);
-   void setOption(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOption  option, bool  on = true);
-   void setOptions(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOptions  options);
-   void setProfile(QSurfaceFormat* theWrappedObject, QSurfaceFormat::OpenGLContextProfile  profile);
-   void setRedBufferSize(QSurfaceFormat* theWrappedObject, int  size);
-   void setRenderableType(QSurfaceFormat* theWrappedObject, QSurfaceFormat::RenderableType  type);
-   void setSamples(QSurfaceFormat* theWrappedObject, int  numSamples);
-   void setStencilBufferSize(QSurfaceFormat* theWrappedObject, int  size);
-   void setStereo(QSurfaceFormat* theWrappedObject, bool  enable);
-   void setSwapBehavior(QSurfaceFormat* theWrappedObject, QSurfaceFormat::SwapBehavior  behavior);
-   void setSwapInterval(QSurfaceFormat* theWrappedObject, int  interval);
-   void setVersion(QSurfaceFormat* theWrappedObject, int  major, int  minor);
-   int  stencilBufferSize(QSurfaceFormat* theWrappedObject) const;
-   bool  stereo(QSurfaceFormat* theWrappedObject) const;
-   QSurfaceFormat::SwapBehavior  swapBehavior(QSurfaceFormat* theWrappedObject) const;
-   int  swapInterval(QSurfaceFormat* theWrappedObject) const;
-   bool  testOption(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOptions  opt) const;
-   bool  testOption(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOption  option) const;
-   QPair<int , int >  version(QSurfaceFormat* theWrappedObject) const;
-    QString py_toString(QSurfaceFormat*);
-};
-
-
 
 
 
@@ -2424,6 +2355,40 @@ void delete_QTextInlineObject(QTextInlineObject* obj) { delete obj; }
    int  textPosition(QTextInlineObject* theWrappedObject) const;
    qreal  width(QTextInlineObject* theWrappedObject) const;
     bool __nonzero__(QTextInlineObject* obj) { return obj->isValid(); }
+};
+
+
+
+
+
+class PythonQtShell_QTextItem : public QTextItem
+{
+public:
+    PythonQtShell_QTextItem():QTextItem(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QTextItem();
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QTextItem : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(RenderFlag )
+Q_FLAGS(RenderFlags )
+enum RenderFlag{
+  RightToLeft = QTextItem::RightToLeft,   Overline = QTextItem::Overline,   Underline = QTextItem::Underline,   StrikeOut = QTextItem::StrikeOut,   Dummy = QTextItem::Dummy};
+Q_DECLARE_FLAGS(RenderFlags, RenderFlag)
+public slots:
+QTextItem* new_QTextItem();
+void delete_QTextItem(QTextItem* obj) { delete obj; } 
+   qreal  ascent(QTextItem* theWrappedObject) const;
+   qreal  descent(QTextItem* theWrappedObject) const;
+   QFont  font(QTextItem* theWrappedObject) const;
+   QTextItem::RenderFlags  renderFlags(QTextItem* theWrappedObject) const;
+   QString  text(QTextItem* theWrappedObject) const;
+   qreal  width(QTextItem* theWrappedObject) const;
 };
 
 

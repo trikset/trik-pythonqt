@@ -19,7 +19,7 @@
 #include <qcoreevent.h>
 #include <qcursor.h>
 #include <qdatastream.h>
-#include <qdockwidget.h>
+#include <qdialog.h>
 #include <qevent.h>
 #include <qfont.h>
 #include <qfontinfo.h>
@@ -33,7 +33,6 @@
 #include <qlayout.h>
 #include <qlist.h>
 #include <qlocale.h>
-#include <qmainwindow.h>
 #include <qmargins.h>
 #include <qmatrix.h>
 #include <qmatrix4x4.h>
@@ -58,6 +57,7 @@
 #include <qopenglwidget.h>
 #include <qopenglwindow.h>
 #include <qpagelayout.h>
+#include <qpagesetupdialog.h>
 #include <qpagesize.h>
 #include <qpaintdevice.h>
 #include <qpaintengine.h>
@@ -67,6 +67,7 @@
 #include <qpalette.h>
 #include <qpixmap.h>
 #include <qpoint.h>
+#include <qprinter.h>
 #include <qpushbutton.h>
 #include <qquaternion.h>
 #include <qrect.h>
@@ -77,12 +78,10 @@
 #include <qsizepolicy.h>
 #include <qstate.h>
 #include <qstatemachine.h>
-#include <qstatusbar.h>
 #include <qstyle.h>
 #include <qstyleoption.h>
 #include <qsurface.h>
 #include <qsurfaceformat.h>
-#include <qtoolbar.h>
 #include <qtransform.h>
 #include <qvector.h>
 #include <qvector2d.h>
@@ -90,143 +89,6 @@
 #include <qvector4d.h>
 #include <qwidget.h>
 #include <qwindow.h>
-
-
-
-class PythonQtShell_QMainWindow : public QMainWindow
-{
-public:
-    PythonQtShell_QMainWindow(QWidget*  parent = NULL, Qt::WindowFlags  flags = Qt::WindowFlags()):QMainWindow(parent, flags),_wrapper(NULL) {};
-
-   ~PythonQtShell_QMainWindow();
-
-virtual void actionEvent(QActionEvent*  event);
-virtual void changeEvent(QEvent*  arg__1);
-virtual void childEvent(QChildEvent*  event);
-virtual void closeEvent(QCloseEvent*  event);
-virtual void contextMenuEvent(QContextMenuEvent*  event);
-virtual QMenu*  createPopupMenu();
-virtual void customEvent(QEvent*  event);
-virtual int  devType() const;
-virtual void dragEnterEvent(QDragEnterEvent*  event);
-virtual void dragLeaveEvent(QDragLeaveEvent*  event);
-virtual void dragMoveEvent(QDragMoveEvent*  event);
-virtual void dropEvent(QDropEvent*  event);
-virtual void enterEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void focusInEvent(QFocusEvent*  event);
-virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  event);
-virtual bool  hasHeightForWidth() const;
-virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  event);
-virtual void initPainter(QPainter*  painter) const;
-virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
-virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
-virtual void keyPressEvent(QKeyEvent*  event);
-virtual void keyReleaseEvent(QKeyEvent*  event);
-virtual void leaveEvent(QEvent*  event);
-virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
-virtual QSize  minimumSizeHint() const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  event);
-virtual void mouseMoveEvent(QMouseEvent*  event);
-virtual void mousePressEvent(QMouseEvent*  event);
-virtual void mouseReleaseEvent(QMouseEvent*  event);
-virtual void moveEvent(QMoveEvent*  event);
-virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
-virtual QPaintEngine*  paintEngine() const;
-virtual void paintEvent(QPaintEvent*  event);
-virtual QPaintDevice*  redirected(QPoint*  offset) const;
-virtual void resizeEvent(QResizeEvent*  event);
-virtual void setVisible(bool  visible);
-virtual QPainter*  sharedPainter() const;
-virtual void showEvent(QShowEvent*  event);
-virtual QSize  sizeHint() const;
-virtual void tabletEvent(QTabletEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
-virtual void wheelEvent(QWheelEvent*  event);
-
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QMainWindow : public QMainWindow
-{ public:
-inline void promoted_contextMenuEvent(QContextMenuEvent*  event) { this->contextMenuEvent(event); }
-inline bool  promoted_event(QEvent*  event) { return this->event(event); }
-inline void py_q_contextMenuEvent(QContextMenuEvent*  event) { QMainWindow::contextMenuEvent(event); }
-inline QMenu*  py_q_createPopupMenu() { return QMainWindow::createPopupMenu(); }
-inline bool  py_q_event(QEvent*  event) { return QMainWindow::event(event); }
-};
-
-class PythonQtWrapper_QMainWindow : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(DockOption )
-Q_FLAGS(DockOptions )
-enum DockOption{
-  AnimatedDocks = QMainWindow::AnimatedDocks,   AllowNestedDocks = QMainWindow::AllowNestedDocks,   AllowTabbedDocks = QMainWindow::AllowTabbedDocks,   ForceTabbedDocks = QMainWindow::ForceTabbedDocks,   VerticalTabs = QMainWindow::VerticalTabs,   GroupedDragging = QMainWindow::GroupedDragging};
-Q_DECLARE_FLAGS(DockOptions, DockOption)
-public slots:
-QMainWindow* new_QMainWindow(QWidget*  parent = NULL, Qt::WindowFlags  flags = Qt::WindowFlags());
-void delete_QMainWindow(QMainWindow* obj) { delete obj; } 
-   void addDockWidget(QMainWindow* theWrappedObject, Qt::DockWidgetArea  area, QDockWidget*  dockwidget);
-   void addDockWidget(QMainWindow* theWrappedObject, Qt::DockWidgetArea  area, QDockWidget*  dockwidget, Qt::Orientation  orientation);
-   void addToolBar(QMainWindow* theWrappedObject, QToolBar*  toolbar);
-   void addToolBar(QMainWindow* theWrappedObject, Qt::ToolBarArea  area, QToolBar*  toolbar);
-   QToolBar*  addToolBar(QMainWindow* theWrappedObject, const QString&  title);
-   void addToolBarBreak(QMainWindow* theWrappedObject, Qt::ToolBarArea  area = Qt::TopToolBarArea);
-   QWidget*  centralWidget(QMainWindow* theWrappedObject) const;
-   void py_q_contextMenuEvent(QMainWindow* theWrappedObject, QContextMenuEvent*  event){  (((PythonQtPublicPromoter_QMainWindow*)theWrappedObject)->py_q_contextMenuEvent(event));}
-   Qt::DockWidgetArea  corner(QMainWindow* theWrappedObject, Qt::Corner  corner) const;
-   QMenu*  createPopupMenu(QMainWindow* theWrappedObject);
-   QMenu*  py_q_createPopupMenu(QMainWindow* theWrappedObject){  return (((PythonQtPublicPromoter_QMainWindow*)theWrappedObject)->py_q_createPopupMenu());}
-   QMainWindow::DockOptions  dockOptions(QMainWindow* theWrappedObject) const;
-   Qt::DockWidgetArea  dockWidgetArea(QMainWindow* theWrappedObject, QDockWidget*  dockwidget) const;
-   bool  documentMode(QMainWindow* theWrappedObject) const;
-   bool  py_q_event(QMainWindow* theWrappedObject, QEvent*  event){  return (((PythonQtPublicPromoter_QMainWindow*)theWrappedObject)->py_q_event(event));}
-   QSize  iconSize(QMainWindow* theWrappedObject) const;
-   void insertToolBar(QMainWindow* theWrappedObject, QToolBar*  before, QToolBar*  toolbar);
-   void insertToolBarBreak(QMainWindow* theWrappedObject, QToolBar*  before);
-   bool  isAnimated(QMainWindow* theWrappedObject) const;
-   bool  isDockNestingEnabled(QMainWindow* theWrappedObject) const;
-   bool  isSeparator(QMainWindow* theWrappedObject, const QPoint&  pos) const;
-   QMenuBar*  menuBar(QMainWindow* theWrappedObject) const;
-   QWidget*  menuWidget(QMainWindow* theWrappedObject) const;
-   void removeDockWidget(QMainWindow* theWrappedObject, QDockWidget*  dockwidget);
-   void removeToolBar(QMainWindow* theWrappedObject, QToolBar*  toolbar);
-   void removeToolBarBreak(QMainWindow* theWrappedObject, QToolBar*  before);
-   void resizeDocks(QMainWindow* theWrappedObject, const QList<QDockWidget* >&  docks, const QList<int >&  sizes, Qt::Orientation  orientation);
-   bool  restoreDockWidget(QMainWindow* theWrappedObject, QDockWidget*  dockwidget);
-   bool  restoreState(QMainWindow* theWrappedObject, const QByteArray&  state, int  version = 0);
-   QByteArray  saveState(QMainWindow* theWrappedObject, int  version = 0) const;
-   void setCentralWidget(QMainWindow* theWrappedObject, QWidget*  widget);
-   void setCorner(QMainWindow* theWrappedObject, Qt::Corner  corner, Qt::DockWidgetArea  area);
-   void setDockOptions(QMainWindow* theWrappedObject, QMainWindow::DockOptions  options);
-   void setDocumentMode(QMainWindow* theWrappedObject, bool  enabled);
-   void setIconSize(QMainWindow* theWrappedObject, const QSize&  iconSize);
-   void setMenuBar(QMainWindow* theWrappedObject, QMenuBar*  menubar);
-   void setMenuWidget(QMainWindow* theWrappedObject, QWidget*  menubar);
-   void setStatusBar(QMainWindow* theWrappedObject, QStatusBar*  statusbar);
-   void setTabPosition(QMainWindow* theWrappedObject, Qt::DockWidgetAreas  areas, QTabWidget::TabPosition  tabPosition);
-   void setTabShape(QMainWindow* theWrappedObject, QTabWidget::TabShape  tabShape);
-   void setToolButtonStyle(QMainWindow* theWrappedObject, Qt::ToolButtonStyle  toolButtonStyle);
-   void splitDockWidget(QMainWindow* theWrappedObject, QDockWidget*  after, QDockWidget*  dockwidget, Qt::Orientation  orientation);
-   QStatusBar*  statusBar(QMainWindow* theWrappedObject) const;
-   QTabWidget::TabPosition  tabPosition(QMainWindow* theWrappedObject, Qt::DockWidgetArea  area) const;
-   QTabWidget::TabShape  tabShape(QMainWindow* theWrappedObject) const;
-   QList<QDockWidget* >  tabifiedDockWidgets(QMainWindow* theWrappedObject, QDockWidget*  dockwidget) const;
-   void tabifyDockWidget(QMainWindow* theWrappedObject, QDockWidget*  first, QDockWidget*  second);
-   QWidget*  takeCentralWidget(QMainWindow* theWrappedObject);
-   Qt::ToolBarArea  toolBarArea(QMainWindow* theWrappedObject, QToolBar*  toolbar) const;
-   bool  toolBarBreak(QMainWindow* theWrappedObject, QToolBar*  toolbar) const;
-   Qt::ToolButtonStyle  toolButtonStyle(QMainWindow* theWrappedObject) const;
-   bool  unifiedTitleAndToolBarOnMac(QMainWindow* theWrappedObject) const;
-};
-
-
 
 
 
@@ -2393,6 +2255,90 @@ void delete_QPageLayout(QPageLayout* obj) { delete obj; }
    QPageLayout::Unit  units(QPageLayout* theWrappedObject) const;
     QString py_toString(QPageLayout*);
     bool __nonzero__(QPageLayout* obj) { return obj->isValid(); }
+};
+
+
+
+
+
+class PythonQtShell_QPageSetupDialog : public QPageSetupDialog
+{
+public:
+    PythonQtShell_QPageSetupDialog(QPrinter*  printer, QWidget*  parent = NULL):QPageSetupDialog(printer, parent),_wrapper(NULL) {};
+    PythonQtShell_QPageSetupDialog(QWidget*  parent = NULL):QPageSetupDialog(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QPageSetupDialog();
+
+virtual void accept();
+virtual void actionEvent(QActionEvent*  event);
+virtual void changeEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void closeEvent(QCloseEvent*  arg__1);
+virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
+virtual int  devType() const;
+virtual void done(int  result);
+virtual void dragEnterEvent(QDragEnterEvent*  event);
+virtual void dragLeaveEvent(QDragLeaveEvent*  event);
+virtual void dragMoveEvent(QDragMoveEvent*  event);
+virtual void dropEvent(QDropEvent*  event);
+virtual void enterEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual int  exec();
+virtual void focusInEvent(QFocusEvent*  event);
+virtual bool  focusNextPrevChild(bool  next);
+virtual void focusOutEvent(QFocusEvent*  event);
+virtual bool  hasHeightForWidth() const;
+virtual int  heightForWidth(int  arg__1) const;
+virtual void hideEvent(QHideEvent*  event);
+virtual void initPainter(QPainter*  painter) const;
+virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
+virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
+virtual void keyPressEvent(QKeyEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  event);
+virtual void leaveEvent(QEvent*  event);
+virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual void mouseDoubleClickEvent(QMouseEvent*  event);
+virtual void mouseMoveEvent(QMouseEvent*  event);
+virtual void mousePressEvent(QMouseEvent*  event);
+virtual void mouseReleaseEvent(QMouseEvent*  event);
+virtual void moveEvent(QMoveEvent*  event);
+virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
+virtual QPaintEngine*  paintEngine() const;
+virtual void paintEvent(QPaintEvent*  event);
+virtual QPaintDevice*  redirected(QPoint*  offset) const;
+virtual void reject();
+virtual void resizeEvent(QResizeEvent*  arg__1);
+virtual void setVisible(bool  visible);
+virtual QPainter*  sharedPainter() const;
+virtual void showEvent(QShowEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
+virtual void wheelEvent(QWheelEvent*  event);
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QPageSetupDialog : public QPageSetupDialog
+{ public:
+inline void py_q_done(int  result) { QPageSetupDialog::done(result); }
+inline int  py_q_exec() { return QPageSetupDialog::exec(); }
+};
+
+class PythonQtWrapper_QPageSetupDialog : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QPageSetupDialog* new_QPageSetupDialog(QPrinter*  printer, QWidget*  parent = NULL);
+QPageSetupDialog* new_QPageSetupDialog(QWidget*  parent = NULL);
+void delete_QPageSetupDialog(QPageSetupDialog* obj) { delete obj; } 
+   void py_q_done(QPageSetupDialog* theWrappedObject, int  result){  (((PythonQtPublicPromoter_QPageSetupDialog*)theWrappedObject)->py_q_done(result));}
+   int  py_q_exec(QPageSetupDialog* theWrappedObject){  return (((PythonQtPublicPromoter_QPageSetupDialog*)theWrappedObject)->py_q_exec());}
+   void open(QPageSetupDialog* theWrappedObject, QObject*  receiver, const char*  member);
+   QPrinter*  printer(QPageSetupDialog* theWrappedObject);
 };
 
 

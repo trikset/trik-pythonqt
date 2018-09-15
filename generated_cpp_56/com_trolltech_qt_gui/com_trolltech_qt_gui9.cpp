@@ -26,6 +26,7 @@
 #include <qpaintengine.h>
 #include <qpainter.h>
 #include <qpainterpath.h>
+#include <qpair.h>
 #include <qpalette.h>
 #include <qpen.h>
 #include <qpicture.h>
@@ -45,29 +46,6 @@
 #include <qtransform.h>
 #include <qvector.h>
 #include <qwidget.h>
-
-PythonQtShell_QStyleOptionGraphicsItem::~PythonQtShell_QStyleOptionGraphicsItem() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-QStyleOptionGraphicsItem* PythonQtWrapper_QStyleOptionGraphicsItem::new_QStyleOptionGraphicsItem()
-{ 
-return new PythonQtShell_QStyleOptionGraphicsItem(); }
-
-QStyleOptionGraphicsItem* PythonQtWrapper_QStyleOptionGraphicsItem::new_QStyleOptionGraphicsItem(const QStyleOptionGraphicsItem&  other)
-{ 
-return new PythonQtShell_QStyleOptionGraphicsItem(other); }
-
-QStyleOptionGraphicsItem* PythonQtWrapper_QStyleOptionGraphicsItem::new_QStyleOptionGraphicsItem(int  version)
-{ 
-return new PythonQtShell_QStyleOptionGraphicsItem(version); }
-
-qreal  PythonQtWrapper_QStyleOptionGraphicsItem::static_QStyleOptionGraphicsItem_levelOfDetailFromTransform(const QTransform&  worldTransform)
-{
-  return (QStyleOptionGraphicsItem::levelOfDetailFromTransform(worldTransform));
-}
-
-
 
 PythonQtShell_QStyleOptionGroupBox::~PythonQtShell_QStyleOptionGroupBox() {
   PythonQtPrivate* priv = PythonQt::priv();
@@ -1286,6 +1264,232 @@ QPlatformSurface*  PythonQtWrapper_QSurface::surfaceHandle(QSurface* theWrappedO
 QSurface::SurfaceType  PythonQtWrapper_QSurface::surfaceType(QSurface* theWrappedObject) const
 {
   return ( theWrappedObject->surfaceType());
+}
+
+
+
+QSurfaceFormat* PythonQtWrapper_QSurfaceFormat::new_QSurfaceFormat()
+{ 
+return new QSurfaceFormat(); }
+
+QSurfaceFormat* PythonQtWrapper_QSurfaceFormat::new_QSurfaceFormat(QSurfaceFormat::FormatOptions  options)
+{ 
+return new QSurfaceFormat(options); }
+
+QSurfaceFormat* PythonQtWrapper_QSurfaceFormat::new_QSurfaceFormat(const QSurfaceFormat&  other)
+{ 
+return new QSurfaceFormat(other); }
+
+int  PythonQtWrapper_QSurfaceFormat::alphaBufferSize(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->alphaBufferSize());
+}
+
+int  PythonQtWrapper_QSurfaceFormat::blueBufferSize(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->blueBufferSize());
+}
+
+QSurfaceFormat  PythonQtWrapper_QSurfaceFormat::static_QSurfaceFormat_defaultFormat()
+{
+  return (QSurfaceFormat::defaultFormat());
+}
+
+int  PythonQtWrapper_QSurfaceFormat::depthBufferSize(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->depthBufferSize());
+}
+
+int  PythonQtWrapper_QSurfaceFormat::greenBufferSize(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->greenBufferSize());
+}
+
+bool  PythonQtWrapper_QSurfaceFormat::hasAlpha(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->hasAlpha());
+}
+
+int  PythonQtWrapper_QSurfaceFormat::majorVersion(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->majorVersion());
+}
+
+int  PythonQtWrapper_QSurfaceFormat::minorVersion(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->minorVersion());
+}
+
+QSurfaceFormat*  PythonQtWrapper_QSurfaceFormat::operator_assign(QSurfaceFormat* theWrappedObject, const QSurfaceFormat&  other)
+{
+  return &( (*theWrappedObject)= other);
+}
+
+bool  PythonQtWrapper_QSurfaceFormat::__eq__(QSurfaceFormat* theWrappedObject, const QSurfaceFormat&  arg__2)
+{
+  return ( (*theWrappedObject)== arg__2);
+}
+
+QSurfaceFormat::FormatOptions  PythonQtWrapper_QSurfaceFormat::options(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->options());
+}
+
+QSurfaceFormat::OpenGLContextProfile  PythonQtWrapper_QSurfaceFormat::profile(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->profile());
+}
+
+int  PythonQtWrapper_QSurfaceFormat::redBufferSize(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->redBufferSize());
+}
+
+QSurfaceFormat::RenderableType  PythonQtWrapper_QSurfaceFormat::renderableType(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->renderableType());
+}
+
+int  PythonQtWrapper_QSurfaceFormat::samples(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->samples());
+}
+
+void PythonQtWrapper_QSurfaceFormat::setAlphaBufferSize(QSurfaceFormat* theWrappedObject, int  size)
+{
+  ( theWrappedObject->setAlphaBufferSize(size));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setBlueBufferSize(QSurfaceFormat* theWrappedObject, int  size)
+{
+  ( theWrappedObject->setBlueBufferSize(size));
+}
+
+void PythonQtWrapper_QSurfaceFormat::static_QSurfaceFormat_setDefaultFormat(const QSurfaceFormat&  format)
+{
+  (QSurfaceFormat::setDefaultFormat(format));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setDepthBufferSize(QSurfaceFormat* theWrappedObject, int  size)
+{
+  ( theWrappedObject->setDepthBufferSize(size));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setGreenBufferSize(QSurfaceFormat* theWrappedObject, int  size)
+{
+  ( theWrappedObject->setGreenBufferSize(size));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setMajorVersion(QSurfaceFormat* theWrappedObject, int  majorVersion)
+{
+  ( theWrappedObject->setMajorVersion(majorVersion));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setMinorVersion(QSurfaceFormat* theWrappedObject, int  minorVersion)
+{
+  ( theWrappedObject->setMinorVersion(minorVersion));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setOption(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOptions  opt)
+{
+  ( theWrappedObject->setOption(opt));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setOption(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOption  option, bool  on)
+{
+  ( theWrappedObject->setOption(option, on));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setOptions(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOptions  options)
+{
+  ( theWrappedObject->setOptions(options));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setProfile(QSurfaceFormat* theWrappedObject, QSurfaceFormat::OpenGLContextProfile  profile)
+{
+  ( theWrappedObject->setProfile(profile));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setRedBufferSize(QSurfaceFormat* theWrappedObject, int  size)
+{
+  ( theWrappedObject->setRedBufferSize(size));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setRenderableType(QSurfaceFormat* theWrappedObject, QSurfaceFormat::RenderableType  type)
+{
+  ( theWrappedObject->setRenderableType(type));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setSamples(QSurfaceFormat* theWrappedObject, int  numSamples)
+{
+  ( theWrappedObject->setSamples(numSamples));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setStencilBufferSize(QSurfaceFormat* theWrappedObject, int  size)
+{
+  ( theWrappedObject->setStencilBufferSize(size));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setStereo(QSurfaceFormat* theWrappedObject, bool  enable)
+{
+  ( theWrappedObject->setStereo(enable));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setSwapBehavior(QSurfaceFormat* theWrappedObject, QSurfaceFormat::SwapBehavior  behavior)
+{
+  ( theWrappedObject->setSwapBehavior(behavior));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setSwapInterval(QSurfaceFormat* theWrappedObject, int  interval)
+{
+  ( theWrappedObject->setSwapInterval(interval));
+}
+
+void PythonQtWrapper_QSurfaceFormat::setVersion(QSurfaceFormat* theWrappedObject, int  major, int  minor)
+{
+  ( theWrappedObject->setVersion(major, minor));
+}
+
+int  PythonQtWrapper_QSurfaceFormat::stencilBufferSize(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->stencilBufferSize());
+}
+
+bool  PythonQtWrapper_QSurfaceFormat::stereo(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->stereo());
+}
+
+QSurfaceFormat::SwapBehavior  PythonQtWrapper_QSurfaceFormat::swapBehavior(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->swapBehavior());
+}
+
+int  PythonQtWrapper_QSurfaceFormat::swapInterval(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->swapInterval());
+}
+
+bool  PythonQtWrapper_QSurfaceFormat::testOption(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOptions  opt) const
+{
+  return ( theWrappedObject->testOption(opt));
+}
+
+bool  PythonQtWrapper_QSurfaceFormat::testOption(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOption  option) const
+{
+  return ( theWrappedObject->testOption(option));
+}
+
+QPair<int , int >  PythonQtWrapper_QSurfaceFormat::version(QSurfaceFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->version());
+}
+
+QString PythonQtWrapper_QSurfaceFormat::py_toString(QSurfaceFormat* obj) {
+  QString result;
+  QDebug d(&result);
+  d << *obj;
+  return result;
 }
 
 

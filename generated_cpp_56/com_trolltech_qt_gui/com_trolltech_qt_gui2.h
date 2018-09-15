@@ -1,7 +1,6 @@
 #include <PythonQt.h>
 #include <QObject>
 #include <QPair>
-#include <QStringList>
 #include <QVariant>
 #include <qaction.h>
 #include <qbackingstore.h>
@@ -13,7 +12,6 @@
 #include <qcursor.h>
 #include <qevent.h>
 #include <qfont.h>
-#include <qfontdatabase.h>
 #include <qfontdialog.h>
 #include <qfontinfo.h>
 #include <qfontmetrics.h>
@@ -61,7 +59,6 @@
 #include <qregion.h>
 #include <qsize.h>
 #include <qsizepolicy.h>
-#include <qstringlist.h>
 #include <qstyle.h>
 #include <qstyleoption.h>
 #include <qtimeline.h>
@@ -69,55 +66,6 @@
 #include <qvector.h>
 #include <qwidget.h>
 #include <qwindow.h>
-
-
-
-class PythonQtWrapper_QFontDatabase : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(SystemFont WritingSystem )
-enum SystemFont{
-  GeneralFont = QFontDatabase::GeneralFont,   FixedFont = QFontDatabase::FixedFont,   TitleFont = QFontDatabase::TitleFont,   SmallestReadableFont = QFontDatabase::SmallestReadableFont};
-enum WritingSystem{
-  Any = QFontDatabase::Any,   Latin = QFontDatabase::Latin,   Greek = QFontDatabase::Greek,   Cyrillic = QFontDatabase::Cyrillic,   Armenian = QFontDatabase::Armenian,   Hebrew = QFontDatabase::Hebrew,   Arabic = QFontDatabase::Arabic,   Syriac = QFontDatabase::Syriac,   Thaana = QFontDatabase::Thaana,   Devanagari = QFontDatabase::Devanagari,   Bengali = QFontDatabase::Bengali,   Gurmukhi = QFontDatabase::Gurmukhi,   Gujarati = QFontDatabase::Gujarati,   Oriya = QFontDatabase::Oriya,   Tamil = QFontDatabase::Tamil,   Telugu = QFontDatabase::Telugu,   Kannada = QFontDatabase::Kannada,   Malayalam = QFontDatabase::Malayalam,   Sinhala = QFontDatabase::Sinhala,   Thai = QFontDatabase::Thai,   Lao = QFontDatabase::Lao,   Tibetan = QFontDatabase::Tibetan,   Myanmar = QFontDatabase::Myanmar,   Georgian = QFontDatabase::Georgian,   Khmer = QFontDatabase::Khmer,   SimplifiedChinese = QFontDatabase::SimplifiedChinese,   TraditionalChinese = QFontDatabase::TraditionalChinese,   Japanese = QFontDatabase::Japanese,   Korean = QFontDatabase::Korean,   Vietnamese = QFontDatabase::Vietnamese,   Symbol = QFontDatabase::Symbol,   Other = QFontDatabase::Other,   Ogham = QFontDatabase::Ogham,   Runic = QFontDatabase::Runic,   Nko = QFontDatabase::Nko,   WritingSystemsCount = QFontDatabase::WritingSystemsCount};
-public slots:
-QFontDatabase* new_QFontDatabase();
-QFontDatabase* new_QFontDatabase(const QFontDatabase& other) {
-QFontDatabase* a = new QFontDatabase();
-*((QFontDatabase*)a) = other;
-return a; }
-void delete_QFontDatabase(QFontDatabase* obj) { delete obj; } 
-   int  static_QFontDatabase_addApplicationFont(const QString&  fileName);
-   int  static_QFontDatabase_addApplicationFontFromData(const QByteArray&  fontData);
-   QStringList  static_QFontDatabase_applicationFontFamilies(int  id);
-   bool  bold(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style) const;
-   QStringList  families(QFontDatabase* theWrappedObject, QFontDatabase::WritingSystem  writingSystem = QFontDatabase::Any) const;
-   QFont  font(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style, int  pointSize) const;
-   bool  hasFamily(QFontDatabase* theWrappedObject, const QString&  family) const;
-   bool  isBitmapScalable(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style = QString()) const;
-   bool  isFixedPitch(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style = QString()) const;
-   bool  isPrivateFamily(QFontDatabase* theWrappedObject, const QString&  family) const;
-   bool  isScalable(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style = QString()) const;
-   bool  isSmoothlyScalable(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style = QString()) const;
-   bool  italic(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style) const;
-   QList<int >  pointSizes(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style = QString());
-   bool  static_QFontDatabase_removeAllApplicationFonts();
-   bool  static_QFontDatabase_removeApplicationFont(int  id);
-   QList<int >  smoothSizes(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style);
-   QList<int >  static_QFontDatabase_standardSizes();
-   QString  styleString(QFontDatabase* theWrappedObject, const QFont&  font);
-   QString  styleString(QFontDatabase* theWrappedObject, const QFontInfo&  fontInfo);
-   QStringList  styles(QFontDatabase* theWrappedObject, const QString&  family) const;
-   bool  static_QFontDatabase_supportsThreadedFontRendering();
-   QFont  static_QFontDatabase_systemFont(QFontDatabase::SystemFont  type);
-   int  weight(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style) const;
-   QString  static_QFontDatabase_writingSystemName(QFontDatabase::WritingSystem  writingSystem);
-   QString  static_QFontDatabase_writingSystemSample(QFontDatabase::WritingSystem  writingSystem);
-   QList<QFontDatabase::WritingSystem >  writingSystems(QFontDatabase* theWrappedObject) const;
-   QList<QFontDatabase::WritingSystem >  writingSystems(QFontDatabase* theWrappedObject, const QString&  family) const;
-};
-
-
 
 
 
@@ -2150,6 +2098,107 @@ void delete_QGraphicsPathItem(QGraphicsPathItem* obj) { delete obj; }
    QPainterPath  shape(QGraphicsPathItem* theWrappedObject) const;
    bool  supportsExtension(QGraphicsPathItem* theWrappedObject, int  extension) const;
    int  type(QGraphicsPathItem* theWrappedObject) const;
+};
+
+
+
+
+
+class PythonQtShell_QGraphicsPixmapItem : public QGraphicsPixmapItem
+{
+public:
+    PythonQtShell_QGraphicsPixmapItem(QGraphicsItem*  parent = NULL):QGraphicsPixmapItem(parent),_wrapper(NULL) {};
+    PythonQtShell_QGraphicsPixmapItem(const QPixmap&  pixmap, QGraphicsItem*  parent = NULL):QGraphicsPixmapItem(pixmap, parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QGraphicsPixmapItem();
+
+virtual void advance(int  phase);
+virtual QRectF  boundingRect() const;
+virtual bool  collidesWithItem(const QGraphicsItem*  other, Qt::ItemSelectionMode  mode = Qt::IntersectsItemShape) const;
+virtual bool  collidesWithPath(const QPainterPath&  path, Qt::ItemSelectionMode  mode = Qt::IntersectsItemShape) const;
+virtual bool  contains(const QPointF&  point) const;
+virtual void contextMenuEvent(QGraphicsSceneContextMenuEvent*  event);
+virtual void dragEnterEvent(QGraphicsSceneDragDropEvent*  event);
+virtual void dragLeaveEvent(QGraphicsSceneDragDropEvent*  event);
+virtual void dragMoveEvent(QGraphicsSceneDragDropEvent*  event);
+virtual void dropEvent(QGraphicsSceneDragDropEvent*  event);
+virtual QVariant  extension(const QVariant&  variant) const;
+virtual void focusInEvent(QFocusEvent*  event);
+virtual void focusOutEvent(QFocusEvent*  event);
+virtual void hoverEnterEvent(QGraphicsSceneHoverEvent*  event);
+virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent*  event);
+virtual void hoverMoveEvent(QGraphicsSceneHoverEvent*  event);
+virtual void inputMethodEvent(QInputMethodEvent*  event);
+virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  query) const;
+virtual bool  isObscuredBy(const QGraphicsItem*  item) const;
+virtual QVariant  itemChange(QGraphicsItem::GraphicsItemChange  change, const QVariant&  value);
+virtual void keyPressEvent(QKeyEvent*  event);
+virtual void keyReleaseEvent(QKeyEvent*  event);
+virtual void mouseDoubleClickEvent(QGraphicsSceneMouseEvent*  event);
+virtual void mouseMoveEvent(QGraphicsSceneMouseEvent*  event);
+virtual void mousePressEvent(QGraphicsSceneMouseEvent*  event);
+virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent*  event);
+virtual QPainterPath  opaqueArea() const;
+virtual void paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget);
+virtual bool  sceneEvent(QEvent*  event);
+virtual bool  sceneEventFilter(QGraphicsItem*  watched, QEvent*  event);
+virtual void setExtension(QGraphicsItem::Extension  extension, const QVariant&  variant);
+virtual QPainterPath  shape() const;
+virtual bool  supportsExtension(QGraphicsItem::Extension  extension) const;
+virtual int  type() const;
+virtual void wheelEvent(QGraphicsSceneWheelEvent*  event);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QGraphicsPixmapItem : public QGraphicsPixmapItem
+{ public:
+inline QVariant  promoted_extension(const QVariant&  variant) const { return this->extension(variant); }
+inline void promoted_setExtension(int  extension, const QVariant&  variant) { this->setExtension((QGraphicsItem::Extension)extension, variant); }
+inline bool  promoted_supportsExtension(int  extension) const { return this->supportsExtension((QGraphicsItem::Extension)extension); }
+inline QRectF  py_q_boundingRect() const { return QGraphicsPixmapItem::boundingRect(); }
+inline bool  py_q_contains(const QPointF&  point) const { return QGraphicsPixmapItem::contains(point); }
+inline QVariant  py_q_extension(const QVariant&  variant) const { return QGraphicsPixmapItem::extension(variant); }
+inline bool  py_q_isObscuredBy(const QGraphicsItem*  item) const { return QGraphicsPixmapItem::isObscuredBy(item); }
+inline QPainterPath  py_q_opaqueArea() const { return QGraphicsPixmapItem::opaqueArea(); }
+inline void py_q_paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget) { QGraphicsPixmapItem::paint(painter, option, widget); }
+inline void py_q_setExtension(int  extension, const QVariant&  variant) { QGraphicsPixmapItem::setExtension((QGraphicsItem::Extension)extension, variant); }
+inline QPainterPath  py_q_shape() const { return QGraphicsPixmapItem::shape(); }
+inline bool  py_q_supportsExtension(int  extension) const { return QGraphicsPixmapItem::supportsExtension((QGraphicsItem::Extension)extension); }
+inline int  py_q_type() const { return QGraphicsPixmapItem::type(); }
+};
+
+class PythonQtWrapper_QGraphicsPixmapItem : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(ShapeMode enum_1 )
+enum ShapeMode{
+  MaskShape = QGraphicsPixmapItem::MaskShape,   BoundingRectShape = QGraphicsPixmapItem::BoundingRectShape,   HeuristicMaskShape = QGraphicsPixmapItem::HeuristicMaskShape};
+enum enum_1{
+  Type = QGraphicsPixmapItem::Type};
+public slots:
+QGraphicsPixmapItem* new_QGraphicsPixmapItem(QGraphicsItem*  parent = NULL);
+QGraphicsPixmapItem* new_QGraphicsPixmapItem(const QPixmap&  pixmap, QGraphicsItem*  parent = NULL);
+void delete_QGraphicsPixmapItem(QGraphicsPixmapItem* obj) { delete obj; } 
+   QRectF  py_q_boundingRect(QGraphicsPixmapItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QGraphicsPixmapItem*)theWrappedObject)->py_q_boundingRect());}
+   bool  py_q_contains(QGraphicsPixmapItem* theWrappedObject, const QPointF&  point) const{  return (((PythonQtPublicPromoter_QGraphicsPixmapItem*)theWrappedObject)->py_q_contains(point));}
+   QVariant  py_q_extension(QGraphicsPixmapItem* theWrappedObject, const QVariant&  variant) const{  return (((PythonQtPublicPromoter_QGraphicsPixmapItem*)theWrappedObject)->py_q_extension(variant));}
+   bool  py_q_isObscuredBy(QGraphicsPixmapItem* theWrappedObject, const QGraphicsItem*  item) const{  return (((PythonQtPublicPromoter_QGraphicsPixmapItem*)theWrappedObject)->py_q_isObscuredBy(item));}
+   QPointF  offset(QGraphicsPixmapItem* theWrappedObject) const;
+   QPainterPath  py_q_opaqueArea(QGraphicsPixmapItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QGraphicsPixmapItem*)theWrappedObject)->py_q_opaqueArea());}
+   void py_q_paint(QGraphicsPixmapItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget){  (((PythonQtPublicPromoter_QGraphicsPixmapItem*)theWrappedObject)->py_q_paint(painter, option, widget));}
+   QPixmap  pixmap(QGraphicsPixmapItem* theWrappedObject) const;
+   void py_q_setExtension(QGraphicsPixmapItem* theWrappedObject, int  extension, const QVariant&  variant){  (((PythonQtPublicPromoter_QGraphicsPixmapItem*)theWrappedObject)->py_q_setExtension(extension, variant));}
+   void setOffset(QGraphicsPixmapItem* theWrappedObject, const QPointF&  offset);
+   void setOffset(QGraphicsPixmapItem* theWrappedObject, qreal  x, qreal  y);
+   void setPixmap(QGraphicsPixmapItem* theWrappedObject, const QPixmap&  pixmap);
+   void setShapeMode(QGraphicsPixmapItem* theWrappedObject, QGraphicsPixmapItem::ShapeMode  mode);
+   void setTransformationMode(QGraphicsPixmapItem* theWrappedObject, Qt::TransformationMode  mode);
+   QPainterPath  py_q_shape(QGraphicsPixmapItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QGraphicsPixmapItem*)theWrappedObject)->py_q_shape());}
+   QGraphicsPixmapItem::ShapeMode  shapeMode(QGraphicsPixmapItem* theWrappedObject) const;
+   bool  py_q_supportsExtension(QGraphicsPixmapItem* theWrappedObject, int  extension) const{  return (((PythonQtPublicPromoter_QGraphicsPixmapItem*)theWrappedObject)->py_q_supportsExtension(extension));}
+   Qt::TransformationMode  transformationMode(QGraphicsPixmapItem* theWrappedObject) const;
+   int  py_q_type(QGraphicsPixmapItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QGraphicsPixmapItem*)theWrappedObject)->py_q_type());}
 };
 
 

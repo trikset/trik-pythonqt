@@ -24,7 +24,6 @@
 #include <qabstractslider.h>
 #include <qabstractspinbox.h>
 #include <qabstracttextdocumentlayout.h>
-#include <qaccessible.h>
 #include <qaction.h>
 #include <qactiongroup.h>
 #include <qapplication.h>
@@ -1698,34 +1697,6 @@ QTextCharFormat  py_get_format(QAbstractTextDocumentLayout::Selection* theWrappe
 
 
 
-class PythonQtShell_QAccessibleEvent : public QAccessibleEvent
-{
-public:
-    PythonQtShell_QAccessibleEvent(QObject*  obj, QAccessible::Event  typ):QAccessibleEvent(obj, typ),_wrapper(NULL) {};
-
-   ~PythonQtShell_QAccessibleEvent();
-
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtWrapper_QAccessibleEvent : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QAccessibleEvent* new_QAccessibleEvent(QObject*  obj, QAccessible::Event  typ);
-void delete_QAccessibleEvent(QAccessibleEvent* obj) { delete obj; } 
-   int  child(QAccessibleEvent* theWrappedObject) const;
-   QObject*  object(QAccessibleEvent* theWrappedObject) const;
-   void setChild(QAccessibleEvent* theWrappedObject, int  chld);
-   QAccessible::Event  type(QAccessibleEvent* theWrappedObject) const;
-    QString py_toString(QAccessibleEvent*);
-};
-
-
-
-
-
 class PythonQtShell_QAction : public QAction
 {
 public:
@@ -3007,6 +2978,91 @@ void delete_QCommonStyle(QCommonStyle* obj) { delete obj; }
    QRect  py_q_subElementRect(QCommonStyle* theWrappedObject, QStyle::SubElement  r, const QStyleOption*  opt, const QWidget*  widget = NULL) const{  return (((PythonQtPublicPromoter_QCommonStyle*)theWrappedObject)->py_q_subElementRect(r, opt, widget));}
    void py_q_unpolish(QCommonStyle* theWrappedObject, QApplication*  application){  (((PythonQtPublicPromoter_QCommonStyle*)theWrappedObject)->py_q_unpolish(application));}
    void py_q_unpolish(QCommonStyle* theWrappedObject, QWidget*  widget){  (((PythonQtPublicPromoter_QCommonStyle*)theWrappedObject)->py_q_unpolish(widget));}
+};
+
+
+
+
+
+class PythonQtShell_QCompleter : public QCompleter
+{
+public:
+    PythonQtShell_QCompleter(QAbstractItemModel*  model, QObject*  parent = NULL):QCompleter(model, parent),_wrapper(NULL) {};
+    PythonQtShell_QCompleter(QObject*  parent = NULL):QCompleter(parent),_wrapper(NULL) {};
+    PythonQtShell_QCompleter(const QStringList&  completions, QObject*  parent = NULL):QCompleter(completions, parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QCompleter();
+
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  arg__1);
+virtual bool  eventFilter(QObject*  o, QEvent*  e);
+virtual QString  pathFromIndex(const QModelIndex&  index) const;
+virtual QStringList  splitPath(const QString&  path) const;
+virtual void timerEvent(QTimerEvent*  event);
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QCompleter : public QCompleter
+{ public:
+inline bool  promoted_event(QEvent*  arg__1) { return this->event(arg__1); }
+inline bool  promoted_eventFilter(QObject*  o, QEvent*  e) { return this->eventFilter(o, e); }
+inline bool  py_q_event(QEvent*  arg__1) { return QCompleter::event(arg__1); }
+inline bool  py_q_eventFilter(QObject*  o, QEvent*  e) { return QCompleter::eventFilter(o, e); }
+inline QString  py_q_pathFromIndex(const QModelIndex&  index) const { return QCompleter::pathFromIndex(index); }
+inline QStringList  py_q_splitPath(const QString&  path) const { return QCompleter::splitPath(path); }
+};
+
+class PythonQtWrapper_QCompleter : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(CompletionMode ModelSorting )
+enum CompletionMode{
+  PopupCompletion = QCompleter::PopupCompletion,   UnfilteredPopupCompletion = QCompleter::UnfilteredPopupCompletion,   InlineCompletion = QCompleter::InlineCompletion};
+enum ModelSorting{
+  UnsortedModel = QCompleter::UnsortedModel,   CaseSensitivelySortedModel = QCompleter::CaseSensitivelySortedModel,   CaseInsensitivelySortedModel = QCompleter::CaseInsensitivelySortedModel};
+public slots:
+QCompleter* new_QCompleter(QAbstractItemModel*  model, QObject*  parent = NULL);
+QCompleter* new_QCompleter(QObject*  parent = NULL);
+QCompleter* new_QCompleter(const QStringList&  completions, QObject*  parent = NULL);
+void delete_QCompleter(QCompleter* obj) { delete obj; } 
+   Qt::CaseSensitivity  caseSensitivity(QCompleter* theWrappedObject) const;
+   int  completionColumn(QCompleter* theWrappedObject) const;
+   int  completionCount(QCompleter* theWrappedObject) const;
+   QCompleter::CompletionMode  completionMode(QCompleter* theWrappedObject) const;
+   QAbstractItemModel*  completionModel(QCompleter* theWrappedObject) const;
+   QString  completionPrefix(QCompleter* theWrappedObject) const;
+   int  completionRole(QCompleter* theWrappedObject) const;
+   QString  currentCompletion(QCompleter* theWrappedObject) const;
+   QModelIndex  currentIndex(QCompleter* theWrappedObject) const;
+   int  currentRow(QCompleter* theWrappedObject) const;
+   bool  py_q_event(QCompleter* theWrappedObject, QEvent*  arg__1){  return (((PythonQtPublicPromoter_QCompleter*)theWrappedObject)->py_q_event(arg__1));}
+   bool  py_q_eventFilter(QCompleter* theWrappedObject, QObject*  o, QEvent*  e){  return (((PythonQtPublicPromoter_QCompleter*)theWrappedObject)->py_q_eventFilter(o, e));}
+   Qt::MatchFlags  filterMode(QCompleter* theWrappedObject) const;
+   int  maxVisibleItems(QCompleter* theWrappedObject) const;
+   QAbstractItemModel*  model(QCompleter* theWrappedObject) const;
+   QCompleter::ModelSorting  modelSorting(QCompleter* theWrappedObject) const;
+   QString  pathFromIndex(QCompleter* theWrappedObject, const QModelIndex&  index) const;
+   QString  py_q_pathFromIndex(QCompleter* theWrappedObject, const QModelIndex&  index) const{  return (((PythonQtPublicPromoter_QCompleter*)theWrappedObject)->py_q_pathFromIndex(index));}
+   QAbstractItemView*  popup(QCompleter* theWrappedObject) const;
+   void setCaseSensitivity(QCompleter* theWrappedObject, Qt::CaseSensitivity  caseSensitivity);
+   void setCompletionColumn(QCompleter* theWrappedObject, int  column);
+   void setCompletionMode(QCompleter* theWrappedObject, QCompleter::CompletionMode  mode);
+   void setCompletionRole(QCompleter* theWrappedObject, int  role);
+   bool  setCurrentRow(QCompleter* theWrappedObject, int  row);
+   void setFilterMode(QCompleter* theWrappedObject, Qt::MatchFlags  filterMode);
+   void setMaxVisibleItems(QCompleter* theWrappedObject, int  maxItems);
+   void setModel(QCompleter* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractItemModel* >  c);
+   void setModelSorting(QCompleter* theWrappedObject, QCompleter::ModelSorting  sorting);
+   void setPopup(QCompleter* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractItemView* >  popup);
+   void setWidget(QCompleter* theWrappedObject, QWidget*  widget);
+   QStringList  splitPath(QCompleter* theWrappedObject, const QString&  path) const;
+   QStringList  py_q_splitPath(QCompleter* theWrappedObject, const QString&  path) const{  return (((PythonQtPublicPromoter_QCompleter*)theWrappedObject)->py_q_splitPath(path));}
+   QWidget*  widget(QCompleter* theWrappedObject) const;
+   bool  wrapAround(QCompleter* theWrappedObject) const;
 };
 
 
