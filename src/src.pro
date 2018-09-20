@@ -15,7 +15,10 @@ CONFIG -= flat
 
 
 # allow to choose static linking through the environment variable PYTHONQT_STATIC
-PYTHONQT_STATIC = $$(PYTHONQT_STATIC)
+isEmpty(PYTHONQT_STATIC) {
+  PYTHONQT_STATIC = $$(PYTHONQT_STATIC)
+}
+
 isEmpty(PYTHONQT_STATIC) {
   CONFIG += dll
 } else {
