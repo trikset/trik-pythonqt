@@ -1,8 +1,8 @@
 # profile to include and link Python
 
 # Change this variable to your python version (2.6, 2.7, 3.3, ...)
-win32:PYTHON_VERSION=27
-unix:PYTHON_VERSION=2.7
+win32:PYTHON_VERSION=35
+unix:PYTHON_VERSION=3.5
 
 macx {
   # for macx you need to have the Python development kit installed as framework
@@ -37,5 +37,5 @@ macx {
   # pkg-config is used to autodetect Python.
   # make sure that you have installed a matching python-dev package.
   CONFIG += link_pkgconfig
-  PKGCONFIG += python-2.7
+  PKGCONFIG += python3
 }
