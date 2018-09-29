@@ -4,12 +4,7 @@
 win32:PYTHON_VERSION=35
 unix:PYTHON_VERSION=UNKNOWN_BECAUSE_DETECT_FAILED
 
-macx {
-  # for macx you need to have the Python development kit installed as framework
-  INCLUDEPATH += /System/Library/Frameworks/Python.framework/Headers
-  LIBS += -F/System/Library/Frameworks -framework Python
-
-} else:win32 {
+win32 {
   # for windows install a Python development kit or build Python yourself from the sources
   # Make sure that you set the environment variable PYTHON_PATH to point to your
   # python installation (or the python sources/header files when building from source).
@@ -40,5 +35,12 @@ macx {
   PYTHON_PKG = python3
   PKGCONFIG *= $${PYTHON_PKG}
   PYTHON_VERSION_AUTODETECTED=$$system($$pkgConfigExecutable() --modversion $${PYTHON_PKG})
-  !isEmpty(PYTHON_VERSION_AUTODETECTED):PYTHON_VERSION=$$PYTHON_VERSION_AUTODETECTED
+  !isEmpty(PYTHON_VERSION_AUTODETECTED) {
+      PYTHON_VERSION=$$PYTHON_VERSION_AUTODETECTED
+  } else:macx {
+    # No `brew`, ok, then you need to have the Python development kit installed as framework
+    INCLUDEPATH += /System/Library/Frameworks/Python.framework/Headers
+    LIBS += -F/System/Library/Frameworks -framework Python
+    PYTHON_VERSION=3.6
+  }
 }
