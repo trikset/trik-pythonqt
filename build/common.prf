@@ -56,7 +56,8 @@ equals(ARCHITECTURE, "arm") {
 #        else:contains( QT_MINOR_VERSION, 6 ) { 
 #          PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
 #        } else {
-          PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_511
+          PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_UNSUPPORTED_QT_VERSION
+        error(Unsupported Qt version for PythonQt: missing generated_cpp)
 #        }
 #      }
     }
