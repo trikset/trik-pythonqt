@@ -3,17 +3,17 @@
 isEmpty( PYTHONQTALL_CONFIG ) {
   message("using default PythonQt_QtAll Configuration")
   CONFIG += PythonQtCore
-  CONFIG += PythonQtGui
-  CONFIG += PythonQtSvg
-  CONFIG += PythonQtSql
-  CONFIG += PythonQtNetwork
-  CONFIG += PythonQtOpengl 
-  CONFIG += PythonQtXml
-  CONFIG += PythonQtXmlpatterns
-  CONFIG += PythonQtMultimedia
-  CONFIG += PythonQtQml
-  CONFIG += PythonQtQuick
-  CONFIG += PythonQtUiTools
+  qtHaveModule(gui):qtHaveModule(widgets):CONFIG += PythonQtGui
+  qtHaveModule(svg):CONFIG += PythonQtSvg
+  qtHaveModule(sql):CONFIG += PythonQtSql
+  qtHaveModule(network):CONFIG += PythonQtNetwork
+  qtHaveModule(opengl):CONFIG += PythonQtOpengl
+  qtHaveModule(xml):CONFIG += PythonQtXml
+  qtHaveModule(xmlpatterns):CONFIG += PythonQtXmlpatterns
+  qtHaveModule(multimedia):CONFIG += PythonQtMultimedia
+  qtHaveModule(qml):CONFIG += PythonQtQml
+  qtHaveModule(quick):CONFIG += PythonQtQuick
+  qtHaveModule(uitools):CONFIG += PythonQtUiTools
 
   qtHaveModule(webkit):CONFIG += PythonQtWebKit
 } else {
@@ -22,10 +22,10 @@ isEmpty( PYTHONQTALL_CONFIG ) {
   CONFIG += $${PYTHONQTALL_CONFIG}
 }
 
-TARGET   = PythonQt_QtAll-Qt5-PythonXY
+TARGET=PythonQt_QtAll-Qt$${QT_MAJOR_VERSION}$${QT_MINOR_VERSION}-PythonXY
 TEMPLATE = lib
 
-DESTDIR    = ../../lib
+#DESTDIR    = ../../lib
 
 include ( ../../build/common.prf )  
 include ( ../../build/PythonQt.prf )  
@@ -36,10 +36,10 @@ CONFIG += dll qt
 DEFINES += PYTHONQT_QTALL_EXPORTS
 
 HEADERS +=                \
-  PythonQt_QtAll.h
+  $$PWD/PythonQt_QtAll.h
   
 SOURCES +=                \
-  PythonQt_QtAll.cpp
+  $$PWD/PythonQt_QtAll.cpp
 
 # TODO: add these only when needed by configuration below
 # QT += gui svg sql network xml xmlpatterns
