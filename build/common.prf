@@ -15,6 +15,9 @@
 # for all debug builds, add "_d" extension to target
 
 !include (../../../global.pri)
+
+!isEmpty(CONFIGURATION_SUFFIX):isEmpty(DEBUG_EXT):DEBUG_EXT=$${CONFIGURATION_SUFFIX}
+
 QMAKE_CXXFLAGS -= -Werror=pedantic -pedantic-errors -Werror=write-strings
 clang:QMAKE_CXXFLAGS += -Wno-error=sometimes-uninitialized
 QMAKE_CXXFLAGS += -Wno-error=cast-qual

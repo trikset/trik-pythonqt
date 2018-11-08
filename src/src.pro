@@ -41,7 +41,6 @@ include ( ../build/python.prf )
 TARGET = $$replace(TARGET, PythonXY, Python$${PYTHON_VERSION})
 TARGET = $$replace(TARGET, QtXY, Qt$${QT_MAJOR_VERSION}$${QT_MINOR_VERSION})
 
-
 include ( src.pri )  
 
 include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin.pri)

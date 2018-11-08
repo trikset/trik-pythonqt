@@ -30,7 +30,6 @@ TEMPLATE = lib
 include ( ../../build/common.prf )  
 include ( ../../build/PythonQt.prf )  
 TARGET = $$replace(TARGET, PythonXY, Python$${PYTHON_VERSION})
-
 CONFIG += dll qt
 
 DEFINES += PYTHONQT_QTALL_EXPORTS
