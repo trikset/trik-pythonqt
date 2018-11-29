@@ -60,6 +60,10 @@
 #include <iostream>
 
 
+#ifdef truncate
+#undef truncate
+#endif
+
 class PythonQtClassInfo;
 class PythonQtPrivate;
 class PythonQtMethodInfo;
