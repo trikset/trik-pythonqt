@@ -1,6 +1,10 @@
 # get external pythonqtall config or enable all by default
 
 isEmpty( PYTHONQTALL_CONFIG ) {
+  PYTHONQTALL_CONFIG = $$(PYTHONQTALL_CONFIG)
+}
+
+isEmpty( PYTHONQTALL_CONFIG ) {
   message("using default PythonQt_QtAll Configuration")
   CONFIG += PythonQtCore
   qtHaveModule(gui):qtHaveModule(widgets):CONFIG += PythonQtGui
