@@ -1,3 +1,4 @@
+bin/
 *.pch
 *.gch
 src/object_script.*

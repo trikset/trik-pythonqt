@@ -17,6 +17,9 @@
 !include (../../../global.pri)
 
 !isEmpty(CONFIGURATION_SUFFIX):isEmpty(DEBUG_EXT):DEBUG_EXT=$${CONFIGURATION_SUFFIX}
+isEmpty(DESTDIR) {
+  DESTDIR = $$PWD/../bin
+}
 
 QMAKE_CXXFLAGS -= -Werror=pedantic -pedantic-errors -Werror=write-strings
 clang:QMAKE_CXXFLAGS += -Wno-error=sometimes-uninitialized

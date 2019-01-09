@@ -3,6 +3,6 @@
 include ( python.prf )  
 
 INCLUDEPATH += $$PWD/../src
-
-win32:!gcc:LIBS += $$DESTDIR/PythonQt-Qt$${QT_MAJOR_VERSION}$${QT_MINOR_VERSION}-Python$${PYTHON_VERSION}$${DEBUG_EXT}.lib
+!isEmpty(DESTDIR) LIBS += -L$$DESTDIR/
+win32:!gcc:LIBS += PythonQt-Qt$${QT_MAJOR_VERSION}$${QT_MINOR_VERSION}-Python$${PYTHON_VERSION}$${DEBUG_EXT}.lib
 gcc|unix:LIBS += -lPythonQt-Qt$${QT_MAJOR_VERSION}$${QT_MINOR_VERSION}-Python$${PYTHON_VERSION}$${DEBUG_EXT}
