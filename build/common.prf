@@ -24,7 +24,10 @@ QMAKE_CXXFLAGS += -Wno-error=cast-qual -Wno-error=missing-field-initializers \
                   -Wno-error=unused-but-set-variable -Wno-error=conversion-null \
                   -Wno-error=sign-compare -Wno-error=unused-parameter -Wno-error=type-limits -Wno-error=parentheses
 
-defined(enableFlagIfCan):enableFlagIfCan(-Wno-error=cast-function-type -Wno-error=implicit-fallthrough)
+defined(enableFlagIfCan) {
+	TEST_FLAGS_LIST=-Wno-error=cast-function-type -Wno-error=implicit-fallthrough
+	for(f, TEST_FLAGS_LIST):enableFlagIfCan($$f):message($$f)
+}
 
 #Mingw 4.9 complains...
 win32:gcc:QMAKE_CXXFLAGS += -Wno-error=redundant-decls
