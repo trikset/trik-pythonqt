@@ -20,7 +20,12 @@
 
 QMAKE_CXXFLAGS -= -Werror=pedantic -pedantic-errors -Werror=write-strings
 clang:QMAKE_CXXFLAGS += -Wno-error=sometimes-uninitialized
-QMAKE_CXXFLAGS += -Wno-error=cast-qual
+QMAKE_CXXFLAGS += -Wno-error=cast-qual -Wno-error=missing-field-initializers \
+                  -Wno-error=unused-but-set-variable -Wno-error=conversion-null \
+                  -Wno-error=sign-compare -Wno-error=unused-parameter -Wno-error=type-limits -Wno-error=parentheses
+
+defined(enableFlagIfCan):enableFlagIfCan(-Wno-error=cast-function-type -Wno-error=implicit-fallthrough)
+
 #Mingw 4.9 complains...
 win32:gcc:QMAKE_CXXFLAGS += -Wno-error=redundant-decls
 
