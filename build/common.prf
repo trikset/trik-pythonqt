@@ -19,13 +19,15 @@
 !isEmpty(CONFIGURATION_SUFFIX):isEmpty(DEBUG_EXT):DEBUG_EXT=$${CONFIGURATION_SUFFIX}
 
 QMAKE_CXXFLAGS -= -Werror=pedantic -pedantic-errors -Werror=write-strings
-clang:QMAKE_CXXFLAGS += -Wno-error=sometimes-uninitialized
+clang:QMAKE_CXXFLAGS += -Wno-error -Wno-error=sometimes-uninitialized -Wno-unused-variable -Wno-sign-compare
+
 QMAKE_CXXFLAGS += -Wno-error=cast-qual -Wno-error=missing-field-initializers \
-                  -Wno-error=unused-but-set-variable -Wno-error=conversion-null \
+                  -Wno-error=conversion-null \
                   -Wno-error=sign-compare -Wno-error=unused-parameter -Wno-error=type-limits -Wno-error=parentheses
 
 defined(enableFlagIfCan) {
-	TEST_FLAGS_LIST=-Wno-error=cast-function-type -Wno-error=implicit-fallthrough
+	TEST_FLAGS_LIST=-Wno-error=cast-function-type -Wno-error=implicit-fallthrough \
+			-Wno-error=unused-but-set-variable
 	for(f, TEST_FLAGS_LIST):enableFlagIfCan($$f):message($$f)
 }
 
