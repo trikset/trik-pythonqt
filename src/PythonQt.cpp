@@ -2075,6 +2075,7 @@ const QMetaObject* PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper*
         signal->_dynamicInfo->name = PyString_AsString(key);
         foreach(QByteArray sig, signal->_dynamicInfo->signatures) {
           QMetaMethodBuilder method = builder.addSignal(signal->_dynamicInfo->name + "(" + sig + ")");
+          Q_UNUSED(method);
           needsMetaObject = true;
         }
       }
