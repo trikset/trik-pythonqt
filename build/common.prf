@@ -17,10 +17,23 @@
 !include (../../../global.pri)
 
 !isEmpty(CONFIGURATION_SUFFIX):isEmpty(DEBUG_EXT):DEBUG_EXT=$${CONFIGURATION_SUFFIX}
+isEmpty(DESTDIR) {
+  DESTDIR = $$PWD/../bin
+}
 
 QMAKE_CXXFLAGS -= -Werror=pedantic -pedantic-errors -Werror=write-strings
-clang:QMAKE_CXXFLAGS += -Wno-error=sometimes-uninitialized
-QMAKE_CXXFLAGS += -Wno-error=cast-qual
+clang:QMAKE_CXXFLAGS += -Wno-error -Wno-error=sometimes-uninitialized -Wno-unused-variable -Wno-sign-compare
+
+QMAKE_CXXFLAGS += -Wno-error=cast-qual -Wno-error=missing-field-initializers \
+                  -Wno-error=conversion-null \
+                  -Wno-error=sign-compare -Wno-error=unused-parameter -Wno-error=type-limits -Wno-error=parentheses
+
+defined(enableFlagIfCan) {
+	TEST_FLAGS_LIST=-Wno-error=cast-function-type -Wno-error=implicit-fallthrough \
+			-Wno-error=unused-but-set-variable
+	for(f, TEST_FLAGS_LIST):enableFlagIfCan($$f):message($$f)
+}
+
 #Mingw 4.9 complains...
 win32:gcc:QMAKE_CXXFLAGS += -Wno-error=redundant-decls
 
@@ -37,9 +50,11 @@ equals(ARCHITECTURE, "arm") {
 
   !exists($$PYTHONQT_GENERATED_PATH) {
     # If no files are generated, try the checked-in wrappers:
-    PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_$${QT_MAJOR_VERSION}$${QT_MINOR_VERSION}
+    PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_$${QT_MAJOR_VERSION}.$${QT_MINOR_VERSION}.$${QT_PATCH_VERSION}
 
     !exists($$PYTHONQT_GENERATED_PATH) {
+    	PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_$${QT_MAJOR_VERSION}.$${QT_MINOR_VERSION}
+    	!exists($$PYTHONQT_GENERATED_PATH) {
 #      contains( QT_MAJOR_VERSION, 5 ) {
 #        contains( QT_MINOR_VERSION, 1 ) {
 #          PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_50
@@ -59,8 +74,9 @@ equals(ARCHITECTURE, "arm") {
 #        else:contains( QT_MINOR_VERSION, 6 ) { 
 #          PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
 #        } else {
-          PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_UNSUPPORTED_QT_VERSION
-        error(Unsupported Qt version for PythonQt: missing generated_cpp)
+	          PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_UNSUPPORTED_QT_VERSION
+        	error(Unsupported Qt version for PythonQt: missing generated_cpp)
+	}
 #        }
 #      }
     }
