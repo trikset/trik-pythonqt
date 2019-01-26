@@ -1,5 +1,4 @@
 #include <PythonQt.h>
-#include <QBrush>
 #include <QMatrix>
 #include <QObject>
 #include <QPainterPath>
@@ -13,11 +12,7 @@
 #include <qcursor.h>
 #include <qdatastream.h>
 #include <qfont.h>
-#include <qicon.h>
-#include <qiconengine.h>
 #include <qimage.h>
-#include <qimagereader.h>
-#include <qimagewriter.h>
 #include <qiodevice.h>
 #include <qkeysequence.h>
 #include <qline.h>
@@ -25,11 +20,8 @@
 #include <qmatrix.h>
 #include <qobject.h>
 #include <qpaintdevice.h>
-#include <qpaintengine.h>
-#include <qpainter.h>
 #include <qpainterpath.h>
 #include <qpalette.h>
-#include <qpen.h>
 #include <qpixelformat.h>
 #include <qpixmap.h>
 #include <qpoint.h>
@@ -37,14 +29,11 @@
 #include <qrect.h>
 #include <qregion.h>
 #include <qrgba64.h>
-#include <qscreen.h>
 #include <qsize.h>
 #include <qsizepolicy.h>
 #include <qstringlist.h>
-#include <qtextformat.h>
 #include <qtransform.h>
 #include <qvector.h>
-#include <qwindow.h>
 
 
 
@@ -375,54 +364,6 @@ void delete_QFont(QFont* obj) { delete obj; }
    int  weight(QFont* theWrappedObject) const;
    qreal  wordSpacing(QFont* theWrappedObject) const;
     QString py_toString(QFont*);
-};
-
-
-
-
-
-class PythonQtWrapper_QIcon : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(Mode State )
-enum Mode{
-  Normal = QIcon::Normal,   Disabled = QIcon::Disabled,   Active = QIcon::Active,   Selected = QIcon::Selected};
-enum State{
-  On = QIcon::On,   Off = QIcon::Off};
-public slots:
-QIcon* new_QIcon();
-QIcon* new_QIcon(PythonQtPassOwnershipToCPP<QIconEngine* >  engine);
-QIcon* new_QIcon(const QIcon&  other);
-QIcon* new_QIcon(const QPixmap&  pixmap);
-QIcon* new_QIcon(const QString&  fileName);
-void delete_QIcon(QIcon* obj) { delete obj; } 
-   QSize  actualSize(QIcon* theWrappedObject, QWindow*  window, const QSize&  size, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
-   QSize  actualSize(QIcon* theWrappedObject, const QSize&  size, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
-   void addFile(QIcon* theWrappedObject, const QString&  fileName, const QSize&  size = QSize(), QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off);
-   void addPixmap(QIcon* theWrappedObject, const QPixmap&  pixmap, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off);
-   QList<QSize >  availableSizes(QIcon* theWrappedObject, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
-   qint64  cacheKey(QIcon* theWrappedObject) const;
-   QIcon  static_QIcon_fromTheme(const QString&  name, const QIcon&  fallback = QIcon());
-   bool  static_QIcon_hasThemeIcon(const QString&  name);
-   bool  isMask(QIcon* theWrappedObject) const;
-   bool  isNull(QIcon* theWrappedObject) const;
-   QString  name(QIcon* theWrappedObject) const;
-   void writeTo(QIcon* theWrappedObject, QDataStream&  arg__1);
-   void readFrom(QIcon* theWrappedObject, QDataStream&  arg__1);
-   void paint(QIcon* theWrappedObject, QPainter*  painter, const QRect&  rect, Qt::Alignment  alignment = Qt::AlignCenter, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
-   void paint(QIcon* theWrappedObject, QPainter*  painter, int  x, int  y, int  w, int  h, Qt::Alignment  alignment = Qt::AlignCenter, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
-   QPixmap  pixmap(QIcon* theWrappedObject, QWindow*  window, const QSize&  size, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
-   QPixmap  pixmap(QIcon* theWrappedObject, const QSize&  size, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
-   QPixmap  pixmap(QIcon* theWrappedObject, int  extent, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
-   QPixmap  pixmap(QIcon* theWrappedObject, int  w, int  h, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
-   void setIsMask(QIcon* theWrappedObject, bool  isMask);
-   void static_QIcon_setThemeName(const QString&  path);
-   void static_QIcon_setThemeSearchPaths(const QStringList&  searchpath);
-   void swap(QIcon* theWrappedObject, QIcon&  other);
-   QString  static_QIcon_themeName();
-   QStringList  static_QIcon_themeSearchPaths();
-    QString py_toString(QIcon*);
-    bool __nonzero__(QIcon* obj) { return !obj->isNull(); }
 };
 
 
@@ -763,51 +704,6 @@ void delete_QPalette(QPalette* obj) { delete obj; }
 
 
 
-class PythonQtWrapper_QPen : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QPen* new_QPen();
-QPen* new_QPen(Qt::PenStyle  arg__1);
-QPen* new_QPen(const QBrush&  brush, qreal  width, Qt::PenStyle  s = Qt::SolidLine, Qt::PenCapStyle  c = Qt::SquareCap, Qt::PenJoinStyle  j = Qt::BevelJoin);
-QPen* new_QPen(const QColor&  color);
-QPen* new_QPen(const QPen&  pen);
-void delete_QPen(QPen* obj) { delete obj; } 
-   QBrush  brush(QPen* theWrappedObject) const;
-   Qt::PenCapStyle  capStyle(QPen* theWrappedObject) const;
-   QColor  color(QPen* theWrappedObject) const;
-   qreal  dashOffset(QPen* theWrappedObject) const;
-   QVector<qreal >  dashPattern(QPen* theWrappedObject) const;
-   bool  isCosmetic(QPen* theWrappedObject) const;
-   bool  isSolid(QPen* theWrappedObject) const;
-   Qt::PenJoinStyle  joinStyle(QPen* theWrappedObject) const;
-   qreal  miterLimit(QPen* theWrappedObject) const;
-   bool  __ne__(QPen* theWrappedObject, const QPen&  p) const;
-   void writeTo(QPen* theWrappedObject, QDataStream&  arg__1);
-   bool  __eq__(QPen* theWrappedObject, const QPen&  p) const;
-   void readFrom(QPen* theWrappedObject, QDataStream&  arg__1);
-   void setBrush(QPen* theWrappedObject, const QBrush&  brush);
-   void setCapStyle(QPen* theWrappedObject, Qt::PenCapStyle  pcs);
-   void setColor(QPen* theWrappedObject, const QColor&  color);
-   void setCosmetic(QPen* theWrappedObject, bool  cosmetic);
-   void setDashOffset(QPen* theWrappedObject, qreal  doffset);
-   void setDashPattern(QPen* theWrappedObject, const QVector<qreal >&  pattern);
-   void setJoinStyle(QPen* theWrappedObject, Qt::PenJoinStyle  pcs);
-   void setMiterLimit(QPen* theWrappedObject, qreal  limit);
-   void setStyle(QPen* theWrappedObject, Qt::PenStyle  arg__1);
-   void setWidth(QPen* theWrappedObject, int  width);
-   void setWidthF(QPen* theWrappedObject, qreal  width);
-   Qt::PenStyle  style(QPen* theWrappedObject) const;
-   void swap(QPen* theWrappedObject, QPen&  other);
-   int  width(QPen* theWrappedObject) const;
-   qreal  widthF(QPen* theWrappedObject) const;
-    QString py_toString(QPen*);
-};
-
-
-
-
-
 class PythonQtShell_QPixmap : public QPixmap
 {
 public:
@@ -1081,112 +977,6 @@ void delete_QSizePolicy(QSizePolicy* obj) { delete obj; }
    QSizePolicy::Policy  verticalPolicy(QSizePolicy* theWrappedObject) const;
    int  verticalStretch(QSizePolicy* theWrappedObject) const;
     QString py_toString(QSizePolicy*);
-};
-
-
-
-
-
-class PythonQtWrapper_QTextFormat : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(FormatType ObjectTypes PageBreakFlag Property )
-Q_FLAGS(PageBreakFlags )
-enum FormatType{
-  InvalidFormat = QTextFormat::InvalidFormat,   BlockFormat = QTextFormat::BlockFormat,   CharFormat = QTextFormat::CharFormat,   ListFormat = QTextFormat::ListFormat,   TableFormat = QTextFormat::TableFormat,   FrameFormat = QTextFormat::FrameFormat,   UserFormat = QTextFormat::UserFormat};
-enum ObjectTypes{
-  NoObject = QTextFormat::NoObject,   ImageObject = QTextFormat::ImageObject,   TableObject = QTextFormat::TableObject,   TableCellObject = QTextFormat::TableCellObject,   UserObject = QTextFormat::UserObject};
-enum PageBreakFlag{
-  PageBreak_Auto = QTextFormat::PageBreak_Auto,   PageBreak_AlwaysBefore = QTextFormat::PageBreak_AlwaysBefore,   PageBreak_AlwaysAfter = QTextFormat::PageBreak_AlwaysAfter};
-enum Property{
-  ObjectIndex = QTextFormat::ObjectIndex,   CssFloat = QTextFormat::CssFloat,   LayoutDirection = QTextFormat::LayoutDirection,   OutlinePen = QTextFormat::OutlinePen,   BackgroundBrush = QTextFormat::BackgroundBrush,   ForegroundBrush = QTextFormat::ForegroundBrush,   BackgroundImageUrl = QTextFormat::BackgroundImageUrl,   BlockAlignment = QTextFormat::BlockAlignment,   BlockTopMargin = QTextFormat::BlockTopMargin,   BlockBottomMargin = QTextFormat::BlockBottomMargin,   BlockLeftMargin = QTextFormat::BlockLeftMargin,   BlockRightMargin = QTextFormat::BlockRightMargin,   TextIndent = QTextFormat::TextIndent,   TabPositions = QTextFormat::TabPositions,   BlockIndent = QTextFormat::BlockIndent,   LineHeight = QTextFormat::LineHeight,   LineHeightType = QTextFormat::LineHeightType,   BlockNonBreakableLines = QTextFormat::BlockNonBreakableLines,   BlockTrailingHorizontalRulerWidth = QTextFormat::BlockTrailingHorizontalRulerWidth,   FirstFontProperty = QTextFormat::FirstFontProperty,   FontCapitalization = QTextFormat::FontCapitalization,   FontLetterSpacingType = QTextFormat::FontLetterSpacingType,   FontLetterSpacing = QTextFormat::FontLetterSpacing,   FontWordSpacing = QTextFormat::FontWordSpacing,   FontStretch = QTextFormat::FontStretch,   FontStyleHint = QTextFormat::FontStyleHint,   FontStyleStrategy = QTextFormat::FontStyleStrategy,   FontKerning = QTextFormat::FontKerning,   FontHintingPreference = QTextFormat::FontHintingPreference,   FontFamily = QTextFormat::FontFamily,   FontPointSize = QTextFormat::FontPointSize,   FontSizeAdjustment = QTextFormat::FontSizeAdjustment,   FontSizeIncrement = QTextFormat::FontSizeIncrement,   FontWeight = QTextFormat::FontWeight,   FontItalic = QTextFormat::FontItalic,   FontUnderline = QTextFormat::FontUnderline,   FontOverline = QTextFormat::FontOverline,   FontStrikeOut = QTextFormat::FontStrikeOut,   FontFixedPitch = QTextFormat::FontFixedPitch,   FontPixelSize = QTextFormat::FontPixelSize,   LastFontProperty = QTextFormat::LastFontProperty,   TextUnderlineColor = QTextFormat::TextUnderlineColor,   TextVerticalAlignment = QTextFormat::TextVerticalAlignment,   TextOutline = QTextFormat::TextOutline,   TextUnderlineStyle = QTextFormat::TextUnderlineStyle,   TextToolTip = QTextFormat::TextToolTip,   IsAnchor = QTextFormat::IsAnchor,   AnchorHref = QTextFormat::AnchorHref,   AnchorName = QTextFormat::AnchorName,   ObjectType = QTextFormat::ObjectType,   ListStyle = QTextFormat::ListStyle,   ListIndent = QTextFormat::ListIndent,   ListNumberPrefix = QTextFormat::ListNumberPrefix,   ListNumberSuffix = QTextFormat::ListNumberSuffix,   FrameBorder = QTextFormat::FrameBorder,   FrameMargin = QTextFormat::FrameMargin,   FramePadding = QTextFormat::FramePadding,   FrameWidth = QTextFormat::FrameWidth,   FrameHeight = QTextFormat::FrameHeight,   FrameTopMargin = QTextFormat::FrameTopMargin,   FrameBottomMargin = QTextFormat::FrameBottomMargin,   FrameLeftMargin = QTextFormat::FrameLeftMargin,   FrameRightMargin = QTextFormat::FrameRightMargin,   FrameBorderBrush = QTextFormat::FrameBorderBrush,   FrameBorderStyle = QTextFormat::FrameBorderStyle,   TableColumns = QTextFormat::TableColumns,   TableColumnWidthConstraints = QTextFormat::TableColumnWidthConstraints,   TableCellSpacing = QTextFormat::TableCellSpacing,   TableCellPadding = QTextFormat::TableCellPadding,   TableHeaderRowCount = QTextFormat::TableHeaderRowCount,   TableCellRowSpan = QTextFormat::TableCellRowSpan,   TableCellColumnSpan = QTextFormat::TableCellColumnSpan,   TableCellTopPadding = QTextFormat::TableCellTopPadding,   TableCellBottomPadding = QTextFormat::TableCellBottomPadding,   TableCellLeftPadding = QTextFormat::TableCellLeftPadding,   TableCellRightPadding = QTextFormat::TableCellRightPadding,   ImageName = QTextFormat::ImageName,   ImageWidth = QTextFormat::ImageWidth,   ImageHeight = QTextFormat::ImageHeight,   FullWidthSelection = QTextFormat::FullWidthSelection,   PageBreakPolicy = QTextFormat::PageBreakPolicy,   UserProperty = QTextFormat::UserProperty};
-Q_DECLARE_FLAGS(PageBreakFlags, PageBreakFlag)
-public slots:
-QTextFormat* new_QTextFormat();
-QTextFormat* new_QTextFormat(const QTextFormat&  rhs);
-QTextFormat* new_QTextFormat(int  type);
-void delete_QTextFormat(QTextFormat* obj) { delete obj; } 
-   QBrush  background(QTextFormat* theWrappedObject) const;
-   bool  boolProperty(QTextFormat* theWrappedObject, int  propertyId) const;
-   QBrush  brushProperty(QTextFormat* theWrappedObject, int  propertyId) const;
-   void clearBackground(QTextFormat* theWrappedObject);
-   void clearForeground(QTextFormat* theWrappedObject);
-   void clearProperty(QTextFormat* theWrappedObject, int  propertyId);
-   QColor  colorProperty(QTextFormat* theWrappedObject, int  propertyId) const;
-   qreal  doubleProperty(QTextFormat* theWrappedObject, int  propertyId) const;
-   QBrush  foreground(QTextFormat* theWrappedObject) const;
-   bool  hasProperty(QTextFormat* theWrappedObject, int  propertyId) const;
-   int  intProperty(QTextFormat* theWrappedObject, int  propertyId) const;
-   bool  isBlockFormat(QTextFormat* theWrappedObject) const;
-   bool  isCharFormat(QTextFormat* theWrappedObject) const;
-   bool  isEmpty(QTextFormat* theWrappedObject) const;
-   bool  isFrameFormat(QTextFormat* theWrappedObject) const;
-   bool  isImageFormat(QTextFormat* theWrappedObject) const;
-   bool  isListFormat(QTextFormat* theWrappedObject) const;
-   bool  isTableCellFormat(QTextFormat* theWrappedObject) const;
-   bool  isTableFormat(QTextFormat* theWrappedObject) const;
-   bool  isValid(QTextFormat* theWrappedObject) const;
-   Qt::LayoutDirection  layoutDirection(QTextFormat* theWrappedObject) const;
-   QTextLength  lengthProperty(QTextFormat* theWrappedObject, int  propertyId) const;
-   QVector<QTextLength >  lengthVectorProperty(QTextFormat* theWrappedObject, int  propertyId) const;
-   void merge(QTextFormat* theWrappedObject, const QTextFormat&  other);
-   int  objectIndex(QTextFormat* theWrappedObject) const;
-   int  objectType(QTextFormat* theWrappedObject) const;
-   bool  __ne__(QTextFormat* theWrappedObject, const QTextFormat&  rhs) const;
-   void writeTo(QTextFormat* theWrappedObject, QDataStream&  arg__1);
-   bool  __eq__(QTextFormat* theWrappedObject, const QTextFormat&  rhs) const;
-   void readFrom(QTextFormat* theWrappedObject, QDataStream&  arg__1);
-   QPen  penProperty(QTextFormat* theWrappedObject, int  propertyId) const;
-   QMap<int , QVariant >  properties(QTextFormat* theWrappedObject) const;
-   QVariant  property(QTextFormat* theWrappedObject, int  propertyId) const;
-   int  propertyCount(QTextFormat* theWrappedObject) const;
-   void setBackground(QTextFormat* theWrappedObject, const QBrush&  brush);
-   void setForeground(QTextFormat* theWrappedObject, const QBrush&  brush);
-   void setLayoutDirection(QTextFormat* theWrappedObject, Qt::LayoutDirection  direction);
-   void setObjectIndex(QTextFormat* theWrappedObject, int  object);
-   void setObjectType(QTextFormat* theWrappedObject, int  type);
-   void setProperty(QTextFormat* theWrappedObject, int  propertyId, const QVariant&  value);
-   void setProperty(QTextFormat* theWrappedObject, int  propertyId, const QVector<QTextLength >&  lengths);
-   QString  stringProperty(QTextFormat* theWrappedObject, int  propertyId) const;
-   void swap(QTextFormat* theWrappedObject, QTextFormat&  other);
-   QTextBlockFormat  toBlockFormat(QTextFormat* theWrappedObject) const;
-   QTextCharFormat  toCharFormat(QTextFormat* theWrappedObject) const;
-   QTextFrameFormat  toFrameFormat(QTextFormat* theWrappedObject) const;
-   QTextImageFormat  toImageFormat(QTextFormat* theWrappedObject) const;
-   QTextListFormat  toListFormat(QTextFormat* theWrappedObject) const;
-   QTextTableCellFormat  toTableCellFormat(QTextFormat* theWrappedObject) const;
-   QTextTableFormat  toTableFormat(QTextFormat* theWrappedObject) const;
-   int  type(QTextFormat* theWrappedObject) const;
-    QString py_toString(QTextFormat*);
-    bool __nonzero__(QTextFormat* obj) { return !obj->isEmpty(); }
-};
-
-
-
-
-
-class PythonQtWrapper_QTextLength : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(Type )
-enum Type{
-  VariableLength = QTextLength::VariableLength,   FixedLength = QTextLength::FixedLength,   PercentageLength = QTextLength::PercentageLength};
-public slots:
-QTextLength* new_QTextLength();
-QTextLength* new_QTextLength(QTextLength::Type  type, qreal  value);
-QTextLength* new_QTextLength(const QTextLength& other) {
-QTextLength* a = new QTextLength();
-*((QTextLength*)a) = other;
-return a; }
-void delete_QTextLength(QTextLength* obj) { delete obj; } 
-   bool  __ne__(QTextLength* theWrappedObject, const QTextLength&  other) const;
-   void writeTo(QTextLength* theWrappedObject, QDataStream&  arg__1);
-   bool  __eq__(QTextLength* theWrappedObject, const QTextLength&  other) const;
-   void readFrom(QTextLength* theWrappedObject, QDataStream&  arg__1);
-   qreal  rawValue(QTextLength* theWrappedObject) const;
-   QTextLength::Type  type(QTextLength* theWrappedObject) const;
-   qreal  value(QTextLength* theWrappedObject, qreal  maximumLength) const;
-    QString py_toString(QTextLength*);
 };
 
 

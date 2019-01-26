@@ -4,72 +4,21 @@
 #include <QStringList>
 #include <QTextDocument>
 #include <QVariant>
-#include <qbitarray.h>
 #include <qbytearray.h>
 #include <qdatastream.h>
-#include <qdatetime.h>
 #include <qline.h>
 #include <qlist.h>
 #include <qlocale.h>
 #include <qmargins.h>
 #include <qmatrix.h>
-#include <qmatrix4x4.h>
 #include <qnamespace.h>
 #include <qpoint.h>
 #include <qrect.h>
 #include <qregexp.h>
 #include <qsize.h>
 #include <qstringlist.h>
-#include <qtextcodec.h>
-#include <qtimezone.h>
 #include <qtransform.h>
 #include <qurl.h>
-#include <qurlquery.h>
-
-
-
-class PythonQtWrapper_QBitArray : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QBitArray* new_QBitArray();
-QBitArray* new_QBitArray(const QBitArray&  other);
-QBitArray* new_QBitArray(int  size, bool  val = false);
-void delete_QBitArray(QBitArray* obj) { delete obj; } 
-   bool  at(QBitArray* theWrappedObject, int  i) const;
-   void clear(QBitArray* theWrappedObject);
-   void clearBit(QBitArray* theWrappedObject, int  i);
-   int  count(QBitArray* theWrappedObject) const;
-   int  count(QBitArray* theWrappedObject, bool  on) const;
-   void fill(QBitArray* theWrappedObject, bool  val, int  first, int  last);
-   bool  fill(QBitArray* theWrappedObject, bool  val, int  size = -1);
-   bool  isEmpty(QBitArray* theWrappedObject) const;
-   bool  isNull(QBitArray* theWrappedObject) const;
-   bool  __ne__(QBitArray* theWrappedObject, const QBitArray&  other) const;
-   QBitArray  __and__(QBitArray* theWrappedObject, const QBitArray&  arg__2);
-   QBitArray*  __iand__(QBitArray* theWrappedObject, const QBitArray&  arg__1);
-   void writeTo(QBitArray* theWrappedObject, QDataStream&  arg__1);
-   QBitArray*  operator_assign(QBitArray* theWrappedObject, const QBitArray&  other);
-   bool  __eq__(QBitArray* theWrappedObject, const QBitArray&  other) const;
-   void readFrom(QBitArray* theWrappedObject, QDataStream&  arg__1);
-   QBitArray  __xor__(QBitArray* theWrappedObject, const QBitArray&  arg__2);
-   QBitArray*  __ixor__(QBitArray* theWrappedObject, const QBitArray&  arg__1);
-   QBitArray  __or__(QBitArray* theWrappedObject, const QBitArray&  arg__2);
-   QBitArray*  __ior__(QBitArray* theWrappedObject, const QBitArray&  arg__1);
-   QBitArray  __invert__(QBitArray* theWrappedObject) const;
-   void resize(QBitArray* theWrappedObject, int  size);
-   void setBit(QBitArray* theWrappedObject, int  i);
-   void setBit(QBitArray* theWrappedObject, int  i, bool  val);
-   int  size(QBitArray* theWrappedObject) const;
-   void swap(QBitArray* theWrappedObject, QBitArray&  other);
-   bool  testBit(QBitArray* theWrappedObject, int  i) const;
-   bool  toggleBit(QBitArray* theWrappedObject, int  i);
-   void truncate(QBitArray* theWrappedObject, int  pos);
-    QString py_toString(QBitArray*);
-    bool __nonzero__(QBitArray* obj) { return !obj->isEmpty(); }
-};
-
-
 
 
 
@@ -196,139 +145,6 @@ void delete_QByteArray(QByteArray* obj) { delete obj; }
     return PyBytes_FromStringAndSize(b->data(), b->size());
   }
     
-};
-
-
-
-
-
-class PythonQtWrapper_QDate : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(MonthNameType )
-enum MonthNameType{
-  DateFormat = QDate::DateFormat,   StandaloneFormat = QDate::StandaloneFormat};
-public slots:
-QDate* new_QDate();
-QDate* new_QDate(int  y, int  m, int  d);
-QDate* new_QDate(const QDate& other) {
-QDate* a = new QDate();
-*((QDate*)a) = other;
-return a; }
-void delete_QDate(QDate* obj) { delete obj; } 
-   QDate  addDays(QDate* theWrappedObject, qint64  days) const;
-   QDate  addMonths(QDate* theWrappedObject, int  months) const;
-   QDate  addYears(QDate* theWrappedObject, int  years) const;
-   QDate  static_QDate_currentDate();
-   int  day(QDate* theWrappedObject) const;
-   int  dayOfWeek(QDate* theWrappedObject) const;
-   int  dayOfYear(QDate* theWrappedObject) const;
-   int  daysInMonth(QDate* theWrappedObject) const;
-   int  daysInYear(QDate* theWrappedObject) const;
-   qint64  daysTo(QDate* theWrappedObject, const QDate&  arg__1) const;
-   QDate  static_QDate_fromJulianDay(qint64  jd_);
-   QDate  static_QDate_fromString(const QString&  s, Qt::DateFormat  f = Qt::TextDate);
-   QDate  static_QDate_fromString(const QString&  s, const QString&  format);
-   void getDate(QDate* theWrappedObject, int*  year, int*  month, int*  day);
-   bool  static_QDate_isLeapYear(int  year);
-   bool  isNull(QDate* theWrappedObject) const;
-   bool  isValid(QDate* theWrappedObject) const;
-   bool  static_QDate_isValid(int  y, int  m, int  d);
-   QString  static_QDate_longDayName(int  weekday, QDate::MonthNameType  type = QDate::DateFormat);
-   QString  static_QDate_longMonthName(int  month, QDate::MonthNameType  type = QDate::DateFormat);
-   int  month(QDate* theWrappedObject) const;
-   bool  __ne__(QDate* theWrappedObject, const QDate&  other) const;
-   bool  __lt__(QDate* theWrappedObject, const QDate&  other) const;
-   void writeTo(QDate* theWrappedObject, QDataStream&  arg__1);
-   bool  __le__(QDate* theWrappedObject, const QDate&  other) const;
-   bool  __eq__(QDate* theWrappedObject, const QDate&  other) const;
-   bool  __gt__(QDate* theWrappedObject, const QDate&  other) const;
-   bool  __ge__(QDate* theWrappedObject, const QDate&  other) const;
-   void readFrom(QDate* theWrappedObject, QDataStream&  arg__1);
-   bool  setDate(QDate* theWrappedObject, int  year, int  month, int  day);
-   QString  static_QDate_shortDayName(int  weekday, QDate::MonthNameType  type = QDate::DateFormat);
-   QString  static_QDate_shortMonthName(int  month, QDate::MonthNameType  type = QDate::DateFormat);
-   qint64  toJulianDay(QDate* theWrappedObject) const;
-   QString  toString(QDate* theWrappedObject, Qt::DateFormat  f = Qt::TextDate) const;
-   QString  toString(QDate* theWrappedObject, const QString&  format) const;
-   int  weekNumber(QDate* theWrappedObject, int*  yearNum = NULL) const;
-   int  year(QDate* theWrappedObject) const;
-    QString py_toString(QDate*);
-    bool __nonzero__(QDate* obj) { return obj->isValid(); }
-};
-
-
-
-
-
-class PythonQtWrapper_QDateTime : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QDateTime* new_QDateTime();
-QDateTime* new_QDateTime(const QDate&  arg__1);
-QDateTime* new_QDateTime(const QDate&  arg__1, const QTime&  arg__2, Qt::TimeSpec  spec = Qt::LocalTime);
-QDateTime* new_QDateTime(const QDate&  date, const QTime&  time, Qt::TimeSpec  spec, int  offsetSeconds);
-QDateTime* new_QDateTime(const QDate&  date, const QTime&  time, const QTimeZone&  timeZone);
-QDateTime* new_QDateTime(const QDateTime&  other);
-void delete_QDateTime(QDateTime* obj) { delete obj; } 
-   QDateTime  addDays(QDateTime* theWrappedObject, qint64  days) const;
-   QDateTime  addMSecs(QDateTime* theWrappedObject, qint64  msecs) const;
-   QDateTime  addMonths(QDateTime* theWrappedObject, int  months) const;
-   QDateTime  addSecs(QDateTime* theWrappedObject, qint64  secs) const;
-   QDateTime  addYears(QDateTime* theWrappedObject, int  years) const;
-   QDateTime  static_QDateTime_currentDateTime();
-   QDateTime  static_QDateTime_currentDateTimeUtc();
-   qint64  static_QDateTime_currentMSecsSinceEpoch();
-   QDate  date(QDateTime* theWrappedObject) const;
-   qint64  daysTo(QDateTime* theWrappedObject, const QDateTime&  arg__1) const;
-   QDateTime  static_QDateTime_fromMSecsSinceEpoch(qint64  msecs);
-   QDateTime  static_QDateTime_fromMSecsSinceEpoch(qint64  msecs, Qt::TimeSpec  spec, int  offsetFromUtc = 0);
-   QDateTime  static_QDateTime_fromMSecsSinceEpoch(qint64  msecs, const QTimeZone&  timeZone);
-   QDateTime  static_QDateTime_fromString(const QString&  s, Qt::DateFormat  f = Qt::TextDate);
-   QDateTime  static_QDateTime_fromString(const QString&  s, const QString&  format);
-   QDateTime  static_QDateTime_fromTime_t(uint  secsSince1Jan1970UTC);
-   QDateTime  static_QDateTime_fromTime_t(uint  secsSince1Jan1970UTC, Qt::TimeSpec  spec, int  offsetFromUtc = 0);
-   QDateTime  static_QDateTime_fromTime_t(uint  secsSince1Jan1970UTC, const QTimeZone&  timeZone);
-   bool  isDaylightTime(QDateTime* theWrappedObject) const;
-   bool  isNull(QDateTime* theWrappedObject) const;
-   bool  isValid(QDateTime* theWrappedObject) const;
-   qint64  msecsTo(QDateTime* theWrappedObject, const QDateTime&  arg__1) const;
-   int  offsetFromUtc(QDateTime* theWrappedObject) const;
-   bool  __ne__(QDateTime* theWrappedObject, const QDateTime&  other) const;
-   bool  __lt__(QDateTime* theWrappedObject, const QDateTime&  other) const;
-   void writeTo(QDateTime* theWrappedObject, QDataStream&  arg__1);
-   bool  __le__(QDateTime* theWrappedObject, const QDateTime&  other) const;
-   bool  __eq__(QDateTime* theWrappedObject, const QDateTime&  other) const;
-   bool  __gt__(QDateTime* theWrappedObject, const QDateTime&  other) const;
-   bool  __ge__(QDateTime* theWrappedObject, const QDateTime&  other) const;
-   void readFrom(QDateTime* theWrappedObject, QDataStream&  arg__1);
-   qint64  secsTo(QDateTime* theWrappedObject, const QDateTime&  arg__1) const;
-   void setDate(QDateTime* theWrappedObject, const QDate&  date);
-   void setMSecsSinceEpoch(QDateTime* theWrappedObject, qint64  msecs);
-   void setOffsetFromUtc(QDateTime* theWrappedObject, int  offsetSeconds);
-   void setTime(QDateTime* theWrappedObject, const QTime&  time);
-   void setTimeSpec(QDateTime* theWrappedObject, Qt::TimeSpec  spec);
-   void setTimeZone(QDateTime* theWrappedObject, const QTimeZone&  toZone);
-   void setTime_t(QDateTime* theWrappedObject, uint  secsSince1Jan1970UTC);
-   void setUtcOffset(QDateTime* theWrappedObject, int  seconds);
-   void swap(QDateTime* theWrappedObject, QDateTime&  other);
-   QTime  time(QDateTime* theWrappedObject) const;
-   Qt::TimeSpec  timeSpec(QDateTime* theWrappedObject) const;
-   QTimeZone  timeZone(QDateTime* theWrappedObject) const;
-   QString  timeZoneAbbreviation(QDateTime* theWrappedObject) const;
-   QDateTime  toLocalTime(QDateTime* theWrappedObject) const;
-   qint64  toMSecsSinceEpoch(QDateTime* theWrappedObject) const;
-   QDateTime  toOffsetFromUtc(QDateTime* theWrappedObject, int  offsetSeconds) const;
-   QString  toString(QDateTime* theWrappedObject, Qt::DateFormat  f = Qt::TextDate) const;
-   QString  toString(QDateTime* theWrappedObject, const QString&  format) const;
-   QDateTime  toTimeSpec(QDateTime* theWrappedObject, Qt::TimeSpec  spec) const;
-   QDateTime  toTimeZone(QDateTime* theWrappedObject, const QTimeZone&  toZone) const;
-   uint  toTime_t(QDateTime* theWrappedObject) const;
-   QDateTime  toUTC(QDateTime* theWrappedObject) const;
-   int  utcOffset(QDateTime* theWrappedObject) const;
-    QString py_toString(QDateTime*);
-    bool __nonzero__(QDateTime* obj) { return obj->isValid(); }
 };
 
 
@@ -577,7 +393,6 @@ void delete_QPoint(QPoint* obj) { delete obj; }
    bool  isNull(QPoint* theWrappedObject) const;
    int  manhattanLength(QPoint* theWrappedObject) const;
    QPoint  __mul__(QPoint* theWrappedObject, const QMatrix&  m);
-   QPoint  __mul__(QPoint* theWrappedObject, const QMatrix4x4&  matrix);
    QPoint  __mul__(QPoint* theWrappedObject, const QTransform&  m);
    const QPoint  __mul__(QPoint* theWrappedObject, double  factor);
    const QPoint  __mul__(QPoint* theWrappedObject, float  factor);
@@ -622,7 +437,6 @@ void delete_QPointF(QPointF* obj) { delete obj; }
    bool  isNull(QPointF* theWrappedObject) const;
    qreal  manhattanLength(QPointF* theWrappedObject) const;
    QPointF  __mul__(QPointF* theWrappedObject, const QMatrix&  m);
-   QPointF  __mul__(QPointF* theWrappedObject, const QMatrix4x4&  matrix);
    QPointF  __mul__(QPointF* theWrappedObject, const QTransform&  m);
    const QPointF  __mul__(QPointF* theWrappedObject, qreal  c);
    QPointF*  __imul__(QPointF* theWrappedObject, qreal  c);
@@ -970,55 +784,6 @@ void delete_QSizeF(QSizeF* obj) { delete obj; }
 
 
 
-class PythonQtWrapper_QTime : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QTime* new_QTime();
-QTime* new_QTime(int  h, int  m, int  s = 0, int  ms = 0);
-QTime* new_QTime(const QTime& other) {
-QTime* a = new QTime();
-*((QTime*)a) = other;
-return a; }
-void delete_QTime(QTime* obj) { delete obj; } 
-   QTime  addMSecs(QTime* theWrappedObject, int  ms) const;
-   QTime  addSecs(QTime* theWrappedObject, int  secs) const;
-   QTime  static_QTime_currentTime();
-   int  elapsed(QTime* theWrappedObject) const;
-   QTime  static_QTime_fromMSecsSinceStartOfDay(int  msecs);
-   QTime  static_QTime_fromString(const QString&  s, Qt::DateFormat  f = Qt::TextDate);
-   QTime  static_QTime_fromString(const QString&  s, const QString&  format);
-   int  hour(QTime* theWrappedObject) const;
-   bool  isNull(QTime* theWrappedObject) const;
-   bool  isValid(QTime* theWrappedObject) const;
-   bool  static_QTime_isValid(int  h, int  m, int  s, int  ms = 0);
-   int  minute(QTime* theWrappedObject) const;
-   int  msec(QTime* theWrappedObject) const;
-   int  msecsSinceStartOfDay(QTime* theWrappedObject) const;
-   int  msecsTo(QTime* theWrappedObject, const QTime&  arg__1) const;
-   bool  __ne__(QTime* theWrappedObject, const QTime&  other) const;
-   bool  __lt__(QTime* theWrappedObject, const QTime&  other) const;
-   void writeTo(QTime* theWrappedObject, QDataStream&  arg__1);
-   bool  __le__(QTime* theWrappedObject, const QTime&  other) const;
-   bool  __eq__(QTime* theWrappedObject, const QTime&  other) const;
-   bool  __gt__(QTime* theWrappedObject, const QTime&  other) const;
-   bool  __ge__(QTime* theWrappedObject, const QTime&  other) const;
-   void readFrom(QTime* theWrappedObject, QDataStream&  arg__1);
-   int  restart(QTime* theWrappedObject);
-   int  second(QTime* theWrappedObject) const;
-   int  secsTo(QTime* theWrappedObject, const QTime&  arg__1) const;
-   bool  setHMS(QTime* theWrappedObject, int  h, int  m, int  s, int  ms = 0);
-   void start(QTime* theWrappedObject);
-   QString  toString(QTime* theWrappedObject, Qt::DateFormat  f = Qt::TextDate) const;
-   QString  toString(QTime* theWrappedObject, const QString&  format) const;
-    QString py_toString(QTime*);
-    bool __nonzero__(QTime* obj) { return obj->isValid(); }
-};
-
-
-
-
-
 class PythonQtWrapper_QUrl : public QObject
 { Q_OBJECT
 public:
@@ -1296,9 +1061,6 @@ Q_DECLARE_FLAGS(TouchPointStates, TouchPointState)
 Q_DECLARE_FLAGS(WindowStates, WindowState)
 Q_DECLARE_FLAGS(WindowFlags, WindowType)
 public slots:
-   QTextCodec*  static_Qt_codecForHtml(const QByteArray&  ba);
-   QString  static_Qt_convertFromPlainText(const QString&  plain, Qt::WhiteSpaceMode  mode = Qt::WhiteSpacePre);
-   bool  static_Qt_mightBeRichText(const QString&  arg__1);
 };
 
 
