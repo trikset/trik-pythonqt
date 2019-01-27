@@ -1138,6 +1138,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
       v = QVariant(PyObjGetString(val, false, ok));
 #endif
     }
+    break;
   case QVariant::String:
     {
       bool ok;
