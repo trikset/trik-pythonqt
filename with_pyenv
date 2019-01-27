@@ -15,9 +15,9 @@ eval "$(pyenv virtualenv-init -)"
 CFLAGS='-O2 -g -fPIC' pyenv install -k -s $PYENV_VERSION
 export PKG_CONFIG_PATH=$(python3-config --prefix)/lib/pkgconfig
 if (( "$#" == 0 )) ; then
-	echo "Use ${BASH_SOURCE[0]} <bash command like for 'bash -c'>"
+	echo "Use ${BASH_SOURCE[0]} <command-like-for-ordinary-env>"
 	echo "Example: "
 	echo "${BASH_SOURCE[0]} \"echo '\$PKG_CONFIG_PATH' && python --version\""
 else
-	exec bash -c "$@"
+	exec "$@"
 fi
