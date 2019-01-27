@@ -1,5 +1,6 @@
-#!/bin/bash -x
+#!/bin/bash
 # Run `with_pyenv pyenv update` or remove ./.pyenv or your $PYENV_ROOT to update environment
+#
 SCRIPT_DIR="$(readlink -f $(dirname ${BASH_SOURCE[0]}))"
 export PYENV_VERSION=3.5.6
 export PYENV_ROOT="${PYENV_ROOT:-${SCRIPT_DIR}/.pyenv}"
@@ -13,4 +14,10 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 CFLAGS='-O2 -g -fPIC' pyenv install -k -s $PYENV_VERSION
 export PKG_CONFIG_PATH=$(python3-config --prefix)/lib/pkgconfig
-exec $*
+if (( "$#" == 0 )) ; then
+	echo "Use ${BASH_SOURCE[0]} <bash command like for 'bash -c'>"
+	echo "Example: "
+	echo "${BASH_SOURCE[0]} \"echo '\$PKG_CONFIG_PATH' && python --version\""
+else
+	exec bash -c "$@"
+fi
