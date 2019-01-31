@@ -1,3 +1,0 @@
-[submodule "python.git"]
-	path = python.git
-	url = https://github.com/python/cpython
