@@ -10,10 +10,10 @@ if ! which pyenv  ; then
     $DOWNLOADER --version || DOWNLOADER=curl
     $DOWNLOADER -O-  https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 #else
-#    ${PYENV_ROOT}/bin/pyenv update
+#    pyenv update
 fi
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#eval "$(pyenv virtualenv-init -)"
 CFLAGS='-O2 -g -fPIC' pyenv install -k -s $PYENV_VERSION
 export PKG_CONFIG_PATH=$(python3-config --prefix)/lib/pkgconfig
 if (( "$#" == 0 )) ; then
