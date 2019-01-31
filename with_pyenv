@@ -1,11 +1,13 @@
 #!/bin/bash
 # Run `with_pyenv pyenv update` or remove ./.pyenv or your $PYENV_ROOT to update environment
 #
-SCRIPT_DIR="$(readlink -f $(dirname ${BASH_SOURCE[0]}))"
+SCRIPT_DIR="$(realpath -e $(dirname ${BASH_SOURCE[0]}))"
 export PYENV_VERSION=3.5.6
 export PYENV_ROOT="${PYENV_ROOT:-${SCRIPT_DIR}/.pyenv}"
-if [ ! -d ${PYENV_ROOT} ] ; then
-    wget -O-  https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+if ! which pyenv  ; then
+    DOWNLOADER=wget
+    $DOWNLOADER --version || DOWNLOADER=curl
+    $DOWNLOADER -O-  https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 #else
 #    ${PYENV_ROOT}/bin/pyenv update
 fi
