@@ -31,7 +31,7 @@ QMAKE_CXXFLAGS += -Wno-error=cast-qual -Wno-error=missing-field-initializers \
 defined(enableFlagIfCan) {
 	TEST_FLAGS_LIST=-Wno-error=cast-function-type -Wno-error=implicit-fallthrough \
 			-Wno-error=unused-but-set-variable
-	for(f, TEST_FLAGS_LIST):enableFlagIfCan($$f):message($$f)
+	for(f, TEST_FLAGS_LIST):enableFlagIfCan($$f)
 }
 
 #Mingw 4.9 complains...
