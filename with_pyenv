@@ -7,7 +7,7 @@ if [[ "${BASH_SOURCE[0]}" = bash ]] ; then
     SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 fi
 
-SCRIPT_DIR=$(realpath -e "$SCRIPT_DIR")
+SCRIPT_DIR=$(realpath "$SCRIPT_DIR")
 
 CCname=${CC:-${CXX:-default}}
 export PYENV_VERSION=3.5.6
