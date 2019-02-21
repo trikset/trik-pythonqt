@@ -69,8 +69,9 @@ headers.path = /include
 INSTALLS += target headers
 
 defineTest(Xinclude) {
-  f=$$PYTHONQT_GENERATED_PATH/$1/$1.pri
-  exists($$f):include($$f)
+  f=$$PYTHONQT_GENERATED_PATH/$$1/$${1}.pri
+  exists($$f):include($$f):export(HEADERS):export(SOURCES):export(DEFINES)
+
 }
 
 
