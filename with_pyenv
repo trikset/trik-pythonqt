@@ -25,7 +25,11 @@ fi
 export PATH="${PYENV_ROOT}/bin:$PATH"
 eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
-INSTALL_COMMAND='eval env CFLAGS="-O2 -g -fPIC" pyenv install -k -s "$PYENV_VERSION"'
+if [ $(uname) = Darwin ] ; then
+  CFLAGS="${CFLAGS} -mmacosx-version-min=10.9"
+fi
+
+INSTALL_COMMAND='eval env CFLAGS="-O2 -g -fPIC ${CFLAGS}" pyenv install -k -s "$PYENV_VERSION"'
 
 $INSTALL_COMMAND ||  pyenv update &&  $INSTALL_COMMAND
 
