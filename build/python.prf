@@ -37,6 +37,9 @@ win32 {
   PYTHON_VERSION_AUTODETECTED=$$system($$pkgConfigExecutable() --modversion $${PYTHON_PKG})
   !isEmpty(PYTHON_VERSION_AUTODETECTED) {
       PYTHON_VERSION=$$PYTHON_VERSION_AUTODETECTED
+      linux {
+          LIBS += $$system($$pkgConfigExecutable() --libs --static $${PYTHON_PKG})
+      }
   } else:macx {
     # No `brew`, ok, then you need to have the Python development kit installed as framework
     INCLUDEPATH += /System/Library/Frameworks/Python.framework/Headers
