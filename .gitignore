@@ -1,3 +1,7 @@
+# By mistake (in pkgConfigExecutable function in features/qt_functions.prf)
+# qmake generates NUL file on Linux in ./build subdir
+build/NUL
+
 .pyenv-*/
 bin/
 *.pch
