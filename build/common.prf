@@ -28,6 +28,8 @@ QMAKE_CXXFLAGS += -Wno-error=cast-qual -Wno-error=missing-field-initializers \
                   -Wno-error=conversion-null \
                   -Wno-error=sign-compare -Wno-error=unused-parameter -Wno-error=type-limits -Wno-error=parentheses -Wno-error=deprecated-declarations
 
+macx: QMAKE_CXXFLAGS += -Wno-cast-qual
+
 defined(enableFlagIfCan) {
 	TEST_FLAGS_LIST=-Wno-error=implicit-fallthrough
 	!clang:TEST_FLAGS_LIST+=-Wno-error=unused-but-set-variable -Wno-error=cast-function-type
