@@ -21,7 +21,7 @@ isEmpty(DESTDIR) {
   DESTDIR = $$PWD/../bin
 }
 
-QMAKE_CXXFLAGS -= -Werror=pedantic -pedantic-errors -Werror=write-strings
+QMAKE_CXXFLAGS -= -Werror -Werror=pedantic -pedantic-errors -Werror=write-strings
 macx:QMAKE_CXXFLAGS += -Wno-error -Wno-error=sometimes-uninitialized -Wno-unused-variable -Wno-sign-compare -Wno-error=missing-field-initializers
 
 QMAKE_CXXFLAGS += -Wno-error=cast-qual -Wno-error=missing-field-initializers \
