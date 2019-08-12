@@ -44,14 +44,6 @@
 #define PYTHONQT_RESTORE_KEYWORDS
 #endif
 
-//From https://github.com/boostorg/python/pull/253
-// Python.h defines a macro with hypot name, what breaks libstdc++ math header
-// that it tries to include afterwards.
-# if defined(__MINGW32__)
-#  include <cmath>
-#  include <math.h>
-# endif
-
 // If PYTHONQT_USE_RELEASE_PYTHON_FALLBACK is enabled, try to link
 // release Python DLL if it is available by undefining _DEBUG while
 // including Python.h
@@ -65,6 +57,12 @@
 #define _DEBUG
 #else
 #include <Python.h>
+#endif
+
+// By including Python.h on Linux truncate could have been defined (in unistd.h)
+// which would lead to compiler errors. Therefore:
+#ifdef truncate
+# undef truncate
 #endif
 
 // get Qt keywords back

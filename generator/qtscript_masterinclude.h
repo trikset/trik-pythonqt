@@ -43,11 +43,16 @@
 #define Q_BYTE_ORDER Q_LITTLE_ENDIAN
 
 #define QT_NO_STL
-#define override 
 #define final
 #define QOPENGLVERSIONFUNCTIONS_H
 #define QOPENGLFUNCTIONS_H
 #define QOPENGLEXTRAFUNCTIONS_H
+
+// our compiler can't handle the templates for singleShot (int Qt 5.12), but we can circumvent this with
+// Q_CLANG_QDOC for the moment:
+#define Q_CLANG_QDOC
+#include <QtCore/QTimer>
+#undef Q_CLANG_QDOC
 
 #include <QtCore/QtCore>
 #include <QtGui/QtGui>

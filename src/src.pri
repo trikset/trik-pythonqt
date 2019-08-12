@@ -3,7 +3,7 @@ DEFINES +=  PYTHONQT_EXPORTS
 INCLUDEPATH += $$PWD
 
 # This was needed to work around "number of sections exceeded object file format limit" linker error
-win32:!gcc:QMAKE_CXXFLAGS += /bigobj
+win32:QMAKE_CXXFLAGS += /bigobj
 
 HEADERS +=                    \
   $$PWD/PythonQt.h                  \
@@ -31,7 +31,8 @@ HEADERS +=                    \
   $$PWD/gui/PythonQtScriptingConsole.h    \
   $$PWD/PythonQtSystem.h \
   $$PWD/PythonQtUtils.h \
-  $$PWD/PythonQtBoolResult.h
+  $$PWD/PythonQtBoolResult.h \
+  $$PWD/PythonQtThreadSupport.h \
   
 SOURCES +=                    \
   $$PWD/PythonQtStdDecorators.cpp   \
@@ -54,6 +55,7 @@ SOURCES +=                    \
   $$PWD/PythonQtClassWrapper.cpp    \
   $$PWD/PythonQtBoolResult.cpp      \
   $$PWD/gui/PythonQtScriptingConsole.cpp \
+  $$PWD/PythonQtThreadSupport.cpp \
 
 
 

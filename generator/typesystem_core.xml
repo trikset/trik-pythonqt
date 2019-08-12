@@ -53,7 +53,6 @@
 <rejection class="QJsonValueRefPtr"/>
 <rejection class="QList::MemoryLayout"/>
 <rejection class="QListSpecialMethods"/>
-<rejection class="QLoggingCategory"/>
 <rejection class="QMapDataBase"/>
 <rejection class="QMapNodeBase"/>
 <rejection class="QMetaTypeIdQObject"/>
@@ -462,7 +461,6 @@
   <rejection class="QMutableListIterator"/>
   <rejection class="QMutableMapIterator"/>
   <rejection class="QMutableVectorIterator"/>
-  <rejection class="QMutexLocker"/>
   <rejection class="QNoImplicitBoolCast"/>
   <rejection class="QObjectCleanupHandler"/>
   <rejection class="QObjectData"/>
@@ -497,6 +495,7 @@
   <rejection class="QList::Node"/>
   <rejection class="QList::const_iterator"/>
   <rejection class="QList::iterator"/>
+  <rejection class="QLoggingCategory::AtomicBools"/>
   <rejection class="QMetaTypeId2"/>
   <rejection class="QMutableSetIterator"/>
   <rejection class="QSubString"/>
@@ -644,7 +643,6 @@
   <enum-type name="QElapsedTimer::ClockType"/>
   
   <enum-type name="QtMsgType">
-    <reject-enum-value name="QtSystemMsg"/>
   </enum-type>
 
 
@@ -661,8 +659,6 @@
   <enum-type name="QDataStream::Status"/>
   <enum-type name="QDir::Filter" flags="QDir::Filters"/>
   <enum-type name="QEvent::Type" extensible="yes">
-    <reject-enum-value name="ApplicationActivated"/>
-    <reject-enum-value name="ApplicationDeactivated"/>
   </enum-type>
   <enum-type name="QEventLoop::ProcessEventsFlag" flags="QEventLoop::ProcessEventsFlags"/>
   <enum-type name="QFile::FileError"/>
@@ -758,7 +754,10 @@
   <enum-type name="Qt::WhiteSpaceMode"/>
   <enum-type name="Qt::WindowModality"/>
   <enum-type name="Qt::WindowState" flags="Qt::WindowStates"/>
-  <enum-type name="Qt::WindowType" flags="Qt::WindowFlags"/>
+  <enum-type name="Qt::WindowType" flags="Qt::WindowFlags">
+    <reject-enum-value name="WindowOkButtonHint"/>
+    <reject-enum-value name="WindowCancelButtonHint"/>
+  </enum-type>
   <enum-type name="QDirIterator::IteratorFlag" flags="QDirIterator::IteratorFlags"/>
   <enum-type name="Qt::EventPriority"/>
   <enum-type name="Qt::MaskMode"/>
@@ -769,65 +768,44 @@
  
 
   <enum-type name="QCoreApplication::Encoding">
-    <reject-enum-value name="DefaultCodec"/>
   </enum-type>
 
   <enum-type name="Qt::AlignmentFlag" flags="Qt::Alignment">
-    <reject-enum-value name="AlignLeading"/>
-    <reject-enum-value name="AlignTrailing"/>
   </enum-type>
 
   <enum-type name="Qt::CursorShape">
-    <reject-enum-value name="LastCursor"/>
   </enum-type>
 
   <enum-type name="Qt::DateFormat">
-    <reject-enum-value name="LocalDate"/>
   </enum-type>
 
 
   <enum-type name="Qt::ItemDataRole" force-integer="yes">
-    <reject-enum-value name="BackgroundColorRole"/>
-    <reject-enum-value name="TextColorRole"/>
   </enum-type>
 
 
   <enum-type name="QDataStream::Version">
-    <reject-enum-value name="Qt_4_1"/>
   </enum-type>
 
   <enum-type name="QDir::SortFlag" flags="QDir::SortFlags">
-    <reject-enum-value name="Unsorted"/>
   </enum-type>
 
   <enum-type name="Qt::DockWidgetArea" flags="Qt::DockWidgetAreas">
-    <reject-enum-value name="AllDockWidgetAreas"/>
   </enum-type>
 
   <enum-type name="Qt::ImageConversionFlag" flags="Qt::ImageConversionFlags">
-    <reject-enum-value name="AutoDither"/>
-    <reject-enum-value name="ColorOnly"/>
-    <reject-enum-value name="DiffuseDither"/>
-    <reject-enum-value name="NoAlpha"/>
-    <reject-enum-value name="ThresholdAlphaDither"/>
   </enum-type>
 
   <enum-type name="Qt::Key">
-    <reject-enum-value name="Key_Any"/>
   </enum-type>
 
   <enum-type name="QLocale::Language">
-    <reject-enum-value name="LastLanguage"/>
-    <reject-enum-value name="NorwegianBokmal"/>
-    <reject-enum-value name="Nynorsk"/>
   </enum-type>
 
   <enum-type name="QLocale::Country">
-    <reject-enum-value name="LastCountry"/>
   </enum-type>
 
   <enum-type name="Qt::ToolBarArea" flags="Qt::ToolBarAreas">
-    <reject-enum-value name="AllToolBarAreas"/>
   </enum-type>
 
   <enum-type name="Qt::EnterKeyType"/>
@@ -835,9 +813,6 @@
   <enum-type name="Qt::TabFocusBehavior"/>
 
   <enum-type name="Qt::WidgetAttribute">
-    <reject-enum-value name="WA_ForceAcceptDrops"/>
-    <reject-enum-value name="WA_NoBackground"/>
-    <reject-enum-value name="WA_MacMetalStyle"/>
   </enum-type>
 
   <value-type name="QProcessEnvironment"/>
@@ -1295,6 +1270,12 @@
   </object-type>
   <object-type name="QLibraryInfo"/>
   <object-type name="QMutex"/>
+  <value-type name="QMutexLocker">
+    <inject-code class="pywrap-h">
+    void __enter__(QMutexLocker* self) {}
+    void __exit__(QMutexLocker* self) { self->unlock(); }
+    </inject-code>
+  </value-type>
   <object-type name="QSemaphore"/>
   <object-type name="QSocketNotifier"/>
   <object-type name="QSystemLocale"/>
@@ -1748,6 +1729,7 @@
   </object-type>
   <object-type name="QFutureSynchronizer" generate="no"/>
   <object-type name="QThreadPool"/>
+  <object-type name="QThread"/>
 
   <object-type name="QFutureIterator" generate="no">
     <modify-function signature="operator=(const QFuture&amp;)" remove="all"/>
@@ -1930,6 +1912,14 @@
   <object-type name="QUrlQuery"/>
   <object-type name="QTemporaryDir"/>
 
+  <object-type name="QLoggingCategory">
+    <modify-function signature="QLoggingCategory(const char*)" remove="all"/>
+    <modify-function signature="QLoggingCategory(const char*, QtMsgType)" remove="all"/>
+    <modify-function signature="operator()()" remove="all"/>
+    <modify-function signature="operator()()const" remove="all"/>
+  </object-type>
+
+
   <!-- <object-type name="QAccessibleActionInterface"/> -->
   <enum-type name="QJsonValue::Type"/>
   <enum-type name="QRegularExpression::MatchType"/>
@@ -1952,8 +1942,8 @@
   <enum-type name="QTextCharFormat::FontPropertiesInheritanceBehavior"/>
   <enum-type name="QLocalServer::SocketOption" flags="QLocalServer::SocketOptions"/>
   <enum-type name="QState::RestorePolicy"/>
-  <!--<enum-type name="QAccessible::TextBoundaryType"/>-->
-  <!--<enum-type name="QAccessible::InterfaceType"/>-->
+  <enum-type name="QAccessible::TextBoundaryType"/>
+  <enum-type name="QAccessible::InterfaceType"/>
   <enum-type name="QFileDevice::MemoryMapFlags"/>
   <enum-type name="QFileDevice::Permission" flags="QFileDevice::Permissions"/>
   <enum-type name="QFileDevice::FileError"/>
@@ -1969,4 +1959,17 @@
   <enum-type name="Qt::TimerType"/>
   <enum-type name="Qt::Edge"/>
 
+  <object-type name="QDeadlineTimer"/>
+  <object-type name="QOperatingSystemVersion"/>
+  <enum-type name="QOperatingSystemVersion::OSType"/>
+  <object-type name="QRandomGenerator"/>
+  <object-type name="QRandomGenerator64"/>
+  <enum-type name="QDeadlineTimer::ForeverConstant"/>
+  
+  <enum-type name="QCommandLineOption::Flag"/>
+  <enum-type name="QFileDevice::FileTime"/>
+  <enum-type name="QLocale::DataSizeFormat"/>
+  <enum-type name="QLocale::FloatingPointPrecisionOption"/>
+  <enum-type name="QUuid::StringFormat"/>
+  <enum-type name="Qt::ChecksumType"/>
   </typesystem>

@@ -91,7 +91,6 @@ public:
 class ClassB {
 public:
   ClassB() { y = 2; }
-  virtual ~ClassB() {}
   int y;
 
   virtual int type() { return 2; }
@@ -162,6 +161,8 @@ public:
   virtual bool exists(const QString& filename);
 
   virtual QDateTime lastModifiedDate(const QString& filename);
+  
+  virtual bool isEggArchive(const QString& filename) { return false; }
 
 public Q_SLOTS:
 
@@ -348,15 +349,15 @@ public:
 
   bool runScript(const char* script, int expectedOverload = -1);
 
-  Q_PROPERTY(int intProp READ intProp WRITE setIntProp)
-  Q_PROPERTY(float floatProp READ floatProp WRITE setFloatProp)
-  Q_PROPERTY(QVariantList variantListProp READ variantListProp WRITE setVariantListProp)
-  Q_PROPERTY(QVariantMap  variantMapProp READ variantMapProp WRITE setVariantMapProp)
-  Q_PROPERTY(QVariant     variantProp READ variantProp WRITE setVariantProp)
-  Q_PROPERTY(QObject*     qObjectProp READ qObjectProp WRITE setQObjectProp)
-  Q_PROPERTY(QList<QObject*>  qObjectListProp READ qObjectListProp WRITE setQObjectListProp)
+  Q_PROPERTY(int intProp READ intProp WRITE setIntProp);
+  Q_PROPERTY(float floatProp READ floatProp WRITE setFloatProp);
+  Q_PROPERTY(QVariantList variantListProp READ variantListProp WRITE setVariantListProp);
+  Q_PROPERTY(QVariantMap  variantMapProp READ variantMapProp WRITE setVariantMapProp);
+  Q_PROPERTY(QVariant     variantProp READ variantProp WRITE setVariantProp);
+  Q_PROPERTY(QObject*     qObjectProp READ qObjectProp WRITE setQObjectProp);
+  Q_PROPERTY(QList<QObject*>  qObjectListProp READ qObjectListProp WRITE setQObjectListProp);
 
-  Q_PROPERTY(QSize sizeProp READ sizeProp WRITE setSizeProp)
+  Q_PROPERTY(QSize sizeProp READ sizeProp WRITE setSizeProp);
 
 public:
   int intProp() const { _called = true; return _intProp; }

@@ -1,11 +1,15 @@
 <?xml version="1.0"?>
 <typesystem package="com.trolltech.qt.qml">
 
+<rejection class="QQmlEngine" function-name="singletonInstance&lt;QJSValue&gt;"/>
+
 <rejection class="QQmlListProperty"/>
 <rejection class="QQmlTypeInfo"/>
 <rejection class="QQmlImageProviderBase"/>
 
-<object-type name="QJSEngine"></object-type>
+<object-type name="QJSEngine">
+  <modify-function signature="newQMetaObject()" remove="all"/>
+</object-type>
 <object-type name="QJSValue"></object-type>
 
 <enum-type name="QJSEngine::Extension"/>

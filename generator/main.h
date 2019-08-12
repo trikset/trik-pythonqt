@@ -45,7 +45,6 @@
 #include "pp.h"
 
 #include <QFile>
-#include <QProcess>
 #include <QDir>
 
 struct Preprocess

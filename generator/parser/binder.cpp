@@ -91,7 +91,7 @@ FileModelItem Binder::run(AST *node)
   return result;
 }
 
-ScopeModelItem Binder::currentScope()
+ScopeModelItem Binder::currentScope() const
 {
   if (_M_current_class)
     return model_static_cast<ScopeModelItem>(_M_current_class);
@@ -175,6 +175,7 @@ CodeModel::ClassType Binder::decode_class_type(std::size_t index) const
       case Token_union:
         return CodeModel::Union;
       default:
+        warnHere();
         std::cerr << "** WARNING unrecognized class type" << std::endl;
     }
     return CodeModel::Class;
@@ -254,6 +255,7 @@ void Binder::declare_symbol(SimpleDeclarationAST *node, InitDeclaratorAST *init_
   NameAST *id = declarator->id;
   if (! declarator->id)
     {
+      warnHere();
       std::cerr << "** WARNING expected a declarator id" << std::endl;
       return;
     }
@@ -263,6 +265,7 @@ void Binder::declare_symbol(SimpleDeclarationAST *node, InitDeclaratorAST *init_
   if (! symbolScope)
     {
       name_cc.run(id);
+      warnHere();
       std::cerr << "** WARNING scope not found for symbol:"
                 << qPrintable(name_cc.name()) << std::endl;
       return;
@@ -286,6 +289,21 @@ void Binder::declare_symbol(SimpleDeclarationAST *node, InitDeclaratorAST *init_
       fun->setTemplateParameters(_M_current_template_parameters);
       applyStorageSpecifiers(node->storage_specifiers, model_static_cast<MemberModelItem>(fun));
       applyFunctionSpecifiers(node->function_specifiers, fun);
+      
+      if (const ListNode<InitDeclaratorAST*> *it = node->init_declarators)
+      {
+        it = it->toFront();
+        const ListNode<InitDeclaratorAST*> *end = it;
+        do
+        {
+          InitDeclaratorAST *init_declarator = it->element;
+          if (init_declarator->declarator && init_declarator->declarator->_override) {
+            //std::cout << name_cc.name().toLatin1().constData() << std::endl;
+            fun->setVirtual(true);
+          }
+          it = it->next;
+        } while (it != end);
+      }
 
       // build the type
       TypeInfo typeInfo = CompilerUtils::typeDescription(node->type_specifier,
@@ -356,7 +374,8 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
       declarator = declarator->sub_declarator;
   //Q_ASSERT(declarator->id);
   if (!declarator->id) {
-    std::cerr << "** SHIT" << qPrintable(name_cc.name()) << std::endl
+    warnHere();
+    std::cerr << "** SHIT " << qPrintable(name_cc.name()) << std::endl
       << "\tdefinition *ignored*"
       << std::endl;
     return;
@@ -366,8 +385,9 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
   ScopeModelItem functionScope = finder.resolveScope(declarator->id, scope);
   if (! functionScope)
     {
+      warnHere();
       name_cc.run(declarator->id);
-      std::cerr << "** WARNING scope not found for function definition:"
+      std::cerr << "** WARNING scope not found for function definition: "
                 << qPrintable(name_cc.name()) << std::endl
                 << "\tdefinition *ignored*"
                 << std::endl;
@@ -377,8 +397,9 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
   decl_cc.run(declarator);
   foreach (DeclaratorCompiler::Parameter p, decl_cc.parameters()) {
     if (p.type.isRvalueReference()) {
-      std::cerr << "** Skipping function with rvalue reference parameter: "
-                << qPrintable(name_cc.name()) << std::endl;
+      //warnHere();
+      //std::cerr << "** Skipping function with rvalue reference parameter: "
+      //          << qPrintable(name_cc.name()) << std::endl;
       return;
     }
   }
@@ -409,6 +430,10 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
                           model_static_cast<MemberModelItem>(_M_current_function));
   applyFunctionSpecifiers(node->function_specifiers,
                           model_static_cast<FunctionModelItem>(_M_current_function));
+  if (node->init_declarator->declarator && node->init_declarator->declarator->_override) {
+    //std::cout << unqualified_name.toLatin1().constData() << std::endl;
+    model_static_cast<FunctionModelItem>(_M_current_function)->setVirtual(true);
+  }
 
   _M_current_function->setVariadics (decl_cc.isVariadics ());
 
@@ -436,6 +461,10 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
   else
     {
       applyFunctionSpecifiers(node->function_specifiers, declared);
+      if (node->init_declarator->declarator && node->init_declarator->declarator->_override) {
+        //std::cout << unqualified_name.toLatin1().constData() << std::endl;
+        model_static_cast<FunctionModelItem>(_M_current_function)->setVirtual(true);
+      }
 
       // fix the function type and the access policy
       _M_current_function->setAccessPolicy(declared->accessPolicy());
@@ -542,6 +571,7 @@ void Binder::visitTypedef(TypedefAST *node)
 
       if (alias_name.isEmpty ())
         {
+          warnHere();
           std::cerr << "** WARNING anonymous typedef not supported! ``";
           Token const &tk = _M_token_stream->token ((int) node->start_token);
           Token const &end_tk = _M_token_stream->token ((int) node->end_token);
@@ -805,6 +835,16 @@ void Binder::visitQProperty(QPropertyAST *node)
     QString property = QString::fromLatin1(start.text + start.position,
                                            end.position - start.position);
     _M_current_class->addPropertyDeclaration(property);
+}
+
+void Binder::warnHere() const
+{
+  ScopeModelItem scope = currentScope();
+  QString fileName = scope ? scope->fileName() : QString("<unknown>");
+  if (fileName != _M_lastWarnedFile) {
+    _M_lastWarnedFile = fileName;
+    std::cerr << "In file " << fileName.toLatin1().constData() << ":" << std::endl;
+  }
 }
 
 void Binder::applyStorageSpecifiers(const ListNode<std::size_t> *it, MemberModelItem item)

@@ -50,6 +50,7 @@
 #include "PythonQtSlot.h"
 #include "PythonQtObjectPtr.h"
 #include "PythonQtStdIn.h"
+#include "PythonQtThreadSupport.h"
 #include <QObject>
 #include <QVariant>
 #include <QList>
@@ -59,10 +60,6 @@
 #include <QtDebug>
 #include <iostream>
 
-
-#ifdef truncate
-#undef truncate
-#endif
 
 class PythonQtClassInfo;
 class PythonQtPrivate;
@@ -147,7 +144,7 @@ template<class T1, class T2> int PythonQtUpcastingOffset() {
 typedef QObject* PythonQtQObjectCreatorFunctionCB();
 
 //! helper template to create a derived QObject class
-template<class T> QObject* PythonQtCreateObject() { return new T(); }
+template<class T> QObject* PythonQtCreateObject() { return new T(); };
 
 //! Helper define to convert from QString to Python C-API
 #ifdef PY3K
@@ -604,6 +601,13 @@ public:
   //! sets a callback that is called before and after function calls for profiling
   void setProfilingCallback(ProfilingCB* cb);
 
+  //! Enable GIL and thread state handling (turned off by default).
+  //! If you want to use Python threading, you have to call this
+  //! with true early in your main thread, before you launch
+  //! any threads in Python. It can be called before or after
+  //! PythonQt::init().
+  static void setEnableThreadSupport(bool flag);
+
   //@}
 
 Q_SIGNALS:
@@ -668,6 +672,10 @@ public:
 
   //! returns if the id is the id for PythonQtObjectPtr
   bool isPythonQtObjectPtrMetaId(int id) { return _PythonQtObjectPtr_metaId == id; }
+  //! returns if the id is the id for PythonQtSafeObjectPtr
+  bool isPythonQtSafeObjectPtrMetaId(int id) { return _PythonQtSafeObjectPtr_metaId == id; }
+  //! returns if the id is either PythonQtObjectPtr or PythonQtSafeObjectPtr
+  bool isPythonQtAnyObjectPtrMetaId(int id) { return _PythonQtObjectPtr_metaId == id || _PythonQtSafeObjectPtr_metaId == id; }
 
   //! add the wrapper pointer (for reuse if the same obj appears while wrapper still exists)
   void addWrapperPointer(void* obj, PythonQtInstanceWrapper* wrapper);
@@ -854,6 +862,7 @@ private:
 
   int _initFlags;
   int _PythonQtObjectPtr_metaId;
+  int _PythonQtSafeObjectPtr_metaId;
 
   bool _hadError;
   bool _systemExitExceptionHandlerEnabled;
