@@ -374,7 +374,7 @@ static PyObject*
 meth_richcompare(PythonQtSignalFunctionObject *a, PythonQtSignalFunctionObject *b, int op)
 {
   int x = meth_compare(a, b);
-  bool r;
+  bool r = 0;
   if (op == Py_LT)
     r = x < 0;
   else if (op == Py_LE)
