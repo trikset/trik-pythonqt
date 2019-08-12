@@ -46,6 +46,7 @@
 
 #include <QFile>
 #include <QDir>
+#include <QProcess>
 
 struct Preprocess
 {
