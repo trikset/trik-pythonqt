@@ -4,21 +4,73 @@
 #include <QStringList>
 #include <QTextDocument>
 #include <QVariant>
+#include <qbitarray.h>
 #include <qbytearray.h>
 #include <qdatastream.h>
+#include <qdatetime.h>
 #include <qline.h>
 #include <qlist.h>
 #include <qlocale.h>
 #include <qmargins.h>
 #include <qmatrix.h>
+#include <qmatrix4x4.h>
 #include <qnamespace.h>
 #include <qpoint.h>
 #include <qrect.h>
 #include <qregexp.h>
 #include <qsize.h>
 #include <qstringlist.h>
+#include <qtextcodec.h>
+#include <qtimezone.h>
 #include <qtransform.h>
 #include <qurl.h>
+#include <qurlquery.h>
+
+
+
+class PythonQtWrapper_QBitArray : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QBitArray* new_QBitArray();
+QBitArray* new_QBitArray(const QBitArray&  other);
+QBitArray* new_QBitArray(int  size, bool  val = false);
+void delete_QBitArray(QBitArray* obj) { delete obj; } 
+   bool  at(QBitArray* theWrappedObject, int  i) const;
+   const char*  bits(QBitArray* theWrappedObject) const;
+   void clear(QBitArray* theWrappedObject);
+   void clearBit(QBitArray* theWrappedObject, int  i);
+   int  count(QBitArray* theWrappedObject) const;
+   int  count(QBitArray* theWrappedObject, bool  on) const;
+   void fill(QBitArray* theWrappedObject, bool  val, int  first, int  last);
+   bool  fill(QBitArray* theWrappedObject, bool  val, int  size = -1);
+   bool  isEmpty(QBitArray* theWrappedObject) const;
+   bool  isNull(QBitArray* theWrappedObject) const;
+   bool  __ne__(QBitArray* theWrappedObject, const QBitArray&  other) const;
+   QBitArray  __and__(QBitArray* theWrappedObject, const QBitArray&  arg__2);
+   QBitArray*  __iand__(QBitArray* theWrappedObject, const QBitArray&  arg__1);
+   void writeTo(QBitArray* theWrappedObject, QDataStream&  arg__1);
+   QBitArray*  operator_assign(QBitArray* theWrappedObject, const QBitArray&  other);
+   bool  __eq__(QBitArray* theWrappedObject, const QBitArray&  other) const;
+   void readFrom(QBitArray* theWrappedObject, QDataStream&  arg__1);
+   QBitArray  __xor__(QBitArray* theWrappedObject, const QBitArray&  arg__2);
+   QBitArray*  __ixor__(QBitArray* theWrappedObject, const QBitArray&  arg__1);
+   QBitArray  __or__(QBitArray* theWrappedObject, const QBitArray&  arg__2);
+   QBitArray*  __ior__(QBitArray* theWrappedObject, const QBitArray&  arg__1);
+   QBitArray  __invert__(QBitArray* theWrappedObject) const;
+   void resize(QBitArray* theWrappedObject, int  size);
+   void setBit(QBitArray* theWrappedObject, int  i);
+   void setBit(QBitArray* theWrappedObject, int  i, bool  val);
+   int  size(QBitArray* theWrappedObject) const;
+   void swap(QBitArray* theWrappedObject, QBitArray&  other);
+   bool  testBit(QBitArray* theWrappedObject, int  i) const;
+   bool  toggleBit(QBitArray* theWrappedObject, int  i);
+   void truncate(QBitArray* theWrappedObject, int  pos);
+    QString py_toString(QBitArray*);
+    bool __nonzero__(QBitArray* obj) { return !obj->isEmpty(); }
+};
+
+
 
 
 
@@ -165,6 +217,146 @@ void delete_QByteArray(QByteArray* obj) { delete obj; }
 
 
 
+class PythonQtWrapper_QDate : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(MonthNameType )
+enum MonthNameType{
+  DateFormat = QDate::DateFormat,   StandaloneFormat = QDate::StandaloneFormat};
+public slots:
+QDate* new_QDate();
+QDate* new_QDate(int  y, int  m, int  d);
+QDate* new_QDate(const QDate& other) {
+QDate* a = new QDate();
+*((QDate*)a) = other;
+return a; }
+void delete_QDate(QDate* obj) { delete obj; } 
+   QDate  addDays(QDate* theWrappedObject, qint64  days) const;
+   QDate  addMonths(QDate* theWrappedObject, int  months) const;
+   QDate  addYears(QDate* theWrappedObject, int  years) const;
+   QDate  static_QDate_currentDate();
+   int  day(QDate* theWrappedObject) const;
+   int  dayOfWeek(QDate* theWrappedObject) const;
+   int  dayOfYear(QDate* theWrappedObject) const;
+   int  daysInMonth(QDate* theWrappedObject) const;
+   int  daysInYear(QDate* theWrappedObject) const;
+   qint64  daysTo(QDate* theWrappedObject, const QDate&  arg__1) const;
+   QDate  static_QDate_fromJulianDay(qint64  jd_);
+   QDate  static_QDate_fromString(const QString&  s, Qt::DateFormat  f = Qt::TextDate);
+   QDate  static_QDate_fromString(const QString&  s, const QString&  format);
+   void getDate(QDate* theWrappedObject, int*  year, int*  month, int*  day);
+   void getDate(QDate* theWrappedObject, int*  year, int*  month, int*  day) const;
+   bool  static_QDate_isLeapYear(int  year);
+   bool  isNull(QDate* theWrappedObject) const;
+   bool  isValid(QDate* theWrappedObject) const;
+   bool  static_QDate_isValid(int  y, int  m, int  d);
+   QString  static_QDate_longDayName(int  weekday, QDate::MonthNameType  type = QDate::DateFormat);
+   QString  static_QDate_longMonthName(int  month, QDate::MonthNameType  type = QDate::DateFormat);
+   int  month(QDate* theWrappedObject) const;
+   bool  __ne__(QDate* theWrappedObject, const QDate&  other) const;
+   bool  __lt__(QDate* theWrappedObject, const QDate&  other) const;
+   void writeTo(QDate* theWrappedObject, QDataStream&  arg__1);
+   bool  __le__(QDate* theWrappedObject, const QDate&  other) const;
+   bool  __eq__(QDate* theWrappedObject, const QDate&  other) const;
+   bool  __gt__(QDate* theWrappedObject, const QDate&  other) const;
+   bool  __ge__(QDate* theWrappedObject, const QDate&  other) const;
+   void readFrom(QDate* theWrappedObject, QDataStream&  arg__1);
+   bool  setDate(QDate* theWrappedObject, int  year, int  month, int  day);
+   QString  static_QDate_shortDayName(int  weekday, QDate::MonthNameType  type = QDate::DateFormat);
+   QString  static_QDate_shortMonthName(int  month, QDate::MonthNameType  type = QDate::DateFormat);
+   qint64  toJulianDay(QDate* theWrappedObject) const;
+   QString  toString(QDate* theWrappedObject, Qt::DateFormat  f = Qt::TextDate) const;
+   QString  toString(QDate* theWrappedObject, const QString&  format) const;
+   int  weekNumber(QDate* theWrappedObject, int*  yearNum = nullptr) const;
+   int  year(QDate* theWrappedObject) const;
+    QString py_toString(QDate*);
+    bool __nonzero__(QDate* obj) { return obj->isValid(); }
+};
+
+
+
+
+
+class PythonQtWrapper_QDateTime : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QDateTime* new_QDateTime();
+QDateTime* new_QDateTime(QDateTime&  other);
+QDateTime* new_QDateTime(const QDate&  arg__1);
+QDateTime* new_QDateTime(const QDate&  arg__1, const QTime&  arg__2, Qt::TimeSpec  spec = Qt::LocalTime);
+QDateTime* new_QDateTime(const QDate&  date, const QTime&  time, Qt::TimeSpec  spec, int  offsetSeconds);
+QDateTime* new_QDateTime(const QDate&  date, const QTime&  time, const QTimeZone&  timeZone);
+QDateTime* new_QDateTime(const QDateTime&  other);
+void delete_QDateTime(QDateTime* obj) { delete obj; } 
+   QDateTime  addDays(QDateTime* theWrappedObject, qint64  days) const;
+   QDateTime  addMSecs(QDateTime* theWrappedObject, qint64  msecs) const;
+   QDateTime  addMonths(QDateTime* theWrappedObject, int  months) const;
+   QDateTime  addSecs(QDateTime* theWrappedObject, qint64  secs) const;
+   QDateTime  addYears(QDateTime* theWrappedObject, int  years) const;
+   QDateTime  static_QDateTime_currentDateTime();
+   QDateTime  static_QDateTime_currentDateTimeUtc();
+   qint64  static_QDateTime_currentMSecsSinceEpoch();
+   qint64  static_QDateTime_currentSecsSinceEpoch();
+   QDate  date(QDateTime* theWrappedObject) const;
+   qint64  daysTo(QDateTime* theWrappedObject, const QDateTime&  arg__1) const;
+   QDateTime  static_QDateTime_fromMSecsSinceEpoch(qint64  msecs);
+   QDateTime  static_QDateTime_fromMSecsSinceEpoch(qint64  msecs, Qt::TimeSpec  spec, int  offsetFromUtc = 0);
+   QDateTime  static_QDateTime_fromMSecsSinceEpoch(qint64  msecs, const QTimeZone&  timeZone);
+   QDateTime  static_QDateTime_fromSecsSinceEpoch(qint64  secs, Qt::TimeSpec  spe = Qt::LocalTime, int  offsetFromUtc = 0);
+   QDateTime  static_QDateTime_fromSecsSinceEpoch(qint64  secs, const QTimeZone&  timeZone);
+   QDateTime  static_QDateTime_fromString(const QString&  s, Qt::DateFormat  f = Qt::TextDate);
+   QDateTime  static_QDateTime_fromString(const QString&  s, const QString&  format);
+   QDateTime  static_QDateTime_fromTime_t(uint  secsSince1Jan1970UTC);
+   QDateTime  static_QDateTime_fromTime_t(uint  secsSince1Jan1970UTC, Qt::TimeSpec  spec, int  offsetFromUtc = 0);
+   QDateTime  static_QDateTime_fromTime_t(uint  secsSince1Jan1970UTC, const QTimeZone&  timeZone);
+   bool  isDaylightTime(QDateTime* theWrappedObject) const;
+   bool  isNull(QDateTime* theWrappedObject) const;
+   bool  isValid(QDateTime* theWrappedObject) const;
+   qint64  msecsTo(QDateTime* theWrappedObject, const QDateTime&  arg__1) const;
+   int  offsetFromUtc(QDateTime* theWrappedObject) const;
+   bool  __ne__(QDateTime* theWrappedObject, const QDateTime&  other) const;
+   bool  __lt__(QDateTime* theWrappedObject, const QDateTime&  other) const;
+   void writeTo(QDateTime* theWrappedObject, QDataStream&  arg__1);
+   bool  __le__(QDateTime* theWrappedObject, const QDateTime&  other) const;
+   bool  __eq__(QDateTime* theWrappedObject, const QDateTime&  other) const;
+   bool  __gt__(QDateTime* theWrappedObject, const QDateTime&  other) const;
+   bool  __ge__(QDateTime* theWrappedObject, const QDateTime&  other) const;
+   void readFrom(QDateTime* theWrappedObject, QDataStream&  arg__1);
+   qint64  secsTo(QDateTime* theWrappedObject, const QDateTime&  arg__1) const;
+   void setDate(QDateTime* theWrappedObject, const QDate&  date);
+   void setMSecsSinceEpoch(QDateTime* theWrappedObject, qint64  msecs);
+   void setOffsetFromUtc(QDateTime* theWrappedObject, int  offsetSeconds);
+   void setSecsSinceEpoch(QDateTime* theWrappedObject, qint64  secs);
+   void setTime(QDateTime* theWrappedObject, const QTime&  time);
+   void setTimeSpec(QDateTime* theWrappedObject, Qt::TimeSpec  spec);
+   void setTimeZone(QDateTime* theWrappedObject, const QTimeZone&  toZone);
+   void setTime_t(QDateTime* theWrappedObject, uint  secsSince1Jan1970UTC);
+   void setUtcOffset(QDateTime* theWrappedObject, int  seconds);
+   void swap(QDateTime* theWrappedObject, QDateTime&  other);
+   QTime  time(QDateTime* theWrappedObject) const;
+   Qt::TimeSpec  timeSpec(QDateTime* theWrappedObject) const;
+   QTimeZone  timeZone(QDateTime* theWrappedObject) const;
+   QString  timeZoneAbbreviation(QDateTime* theWrappedObject) const;
+   QDateTime  toLocalTime(QDateTime* theWrappedObject) const;
+   qint64  toMSecsSinceEpoch(QDateTime* theWrappedObject) const;
+   QDateTime  toOffsetFromUtc(QDateTime* theWrappedObject, int  offsetSeconds) const;
+   qint64  toSecsSinceEpoch(QDateTime* theWrappedObject) const;
+   QString  toString(QDateTime* theWrappedObject, Qt::DateFormat  f = Qt::TextDate) const;
+   QString  toString(QDateTime* theWrappedObject, const QString&  format) const;
+   QDateTime  toTimeSpec(QDateTime* theWrappedObject, Qt::TimeSpec  spec) const;
+   QDateTime  toTimeZone(QDateTime* theWrappedObject, const QTimeZone&  toZone) const;
+   uint  toTime_t(QDateTime* theWrappedObject) const;
+   QDateTime  toUTC(QDateTime* theWrappedObject) const;
+   int  utcOffset(QDateTime* theWrappedObject) const;
+    QString py_toString(QDateTime*);
+    bool __nonzero__(QDateTime* obj) { return obj->isValid(); }
+};
+
+
+
+
+
 class PythonQtWrapper_QLine : public QObject
 { Q_OBJECT
 public:
@@ -272,12 +464,16 @@ void delete_QLineF(QLineF* obj) { delete obj; }
 class PythonQtWrapper_QLocale : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(Country CurrencySymbolFormat FormatType Language MeasurementSystem NumberOption QuotationStyle Script )
+Q_ENUMS(Country CurrencySymbolFormat DataSizeFormat FloatingPointPrecisionOption FormatType Language MeasurementSystem NumberOption QuotationStyle Script )
 Q_FLAGS(NumberOptions )
 enum Country{
   AnyCountry = QLocale::AnyCountry,   Afghanistan = QLocale::Afghanistan,   Albania = QLocale::Albania,   Algeria = QLocale::Algeria,   AmericanSamoa = QLocale::AmericanSamoa,   Andorra = QLocale::Andorra,   Angola = QLocale::Angola,   Anguilla = QLocale::Anguilla,   Antarctica = QLocale::Antarctica,   AntiguaAndBarbuda = QLocale::AntiguaAndBarbuda,   Argentina = QLocale::Argentina,   Armenia = QLocale::Armenia,   Aruba = QLocale::Aruba,   Australia = QLocale::Australia,   Austria = QLocale::Austria,   Azerbaijan = QLocale::Azerbaijan,   Bahamas = QLocale::Bahamas,   Bahrain = QLocale::Bahrain,   Bangladesh = QLocale::Bangladesh,   Barbados = QLocale::Barbados,   Belarus = QLocale::Belarus,   Belgium = QLocale::Belgium,   Belize = QLocale::Belize,   Benin = QLocale::Benin,   Bermuda = QLocale::Bermuda,   Bhutan = QLocale::Bhutan,   Bolivia = QLocale::Bolivia,   BosniaAndHerzegowina = QLocale::BosniaAndHerzegowina,   Botswana = QLocale::Botswana,   BouvetIsland = QLocale::BouvetIsland,   Brazil = QLocale::Brazil,   BritishIndianOceanTerritory = QLocale::BritishIndianOceanTerritory,   Brunei = QLocale::Brunei,   Bulgaria = QLocale::Bulgaria,   BurkinaFaso = QLocale::BurkinaFaso,   Burundi = QLocale::Burundi,   Cambodia = QLocale::Cambodia,   Cameroon = QLocale::Cameroon,   Canada = QLocale::Canada,   CapeVerde = QLocale::CapeVerde,   CaymanIslands = QLocale::CaymanIslands,   CentralAfricanRepublic = QLocale::CentralAfricanRepublic,   Chad = QLocale::Chad,   Chile = QLocale::Chile,   China = QLocale::China,   ChristmasIsland = QLocale::ChristmasIsland,   CocosIslands = QLocale::CocosIslands,   Colombia = QLocale::Colombia,   Comoros = QLocale::Comoros,   CongoKinshasa = QLocale::CongoKinshasa,   CongoBrazzaville = QLocale::CongoBrazzaville,   CookIslands = QLocale::CookIslands,   CostaRica = QLocale::CostaRica,   IvoryCoast = QLocale::IvoryCoast,   Croatia = QLocale::Croatia,   Cuba = QLocale::Cuba,   Cyprus = QLocale::Cyprus,   CzechRepublic = QLocale::CzechRepublic,   Denmark = QLocale::Denmark,   Djibouti = QLocale::Djibouti,   Dominica = QLocale::Dominica,   DominicanRepublic = QLocale::DominicanRepublic,   EastTimor = QLocale::EastTimor,   Ecuador = QLocale::Ecuador,   Egypt = QLocale::Egypt,   ElSalvador = QLocale::ElSalvador,   EquatorialGuinea = QLocale::EquatorialGuinea,   Eritrea = QLocale::Eritrea,   Estonia = QLocale::Estonia,   Ethiopia = QLocale::Ethiopia,   FalklandIslands = QLocale::FalklandIslands,   FaroeIslands = QLocale::FaroeIslands,   Fiji = QLocale::Fiji,   Finland = QLocale::Finland,   France = QLocale::France,   Guernsey = QLocale::Guernsey,   FrenchGuiana = QLocale::FrenchGuiana,   FrenchPolynesia = QLocale::FrenchPolynesia,   FrenchSouthernTerritories = QLocale::FrenchSouthernTerritories,   Gabon = QLocale::Gabon,   Gambia = QLocale::Gambia,   Georgia = QLocale::Georgia,   Germany = QLocale::Germany,   Ghana = QLocale::Ghana,   Gibraltar = QLocale::Gibraltar,   Greece = QLocale::Greece,   Greenland = QLocale::Greenland,   Grenada = QLocale::Grenada,   Guadeloupe = QLocale::Guadeloupe,   Guam = QLocale::Guam,   Guatemala = QLocale::Guatemala,   Guinea = QLocale::Guinea,   GuineaBissau = QLocale::GuineaBissau,   Guyana = QLocale::Guyana,   Haiti = QLocale::Haiti,   HeardAndMcDonaldIslands = QLocale::HeardAndMcDonaldIslands,   Honduras = QLocale::Honduras,   HongKong = QLocale::HongKong,   Hungary = QLocale::Hungary,   Iceland = QLocale::Iceland,   India = QLocale::India,   Indonesia = QLocale::Indonesia,   Iran = QLocale::Iran,   Iraq = QLocale::Iraq,   Ireland = QLocale::Ireland,   Israel = QLocale::Israel,   Italy = QLocale::Italy,   Jamaica = QLocale::Jamaica,   Japan = QLocale::Japan,   Jordan = QLocale::Jordan,   Kazakhstan = QLocale::Kazakhstan,   Kenya = QLocale::Kenya,   Kiribati = QLocale::Kiribati,   NorthKorea = QLocale::NorthKorea,   SouthKorea = QLocale::SouthKorea,   Kuwait = QLocale::Kuwait,   Kyrgyzstan = QLocale::Kyrgyzstan,   Laos = QLocale::Laos,   Latvia = QLocale::Latvia,   Lebanon = QLocale::Lebanon,   Lesotho = QLocale::Lesotho,   Liberia = QLocale::Liberia,   Libya = QLocale::Libya,   Liechtenstein = QLocale::Liechtenstein,   Lithuania = QLocale::Lithuania,   Luxembourg = QLocale::Luxembourg,   Macau = QLocale::Macau,   Macedonia = QLocale::Macedonia,   Madagascar = QLocale::Madagascar,   Malawi = QLocale::Malawi,   Malaysia = QLocale::Malaysia,   Maldives = QLocale::Maldives,   Mali = QLocale::Mali,   Malta = QLocale::Malta,   MarshallIslands = QLocale::MarshallIslands,   Martinique = QLocale::Martinique,   Mauritania = QLocale::Mauritania,   Mauritius = QLocale::Mauritius,   Mayotte = QLocale::Mayotte,   Mexico = QLocale::Mexico,   Micronesia = QLocale::Micronesia,   Moldova = QLocale::Moldova,   Monaco = QLocale::Monaco,   Mongolia = QLocale::Mongolia,   Montserrat = QLocale::Montserrat,   Morocco = QLocale::Morocco,   Mozambique = QLocale::Mozambique,   Myanmar = QLocale::Myanmar,   Namibia = QLocale::Namibia,   NauruCountry = QLocale::NauruCountry,   Nepal = QLocale::Nepal,   Netherlands = QLocale::Netherlands,   CuraSao = QLocale::CuraSao,   NewCaledonia = QLocale::NewCaledonia,   NewZealand = QLocale::NewZealand,   Nicaragua = QLocale::Nicaragua,   Niger = QLocale::Niger,   Nigeria = QLocale::Nigeria,   Niue = QLocale::Niue,   NorfolkIsland = QLocale::NorfolkIsland,   NorthernMarianaIslands = QLocale::NorthernMarianaIslands,   Norway = QLocale::Norway,   Oman = QLocale::Oman,   Pakistan = QLocale::Pakistan,   Palau = QLocale::Palau,   PalestinianTerritories = QLocale::PalestinianTerritories,   Panama = QLocale::Panama,   PapuaNewGuinea = QLocale::PapuaNewGuinea,   Paraguay = QLocale::Paraguay,   Peru = QLocale::Peru,   Philippines = QLocale::Philippines,   Pitcairn = QLocale::Pitcairn,   Poland = QLocale::Poland,   Portugal = QLocale::Portugal,   PuertoRico = QLocale::PuertoRico,   Qatar = QLocale::Qatar,   Reunion = QLocale::Reunion,   Romania = QLocale::Romania,   Russia = QLocale::Russia,   Rwanda = QLocale::Rwanda,   SaintKittsAndNevis = QLocale::SaintKittsAndNevis,   SaintLucia = QLocale::SaintLucia,   SaintVincentAndTheGrenadines = QLocale::SaintVincentAndTheGrenadines,   Samoa = QLocale::Samoa,   SanMarino = QLocale::SanMarino,   SaoTomeAndPrincipe = QLocale::SaoTomeAndPrincipe,   SaudiArabia = QLocale::SaudiArabia,   Senegal = QLocale::Senegal,   Seychelles = QLocale::Seychelles,   SierraLeone = QLocale::SierraLeone,   Singapore = QLocale::Singapore,   Slovakia = QLocale::Slovakia,   Slovenia = QLocale::Slovenia,   SolomonIslands = QLocale::SolomonIslands,   Somalia = QLocale::Somalia,   SouthAfrica = QLocale::SouthAfrica,   SouthGeorgiaAndTheSouthSandwichIslands = QLocale::SouthGeorgiaAndTheSouthSandwichIslands,   Spain = QLocale::Spain,   SriLanka = QLocale::SriLanka,   SaintHelena = QLocale::SaintHelena,   SaintPierreAndMiquelon = QLocale::SaintPierreAndMiquelon,   Sudan = QLocale::Sudan,   Suriname = QLocale::Suriname,   SvalbardAndJanMayenIslands = QLocale::SvalbardAndJanMayenIslands,   Swaziland = QLocale::Swaziland,   Sweden = QLocale::Sweden,   Switzerland = QLocale::Switzerland,   Syria = QLocale::Syria,   Taiwan = QLocale::Taiwan,   Tajikistan = QLocale::Tajikistan,   Tanzania = QLocale::Tanzania,   Thailand = QLocale::Thailand,   Togo = QLocale::Togo,   TokelauCountry = QLocale::TokelauCountry,   Tonga = QLocale::Tonga,   TrinidadAndTobago = QLocale::TrinidadAndTobago,   Tunisia = QLocale::Tunisia,   Turkey = QLocale::Turkey,   Turkmenistan = QLocale::Turkmenistan,   TurksAndCaicosIslands = QLocale::TurksAndCaicosIslands,   TuvaluCountry = QLocale::TuvaluCountry,   Uganda = QLocale::Uganda,   Ukraine = QLocale::Ukraine,   UnitedArabEmirates = QLocale::UnitedArabEmirates,   UnitedKingdom = QLocale::UnitedKingdom,   UnitedStates = QLocale::UnitedStates,   UnitedStatesMinorOutlyingIslands = QLocale::UnitedStatesMinorOutlyingIslands,   Uruguay = QLocale::Uruguay,   Uzbekistan = QLocale::Uzbekistan,   Vanuatu = QLocale::Vanuatu,   VaticanCityState = QLocale::VaticanCityState,   Venezuela = QLocale::Venezuela,   Vietnam = QLocale::Vietnam,   BritishVirginIslands = QLocale::BritishVirginIslands,   UnitedStatesVirginIslands = QLocale::UnitedStatesVirginIslands,   WallisAndFutunaIslands = QLocale::WallisAndFutunaIslands,   WesternSahara = QLocale::WesternSahara,   Yemen = QLocale::Yemen,   CanaryIslands = QLocale::CanaryIslands,   Zambia = QLocale::Zambia,   Zimbabwe = QLocale::Zimbabwe,   ClippertonIsland = QLocale::ClippertonIsland,   Montenegro = QLocale::Montenegro,   Serbia = QLocale::Serbia,   SaintBarthelemy = QLocale::SaintBarthelemy,   SaintMartin = QLocale::SaintMartin,   LatinAmerica = QLocale::LatinAmerica,   AscensionIsland = QLocale::AscensionIsland,   AlandIslands = QLocale::AlandIslands,   DiegoGarcia = QLocale::DiegoGarcia,   CeutaAndMelilla = QLocale::CeutaAndMelilla,   IsleOfMan = QLocale::IsleOfMan,   Jersey = QLocale::Jersey,   TristanDaCunha = QLocale::TristanDaCunha,   SouthSudan = QLocale::SouthSudan,   Bonaire = QLocale::Bonaire,   SintMaarten = QLocale::SintMaarten,   Kosovo = QLocale::Kosovo,   EuropeanUnion = QLocale::EuropeanUnion,   OutlyingOceania = QLocale::OutlyingOceania,   World = QLocale::World,   Europe = QLocale::Europe,   DemocraticRepublicOfCongo = QLocale::DemocraticRepublicOfCongo,   DemocraticRepublicOfKorea = QLocale::DemocraticRepublicOfKorea,   LatinAmericaAndTheCaribbean = QLocale::LatinAmericaAndTheCaribbean,   PeoplesRepublicOfCongo = QLocale::PeoplesRepublicOfCongo,   RepublicOfKorea = QLocale::RepublicOfKorea,   RussianFederation = QLocale::RussianFederation,   SyrianArabRepublic = QLocale::SyrianArabRepublic,   Tokelau = QLocale::Tokelau,   Tuvalu = QLocale::Tuvalu,   LastCountry = QLocale::LastCountry};
 enum CurrencySymbolFormat{
   CurrencyIsoCode = QLocale::CurrencyIsoCode,   CurrencySymbol = QLocale::CurrencySymbol,   CurrencyDisplayName = QLocale::CurrencyDisplayName};
+enum DataSizeFormat{
+  DataSizeBase1000 = QLocale::DataSizeBase1000,   DataSizeSIQuantifiers = QLocale::DataSizeSIQuantifiers,   DataSizeIecFormat = QLocale::DataSizeIecFormat,   DataSizeTraditionalFormat = QLocale::DataSizeTraditionalFormat,   DataSizeSIFormat = QLocale::DataSizeSIFormat};
+enum FloatingPointPrecisionOption{
+  FloatingPointShortest = QLocale::FloatingPointShortest};
 enum FormatType{
   LongFormat = QLocale::LongFormat,   ShortFormat = QLocale::ShortFormat,   NarrowFormat = QLocale::NarrowFormat};
 enum Language{
@@ -412,6 +608,7 @@ void delete_QPoint(QPoint* obj) { delete obj; }
    bool  isNull(QPoint* theWrappedObject) const;
    int  manhattanLength(QPoint* theWrappedObject) const;
    QPoint  __mul__(QPoint* theWrappedObject, const QMatrix&  m);
+   QPoint  __mul__(QPoint* theWrappedObject, const QMatrix4x4&  matrix);
    QPoint  __mul__(QPoint* theWrappedObject, const QTransform&  m);
    const QPoint  __mul__(QPoint* theWrappedObject, double  factor);
    const QPoint  __mul__(QPoint* theWrappedObject, float  factor);
@@ -456,6 +653,7 @@ void delete_QPointF(QPointF* obj) { delete obj; }
    bool  isNull(QPointF* theWrappedObject) const;
    qreal  manhattanLength(QPointF* theWrappedObject) const;
    QPointF  __mul__(QPointF* theWrappedObject, const QMatrix&  m);
+   QPointF  __mul__(QPointF* theWrappedObject, const QMatrix4x4&  matrix);
    QPointF  __mul__(QPointF* theWrappedObject, const QTransform&  m);
    const QPointF  __mul__(QPointF* theWrappedObject, qreal  c);
    QPointF*  __imul__(QPointF* theWrappedObject, qreal  c);
@@ -805,6 +1003,55 @@ void delete_QSizeF(QSizeF* obj) { delete obj; }
 
 
 
+class PythonQtWrapper_QTime : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QTime* new_QTime();
+QTime* new_QTime(int  h, int  m, int  s = 0, int  ms = 0);
+QTime* new_QTime(const QTime& other) {
+QTime* a = new QTime();
+*((QTime*)a) = other;
+return a; }
+void delete_QTime(QTime* obj) { delete obj; } 
+   QTime  addMSecs(QTime* theWrappedObject, int  ms) const;
+   QTime  addSecs(QTime* theWrappedObject, int  secs) const;
+   QTime  static_QTime_currentTime();
+   int  elapsed(QTime* theWrappedObject) const;
+   QTime  static_QTime_fromMSecsSinceStartOfDay(int  msecs);
+   QTime  static_QTime_fromString(const QString&  s, Qt::DateFormat  f = Qt::TextDate);
+   QTime  static_QTime_fromString(const QString&  s, const QString&  format);
+   int  hour(QTime* theWrappedObject) const;
+   bool  isNull(QTime* theWrappedObject) const;
+   bool  isValid(QTime* theWrappedObject) const;
+   bool  static_QTime_isValid(int  h, int  m, int  s, int  ms = 0);
+   int  minute(QTime* theWrappedObject) const;
+   int  msec(QTime* theWrappedObject) const;
+   int  msecsSinceStartOfDay(QTime* theWrappedObject) const;
+   int  msecsTo(QTime* theWrappedObject, const QTime&  arg__1) const;
+   bool  __ne__(QTime* theWrappedObject, const QTime&  other) const;
+   bool  __lt__(QTime* theWrappedObject, const QTime&  other) const;
+   void writeTo(QTime* theWrappedObject, QDataStream&  arg__1);
+   bool  __le__(QTime* theWrappedObject, const QTime&  other) const;
+   bool  __eq__(QTime* theWrappedObject, const QTime&  other) const;
+   bool  __gt__(QTime* theWrappedObject, const QTime&  other) const;
+   bool  __ge__(QTime* theWrappedObject, const QTime&  other) const;
+   void readFrom(QTime* theWrappedObject, QDataStream&  arg__1);
+   int  restart(QTime* theWrappedObject);
+   int  second(QTime* theWrappedObject) const;
+   int  secsTo(QTime* theWrappedObject, const QTime&  arg__1) const;
+   bool  setHMS(QTime* theWrappedObject, int  h, int  m, int  s, int  ms = 0);
+   void start(QTime* theWrappedObject);
+   QString  toString(QTime* theWrappedObject, Qt::DateFormat  f = Qt::TextDate) const;
+   QString  toString(QTime* theWrappedObject, const QString&  format) const;
+    QString py_toString(QTime*);
+    bool __nonzero__(QTime* obj) { return obj->isValid(); }
+};
+
+
+
+
+
 class PythonQtWrapper_QUrl : public QObject
 { Q_OBJECT
 public:
@@ -893,7 +1140,7 @@ void delete_QUrl(QUrl* obj) { delete obj; }
 class PythonQtWrapper_Qt : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(AlignmentFlag AnchorPoint ApplicationAttribute ApplicationState ArrowType AspectRatioMode Axis BGMode BrushStyle CaseSensitivity CheckState ClipOperation ConnectionType ContextMenuPolicy CoordinateSystem Corner CursorMoveStyle CursorShape DateFormat DayOfWeek DockWidgetArea DockWidgetAreaSizes DropAction Edge EnterKeyType EventPriority FillRule FindChildOption FocusPolicy FocusReason GestureFlag GestureState GestureType GlobalColor HitTestAccuracy ImageConversionFlag InputMethodHint InputMethodQuery ItemDataRole ItemFlag ItemSelectionMode ItemSelectionOperation Key KeyboardModifier LayoutDirection MaskMode MatchFlag MouseButton MouseEventFlag MouseEventSource NativeGestureType NavigationMode Orientation PenCapStyle PenJoinStyle PenStyle ScreenOrientation ScrollBarPolicy ScrollPhase ShortcutContext SizeHint SizeMode SortOrder TabFocusBehavior TextElideMode TextFlag TextFormat TextInteractionFlag TileRule TimeSpec TimerType ToolBarArea ToolBarAreaSizes ToolButtonStyle TouchPointState TransformationMode UIEffect WhiteSpaceMode WidgetAttribute WindowFrameSection WindowModality WindowState WindowType )
+Q_ENUMS(AlignmentFlag AnchorPoint ApplicationAttribute ApplicationState ArrowType AspectRatioMode Axis BGMode BrushStyle CaseSensitivity CheckState ChecksumType ClipOperation ConnectionType ContextMenuPolicy CoordinateSystem Corner CursorMoveStyle CursorShape DateFormat DayOfWeek DockWidgetArea DockWidgetAreaSizes DropAction Edge EnterKeyType EventPriority FillRule FindChildOption FocusPolicy FocusReason GestureFlag GestureState GestureType GlobalColor HitTestAccuracy ImageConversionFlag InputMethodHint InputMethodQuery ItemDataRole ItemFlag ItemSelectionMode ItemSelectionOperation Key KeyboardModifier LayoutDirection MaskMode MatchFlag MouseButton MouseEventFlag MouseEventSource NativeGestureType NavigationMode Orientation PenCapStyle PenJoinStyle PenStyle ScreenOrientation ScrollBarPolicy ScrollPhase ShortcutContext SizeHint SizeMode SortOrder TabFocusBehavior TextElideMode TextFlag TextFormat TextInteractionFlag TileRule TimeSpec TimerType ToolBarArea ToolBarAreaSizes ToolButtonStyle TouchPointState TransformationMode UIEffect WhiteSpaceMode WidgetAttribute WindowFrameSection WindowModality WindowState WindowType )
 Q_FLAGS(Alignment DockWidgetAreas DropActions FindChildOptions GestureFlags ImageConversionFlags InputMethodHints InputMethodQueries ItemFlags KeyboardModifiers MatchFlags MouseButtons MouseEventFlags Orientations ScreenOrientations TextInteractionFlags ToolBarAreas TouchPointStates WindowStates WindowFlags )
 enum AlignmentFlag{
   AlignLeft = Qt::AlignLeft,   AlignLeading = Qt::AlignLeading,   AlignRight = Qt::AlignRight,   AlignTrailing = Qt::AlignTrailing,   AlignHCenter = Qt::AlignHCenter,   AlignJustify = Qt::AlignJustify,   AlignAbsolute = Qt::AlignAbsolute,   AlignHorizontal_Mask = Qt::AlignHorizontal_Mask,   AlignTop = Qt::AlignTop,   AlignBottom = Qt::AlignBottom,   AlignVCenter = Qt::AlignVCenter,   AlignBaseline = Qt::AlignBaseline,   AlignVertical_Mask = Qt::AlignVertical_Mask,   AlignCenter = Qt::AlignCenter};
@@ -917,6 +1164,8 @@ enum CaseSensitivity{
   CaseInsensitive = Qt::CaseInsensitive,   CaseSensitive = Qt::CaseSensitive};
 enum CheckState{
   Unchecked = Qt::Unchecked,   PartiallyChecked = Qt::PartiallyChecked,   Checked = Qt::Checked};
+enum ChecksumType{
+  ChecksumIso3309 = Qt::ChecksumIso3309,   ChecksumItuV41 = Qt::ChecksumItuV41};
 enum ClipOperation{
   NoClip = Qt::NoClip,   ReplaceClip = Qt::ReplaceClip,   IntersectClip = Qt::IntersectClip};
 enum ConnectionType{
@@ -1082,6 +1331,9 @@ Q_DECLARE_FLAGS(TouchPointStates, TouchPointState)
 Q_DECLARE_FLAGS(WindowStates, WindowState)
 Q_DECLARE_FLAGS(WindowFlags, WindowType)
 public slots:
+   QTextCodec*  static_Qt_codecForHtml(const QByteArray&  ba);
+   QString  static_Qt_convertFromPlainText(const QString&  plain, Qt::WhiteSpaceMode  mode = Qt::WhiteSpacePre);
+   bool  static_Qt_mightBeRichText(const QString&  arg__1);
 };
 
 

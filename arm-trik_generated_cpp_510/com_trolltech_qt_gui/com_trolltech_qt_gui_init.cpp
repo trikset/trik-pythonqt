@@ -121,7 +121,7 @@ static void* polymorphichandler_QEvent(const void *ptr, const char **class_name)
         *class_name = "QInputMethodQueryEvent";
         return (QInputMethodQueryEvent*)object;
     }
-    if (object->type() == QEvent::KeyPress || object->type() == QEvent::KeyRelease) {
+    if (object->type() == QEvent::KeyPress || object->type() == QEvent::KeyRelease || object->type() == QEvent::ShortcutOverride) {
         *class_name = "QKeyEvent";
         return (QKeyEvent*)object;
     }
@@ -600,10 +600,11 @@ PythonQt::self()->addParentClass("QPaintDeviceWindow", "QPaintDevice",PythonQtUp
 PythonQt::priv()->registerCPPClass("QPaintEngine", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPaintEngine>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPaintEngine>, module, 0);
 PythonQt::priv()->registerCPPClass("QPaintEngineState", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPaintEngineState>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPaintEngineState>, module, 0);
 PythonQt::priv()->registerCPPClass("QPaintEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPaintEvent>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPaintEvent>, module, 0);
-PythonQt::priv()->registerCPPClass("QPainter", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPainter>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPainter>, module, 0);
+PythonQt::priv()->registerCPPClass("QPainter", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPainter>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QPainterPath", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPainterPath>, NULL, module, PythonQt::Type_Add|PythonQt::Type_And|PythonQt::Type_InplaceAdd|PythonQt::Type_InplaceAnd|PythonQt::Type_InplaceOr|PythonQt::Type_InplaceSubtract|PythonQt::Type_Multiply|PythonQt::Type_NonZero|PythonQt::Type_Or|PythonQt::Type_RichCompare|PythonQt::Type_Subtract);
 PythonQt::priv()->registerCPPClass("QPainterPathStroker", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPainterPathStroker>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QPainterPath::Element", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPainterPath__Element>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPainterPath__Element>, module, PythonQt::Type_RichCompare);
+PythonQt::priv()->registerCPPClass("QPainter::PixmapFragment", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPainter__PixmapFragment>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPainter__PixmapFragment>, module, 0);
 PythonQt::priv()->registerClass(&QPanGesture::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QPanGesture>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPanGesture>, module, 0);
 PythonQt::priv()->registerClass(&QPdfWriter::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QPdfWriter>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPdfWriter>, module, 0);
 PythonQt::self()->addParentClass("QPdfWriter", "QPagedPaintDevice",PythonQtUpcastingOffset<QPdfWriter,QPagedPaintDevice>());

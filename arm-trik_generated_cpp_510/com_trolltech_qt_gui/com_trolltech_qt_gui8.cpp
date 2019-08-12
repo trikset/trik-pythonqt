@@ -9,8 +9,19 @@
 #include <qmetaobject.h>
 #include <qobject.h>
 #include <qstyleoption.h>
+#include <qthread.h>
 #include <qtransform.h>
 #include <qwidget.h>
+
+PythonQtShell_QStyleHintReturn::~PythonQtShell_QStyleHintReturn() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleHintReturn* PythonQtWrapper_QStyleHintReturn::new_QStyleHintReturn(int  version, int  type)
+{ 
+return new PythonQtShell_QStyleHintReturn(version, type); }
+
+
 
 PythonQtShell_QStyleHintReturnMask::~PythonQtShell_QStyleHintReturnMask() {
   PythonQtPrivate* priv = PythonQt::priv();
@@ -593,23 +604,5 @@ PythonQtShell_QStyleOptionTabWidgetFrameV2::~PythonQtShell_QStyleOptionTabWidget
 QStyleOptionTabWidgetFrameV2* PythonQtWrapper_QStyleOptionTabWidgetFrameV2::new_QStyleOptionTabWidgetFrameV2()
 { 
 return new PythonQtShell_QStyleOptionTabWidgetFrameV2(); }
-
-
-
-PythonQtShell_QStyleOptionTitleBar::~PythonQtShell_QStyleOptionTitleBar() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-QStyleOptionTitleBar* PythonQtWrapper_QStyleOptionTitleBar::new_QStyleOptionTitleBar()
-{ 
-return new PythonQtShell_QStyleOptionTitleBar(); }
-
-QStyleOptionTitleBar* PythonQtWrapper_QStyleOptionTitleBar::new_QStyleOptionTitleBar(const QStyleOptionTitleBar&  other)
-{ 
-return new PythonQtShell_QStyleOptionTitleBar(other); }
-
-QStyleOptionTitleBar* PythonQtWrapper_QStyleOptionTitleBar::new_QStyleOptionTitleBar(int  version)
-{ 
-return new PythonQtShell_QStyleOptionTitleBar(version); }
 
 

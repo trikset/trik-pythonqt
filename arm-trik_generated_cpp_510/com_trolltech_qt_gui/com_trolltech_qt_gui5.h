@@ -28,6 +28,7 @@
 #include <qfontinfo.h>
 #include <qfontmetrics.h>
 #include <qgesture.h>
+#include <qglyphrun.h>
 #include <qgraphicseffect.h>
 #include <qgraphicsproxywidget.h>
 #include <qicon.h>
@@ -81,6 +82,8 @@
 #include <qstyle.h>
 #include <qstyleoption.h>
 #include <qsurfaceformat.h>
+#include <qtextoption.h>
+#include <qthread.h>
 #include <qtouchdevice.h>
 #include <qtransform.h>
 #include <qvector.h>
@@ -258,6 +261,7 @@ virtual void keyPressEvent(QKeyEvent*  arg__1);
 virtual void keyReleaseEvent(QKeyEvent*  event);
 virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual QSize  minimumSizeHint() const;
 virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
 virtual void mouseMoveEvent(QMouseEvent*  arg__1);
 virtual void mousePressEvent(QMouseEvent*  arg__1);
@@ -273,6 +277,7 @@ virtual void setVisible(bool  visible);
 virtual void setupViewport(QWidget*  viewport);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  showEvent);
+virtual QSize  sizeHint() const;
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  timerEvent);
 virtual bool  viewportEvent(QEvent*  event);
@@ -299,11 +304,13 @@ inline bool  promoted_viewportEvent(QEvent*  event) { return this->viewportEvent
 inline void py_q_childEvent(QChildEvent*  childEvent) { QMdiArea::childEvent(childEvent); }
 inline bool  py_q_event(QEvent*  event) { return QMdiArea::event(event); }
 inline bool  py_q_eventFilter(QObject*  object, QEvent*  event) { return QMdiArea::eventFilter(object, event); }
+inline QSize  py_q_minimumSizeHint() const { return QMdiArea::minimumSizeHint(); }
 inline void py_q_paintEvent(QPaintEvent*  paintEvent) { QMdiArea::paintEvent(paintEvent); }
 inline void py_q_resizeEvent(QResizeEvent*  resizeEvent) { QMdiArea::resizeEvent(resizeEvent); }
 inline void py_q_scrollContentsBy(int  dx, int  dy) { QMdiArea::scrollContentsBy(dx, dy); }
 inline void py_q_setupViewport(QWidget*  viewport) { QMdiArea::setupViewport(viewport); }
 inline void py_q_showEvent(QShowEvent*  showEvent) { QMdiArea::showEvent(showEvent); }
+inline QSize  py_q_sizeHint() const { return QMdiArea::sizeHint(); }
 inline void py_q_timerEvent(QTimerEvent*  timerEvent) { QMdiArea::timerEvent(timerEvent); }
 inline bool  py_q_viewportEvent(QEvent*  event) { return QMdiArea::viewportEvent(event); }
 };
@@ -328,7 +335,7 @@ void delete_QMdiArea(QMdiArea* obj) { delete obj; }
    bool  documentMode(QMdiArea* theWrappedObject) const;
    bool  py_q_event(QMdiArea* theWrappedObject, QEvent*  event){  return (((PythonQtPublicPromoter_QMdiArea*)theWrappedObject)->py_q_event(event));}
    bool  py_q_eventFilter(QMdiArea* theWrappedObject, QObject*  object, QEvent*  event){  return (((PythonQtPublicPromoter_QMdiArea*)theWrappedObject)->py_q_eventFilter(object, event));}
-   QSize  minimumSizeHint(QMdiArea* theWrappedObject) const;
+   QSize  py_q_minimumSizeHint(QMdiArea* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMdiArea*)theWrappedObject)->py_q_minimumSizeHint());}
    void py_q_paintEvent(QMdiArea* theWrappedObject, QPaintEvent*  paintEvent){  (((PythonQtPublicPromoter_QMdiArea*)theWrappedObject)->py_q_paintEvent(paintEvent));}
    void removeSubWindow(QMdiArea* theWrappedObject, QWidget*  widget);
    void py_q_resizeEvent(QMdiArea* theWrappedObject, QResizeEvent*  resizeEvent){  (((PythonQtPublicPromoter_QMdiArea*)theWrappedObject)->py_q_resizeEvent(resizeEvent));}
@@ -344,7 +351,7 @@ void delete_QMdiArea(QMdiArea* obj) { delete obj; }
    void setViewMode(QMdiArea* theWrappedObject, QMdiArea::ViewMode  mode);
    void py_q_setupViewport(QMdiArea* theWrappedObject, QWidget*  viewport){  (((PythonQtPublicPromoter_QMdiArea*)theWrappedObject)->py_q_setupViewport(viewport));}
    void py_q_showEvent(QMdiArea* theWrappedObject, QShowEvent*  showEvent){  (((PythonQtPublicPromoter_QMdiArea*)theWrappedObject)->py_q_showEvent(showEvent));}
-   QSize  sizeHint(QMdiArea* theWrappedObject) const;
+   QSize  py_q_sizeHint(QMdiArea* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMdiArea*)theWrappedObject)->py_q_sizeHint());}
    QList<QMdiSubWindow* >  subWindowList(QMdiArea* theWrappedObject, QMdiArea::WindowOrder  order = QMdiArea::CreationOrder) const;
    QTabWidget::TabPosition  tabPosition(QMdiArea* theWrappedObject) const;
    QTabWidget::TabShape  tabShape(QMdiArea* theWrappedObject) const;
@@ -394,6 +401,7 @@ virtual void keyPressEvent(QKeyEvent*  keyEvent);
 virtual void keyReleaseEvent(QKeyEvent*  event);
 virtual void leaveEvent(QEvent*  leaveEvent);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual QSize  minimumSizeHint() const;
 virtual void mouseDoubleClickEvent(QMouseEvent*  mouseEvent);
 virtual void mouseMoveEvent(QMouseEvent*  mouseEvent);
 virtual void mousePressEvent(QMouseEvent*  mouseEvent);
@@ -407,6 +415,7 @@ virtual void resizeEvent(QResizeEvent*  resizeEvent);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  showEvent);
+virtual QSize  sizeHint() const;
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  timerEvent);
 virtual void wheelEvent(QWheelEvent*  event);
@@ -449,6 +458,7 @@ inline void py_q_focusOutEvent(QFocusEvent*  focusOutEvent) { QMdiSubWindow::foc
 inline void py_q_hideEvent(QHideEvent*  hideEvent) { QMdiSubWindow::hideEvent(hideEvent); }
 inline void py_q_keyPressEvent(QKeyEvent*  keyEvent) { QMdiSubWindow::keyPressEvent(keyEvent); }
 inline void py_q_leaveEvent(QEvent*  leaveEvent) { QMdiSubWindow::leaveEvent(leaveEvent); }
+inline QSize  py_q_minimumSizeHint() const { return QMdiSubWindow::minimumSizeHint(); }
 inline void py_q_mouseDoubleClickEvent(QMouseEvent*  mouseEvent) { QMdiSubWindow::mouseDoubleClickEvent(mouseEvent); }
 inline void py_q_mouseMoveEvent(QMouseEvent*  mouseEvent) { QMdiSubWindow::mouseMoveEvent(mouseEvent); }
 inline void py_q_mousePressEvent(QMouseEvent*  mouseEvent) { QMdiSubWindow::mousePressEvent(mouseEvent); }
@@ -457,6 +467,7 @@ inline void py_q_moveEvent(QMoveEvent*  moveEvent) { QMdiSubWindow::moveEvent(mo
 inline void py_q_paintEvent(QPaintEvent*  paintEvent) { QMdiSubWindow::paintEvent(paintEvent); }
 inline void py_q_resizeEvent(QResizeEvent*  resizeEvent) { QMdiSubWindow::resizeEvent(resizeEvent); }
 inline void py_q_showEvent(QShowEvent*  showEvent) { QMdiSubWindow::showEvent(showEvent); }
+inline QSize  py_q_sizeHint() const { return QMdiSubWindow::sizeHint(); }
 inline void py_q_timerEvent(QTimerEvent*  timerEvent) { QMdiSubWindow::timerEvent(timerEvent); }
 };
 
@@ -489,6 +500,7 @@ void delete_QMdiSubWindow(QMdiSubWindow* obj) { delete obj; }
    QWidget*  maximizedSystemMenuIconWidget(QMdiSubWindow* theWrappedObject) const;
    QMdiArea*  mdiArea(QMdiSubWindow* theWrappedObject) const;
    QSize  minimumSizeHint(QMdiSubWindow* theWrappedObject) const;
+   QSize  py_q_minimumSizeHint(QMdiSubWindow* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->py_q_minimumSizeHint());}
    void py_q_mouseDoubleClickEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent){  (((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->py_q_mouseDoubleClickEvent(mouseEvent));}
    void py_q_mouseMoveEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent){  (((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->py_q_mouseMoveEvent(mouseEvent));}
    void py_q_mousePressEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent){  (((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->py_q_mousePressEvent(mouseEvent));}
@@ -503,6 +515,7 @@ void delete_QMdiSubWindow(QMdiSubWindow* obj) { delete obj; }
    void setWidget(QMdiSubWindow* theWrappedObject, QWidget*  widget);
    void py_q_showEvent(QMdiSubWindow* theWrappedObject, QShowEvent*  showEvent){  (((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->py_q_showEvent(showEvent));}
    QSize  sizeHint(QMdiSubWindow* theWrappedObject) const;
+   QSize  py_q_sizeHint(QMdiSubWindow* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->py_q_sizeHint());}
    QMenu*  systemMenu(QMdiSubWindow* theWrappedObject) const;
    bool  testOption(QMdiSubWindow* theWrappedObject, QMdiSubWindow::SubWindowOption  arg__1) const;
    void py_q_timerEvent(QMdiSubWindow* theWrappedObject, QTimerEvent*  timerEvent){  (((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->py_q_timerEvent(timerEvent));}
@@ -562,6 +575,7 @@ virtual void resizeEvent(QResizeEvent*  event);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  event);
+virtual QSize  sizeHint() const;
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void wheelEvent(QWheelEvent*  arg__1);
@@ -601,6 +615,7 @@ inline void py_q_mouseMoveEvent(QMouseEvent*  arg__1) { QMenu::mouseMoveEvent(ar
 inline void py_q_mousePressEvent(QMouseEvent*  arg__1) { QMenu::mousePressEvent(arg__1); }
 inline void py_q_mouseReleaseEvent(QMouseEvent*  arg__1) { QMenu::mouseReleaseEvent(arg__1); }
 inline void py_q_paintEvent(QPaintEvent*  arg__1) { QMenu::paintEvent(arg__1); }
+inline QSize  py_q_sizeHint() const { return QMenu::sizeHint(); }
 inline void py_q_timerEvent(QTimerEvent*  arg__1) { QMenu::timerEvent(arg__1); }
 inline void py_q_wheelEvent(QWheelEvent*  arg__1) { QMenu::wheelEvent(arg__1); }
 };
@@ -666,6 +681,7 @@ void delete_QMenu(QMenu* obj) { delete obj; }
    void showTearOffMenu(QMenu* theWrappedObject);
    void showTearOffMenu(QMenu* theWrappedObject, const QPoint&  pos);
    QSize  sizeHint(QMenu* theWrappedObject) const;
+   QSize  py_q_sizeHint(QMenu* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMenu*)theWrappedObject)->py_q_sizeHint());}
    void py_q_timerEvent(QMenu* theWrappedObject, QTimerEvent*  arg__1){  (((PythonQtPublicPromoter_QMenu*)theWrappedObject)->py_q_timerEvent(arg__1));}
    QString  title(QMenu* theWrappedObject) const;
    bool  toolTipsVisible(QMenu* theWrappedObject) const;
@@ -728,6 +744,7 @@ virtual void keyPressEvent(QKeyEvent*  arg__1);
 virtual void keyReleaseEvent(QKeyEvent*  event);
 virtual void leaveEvent(QEvent*  arg__1);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual QSize  minimumSizeHint() const;
 virtual void mouseDoubleClickEvent(QMouseEvent*  event);
 virtual void mouseMoveEvent(QMouseEvent*  arg__1);
 virtual void mousePressEvent(QMouseEvent*  arg__1);
@@ -741,6 +758,7 @@ virtual void resizeEvent(QResizeEvent*  arg__1);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  event);
+virtual QSize  sizeHint() const;
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void wheelEvent(QWheelEvent*  event);
@@ -776,12 +794,14 @@ inline void py_q_focusOutEvent(QFocusEvent*  arg__1) { QMenuBar::focusOutEvent(a
 inline int  py_q_heightForWidth(int  arg__1) const { return QMenuBar::heightForWidth(arg__1); }
 inline void py_q_keyPressEvent(QKeyEvent*  arg__1) { QMenuBar::keyPressEvent(arg__1); }
 inline void py_q_leaveEvent(QEvent*  arg__1) { QMenuBar::leaveEvent(arg__1); }
+inline QSize  py_q_minimumSizeHint() const { return QMenuBar::minimumSizeHint(); }
 inline void py_q_mouseMoveEvent(QMouseEvent*  arg__1) { QMenuBar::mouseMoveEvent(arg__1); }
 inline void py_q_mousePressEvent(QMouseEvent*  arg__1) { QMenuBar::mousePressEvent(arg__1); }
 inline void py_q_mouseReleaseEvent(QMouseEvent*  arg__1) { QMenuBar::mouseReleaseEvent(arg__1); }
 inline void py_q_paintEvent(QPaintEvent*  arg__1) { QMenuBar::paintEvent(arg__1); }
 inline void py_q_resizeEvent(QResizeEvent*  arg__1) { QMenuBar::resizeEvent(arg__1); }
 inline void py_q_setVisible(bool  visible) { QMenuBar::setVisible(visible); }
+inline QSize  py_q_sizeHint() const { return QMenuBar::sizeHint(); }
 inline void py_q_timerEvent(QTimerEvent*  arg__1) { QMenuBar::timerEvent(arg__1); }
 };
 
@@ -817,6 +837,7 @@ void delete_QMenuBar(QMenuBar* obj) { delete obj; }
    void py_q_keyPressEvent(QMenuBar* theWrappedObject, QKeyEvent*  arg__1){  (((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->py_q_keyPressEvent(arg__1));}
    void py_q_leaveEvent(QMenuBar* theWrappedObject, QEvent*  arg__1){  (((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->py_q_leaveEvent(arg__1));}
    QSize  minimumSizeHint(QMenuBar* theWrappedObject) const;
+   QSize  py_q_minimumSizeHint(QMenuBar* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->py_q_minimumSizeHint());}
    void py_q_mouseMoveEvent(QMenuBar* theWrappedObject, QMouseEvent*  arg__1){  (((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->py_q_mouseMoveEvent(arg__1));}
    void py_q_mousePressEvent(QMenuBar* theWrappedObject, QMouseEvent*  arg__1){  (((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->py_q_mousePressEvent(arg__1));}
    void py_q_mouseReleaseEvent(QMenuBar* theWrappedObject, QMouseEvent*  arg__1){  (((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->py_q_mouseReleaseEvent(arg__1));}
@@ -828,6 +849,7 @@ void delete_QMenuBar(QMenuBar* obj) { delete obj; }
    void setNativeMenuBar(QMenuBar* theWrappedObject, bool  nativeMenuBar);
    void py_q_setVisible(QMenuBar* theWrappedObject, bool  visible){  (((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->py_q_setVisible(visible));}
    QSize  sizeHint(QMenuBar* theWrappedObject) const;
+   QSize  py_q_sizeHint(QMenuBar* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->py_q_sizeHint());}
    void py_q_timerEvent(QMenuBar* theWrappedObject, QTimerEvent*  arg__1){  (((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->py_q_timerEvent(arg__1));}
 
   QAction* addAction (QMenuBar* menu, const QString & text, PyObject* callable)
@@ -881,6 +903,7 @@ virtual void keyPressEvent(QKeyEvent*  event);
 virtual void keyReleaseEvent(QKeyEvent*  event);
 virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual QSize  minimumSizeHint() const;
 virtual void mouseDoubleClickEvent(QMouseEvent*  event);
 virtual void mouseMoveEvent(QMouseEvent*  event);
 virtual void mousePressEvent(QMouseEvent*  event);
@@ -895,6 +918,7 @@ virtual void resizeEvent(QResizeEvent*  event);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  event);
+virtual QSize  sizeHint() const;
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  event);
 virtual void wheelEvent(QWheelEvent*  event);
@@ -1351,6 +1375,7 @@ virtual void keyPressEvent(QKeyEvent*  arg__1);
 virtual void keyReleaseEvent(QKeyEvent*  event);
 virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual QSize  minimumSizeHint() const;
 virtual void mouseDoubleClickEvent(QMouseEvent*  event);
 virtual void mouseMoveEvent(QMouseEvent*  event);
 virtual void mousePressEvent(QMouseEvent*  event);
@@ -1365,6 +1390,7 @@ virtual void resizeEvent(QResizeEvent*  arg__1);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  arg__1);
+virtual QSize  sizeHint() const;
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  event);
 virtual void wheelEvent(QWheelEvent*  event);
@@ -1483,9 +1509,11 @@ inline void py_q_setPageSizeMM(const QSizeF&  size) { QPagedPaintDevice::setPage
 class PythonQtWrapper_QPagedPaintDevice : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(PageSize )
+Q_ENUMS(PageSize PdfVersion )
 enum PageSize{
   A4 = QPagedPaintDevice::A4,   B5 = QPagedPaintDevice::B5,   Letter = QPagedPaintDevice::Letter,   Legal = QPagedPaintDevice::Legal,   Executive = QPagedPaintDevice::Executive,   A0 = QPagedPaintDevice::A0,   A1 = QPagedPaintDevice::A1,   A2 = QPagedPaintDevice::A2,   A3 = QPagedPaintDevice::A3,   A5 = QPagedPaintDevice::A5,   A6 = QPagedPaintDevice::A6,   A7 = QPagedPaintDevice::A7,   A8 = QPagedPaintDevice::A8,   A9 = QPagedPaintDevice::A9,   B0 = QPagedPaintDevice::B0,   B1 = QPagedPaintDevice::B1,   B10 = QPagedPaintDevice::B10,   B2 = QPagedPaintDevice::B2,   B3 = QPagedPaintDevice::B3,   B4 = QPagedPaintDevice::B4,   B6 = QPagedPaintDevice::B6,   B7 = QPagedPaintDevice::B7,   B8 = QPagedPaintDevice::B8,   B9 = QPagedPaintDevice::B9,   C5E = QPagedPaintDevice::C5E,   Comm10E = QPagedPaintDevice::Comm10E,   DLE = QPagedPaintDevice::DLE,   Folio = QPagedPaintDevice::Folio,   Ledger = QPagedPaintDevice::Ledger,   Tabloid = QPagedPaintDevice::Tabloid,   Custom = QPagedPaintDevice::Custom,   A10 = QPagedPaintDevice::A10,   A3Extra = QPagedPaintDevice::A3Extra,   A4Extra = QPagedPaintDevice::A4Extra,   A4Plus = QPagedPaintDevice::A4Plus,   A4Small = QPagedPaintDevice::A4Small,   A5Extra = QPagedPaintDevice::A5Extra,   B5Extra = QPagedPaintDevice::B5Extra,   JisB0 = QPagedPaintDevice::JisB0,   JisB1 = QPagedPaintDevice::JisB1,   JisB2 = QPagedPaintDevice::JisB2,   JisB3 = QPagedPaintDevice::JisB3,   JisB4 = QPagedPaintDevice::JisB4,   JisB5 = QPagedPaintDevice::JisB5,   JisB6 = QPagedPaintDevice::JisB6,   JisB7 = QPagedPaintDevice::JisB7,   JisB8 = QPagedPaintDevice::JisB8,   JisB9 = QPagedPaintDevice::JisB9,   JisB10 = QPagedPaintDevice::JisB10,   AnsiC = QPagedPaintDevice::AnsiC,   AnsiD = QPagedPaintDevice::AnsiD,   AnsiE = QPagedPaintDevice::AnsiE,   LegalExtra = QPagedPaintDevice::LegalExtra,   LetterExtra = QPagedPaintDevice::LetterExtra,   LetterPlus = QPagedPaintDevice::LetterPlus,   LetterSmall = QPagedPaintDevice::LetterSmall,   TabloidExtra = QPagedPaintDevice::TabloidExtra,   ArchA = QPagedPaintDevice::ArchA,   ArchB = QPagedPaintDevice::ArchB,   ArchC = QPagedPaintDevice::ArchC,   ArchD = QPagedPaintDevice::ArchD,   ArchE = QPagedPaintDevice::ArchE,   Imperial7x9 = QPagedPaintDevice::Imperial7x9,   Imperial8x10 = QPagedPaintDevice::Imperial8x10,   Imperial9x11 = QPagedPaintDevice::Imperial9x11,   Imperial9x12 = QPagedPaintDevice::Imperial9x12,   Imperial10x11 = QPagedPaintDevice::Imperial10x11,   Imperial10x13 = QPagedPaintDevice::Imperial10x13,   Imperial10x14 = QPagedPaintDevice::Imperial10x14,   Imperial12x11 = QPagedPaintDevice::Imperial12x11,   Imperial15x11 = QPagedPaintDevice::Imperial15x11,   ExecutiveStandard = QPagedPaintDevice::ExecutiveStandard,   Note = QPagedPaintDevice::Note,   Quarto = QPagedPaintDevice::Quarto,   Statement = QPagedPaintDevice::Statement,   SuperA = QPagedPaintDevice::SuperA,   SuperB = QPagedPaintDevice::SuperB,   Postcard = QPagedPaintDevice::Postcard,   DoublePostcard = QPagedPaintDevice::DoublePostcard,   Prc16K = QPagedPaintDevice::Prc16K,   Prc32K = QPagedPaintDevice::Prc32K,   Prc32KBig = QPagedPaintDevice::Prc32KBig,   FanFoldUS = QPagedPaintDevice::FanFoldUS,   FanFoldGerman = QPagedPaintDevice::FanFoldGerman,   FanFoldGermanLegal = QPagedPaintDevice::FanFoldGermanLegal,   EnvelopeB4 = QPagedPaintDevice::EnvelopeB4,   EnvelopeB5 = QPagedPaintDevice::EnvelopeB5,   EnvelopeB6 = QPagedPaintDevice::EnvelopeB6,   EnvelopeC0 = QPagedPaintDevice::EnvelopeC0,   EnvelopeC1 = QPagedPaintDevice::EnvelopeC1,   EnvelopeC2 = QPagedPaintDevice::EnvelopeC2,   EnvelopeC3 = QPagedPaintDevice::EnvelopeC3,   EnvelopeC4 = QPagedPaintDevice::EnvelopeC4,   EnvelopeC6 = QPagedPaintDevice::EnvelopeC6,   EnvelopeC65 = QPagedPaintDevice::EnvelopeC65,   EnvelopeC7 = QPagedPaintDevice::EnvelopeC7,   Envelope9 = QPagedPaintDevice::Envelope9,   Envelope11 = QPagedPaintDevice::Envelope11,   Envelope12 = QPagedPaintDevice::Envelope12,   Envelope14 = QPagedPaintDevice::Envelope14,   EnvelopeMonarch = QPagedPaintDevice::EnvelopeMonarch,   EnvelopePersonal = QPagedPaintDevice::EnvelopePersonal,   EnvelopeChou3 = QPagedPaintDevice::EnvelopeChou3,   EnvelopeChou4 = QPagedPaintDevice::EnvelopeChou4,   EnvelopeInvite = QPagedPaintDevice::EnvelopeInvite,   EnvelopeItalian = QPagedPaintDevice::EnvelopeItalian,   EnvelopeKaku2 = QPagedPaintDevice::EnvelopeKaku2,   EnvelopeKaku3 = QPagedPaintDevice::EnvelopeKaku3,   EnvelopePrc1 = QPagedPaintDevice::EnvelopePrc1,   EnvelopePrc2 = QPagedPaintDevice::EnvelopePrc2,   EnvelopePrc3 = QPagedPaintDevice::EnvelopePrc3,   EnvelopePrc4 = QPagedPaintDevice::EnvelopePrc4,   EnvelopePrc5 = QPagedPaintDevice::EnvelopePrc5,   EnvelopePrc6 = QPagedPaintDevice::EnvelopePrc6,   EnvelopePrc7 = QPagedPaintDevice::EnvelopePrc7,   EnvelopePrc8 = QPagedPaintDevice::EnvelopePrc8,   EnvelopePrc9 = QPagedPaintDevice::EnvelopePrc9,   EnvelopePrc10 = QPagedPaintDevice::EnvelopePrc10,   EnvelopeYou4 = QPagedPaintDevice::EnvelopeYou4,   LastPageSize = QPagedPaintDevice::LastPageSize,   NPageSize = QPagedPaintDevice::NPageSize,   NPaperSize = QPagedPaintDevice::NPaperSize,   AnsiA = QPagedPaintDevice::AnsiA,   AnsiB = QPagedPaintDevice::AnsiB,   EnvelopeC5 = QPagedPaintDevice::EnvelopeC5,   EnvelopeDL = QPagedPaintDevice::EnvelopeDL,   Envelope10 = QPagedPaintDevice::Envelope10};
+enum PdfVersion{
+  PdfVersion_1_4 = QPagedPaintDevice::PdfVersion_1_4,   PdfVersion_A1b = QPagedPaintDevice::PdfVersion_A1b};
 public slots:
 QPagedPaintDevice* new_QPagedPaintDevice();
 void delete_QPagedPaintDevice(QPagedPaintDevice* obj) { delete obj; } 
@@ -1852,48 +1880,67 @@ void delete_QPaintEvent(QPaintEvent* obj) { delete obj; }
 
 
 
-class PythonQtShell_QPainter : public QPainter
-{
-public:
-    PythonQtShell_QPainter():QPainter(),_wrapper(NULL) {};
-
-   ~PythonQtShell_QPainter();
-
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
 class PythonQtWrapper_QPainter : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(RenderHint )
-Q_FLAGS(RenderHints )
+Q_ENUMS(CompositionMode PixmapFragmentHint RenderHint )
+Q_FLAGS(PixmapFragmentHints RenderHints )
+enum CompositionMode{
+  CompositionMode_SourceOver = QPainter::CompositionMode_SourceOver,   CompositionMode_DestinationOver = QPainter::CompositionMode_DestinationOver,   CompositionMode_Clear = QPainter::CompositionMode_Clear,   CompositionMode_Source = QPainter::CompositionMode_Source,   CompositionMode_Destination = QPainter::CompositionMode_Destination,   CompositionMode_SourceIn = QPainter::CompositionMode_SourceIn,   CompositionMode_DestinationIn = QPainter::CompositionMode_DestinationIn,   CompositionMode_SourceOut = QPainter::CompositionMode_SourceOut,   CompositionMode_DestinationOut = QPainter::CompositionMode_DestinationOut,   CompositionMode_SourceAtop = QPainter::CompositionMode_SourceAtop,   CompositionMode_DestinationAtop = QPainter::CompositionMode_DestinationAtop,   CompositionMode_Xor = QPainter::CompositionMode_Xor,   CompositionMode_Plus = QPainter::CompositionMode_Plus,   CompositionMode_Multiply = QPainter::CompositionMode_Multiply,   CompositionMode_Screen = QPainter::CompositionMode_Screen,   CompositionMode_Overlay = QPainter::CompositionMode_Overlay,   CompositionMode_Darken = QPainter::CompositionMode_Darken,   CompositionMode_Lighten = QPainter::CompositionMode_Lighten,   CompositionMode_ColorDodge = QPainter::CompositionMode_ColorDodge,   CompositionMode_ColorBurn = QPainter::CompositionMode_ColorBurn,   CompositionMode_HardLight = QPainter::CompositionMode_HardLight,   CompositionMode_SoftLight = QPainter::CompositionMode_SoftLight,   CompositionMode_Difference = QPainter::CompositionMode_Difference,   CompositionMode_Exclusion = QPainter::CompositionMode_Exclusion,   RasterOp_SourceOrDestination = QPainter::RasterOp_SourceOrDestination,   RasterOp_SourceAndDestination = QPainter::RasterOp_SourceAndDestination,   RasterOp_SourceXorDestination = QPainter::RasterOp_SourceXorDestination,   RasterOp_NotSourceAndNotDestination = QPainter::RasterOp_NotSourceAndNotDestination,   RasterOp_NotSourceOrNotDestination = QPainter::RasterOp_NotSourceOrNotDestination,   RasterOp_NotSourceXorDestination = QPainter::RasterOp_NotSourceXorDestination,   RasterOp_NotSource = QPainter::RasterOp_NotSource,   RasterOp_NotSourceAndDestination = QPainter::RasterOp_NotSourceAndDestination,   RasterOp_SourceAndNotDestination = QPainter::RasterOp_SourceAndNotDestination,   RasterOp_NotSourceOrDestination = QPainter::RasterOp_NotSourceOrDestination,   RasterOp_SourceOrNotDestination = QPainter::RasterOp_SourceOrNotDestination,   RasterOp_ClearDestination = QPainter::RasterOp_ClearDestination,   RasterOp_SetDestination = QPainter::RasterOp_SetDestination,   RasterOp_NotDestination = QPainter::RasterOp_NotDestination};
+enum PixmapFragmentHint{
+  OpaqueHint = QPainter::OpaqueHint};
 enum RenderHint{
   Antialiasing = QPainter::Antialiasing,   TextAntialiasing = QPainter::TextAntialiasing,   SmoothPixmapTransform = QPainter::SmoothPixmapTransform,   HighQualityAntialiasing = QPainter::HighQualityAntialiasing,   NonCosmeticDefaultPen = QPainter::NonCosmeticDefaultPen,   Qt4CompatiblePainting = QPainter::Qt4CompatiblePainting};
+Q_DECLARE_FLAGS(PixmapFragmentHints, PixmapFragmentHint)
 Q_DECLARE_FLAGS(RenderHints, RenderHint)
 public slots:
 QPainter* new_QPainter();
+QPainter* new_QPainter(QPaintDevice*  arg__1);
 void delete_QPainter(QPainter* obj) { delete obj; } 
+   const QBrush*  background(QPainter* theWrappedObject) const;
+   Qt::BGMode  backgroundMode(QPainter* theWrappedObject) const;
+   bool  begin(QPainter* theWrappedObject, QPaintDevice*  arg__1);
+   void beginNativePainting(QPainter* theWrappedObject);
+   QRect  boundingRect(QPainter* theWrappedObject, const QRect&  rect, int  flags, const QString&  text);
+   QRectF  boundingRect(QPainter* theWrappedObject, const QRectF&  rect, const QString&  text, const QTextOption&  o = QTextOption());
+   QRectF  boundingRect(QPainter* theWrappedObject, const QRectF&  rect, int  flags, const QString&  text);
    QRect  boundingRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, int  flags, const QString&  text);
-   QPainter::PixmapFragment  static_QPainter_create(const QPointF&  pos, const QRectF&  sourceRect, qreal  scaleX = 1, qreal  scaleY = 1, qreal  rotation = 0, qreal  opacity = 1);
-   void drawArc(QPainter* theWrappedObject, const QRect&  r, int  a, int  alen);
+   const QBrush*  brush(QPainter* theWrappedObject) const;
+   QPoint  brushOrigin(QPainter* theWrappedObject) const;
+   QRectF  clipBoundingRect(QPainter* theWrappedObject) const;
+   QPainterPath  clipPath(QPainter* theWrappedObject) const;
+   QRegion  clipRegion(QPainter* theWrappedObject) const;
+   QMatrix  combinedMatrix(QPainter* theWrappedObject) const;
+   QTransform  combinedTransform(QPainter* theWrappedObject) const;
+   QPainter::CompositionMode  compositionMode(QPainter* theWrappedObject) const;
+   QPaintDevice*  device(QPainter* theWrappedObject) const;
+   const QMatrix*  deviceMatrix(QPainter* theWrappedObject) const;
+   const QTransform*  deviceTransform(QPainter* theWrappedObject) const;
+   void drawArc(QPainter* theWrappedObject, const QRect&  arg__1, int  a, int  alen);
+   void drawArc(QPainter* theWrappedObject, const QRectF&  rect, int  a, int  alen);
    void drawArc(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, int  a, int  alen);
-   void drawChord(QPainter* theWrappedObject, const QRect&  rect, int  a, int  alen);
+   void drawChord(QPainter* theWrappedObject, const QRect&  arg__1, int  a, int  alen);
+   void drawChord(QPainter* theWrappedObject, const QRectF&  rect, int  a, int  alen);
    void drawChord(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, int  a, int  alen);
-   void drawConvexPolygon(QPainter* theWrappedObject, const QPolygon&  poly);
-   void drawConvexPolygon(QPainter* theWrappedObject, const QPolygonF&  poly);
+   void drawConvexPolygon(QPainter* theWrappedObject, const QPolygon&  polygon);
+   void drawConvexPolygon(QPainter* theWrappedObject, const QPolygonF&  polygon);
    void drawEllipse(QPainter* theWrappedObject, const QPoint&  center, int  rx, int  ry);
    void drawEllipse(QPainter* theWrappedObject, const QPointF&  center, qreal  rx, qreal  ry);
+   void drawEllipse(QPainter* theWrappedObject, const QRect&  r);
+   void drawEllipse(QPainter* theWrappedObject, const QRectF&  r);
    void drawEllipse(QPainter* theWrappedObject, int  x, int  y, int  w, int  h);
+   void drawGlyphRun(QPainter* theWrappedObject, const QPointF&  position, const QGlyphRun&  glyphRun);
    void drawImage(QPainter* theWrappedObject, const QPoint&  p, const QImage&  image);
-   void drawImage(QPainter* theWrappedObject, const QPoint&  p, const QImage&  image, const QRect&  sr, Qt::ImageConversionFlags  flags);
-   void drawImage(QPainter* theWrappedObject, const QPointF&  p, const QImage&  image, const QRectF&  sr, Qt::ImageConversionFlags  flags);
+   void drawImage(QPainter* theWrappedObject, const QPoint&  p, const QImage&  image, const QRect&  sr, Qt::ImageConversionFlags  flags = Qt::AutoColor);
+   void drawImage(QPainter* theWrappedObject, const QPointF&  p, const QImage&  image);
+   void drawImage(QPainter* theWrappedObject, const QPointF&  p, const QImage&  image, const QRectF&  sr, Qt::ImageConversionFlags  flags = Qt::AutoColor);
    void drawImage(QPainter* theWrappedObject, const QRect&  r, const QImage&  image);
-   void drawImage(QPainter* theWrappedObject, const QRect&  targetRect, const QImage&  image, const QRect&  sourceRect, Qt::ImageConversionFlags  flags);
+   void drawImage(QPainter* theWrappedObject, const QRect&  targetRect, const QImage&  image, const QRect&  sourceRect, Qt::ImageConversionFlags  flags = Qt::AutoColor);
    void drawImage(QPainter* theWrappedObject, const QRectF&  r, const QImage&  image);
-   void drawImage(QPainter* theWrappedObject, int  x, int  y, const QImage&  image, int  sx, int  sy, int  sw, int  sh, Qt::ImageConversionFlags  flags);
+   void drawImage(QPainter* theWrappedObject, const QRectF&  targetRect, const QImage&  image, const QRectF&  sourceRect, Qt::ImageConversionFlags  flags = Qt::AutoColor);
+   void drawImage(QPainter* theWrappedObject, int  x, int  y, const QImage&  image, int  sx = 0, int  sy = 0, int  sw = -1, int  sh = -1, Qt::ImageConversionFlags  flags = Qt::AutoColor);
    void drawLine(QPainter* theWrappedObject, const QLine&  line);
-   void drawLine(QPainter* theWrappedObject, const QLineF&  l);
+   void drawLine(QPainter* theWrappedObject, const QLineF&  line);
    void drawLine(QPainter* theWrappedObject, const QPoint&  p1, const QPoint&  p2);
    void drawLine(QPainter* theWrappedObject, const QPointF&  p1, const QPointF&  p2);
    void drawLine(QPainter* theWrappedObject, int  x1, int  y1, int  x2, int  y2);
@@ -1901,83 +1948,142 @@ void delete_QPainter(QPainter* obj) { delete obj; }
    void drawLines(QPainter* theWrappedObject, const QVector<QLineF >&  lines);
    void drawLines(QPainter* theWrappedObject, const QVector<QPoint >&  pointPairs);
    void drawLines(QPainter* theWrappedObject, const QVector<QPointF >&  pointPairs);
-   void drawPicture(QPainter* theWrappedObject, const QPoint&  pt, const QPicture&  p);
-   void drawPicture(QPainter* theWrappedObject, int  x, int  y, const QPicture&  p);
-   void drawPie(QPainter* theWrappedObject, const QRect&  rect, int  a, int  alen);
+   void drawPath(QPainter* theWrappedObject, const QPainterPath&  path);
+   void drawPicture(QPainter* theWrappedObject, const QPoint&  p, const QPicture&  picture);
+   void drawPicture(QPainter* theWrappedObject, const QPointF&  p, const QPicture&  picture);
+   void drawPicture(QPainter* theWrappedObject, int  x, int  y, const QPicture&  picture);
+   void drawPie(QPainter* theWrappedObject, const QRect&  arg__1, int  a, int  alen);
+   void drawPie(QPainter* theWrappedObject, const QRectF&  rect, int  a, int  alen);
    void drawPie(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, int  a, int  alen);
    void drawPixmap(QPainter* theWrappedObject, const QPoint&  p, const QPixmap&  pm);
    void drawPixmap(QPainter* theWrappedObject, const QPoint&  p, const QPixmap&  pm, const QRect&  sr);
+   void drawPixmap(QPainter* theWrappedObject, const QPointF&  p, const QPixmap&  pm);
    void drawPixmap(QPainter* theWrappedObject, const QPointF&  p, const QPixmap&  pm, const QRectF&  sr);
    void drawPixmap(QPainter* theWrappedObject, const QRect&  r, const QPixmap&  pm);
    void drawPixmap(QPainter* theWrappedObject, const QRect&  targetRect, const QPixmap&  pixmap, const QRect&  sourceRect);
+   void drawPixmap(QPainter* theWrappedObject, const QRectF&  targetRect, const QPixmap&  pixmap, const QRectF&  sourceRect);
    void drawPixmap(QPainter* theWrappedObject, int  x, int  y, const QPixmap&  pm);
    void drawPixmap(QPainter* theWrappedObject, int  x, int  y, const QPixmap&  pm, int  sx, int  sy, int  sw, int  sh);
    void drawPixmap(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, const QPixmap&  pm);
    void drawPixmap(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, const QPixmap&  pm, int  sx, int  sy, int  sw, int  sh);
+   void drawPixmapFragments(QPainter* theWrappedObject, const QPainter::PixmapFragment*  fragments, int  fragmentCount, const QPixmap&  pixmap, QPainter::PixmapFragmentHints  hints = QPainter::PixmapFragmentHints());
    void drawPoint(QPainter* theWrappedObject, const QPoint&  p);
-   void drawPoint(QPainter* theWrappedObject, const QPointF&  p);
+   void drawPoint(QPainter* theWrappedObject, const QPointF&  pt);
    void drawPoint(QPainter* theWrappedObject, int  x, int  y);
    void drawPoints(QPainter* theWrappedObject, const QPolygon&  points);
    void drawPoints(QPainter* theWrappedObject, const QPolygonF&  points);
-   void drawPolygon(QPainter* theWrappedObject, const QPolygon&  polygon, Qt::FillRule  fillRule);
-   void drawPolygon(QPainter* theWrappedObject, const QPolygonF&  polygon, Qt::FillRule  fillRule);
-   void drawPolyline(QPainter* theWrappedObject, const QPolygon&  polyline);
+   void drawPolygon(QPainter* theWrappedObject, const QPolygon&  polygon, Qt::FillRule  fillRule = Qt::OddEvenFill);
+   void drawPolygon(QPainter* theWrappedObject, const QPolygonF&  polygon, Qt::FillRule  fillRule = Qt::OddEvenFill);
+   void drawPolyline(QPainter* theWrappedObject, const QPolygon&  polygon);
    void drawPolyline(QPainter* theWrappedObject, const QPolygonF&  polyline);
-   void drawRect(QPainter* theWrappedObject, const QRect&  r);
+   void drawRect(QPainter* theWrappedObject, const QRect&  rect);
    void drawRect(QPainter* theWrappedObject, const QRectF&  rect);
-   void drawRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h);
-   void drawRects(QPainter* theWrappedObject, const QVector<QRect >&  rects);
-   void drawRects(QPainter* theWrappedObject, const QVector<QRectF >&  rects);
-   void drawRoundRect(QPainter* theWrappedObject, const QRect&  rect, int  xRnd, int  yRnd);
-   void drawRoundRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, int  xRnd, int  yRnd);
-   void drawRoundedRect(QPainter* theWrappedObject, const QRect&  rect, qreal  xRadius, qreal  yRadius, Qt::SizeMode  mode);
-   void drawRoundedRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, qreal  xRadius, qreal  yRadius, Qt::SizeMode  mode);
-   void drawStaticText(QPainter* theWrappedObject, const QPoint&  p, const QStaticText&  staticText);
-   void drawStaticText(QPainter* theWrappedObject, int  x, int  y, const QStaticText&  staticText);
+   void drawRect(QPainter* theWrappedObject, int  x1, int  y1, int  w, int  h);
+   void drawRects(QPainter* theWrappedObject, const QVector<QRect >&  rectangles);
+   void drawRects(QPainter* theWrappedObject, const QVector<QRectF >&  rectangles);
+   void drawRoundRect(QPainter* theWrappedObject, const QRect&  r, int  xround = 25, int  yround = 25);
+   void drawRoundRect(QPainter* theWrappedObject, const QRectF&  r, int  xround = 25, int  yround = 25);
+   void drawRoundRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, int  arg__5 = 25, int  arg__6 = 25);
+   void drawRoundedRect(QPainter* theWrappedObject, const QRect&  rect, qreal  xRadius, qreal  yRadius, Qt::SizeMode  mode = Qt::AbsoluteSize);
+   void drawRoundedRect(QPainter* theWrappedObject, const QRectF&  rect, qreal  xRadius, qreal  yRadius, Qt::SizeMode  mode = Qt::AbsoluteSize);
+   void drawRoundedRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, qreal  xRadius, qreal  yRadius, Qt::SizeMode  mode = Qt::AbsoluteSize);
+   void drawStaticText(QPainter* theWrappedObject, const QPoint&  topLeftPosition, const QStaticText&  staticText);
+   void drawStaticText(QPainter* theWrappedObject, const QPointF&  topLeftPosition, const QStaticText&  staticText);
+   void drawStaticText(QPainter* theWrappedObject, int  left, int  top, const QStaticText&  staticText);
    void drawText(QPainter* theWrappedObject, const QPoint&  p, const QString&  s);
+   void drawText(QPainter* theWrappedObject, const QPointF&  p, const QString&  s);
+   void drawText(QPainter* theWrappedObject, const QRect&  r, int  flags, const QString&  text, QRect*  br = NULL);
+   void drawText(QPainter* theWrappedObject, const QRectF&  r, const QString&  text, const QTextOption&  o = QTextOption());
+   void drawText(QPainter* theWrappedObject, const QRectF&  r, int  flags, const QString&  text, QRectF*  br = NULL);
    void drawText(QPainter* theWrappedObject, int  x, int  y, const QString&  s);
-   void drawText(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, int  flags, const QString&  str, QRect*  br);
+   void drawText(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, int  flags, const QString&  text, QRect*  br = NULL);
    void drawTextItem(QPainter* theWrappedObject, const QPoint&  p, const QTextItem&  ti);
+   void drawTextItem(QPainter* theWrappedObject, const QPointF&  p, const QTextItem&  ti);
    void drawTextItem(QPainter* theWrappedObject, int  x, int  y, const QTextItem&  ti);
-   void drawTiledPixmap(QPainter* theWrappedObject, const QRect&  rect, const QPixmap&  pm, const QPoint&  offset);
-   void drawTiledPixmap(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, const QPixmap&  pm, int  sx, int  sy);
-   void eraseRect(QPainter* theWrappedObject, const QRect&  rect);
+   void drawTiledPixmap(QPainter* theWrappedObject, const QRect&  arg__1, const QPixmap&  arg__2, const QPoint&  arg__3 = QPoint());
+   void drawTiledPixmap(QPainter* theWrappedObject, const QRectF&  rect, const QPixmap&  pm, const QPointF&  offset = QPointF());
+   void drawTiledPixmap(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, const QPixmap&  arg__5, int  sx = 0, int  sy = 0);
+   bool  end(QPainter* theWrappedObject);
+   void endNativePainting(QPainter* theWrappedObject);
+   void eraseRect(QPainter* theWrappedObject, const QRect&  arg__1);
+   void eraseRect(QPainter* theWrappedObject, const QRectF&  arg__1);
    void eraseRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h);
+   void fillPath(QPainter* theWrappedObject, const QPainterPath&  path, const QBrush&  brush);
+   void fillRect(QPainter* theWrappedObject, const QRect&  arg__1, const QBrush&  arg__2);
+   void fillRect(QPainter* theWrappedObject, const QRect&  arg__1, const QColor&  color);
    void fillRect(QPainter* theWrappedObject, const QRect&  r, Qt::BrushStyle  style);
    void fillRect(QPainter* theWrappedObject, const QRect&  r, Qt::GlobalColor  c);
+   void fillRect(QPainter* theWrappedObject, const QRectF&  arg__1, const QBrush&  arg__2);
+   void fillRect(QPainter* theWrappedObject, const QRectF&  arg__1, const QColor&  color);
    void fillRect(QPainter* theWrappedObject, const QRectF&  r, Qt::BrushStyle  style);
    void fillRect(QPainter* theWrappedObject, const QRectF&  r, Qt::GlobalColor  c);
    void fillRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, Qt::BrushStyle  style);
    void fillRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, Qt::GlobalColor  c);
-   void fillRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, const QBrush&  b);
-   void fillRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, const QColor&  b);
-   void setBrushOrigin(QPainter* theWrappedObject, const QPoint&  p);
+   void fillRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, const QBrush&  arg__5);
+   void fillRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, const QColor&  color);
+   const QFont*  font(QPainter* theWrappedObject) const;
+   QFontInfo  fontInfo(QPainter* theWrappedObject) const;
+   QFontMetrics  fontMetrics(QPainter* theWrappedObject) const;
+   bool  hasClipping(QPainter* theWrappedObject) const;
+   void initFrom(QPainter* theWrappedObject, const QPaintDevice*  device);
+   bool  isActive(QPainter* theWrappedObject) const;
+   Qt::LayoutDirection  layoutDirection(QPainter* theWrappedObject) const;
+   qreal  opacity(QPainter* theWrappedObject) const;
+   QPaintEngine*  paintEngine(QPainter* theWrappedObject) const;
+   const QPen*  pen(QPainter* theWrappedObject) const;
+   QPaintDevice*  static_QPainter_redirected(const QPaintDevice*  device, QPoint*  offset = NULL);
+   QPainter::RenderHints  renderHints(QPainter* theWrappedObject) const;
+   void resetMatrix(QPainter* theWrappedObject);
+   void resetTransform(QPainter* theWrappedObject);
+   void restore(QPainter* theWrappedObject);
+   void static_QPainter_restoreRedirected(const QPaintDevice*  device);
+   void rotate(QPainter* theWrappedObject, qreal  a);
+   void save(QPainter* theWrappedObject);
+   void scale(QPainter* theWrappedObject, qreal  sx, qreal  sy);
+   void setBackground(QPainter* theWrappedObject, const QBrush&  bg);
+   void setBackgroundMode(QPainter* theWrappedObject, Qt::BGMode  mode);
+   void setBrush(QPainter* theWrappedObject, const QBrush&  brush);
+   void setBrushOrigin(QPainter* theWrappedObject, const QPoint&  arg__1);
+   void setBrushOrigin(QPainter* theWrappedObject, const QPointF&  arg__1);
    void setBrushOrigin(QPainter* theWrappedObject, int  x, int  y);
-   void setClipRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, Qt::ClipOperation  op);
+   void setClipPath(QPainter* theWrappedObject, const QPainterPath&  path, Qt::ClipOperation  op = Qt::ReplaceClip);
+   void setClipRect(QPainter* theWrappedObject, const QRect&  arg__1, Qt::ClipOperation  op = Qt::ReplaceClip);
+   void setClipRect(QPainter* theWrappedObject, const QRectF&  arg__1, Qt::ClipOperation  op = Qt::ReplaceClip);
+   void setClipRect(QPainter* theWrappedObject, int  x, int  y, int  w, int  h, Qt::ClipOperation  op = Qt::ReplaceClip);
+   void setClipRegion(QPainter* theWrappedObject, const QRegion&  arg__1, Qt::ClipOperation  op = Qt::ReplaceClip);
+   void setClipping(QPainter* theWrappedObject, bool  enable);
+   void setCompositionMode(QPainter* theWrappedObject, QPainter::CompositionMode  mode);
+   void setFont(QPainter* theWrappedObject, const QFont&  f);
+   void setLayoutDirection(QPainter* theWrappedObject, Qt::LayoutDirection  direction);
+   void setOpacity(QPainter* theWrappedObject, qreal  opacity);
+   void setPen(QPainter* theWrappedObject, Qt::PenStyle  style);
+   void setPen(QPainter* theWrappedObject, const QColor&  color);
+   void setPen(QPainter* theWrappedObject, const QPen&  pen);
+   void static_QPainter_setRedirected(const QPaintDevice*  device, QPaintDevice*  replacement, const QPoint&  offset = QPoint());
+   void setRenderHint(QPainter* theWrappedObject, QPainter::RenderHint  hint, bool  on = true);
+   void setRenderHints(QPainter* theWrappedObject, QPainter::RenderHints  hints, bool  on = true);
+   void setTransform(QPainter* theWrappedObject, const QTransform&  transform, bool  combine = false);
+   void setViewTransformEnabled(QPainter* theWrappedObject, bool  enable);
+   void setViewport(QPainter* theWrappedObject, const QRect&  viewport);
    void setViewport(QPainter* theWrappedObject, int  x, int  y, int  w, int  h);
+   void setWindow(QPainter* theWrappedObject, const QRect&  window);
    void setWindow(QPainter* theWrappedObject, int  x, int  y, int  w, int  h);
+   void setWorldMatrix(QPainter* theWrappedObject, const QMatrix&  matrix, bool  combine = false);
+   void setWorldMatrixEnabled(QPainter* theWrappedObject, bool  enabled);
+   void setWorldTransform(QPainter* theWrappedObject, const QTransform&  matrix, bool  combine = false);
+   void shear(QPainter* theWrappedObject, qreal  sh, qreal  sv);
+   void strokePath(QPainter* theWrappedObject, const QPainterPath&  path, const QPen&  pen);
+   bool  testRenderHint(QPainter* theWrappedObject, QPainter::RenderHint  hint) const;
+   const QTransform*  transform(QPainter* theWrappedObject) const;
    void translate(QPainter* theWrappedObject, const QPoint&  offset);
+   void translate(QPainter* theWrappedObject, const QPointF&  offset);
    void translate(QPainter* theWrappedObject, qreal  dx, qreal  dy);
-void py_set_height(QPainter* theWrappedObject, qreal  height){ theWrappedObject->height = height; }
-qreal  py_get_height(QPainter* theWrappedObject){ return theWrappedObject->height; }
-void py_set_opacity(QPainter* theWrappedObject, qreal  opacity){ theWrappedObject->opacity = opacity; }
-qreal  py_get_opacity(QPainter* theWrappedObject){ return theWrappedObject->opacity; }
-void py_set_rotation(QPainter* theWrappedObject, qreal  rotation){ theWrappedObject->rotation = rotation; }
-qreal  py_get_rotation(QPainter* theWrappedObject){ return theWrappedObject->rotation; }
-void py_set_scaleX(QPainter* theWrappedObject, qreal  scaleX){ theWrappedObject->scaleX = scaleX; }
-qreal  py_get_scaleX(QPainter* theWrappedObject){ return theWrappedObject->scaleX; }
-void py_set_scaleY(QPainter* theWrappedObject, qreal  scaleY){ theWrappedObject->scaleY = scaleY; }
-qreal  py_get_scaleY(QPainter* theWrappedObject){ return theWrappedObject->scaleY; }
-void py_set_sourceLeft(QPainter* theWrappedObject, qreal  sourceLeft){ theWrappedObject->sourceLeft = sourceLeft; }
-qreal  py_get_sourceLeft(QPainter* theWrappedObject){ return theWrappedObject->sourceLeft; }
-void py_set_sourceTop(QPainter* theWrappedObject, qreal  sourceTop){ theWrappedObject->sourceTop = sourceTop; }
-qreal  py_get_sourceTop(QPainter* theWrappedObject){ return theWrappedObject->sourceTop; }
-void py_set_width(QPainter* theWrappedObject, qreal  width){ theWrappedObject->width = width; }
-qreal  py_get_width(QPainter* theWrappedObject){ return theWrappedObject->width; }
-void py_set_x(QPainter* theWrappedObject, qreal  x){ theWrappedObject->x = x; }
-qreal  py_get_x(QPainter* theWrappedObject){ return theWrappedObject->x; }
-void py_set_y(QPainter* theWrappedObject, qreal  y){ theWrappedObject->y = y; }
-qreal  py_get_y(QPainter* theWrappedObject){ return theWrappedObject->y; }
+   bool  viewTransformEnabled(QPainter* theWrappedObject) const;
+   QRect  viewport(QPainter* theWrappedObject) const;
+   QRect  window(QPainter* theWrappedObject) const;
+   const QMatrix*  worldMatrix(QPainter* theWrappedObject) const;
+   bool  worldMatrixEnabled(QPainter* theWrappedObject) const;
+   const QTransform*  worldTransform(QPainter* theWrappedObject) const;
 };
 
 
@@ -2151,6 +2257,54 @@ qreal  py_get_y(QPainterPath::Element* theWrappedObject){ return theWrappedObjec
 
 
 
+class PythonQtShell_QPainter__PixmapFragment : public QPainter::PixmapFragment
+{
+public:
+    PythonQtShell_QPainter__PixmapFragment():QPainter::PixmapFragment(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QPainter__PixmapFragment();
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QPainter__PixmapFragment : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QPainter::PixmapFragment* new_QPainter__PixmapFragment();
+QPainter::PixmapFragment* new_QPainter__PixmapFragment(const QPainter::PixmapFragment& other) {
+PythonQtShell_QPainter__PixmapFragment* a = new PythonQtShell_QPainter__PixmapFragment();
+*((QPainter::PixmapFragment*)a) = other;
+return a; }
+void delete_QPainter__PixmapFragment(QPainter::PixmapFragment* obj) { delete obj; } 
+   QPainter::PixmapFragment  static_QPainter__PixmapFragment_create(const QPointF&  pos, const QRectF&  sourceRect, qreal  scaleX = 1, qreal  scaleY = 1, qreal  rotation = 0, qreal  opacity = 1);
+void py_set_height(QPainter::PixmapFragment* theWrappedObject, qreal  height){ theWrappedObject->height = height; }
+qreal  py_get_height(QPainter::PixmapFragment* theWrappedObject){ return theWrappedObject->height; }
+void py_set_opacity(QPainter::PixmapFragment* theWrappedObject, qreal  opacity){ theWrappedObject->opacity = opacity; }
+qreal  py_get_opacity(QPainter::PixmapFragment* theWrappedObject){ return theWrappedObject->opacity; }
+void py_set_rotation(QPainter::PixmapFragment* theWrappedObject, qreal  rotation){ theWrappedObject->rotation = rotation; }
+qreal  py_get_rotation(QPainter::PixmapFragment* theWrappedObject){ return theWrappedObject->rotation; }
+void py_set_scaleX(QPainter::PixmapFragment* theWrappedObject, qreal  scaleX){ theWrappedObject->scaleX = scaleX; }
+qreal  py_get_scaleX(QPainter::PixmapFragment* theWrappedObject){ return theWrappedObject->scaleX; }
+void py_set_scaleY(QPainter::PixmapFragment* theWrappedObject, qreal  scaleY){ theWrappedObject->scaleY = scaleY; }
+qreal  py_get_scaleY(QPainter::PixmapFragment* theWrappedObject){ return theWrappedObject->scaleY; }
+void py_set_sourceLeft(QPainter::PixmapFragment* theWrappedObject, qreal  sourceLeft){ theWrappedObject->sourceLeft = sourceLeft; }
+qreal  py_get_sourceLeft(QPainter::PixmapFragment* theWrappedObject){ return theWrappedObject->sourceLeft; }
+void py_set_sourceTop(QPainter::PixmapFragment* theWrappedObject, qreal  sourceTop){ theWrappedObject->sourceTop = sourceTop; }
+qreal  py_get_sourceTop(QPainter::PixmapFragment* theWrappedObject){ return theWrappedObject->sourceTop; }
+void py_set_width(QPainter::PixmapFragment* theWrappedObject, qreal  width){ theWrappedObject->width = width; }
+qreal  py_get_width(QPainter::PixmapFragment* theWrappedObject){ return theWrappedObject->width; }
+void py_set_x(QPainter::PixmapFragment* theWrappedObject, qreal  x){ theWrappedObject->x = x; }
+qreal  py_get_x(QPainter::PixmapFragment* theWrappedObject){ return theWrappedObject->x; }
+void py_set_y(QPainter::PixmapFragment* theWrappedObject, qreal  y){ theWrappedObject->y = y; }
+qreal  py_get_y(QPainter::PixmapFragment* theWrappedObject){ return theWrappedObject->y; }
+};
+
+
+
+
+
 class PythonQtShell_QPanGesture : public QPanGesture
 {
 public:
@@ -2240,71 +2394,16 @@ void delete_QPdfWriter(QPdfWriter* obj) { delete obj; }
    int  py_q_metric(QPdfWriter* theWrappedObject, QPaintDevice::PaintDeviceMetric  id) const{  return (((PythonQtPublicPromoter_QPdfWriter*)theWrappedObject)->py_q_metric(id));}
    bool  py_q_newPage(QPdfWriter* theWrappedObject){  return (((PythonQtPublicPromoter_QPdfWriter*)theWrappedObject)->py_q_newPage());}
    QPaintEngine*  py_q_paintEngine(QPdfWriter* theWrappedObject) const{  return (((PythonQtPublicPromoter_QPdfWriter*)theWrappedObject)->py_q_paintEngine());}
+   QPagedPaintDevice::PdfVersion  pdfVersion(QPdfWriter* theWrappedObject) const;
    int  resolution(QPdfWriter* theWrappedObject) const;
    void setCreator(QPdfWriter* theWrappedObject, const QString&  creator);
    void py_q_setMargins(QPdfWriter* theWrappedObject, const QPagedPaintDevice::Margins&  m){  (((PythonQtPublicPromoter_QPdfWriter*)theWrappedObject)->py_q_setMargins(m));}
    void py_q_setPageSize(QPdfWriter* theWrappedObject, QPagedPaintDevice::PageSize  size){  (((PythonQtPublicPromoter_QPdfWriter*)theWrappedObject)->py_q_setPageSize(size));}
    void py_q_setPageSizeMM(QPdfWriter* theWrappedObject, const QSizeF&  size){  (((PythonQtPublicPromoter_QPdfWriter*)theWrappedObject)->py_q_setPageSizeMM(size));}
+   void setPdfVersion(QPdfWriter* theWrappedObject, QPagedPaintDevice::PdfVersion  version);
    void setResolution(QPdfWriter* theWrappedObject, int  resolution);
    void setTitle(QPdfWriter* theWrappedObject, const QString&  title);
    QString  title(QPdfWriter* theWrappedObject) const;
-};
-
-
-
-
-
-class PythonQtShell_QPicture : public QPicture
-{
-public:
-    PythonQtShell_QPicture(const QPicture&  arg__1):QPicture(arg__1),_wrapper(NULL) {};
-    PythonQtShell_QPicture(int  formatVersion = -1):QPicture(formatVersion),_wrapper(NULL) {};
-
-   ~PythonQtShell_QPicture();
-
-virtual int  devType() const;
-virtual void initPainter(QPainter*  painter) const;
-virtual int  metric(QPaintDevice::PaintDeviceMetric  m) const;
-virtual QPaintEngine*  paintEngine() const;
-virtual QPaintDevice*  redirected(QPoint*  offset) const;
-virtual void setData(const char*  data, uint  size);
-virtual QPainter*  sharedPainter() const;
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QPicture : public QPicture
-{ public:
-inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  m) const { return this->metric(m); }
-inline int  py_q_devType() const { return QPicture::devType(); }
-inline int  py_q_metric(QPaintDevice::PaintDeviceMetric  m) const { return QPicture::metric(m); }
-inline QPaintEngine*  py_q_paintEngine() const { return QPicture::paintEngine(); }
-};
-
-class PythonQtWrapper_QPicture : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QPicture* new_QPicture(const QPicture&  arg__1);
-QPicture* new_QPicture(int  formatVersion = -1);
-void delete_QPicture(QPicture* obj) { delete obj; } 
-   QRect  boundingRect(QPicture* theWrappedObject) const;
-   const char*  data(QPicture* theWrappedObject) const;
-   int  py_q_devType(QPicture* theWrappedObject) const{  return (((PythonQtPublicPromoter_QPicture*)theWrappedObject)->py_q_devType());}
-   bool  isNull(QPicture* theWrappedObject) const;
-   bool  load(QPicture* theWrappedObject, QIODevice*  dev, const char*  format = NULL);
-   bool  load(QPicture* theWrappedObject, const QString&  fileName, const char*  format = NULL);
-   int  py_q_metric(QPicture* theWrappedObject, QPaintDevice::PaintDeviceMetric  m) const{  return (((PythonQtPublicPromoter_QPicture*)theWrappedObject)->py_q_metric(m));}
-   void writeTo(QPicture* theWrappedObject, QDataStream&  arg__1);
-   void readFrom(QPicture* theWrappedObject, QDataStream&  arg__1);
-   QPaintEngine*  py_q_paintEngine(QPicture* theWrappedObject) const{  return (((PythonQtPublicPromoter_QPicture*)theWrappedObject)->py_q_paintEngine());}
-   bool  play(QPicture* theWrappedObject, QPainter*  p);
-   bool  save(QPicture* theWrappedObject, QIODevice*  dev, const char*  format = NULL);
-   bool  save(QPicture* theWrappedObject, const QString&  fileName, const char*  format = NULL);
-   void setBoundingRect(QPicture* theWrappedObject, const QRect&  r);
-   uint  size(QPicture* theWrappedObject) const;
-   void swap(QPicture* theWrappedObject, QPicture&  other);
-    bool __nonzero__(QPicture* obj) { return !obj->isNull(); }
 };
 
 

@@ -8,8 +8,43 @@
 #include <qobject.h>
 #include <qstylehints.h>
 #include <qstyleoption.h>
+#include <qthread.h>
 #include <qtransform.h>
 #include <qwidget.h>
+
+
+
+class PythonQtShell_QStyleHintReturn : public QStyleHintReturn
+{
+public:
+    PythonQtShell_QStyleHintReturn(int  version = QStyleOption::Version, int  type = SH_Default):QStyleHintReturn(version, type),_wrapper(NULL) {};
+
+   ~PythonQtShell_QStyleHintReturn();
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QStyleHintReturn : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(HintReturnType StyleOptionType StyleOptionVersion )
+enum HintReturnType{
+  SH_Default = QStyleHintReturn::SH_Default,   SH_Mask = QStyleHintReturn::SH_Mask,   SH_Variant = QStyleHintReturn::SH_Variant};
+enum StyleOptionType{
+  Type = QStyleHintReturn::Type};
+enum StyleOptionVersion{
+  Version = QStyleHintReturn::Version};
+public slots:
+QStyleHintReturn* new_QStyleHintReturn(int  version = QStyleOption::Version, int  type = SH_Default);
+void delete_QStyleHintReturn(QStyleHintReturn* obj) { delete obj; } 
+void py_set_type(QStyleHintReturn* theWrappedObject, int  type){ theWrappedObject->type = type; }
+int  py_get_type(QStyleHintReturn* theWrappedObject){ return theWrappedObject->type; }
+void py_set_version(QStyleHintReturn* theWrappedObject, int  version){ theWrappedObject->version = version; }
+int  py_get_version(QStyleHintReturn* theWrappedObject){ return theWrappedObject->version; }
+};
+
+
 
 
 
@@ -1144,46 +1179,6 @@ PythonQtShell_QStyleOptionTabWidgetFrameV2* a = new PythonQtShell_QStyleOptionTa
 *((QStyleOptionTabWidgetFrameV2*)a) = other;
 return a; }
 void delete_QStyleOptionTabWidgetFrameV2(QStyleOptionTabWidgetFrameV2* obj) { delete obj; } 
-};
-
-
-
-
-
-class PythonQtShell_QStyleOptionTitleBar : public QStyleOptionTitleBar
-{
-public:
-    PythonQtShell_QStyleOptionTitleBar():QStyleOptionTitleBar(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionTitleBar(const QStyleOptionTitleBar&  other):QStyleOptionTitleBar(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionTitleBar(int  version):QStyleOptionTitleBar(version),_wrapper(NULL) {};
-
-   ~PythonQtShell_QStyleOptionTitleBar();
-
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtWrapper_QStyleOptionTitleBar : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(StyleOptionType StyleOptionVersion )
-enum StyleOptionType{
-  Type = QStyleOptionTitleBar::Type};
-enum StyleOptionVersion{
-  Version = QStyleOptionTitleBar::Version};
-public slots:
-QStyleOptionTitleBar* new_QStyleOptionTitleBar();
-QStyleOptionTitleBar* new_QStyleOptionTitleBar(const QStyleOptionTitleBar&  other);
-QStyleOptionTitleBar* new_QStyleOptionTitleBar(int  version);
-void delete_QStyleOptionTitleBar(QStyleOptionTitleBar* obj) { delete obj; } 
-void py_set_icon(QStyleOptionTitleBar* theWrappedObject, QIcon  icon){ theWrappedObject->icon = icon; }
-QIcon  py_get_icon(QStyleOptionTitleBar* theWrappedObject){ return theWrappedObject->icon; }
-void py_set_text(QStyleOptionTitleBar* theWrappedObject, QString  text){ theWrappedObject->text = text; }
-QString  py_get_text(QStyleOptionTitleBar* theWrappedObject){ return theWrappedObject->text; }
-void py_set_titleBarFlags(QStyleOptionTitleBar* theWrappedObject, Qt::WindowFlags  titleBarFlags){ theWrappedObject->titleBarFlags = titleBarFlags; }
-Qt::WindowFlags  py_get_titleBarFlags(QStyleOptionTitleBar* theWrappedObject){ return theWrappedObject->titleBarFlags; }
-void py_set_titleBarState(QStyleOptionTitleBar* theWrappedObject, int  titleBarState){ theWrappedObject->titleBarState = titleBarState; }
-int  py_get_titleBarState(QStyleOptionTitleBar* theWrappedObject){ return theWrappedObject->titleBarState; }
 };
 
 
