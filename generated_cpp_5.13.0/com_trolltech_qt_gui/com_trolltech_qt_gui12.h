@@ -4,10 +4,13 @@
 #include <QObject>
 #include <QVariant>
 #include <qabstractbutton.h>
+#include <qabstractitemdelegate.h>
+#include <qabstractitemmodel.h>
 #include <qaction.h>
 #include <qactiongroup.h>
 #include <qbackingstore.h>
 #include <qbitmap.h>
+#include <qboxlayout.h>
 #include <qbytearray.h>
 #include <qcoreevent.h>
 #include <qcursor.h>
@@ -20,6 +23,7 @@
 #include <qgraphicsproxywidget.h>
 #include <qgraphicswidget.h>
 #include <qicon.h>
+#include <qitemselectionmodel.h>
 #include <qkeysequence.h>
 #include <qlayout.h>
 #include <qlayoutitem.h>
@@ -38,11 +42,18 @@
 #include <qrect.h>
 #include <qregion.h>
 #include <qscreen.h>
+#include <qscrollbar.h>
 #include <qsize.h>
 #include <qsizepolicy.h>
 #include <qstyle.h>
+#include <qstyleoption.h>
 #include <qsurfaceformat.h>
+#include <qthread.h>
+#include <qundogroup.h>
+#include <qundostack.h>
+#include <qundoview.h>
 #include <qvalidator.h>
+#include <qvector.h>
 #include <qvector2d.h>
 #include <qvector3d.h>
 #include <qvector4d.h>
@@ -51,6 +62,228 @@
 #include <qwidgetaction.h>
 #include <qwindow.h>
 #include <qwizard.h>
+
+
+
+class PythonQtShell_QUndoStack : public QUndoStack
+{
+public:
+    PythonQtShell_QUndoStack(QObject*  parent = nullptr):QUndoStack(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QUndoStack();
+
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QUndoStack : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QUndoStack* new_QUndoStack(QObject*  parent = nullptr);
+void delete_QUndoStack(QUndoStack* obj) { delete obj; } 
+   void beginMacro(QUndoStack* theWrappedObject, const QString&  text);
+   bool  canRedo(QUndoStack* theWrappedObject) const;
+   bool  canUndo(QUndoStack* theWrappedObject) const;
+   int  cleanIndex(QUndoStack* theWrappedObject) const;
+   void clear(QUndoStack* theWrappedObject);
+   const QUndoCommand*  command(QUndoStack* theWrappedObject, int  index) const;
+   int  count(QUndoStack* theWrappedObject) const;
+   QAction*  createRedoAction(QUndoStack* theWrappedObject, QObject*  parent, const QString&  prefix = QString()) const;
+   QAction*  createUndoAction(QUndoStack* theWrappedObject, QObject*  parent, const QString&  prefix = QString()) const;
+   void endMacro(QUndoStack* theWrappedObject);
+   int  index(QUndoStack* theWrappedObject) const;
+   bool  isActive(QUndoStack* theWrappedObject) const;
+   bool  isClean(QUndoStack* theWrappedObject) const;
+   void push(QUndoStack* theWrappedObject, QUndoCommand*  cmd);
+   QString  redoText(QUndoStack* theWrappedObject) const;
+   void setUndoLimit(QUndoStack* theWrappedObject, int  limit);
+   QString  text(QUndoStack* theWrappedObject, int  idx) const;
+   int  undoLimit(QUndoStack* theWrappedObject) const;
+   QString  undoText(QUndoStack* theWrappedObject) const;
+};
+
+
+
+
+
+class PythonQtShell_QUndoView : public QUndoView
+{
+public:
+    PythonQtShell_QUndoView(QUndoGroup*  group, QWidget*  parent = nullptr):QUndoView(group, parent),_wrapper(NULL) {};
+    PythonQtShell_QUndoView(QUndoStack*  stack, QWidget*  parent = nullptr):QUndoView(stack, parent),_wrapper(NULL) {};
+    PythonQtShell_QUndoView(QWidget*  parent = nullptr):QUndoView(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QUndoView();
+
+virtual void actionEvent(QActionEvent*  event);
+virtual void changeEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void closeEditor(QWidget*  editor, QAbstractItemDelegate::EndEditHint  hint);
+virtual void closeEvent(QCloseEvent*  event);
+virtual void commitData(QWidget*  editor);
+virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
+virtual void currentChanged(const QModelIndex&  current, const QModelIndex&  previous);
+virtual void customEvent(QEvent*  event);
+virtual void dataChanged(const QModelIndex&  topLeft, const QModelIndex&  bottomRight, const QVector<int >&  roles = QVector<int>());
+virtual int  devType() const;
+virtual void doItemsLayout();
+virtual void dragEnterEvent(QDragEnterEvent*  event);
+virtual void dragLeaveEvent(QDragLeaveEvent*  e);
+virtual void dragMoveEvent(QDragMoveEvent*  e);
+virtual void dropEvent(QDropEvent*  e);
+virtual bool  edit(const QModelIndex&  index, QAbstractItemView::EditTrigger  trigger, QEvent*  event);
+virtual void editorDestroyed(QObject*  editor);
+virtual void enterEvent(QEvent*  event);
+virtual bool  event(QEvent*  e);
+virtual bool  eventFilter(QObject*  object, QEvent*  event);
+virtual void focusInEvent(QFocusEvent*  event);
+virtual bool  focusNextPrevChild(bool  next);
+virtual void focusOutEvent(QFocusEvent*  event);
+virtual bool  hasHeightForWidth() const;
+virtual int  heightForWidth(int  arg__1) const;
+virtual void hideEvent(QHideEvent*  event);
+virtual int  horizontalOffset() const;
+virtual void horizontalScrollbarAction(int  action);
+virtual void horizontalScrollbarValueChanged(int  value);
+virtual QModelIndex  indexAt(const QPoint&  p) const;
+virtual void initPainter(QPainter*  painter) const;
+virtual void inputMethodEvent(QInputMethodEvent*  event);
+virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  query) const;
+virtual bool  isIndexHidden(const QModelIndex&  index) const;
+virtual void keyPressEvent(QKeyEvent*  event);
+virtual void keyReleaseEvent(QKeyEvent*  event);
+virtual void keyboardSearch(const QString&  search);
+virtual void leaveEvent(QEvent*  event);
+virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual QSize  minimumSizeHint() const;
+virtual void mouseDoubleClickEvent(QMouseEvent*  event);
+virtual void mouseMoveEvent(QMouseEvent*  e);
+virtual void mousePressEvent(QMouseEvent*  event);
+virtual void mouseReleaseEvent(QMouseEvent*  e);
+virtual QModelIndex  moveCursor(QAbstractItemView::CursorAction  cursorAction, Qt::KeyboardModifiers  modifiers);
+virtual void moveEvent(QMoveEvent*  event);
+virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
+virtual QPaintEngine*  paintEngine() const;
+virtual void paintEvent(QPaintEvent*  e);
+virtual QPaintDevice*  redirected(QPoint*  offset) const;
+virtual void reset();
+virtual void resizeEvent(QResizeEvent*  e);
+virtual void rowsAboutToBeRemoved(const QModelIndex&  parent, int  start, int  end);
+virtual void rowsInserted(const QModelIndex&  parent, int  start, int  end);
+virtual void scrollContentsBy(int  dx, int  dy);
+virtual void scrollTo(const QModelIndex&  index, QAbstractItemView::ScrollHint  hint = QAbstractItemView::EnsureVisible);
+virtual void selectAll();
+virtual QList<QModelIndex >  selectedIndexes() const;
+virtual void selectionChanged(const QItemSelection&  selected, const QItemSelection&  deselected);
+virtual QItemSelectionModel::SelectionFlags  selectionCommand(const QModelIndex&  index, const QEvent*  event = nullptr) const;
+virtual void setModel(QAbstractItemModel*  model);
+virtual void setRootIndex(const QModelIndex&  index);
+virtual void setSelection(const QRect&  rect, QItemSelectionModel::SelectionFlags  command);
+virtual void setSelectionModel(QItemSelectionModel*  selectionModel);
+virtual void setVisible(bool  visible);
+virtual void setupViewport(QWidget*  viewport);
+virtual QPainter*  sharedPainter() const;
+virtual void showEvent(QShowEvent*  event);
+virtual QSize  sizeHint() const;
+virtual int  sizeHintForColumn(int  column) const;
+virtual int  sizeHintForRow(int  row) const;
+virtual void startDrag(Qt::DropActions  supportedActions);
+virtual void tabletEvent(QTabletEvent*  event);
+virtual void timerEvent(QTimerEvent*  e);
+virtual void updateEditorData();
+virtual void updateEditorGeometries();
+virtual void updateGeometries();
+virtual int  verticalOffset() const;
+virtual void verticalScrollbarAction(int  action);
+virtual void verticalScrollbarValueChanged(int  value);
+virtual QStyleOptionViewItem  viewOptions() const;
+virtual bool  viewportEvent(QEvent*  event);
+virtual QSize  viewportSizeHint() const;
+virtual QRect  visualRect(const QModelIndex&  index) const;
+virtual QRegion  visualRegionForSelection(const QItemSelection&  selection) const;
+virtual void wheelEvent(QWheelEvent*  e);
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QUndoView : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QUndoView* new_QUndoView(QUndoGroup*  group, QWidget*  parent = nullptr);
+QUndoView* new_QUndoView(QUndoStack*  stack, QWidget*  parent = nullptr);
+QUndoView* new_QUndoView(QWidget*  parent = nullptr);
+void delete_QUndoView(QUndoView* obj) { delete obj; } 
+   QIcon  cleanIcon(QUndoView* theWrappedObject) const;
+   QString  emptyLabel(QUndoView* theWrappedObject) const;
+   QUndoGroup*  group(QUndoView* theWrappedObject) const;
+   void setCleanIcon(QUndoView* theWrappedObject, const QIcon&  icon);
+   void setEmptyLabel(QUndoView* theWrappedObject, const QString&  label);
+   QUndoStack*  stack(QUndoView* theWrappedObject) const;
+};
+
+
+
+
+
+class PythonQtShell_QVBoxLayout : public QVBoxLayout
+{
+public:
+    PythonQtShell_QVBoxLayout():QVBoxLayout(),_wrapper(NULL) {};
+    PythonQtShell_QVBoxLayout(QWidget*  parent):QVBoxLayout(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QVBoxLayout();
+
+virtual void addItem(QLayoutItem*  arg__1);
+virtual void childEvent(QChildEvent*  e);
+virtual QSizePolicy::ControlTypes  controlTypes() const;
+virtual int  count() const;
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual Qt::Orientations  expandingDirections() const;
+virtual QRect  geometry() const;
+virtual bool  hasHeightForWidth() const;
+virtual int  heightForWidth(int  arg__1) const;
+virtual int  indexOf(QWidget*  arg__1) const;
+virtual void invalidate();
+virtual bool  isEmpty() const;
+virtual QLayoutItem*  itemAt(int  arg__1) const;
+virtual QLayout*  layout();
+virtual QSize  maximumSize() const;
+virtual int  minimumHeightForWidth(int  arg__1) const;
+virtual QSize  minimumSize() const;
+virtual void setGeometry(const QRect&  arg__1);
+virtual QSize  sizeHint() const;
+virtual QLayoutItem*  takeAt(int  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QVBoxLayout : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QVBoxLayout* new_QVBoxLayout();
+QVBoxLayout* new_QVBoxLayout(QWidget*  parent);
+void delete_QVBoxLayout(QVBoxLayout* obj) { delete obj; } 
+    bool __nonzero__(QVBoxLayout* obj) { return !obj->isEmpty(); }
+};
+
+
 
 
 
@@ -1203,6 +1436,7 @@ virtual void keyPressEvent(QKeyEvent*  arg__1);
 virtual void keyReleaseEvent(QKeyEvent*  event);
 virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual QSize  minimumSizeHint() const;
 virtual void mouseDoubleClickEvent(QMouseEvent*  event);
 virtual void mouseMoveEvent(QMouseEvent*  event);
 virtual void mousePressEvent(QMouseEvent*  event);
@@ -1219,6 +1453,7 @@ virtual void resizeEvent(QResizeEvent*  event);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  arg__1);
+virtual QSize  sizeHint() const;
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  event);
 virtual bool  validateCurrentPage();
@@ -1245,6 +1480,7 @@ inline int  py_q_nextId() const { return QWizard::nextId(); }
 inline void py_q_paintEvent(QPaintEvent*  event) { QWizard::paintEvent(event); }
 inline void py_q_resizeEvent(QResizeEvent*  event) { QWizard::resizeEvent(event); }
 inline void py_q_setVisible(bool  visible) { QWizard::setVisible(visible); }
+inline QSize  py_q_sizeHint() const { return QWizard::sizeHint(); }
 inline bool  py_q_validateCurrentPage() { return QWizard::validateCurrentPage(); }
 };
 
@@ -1300,7 +1536,7 @@ void delete_QWizard(QWizard* obj) { delete obj; }
    void py_q_setVisible(QWizard* theWrappedObject, bool  visible){  (((PythonQtPublicPromoter_QWizard*)theWrappedObject)->py_q_setVisible(visible));}
    void setWizardStyle(QWizard* theWrappedObject, QWizard::WizardStyle  style);
    QWidget*  sideWidget(QWizard* theWrappedObject) const;
-   QSize  sizeHint(QWizard* theWrappedObject) const;
+   QSize  py_q_sizeHint(QWizard* theWrappedObject) const{  return (((PythonQtPublicPromoter_QWizard*)theWrappedObject)->py_q_sizeHint());}
    int  startId(QWizard* theWrappedObject) const;
    Qt::TextFormat  subTitleFormat(QWizard* theWrappedObject) const;
    bool  testOption(QWizard* theWrappedObject, QWizard::WizardOption  option) const;

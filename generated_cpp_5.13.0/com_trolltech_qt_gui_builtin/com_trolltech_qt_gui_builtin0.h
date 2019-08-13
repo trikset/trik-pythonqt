@@ -932,6 +932,7 @@ QPolygon* new_QPolygon(const QRect&  r, bool  closed = false);
 QPolygon* new_QPolygon(const QVector<QPoint >&  v);
 QPolygon* new_QPolygon(int  size);
 void delete_QPolygon(QPolygon* obj) { delete obj; } 
+   void append(QPolygon* theWrappedObject, QPoint&  t);
    void append(QPolygon* theWrappedObject, const QPoint&  t);
    void append(QPolygon* theWrappedObject, const QVector<QPoint >&  l);
    const QPoint*  at(QPolygon* theWrappedObject, int  i) const;

@@ -32,6 +32,7 @@
 #include <qlibraryinfo.h>
 #include <qlockfile.h>
 #include <qlogging.h>
+#include <qloggingcategory.h>
 #include <qmargins.h>
 #include <qmessageauthenticationcode.h>
 #include <qmetaobject.h>
@@ -39,15 +40,106 @@
 #include <qmimedata.h>
 #include <qmimedatabase.h>
 #include <qmimetype.h>
-#include <qmutex.h>
 #include <qobject.h>
 #include <qrect.h>
 #include <qsize.h>
 #include <qstate.h>
 #include <qstatemachine.h>
 #include <qstringlist.h>
+#include <qthread.h>
 #include <qurl.h>
 #include <qvector.h>
+
+
+
+class PythonQtShell_QFile : public QFile
+{
+public:
+    PythonQtShell_QFile():QFile(),_wrapper(NULL) {};
+    PythonQtShell_QFile(QObject*  parent):QFile(parent),_wrapper(NULL) {};
+    PythonQtShell_QFile(const QString&  name):QFile(name),_wrapper(NULL) {};
+    PythonQtShell_QFile(const QString&  name, QObject*  parent):QFile(name, parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QFile();
+
+virtual bool  atEnd() const;
+virtual qint64  bytesAvailable() const;
+virtual qint64  bytesToWrite() const;
+virtual bool  canReadLine() const;
+virtual void childEvent(QChildEvent*  event);
+virtual void close();
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual QString  fileName() const;
+virtual bool  isSequential() const;
+virtual bool  open(QIODevice::OpenMode  flags);
+virtual QFileDevice::Permissions  permissions() const;
+virtual qint64  pos() const;
+virtual qint64  readData(char*  data, qint64  maxlen);
+virtual qint64  readLineData(char*  data, qint64  maxlen);
+virtual bool  reset();
+virtual bool  resize(qint64  sz);
+virtual bool  seek(qint64  offset);
+virtual bool  setPermissions(QFileDevice::Permissions  permissionSpec);
+virtual qint64  size() const;
+virtual void timerEvent(QTimerEvent*  event);
+virtual bool  waitForBytesWritten(int  msecs);
+virtual bool  waitForReadyRead(int  msecs);
+virtual qint64  writeData(const char*  data, qint64  len);
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QFile : public QFile
+{ public:
+inline QString  py_q_fileName() const { return QFile::fileName(); }
+inline bool  py_q_open(QIODevice::OpenMode  flags) { return QFile::open(flags); }
+inline QFileDevice::Permissions  py_q_permissions() const { return QFile::permissions(); }
+inline bool  py_q_resize(qint64  sz) { return QFile::resize(sz); }
+inline bool  py_q_setPermissions(QFileDevice::Permissions  permissionSpec) { return QFile::setPermissions(permissionSpec); }
+inline qint64  py_q_size() const { return QFile::size(); }
+};
+
+class PythonQtWrapper_QFile : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QFile* new_QFile();
+QFile* new_QFile(QObject*  parent);
+QFile* new_QFile(const QString&  name);
+QFile* new_QFile(const QString&  name, QObject*  parent);
+void delete_QFile(QFile* obj) { delete obj; } 
+   bool  static_QFile_copy(const QString&  fileName, const QString&  newName);
+   bool  copy(QFile* theWrappedObject, const QString&  newName);
+   QString  static_QFile_decodeName(const QByteArray&  localFileName);
+   QByteArray  static_QFile_encodeName(const QString&  fileName);
+   bool  exists(QFile* theWrappedObject) const;
+   bool  static_QFile_exists(const QString&  fileName);
+   QString  py_q_fileName(QFile* theWrappedObject) const{  return (((PythonQtPublicPromoter_QFile*)theWrappedObject)->py_q_fileName());}
+   bool  link(QFile* theWrappedObject, const QString&  newName);
+   bool  static_QFile_link(const QString&  oldname, const QString&  newName);
+   bool  py_q_open(QFile* theWrappedObject, QIODevice::OpenMode  flags){  return (((PythonQtPublicPromoter_QFile*)theWrappedObject)->py_q_open(flags));}
+   bool  open(QFile* theWrappedObject, int  fd, QIODevice::OpenMode  ioFlags, QFileDevice::FileHandleFlags  handleFlags = QFileDevice::DontCloseHandle);
+   QFileDevice::Permissions  py_q_permissions(QFile* theWrappedObject) const{  return (((PythonQtPublicPromoter_QFile*)theWrappedObject)->py_q_permissions());}
+   QFileDevice::Permissions  static_QFile_permissions(const QString&  filename);
+   bool  remove(QFile* theWrappedObject);
+   bool  static_QFile_remove(const QString&  fileName);
+   bool  rename(QFile* theWrappedObject, const QString&  newName);
+   bool  static_QFile_rename(const QString&  oldName, const QString&  newName);
+   bool  static_QFile_resize(const QString&  filename, qint64  sz);
+   bool  py_q_resize(QFile* theWrappedObject, qint64  sz){  return (((PythonQtPublicPromoter_QFile*)theWrappedObject)->py_q_resize(sz));}
+   void setFileName(QFile* theWrappedObject, const QString&  name);
+   bool  py_q_setPermissions(QFile* theWrappedObject, QFileDevice::Permissions  permissionSpec){  return (((PythonQtPublicPromoter_QFile*)theWrappedObject)->py_q_setPermissions(permissionSpec));}
+   bool  static_QFile_setPermissions(const QString&  filename, QFileDevice::Permissions  permissionSpec);
+   qint64  py_q_size(QFile* theWrappedObject) const{  return (((PythonQtPublicPromoter_QFile*)theWrappedObject)->py_q_size());}
+   QString  symLinkTarget(QFile* theWrappedObject) const;
+   QString  static_QFile_symLinkTarget(const QString&  fileName);
+};
+
+
 
 
 
@@ -113,12 +205,14 @@ inline qint64  py_q_writeData(const char*  data, qint64  len) { return QFileDevi
 class PythonQtWrapper_QFileDevice : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(FileError FileHandleFlag MemoryMapFlags Permission )
+Q_ENUMS(FileError FileHandleFlag FileTime MemoryMapFlags Permission )
 Q_FLAGS(FileHandleFlags Permissions )
 enum FileError{
   NoError = QFileDevice::NoError,   ReadError = QFileDevice::ReadError,   WriteError = QFileDevice::WriteError,   FatalError = QFileDevice::FatalError,   ResourceError = QFileDevice::ResourceError,   OpenError = QFileDevice::OpenError,   AbortError = QFileDevice::AbortError,   TimeOutError = QFileDevice::TimeOutError,   UnspecifiedError = QFileDevice::UnspecifiedError,   RemoveError = QFileDevice::RemoveError,   RenameError = QFileDevice::RenameError,   PositionError = QFileDevice::PositionError,   ResizeError = QFileDevice::ResizeError,   PermissionsError = QFileDevice::PermissionsError,   CopyError = QFileDevice::CopyError};
 enum FileHandleFlag{
   AutoCloseHandle = QFileDevice::AutoCloseHandle,   DontCloseHandle = QFileDevice::DontCloseHandle};
+enum FileTime{
+  FileAccessTime = QFileDevice::FileAccessTime,   FileBirthTime = QFileDevice::FileBirthTime,   FileMetadataChangeTime = QFileDevice::FileMetadataChangeTime,   FileModificationTime = QFileDevice::FileModificationTime};
 enum MemoryMapFlags{
   NoOptions = QFileDevice::NoOptions,   MapPrivateOption = QFileDevice::MapPrivateOption};
 enum Permission{
@@ -134,6 +228,7 @@ void delete_QFileDevice(QFileDevice* obj) { delete obj; }
    QFileDevice::FileError  error(QFileDevice* theWrappedObject) const;
    QString  fileName(QFileDevice* theWrappedObject) const;
    QString  py_q_fileName(QFileDevice* theWrappedObject) const{  return (((PythonQtPublicPromoter_QFileDevice*)theWrappedObject)->py_q_fileName());}
+   QDateTime  fileTime(QFileDevice* theWrappedObject, QFileDevice::FileTime  time) const;
    bool  flush(QFileDevice* theWrappedObject);
    int  handle(QFileDevice* theWrappedObject) const;
    bool  py_q_isSequential(QFileDevice* theWrappedObject) const{  return (((PythonQtPublicPromoter_QFileDevice*)theWrappedObject)->py_q_isSequential());}
@@ -146,6 +241,7 @@ void delete_QFileDevice(QFileDevice* obj) { delete obj; }
    bool  resize(QFileDevice* theWrappedObject, qint64  sz);
    bool  py_q_resize(QFileDevice* theWrappedObject, qint64  sz){  return (((PythonQtPublicPromoter_QFileDevice*)theWrappedObject)->py_q_resize(sz));}
    bool  py_q_seek(QFileDevice* theWrappedObject, qint64  offset){  return (((PythonQtPublicPromoter_QFileDevice*)theWrappedObject)->py_q_seek(offset));}
+   bool  setFileTime(QFileDevice* theWrappedObject, const QDateTime&  newDate, QFileDevice::FileTime  fileTime);
    bool  setPermissions(QFileDevice* theWrappedObject, QFileDevice::Permissions  permissionSpec);
    bool  py_q_setPermissions(QFileDevice* theWrappedObject, QFileDevice::Permissions  permissionSpec){  return (((PythonQtPublicPromoter_QFileDevice*)theWrappedObject)->py_q_setPermissions(permissionSpec));}
    qint64  py_q_size(QFileDevice* theWrappedObject) const{  return (((PythonQtPublicPromoter_QFileDevice*)theWrappedObject)->py_q_size());}
@@ -973,6 +1069,26 @@ void delete_QLockFile(QLockFile* obj) { delete obj; }
 
 
 
+class PythonQtWrapper_QLoggingCategory : public QObject
+{ Q_OBJECT
+public:
+public slots:
+void delete_QLoggingCategory(QLoggingCategory* obj) { delete obj; } 
+   const char*  categoryName(QLoggingCategory* theWrappedObject) const;
+   QLoggingCategory*  static_QLoggingCategory_defaultCategory();
+   bool  isCriticalEnabled(QLoggingCategory* theWrappedObject) const;
+   bool  isDebugEnabled(QLoggingCategory* theWrappedObject) const;
+   bool  isEnabled(QLoggingCategory* theWrappedObject, QtMsgType  type) const;
+   bool  isInfoEnabled(QLoggingCategory* theWrappedObject) const;
+   bool  isWarningEnabled(QLoggingCategory* theWrappedObject) const;
+   void setEnabled(QLoggingCategory* theWrappedObject, QtMsgType  type, bool  enable);
+   void static_QLoggingCategory_setFilterRules(const QString&  rules);
+};
+
+
+
+
+
 class PythonQtWrapper_QMarginsF : public QObject
 { Q_OBJECT
 public:
@@ -1373,60 +1489,6 @@ void delete_QMimeType(QMimeType* obj) { delete obj; }
    void swap(QMimeType* theWrappedObject, QMimeType&  other);
     QString py_toString(QMimeType*);
     bool __nonzero__(QMimeType* obj) { return obj->isValid(); }
-};
-
-
-
-
-
-class PythonQtWrapper_QModelIndex : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QModelIndex* new_QModelIndex();
-QModelIndex* new_QModelIndex(const QModelIndex& other) {
-QModelIndex* a = new QModelIndex();
-*((QModelIndex*)a) = other;
-return a; }
-void delete_QModelIndex(QModelIndex* obj) { delete obj; } 
-   QModelIndex  child(QModelIndex* theWrappedObject, int  row, int  column) const;
-   int  column(QModelIndex* theWrappedObject) const;
-   QVariant  data(QModelIndex* theWrappedObject, int  role = Qt::DisplayRole) const;
-   Qt::ItemFlags  flags(QModelIndex* theWrappedObject) const;
-   quintptr  internalId(QModelIndex* theWrappedObject) const;
-   void*  internalPointer(QModelIndex* theWrappedObject) const;
-   bool  isValid(QModelIndex* theWrappedObject) const;
-   const QAbstractItemModel*  model(QModelIndex* theWrappedObject) const;
-   bool  __ne__(QModelIndex* theWrappedObject, const QModelIndex&  other) const;
-   bool  __lt__(QModelIndex* theWrappedObject, const QModelIndex&  other) const;
-   bool  __eq__(QModelIndex* theWrappedObject, const QModelIndex&  other) const;
-   QModelIndex  parent(QModelIndex* theWrappedObject) const;
-   int  row(QModelIndex* theWrappedObject) const;
-   QModelIndex  sibling(QModelIndex* theWrappedObject, int  row, int  column) const;
-   QModelIndex  siblingAtColumn(QModelIndex* theWrappedObject, int  column) const;
-   QModelIndex  siblingAtRow(QModelIndex* theWrappedObject, int  row) const;
-    QString py_toString(QModelIndex*);
-    bool __nonzero__(QModelIndex* obj) { return obj->isValid(); }
-};
-
-
-
-
-
-class PythonQtWrapper_QMutex : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(RecursionMode )
-enum RecursionMode{
-  NonRecursive = QMutex::NonRecursive,   Recursive = QMutex::Recursive};
-public slots:
-QMutex* new_QMutex(QMutex::RecursionMode  mode = QMutex::NonRecursive);
-void delete_QMutex(QMutex* obj) { delete obj; } 
-   bool  isRecursive(QMutex* theWrappedObject) const;
-   void lock(QMutex* theWrappedObject);
-   bool  tryLock(QMutex* theWrappedObject, int  timeout = 0);
-   bool  try_lock(QMutex* theWrappedObject);
-   void unlock(QMutex* theWrappedObject);
 };
 
 

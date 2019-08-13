@@ -8,23 +8,29 @@
 #include <qcolor.h>
 #include <qcoreevent.h>
 #include <qevent.h>
-#include <qgesture.h>
+#include <qfont.h>
+#include <qfontinfo.h>
+#include <qfontmetrics.h>
+#include <qglyphrun.h>
 #include <qimage.h>
 #include <qitemeditorfactory.h>
 #include <qline.h>
 #include <qlocale.h>
+#include <qmatrix.h>
 #include <qmetaobject.h>
 #include <qobject.h>
 #include <qpaintdevice.h>
 #include <qpaintengine.h>
 #include <qpainter.h>
-#include <qpair.h>
+#include <qpainterpath.h>
 #include <qpalette.h>
+#include <qpen.h>
 #include <qpicture.h>
 #include <qpixmap.h>
 #include <qpoint.h>
 #include <qpolygon.h>
 #include <qrect.h>
+#include <qregion.h>
 #include <qsize.h>
 #include <qstatictext.h>
 #include <qstyle.h>
@@ -32,10 +38,121 @@
 #include <qstyleoption.h>
 #include <qstylepainter.h>
 #include <qstyleplugin.h>
-#include <qsurface.h>
-#include <qsurfaceformat.h>
+#include <qtextoption.h>
+#include <qthread.h>
+#include <qtransform.h>
 #include <qvector.h>
 #include <qwidget.h>
+
+
+
+class PythonQtShell_QStyleOptionFrameV3 : public QStyleOptionFrameV3
+{
+public:
+    PythonQtShell_QStyleOptionFrameV3():QStyleOptionFrameV3(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QStyleOptionFrameV3();
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QStyleOptionFrameV3 : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QStyleOptionFrameV3* new_QStyleOptionFrameV3();
+QStyleOptionFrameV3* new_QStyleOptionFrameV3(const QStyleOptionFrameV3& other) {
+PythonQtShell_QStyleOptionFrameV3* a = new PythonQtShell_QStyleOptionFrameV3();
+*((QStyleOptionFrameV3*)a) = other;
+return a; }
+void delete_QStyleOptionFrameV3(QStyleOptionFrameV3* obj) { delete obj; } 
+};
+
+
+
+
+
+class PythonQtShell_QStyleOptionGraphicsItem : public QStyleOptionGraphicsItem
+{
+public:
+    PythonQtShell_QStyleOptionGraphicsItem():QStyleOptionGraphicsItem(),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionGraphicsItem(const QStyleOptionGraphicsItem&  other):QStyleOptionGraphicsItem(other),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionGraphicsItem(int  version):QStyleOptionGraphicsItem(version),_wrapper(NULL) {};
+
+   ~PythonQtShell_QStyleOptionGraphicsItem();
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QStyleOptionGraphicsItem : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(StyleOptionType StyleOptionVersion )
+enum StyleOptionType{
+  Type = QStyleOptionGraphicsItem::Type};
+enum StyleOptionVersion{
+  Version = QStyleOptionGraphicsItem::Version};
+public slots:
+QStyleOptionGraphicsItem* new_QStyleOptionGraphicsItem();
+QStyleOptionGraphicsItem* new_QStyleOptionGraphicsItem(const QStyleOptionGraphicsItem&  other);
+QStyleOptionGraphicsItem* new_QStyleOptionGraphicsItem(int  version);
+void delete_QStyleOptionGraphicsItem(QStyleOptionGraphicsItem* obj) { delete obj; } 
+   qreal  static_QStyleOptionGraphicsItem_levelOfDetailFromTransform(const QTransform&  worldTransform);
+void py_set_exposedRect(QStyleOptionGraphicsItem* theWrappedObject, QRectF  exposedRect){ theWrappedObject->exposedRect = exposedRect; }
+QRectF  py_get_exposedRect(QStyleOptionGraphicsItem* theWrappedObject){ return theWrappedObject->exposedRect; }
+void py_set_levelOfDetail(QStyleOptionGraphicsItem* theWrappedObject, qreal  levelOfDetail){ theWrappedObject->levelOfDetail = levelOfDetail; }
+qreal  py_get_levelOfDetail(QStyleOptionGraphicsItem* theWrappedObject){ return theWrappedObject->levelOfDetail; }
+void py_set_matrix(QStyleOptionGraphicsItem* theWrappedObject, QMatrix  matrix){ theWrappedObject->matrix = matrix; }
+QMatrix  py_get_matrix(QStyleOptionGraphicsItem* theWrappedObject){ return theWrappedObject->matrix; }
+};
+
+
+
+
+
+class PythonQtShell_QStyleOptionGroupBox : public QStyleOptionGroupBox
+{
+public:
+    PythonQtShell_QStyleOptionGroupBox():QStyleOptionGroupBox(),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionGroupBox(const QStyleOptionGroupBox&  other):QStyleOptionGroupBox(other),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionGroupBox(int  version):QStyleOptionGroupBox(version),_wrapper(NULL) {};
+
+   ~PythonQtShell_QStyleOptionGroupBox();
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QStyleOptionGroupBox : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(StyleOptionType StyleOptionVersion )
+enum StyleOptionType{
+  Type = QStyleOptionGroupBox::Type};
+enum StyleOptionVersion{
+  Version = QStyleOptionGroupBox::Version};
+public slots:
+QStyleOptionGroupBox* new_QStyleOptionGroupBox();
+QStyleOptionGroupBox* new_QStyleOptionGroupBox(const QStyleOptionGroupBox&  other);
+QStyleOptionGroupBox* new_QStyleOptionGroupBox(int  version);
+void delete_QStyleOptionGroupBox(QStyleOptionGroupBox* obj) { delete obj; } 
+void py_set_features(QStyleOptionGroupBox* theWrappedObject, QStyleOptionFrame::FrameFeatures  features){ theWrappedObject->features = features; }
+QStyleOptionFrame::FrameFeatures  py_get_features(QStyleOptionGroupBox* theWrappedObject){ return theWrappedObject->features; }
+void py_set_lineWidth(QStyleOptionGroupBox* theWrappedObject, int  lineWidth){ theWrappedObject->lineWidth = lineWidth; }
+int  py_get_lineWidth(QStyleOptionGroupBox* theWrappedObject){ return theWrappedObject->lineWidth; }
+void py_set_midLineWidth(QStyleOptionGroupBox* theWrappedObject, int  midLineWidth){ theWrappedObject->midLineWidth = midLineWidth; }
+int  py_get_midLineWidth(QStyleOptionGroupBox* theWrappedObject){ return theWrappedObject->midLineWidth; }
+void py_set_text(QStyleOptionGroupBox* theWrappedObject, QString  text){ theWrappedObject->text = text; }
+QString  py_get_text(QStyleOptionGroupBox* theWrappedObject){ return theWrappedObject->text; }
+void py_set_textAlignment(QStyleOptionGroupBox* theWrappedObject, Qt::Alignment  textAlignment){ theWrappedObject->textAlignment = textAlignment; }
+Qt::Alignment  py_get_textAlignment(QStyleOptionGroupBox* theWrappedObject){ return theWrappedObject->textAlignment; }
+void py_set_textColor(QStyleOptionGroupBox* theWrappedObject, QColor  textColor){ theWrappedObject->textColor = textColor; }
+QColor  py_get_textColor(QStyleOptionGroupBox* theWrappedObject){ return theWrappedObject->textColor; }
+};
+
+
 
 
 
@@ -1146,157 +1263,6 @@ void delete_QStyledItemDelegate(QStyledItemDelegate* obj) { delete obj; }
    void py_q_setModelData(QStyledItemDelegate* theWrappedObject, QWidget*  editor, QAbstractItemModel*  model, const QModelIndex&  index) const{  (((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->py_q_setModelData(editor, model, index));}
    QSize  py_q_sizeHint(QStyledItemDelegate* theWrappedObject, const QStyleOptionViewItem&  option, const QModelIndex&  index) const{  return (((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->py_q_sizeHint(option, index));}
    void py_q_updateEditorGeometry(QStyledItemDelegate* theWrappedObject, QWidget*  editor, const QStyleOptionViewItem&  option, const QModelIndex&  index) const{  (((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->py_q_updateEditorGeometry(editor, option, index));}
-};
-
-
-
-
-
-class PythonQtShell_QSurface : public QSurface
-{
-public:
-    PythonQtShell_QSurface(QSurface::SurfaceClass  type):QSurface(type),_wrapper(NULL) {};
-
-   ~PythonQtShell_QSurface();
-
-virtual QSurfaceFormat  format() const;
-virtual QSize  size() const;
-virtual QPlatformSurface*  surfaceHandle() const;
-virtual QSurface::SurfaceType  surfaceType() const;
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QSurface : public QSurface
-{ public:
-inline QSurfaceFormat  py_q_format() const { return this->format(); }
-inline QSize  py_q_size() const { return this->size(); }
-inline QPlatformSurface*  py_q_surfaceHandle() const { return this->surfaceHandle(); }
-inline QSurface::SurfaceType  py_q_surfaceType() const { return this->surfaceType(); }
-};
-
-class PythonQtWrapper_QSurface : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(SurfaceClass SurfaceType )
-enum SurfaceClass{
-  Window = QSurface::Window,   Offscreen = QSurface::Offscreen};
-enum SurfaceType{
-  RasterSurface = QSurface::RasterSurface,   OpenGLSurface = QSurface::OpenGLSurface,   RasterGLSurface = QSurface::RasterGLSurface,   OpenVGSurface = QSurface::OpenVGSurface,   VulkanSurface = QSurface::VulkanSurface,   MetalSurface = QSurface::MetalSurface};
-public slots:
-QSurface* new_QSurface(QSurface::SurfaceClass  type);
-void delete_QSurface(QSurface* obj) { delete obj; } 
-   QSurfaceFormat  format(QSurface* theWrappedObject) const;
-   QSurfaceFormat  py_q_format(QSurface* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSurface*)theWrappedObject)->py_q_format());}
-   QSize  size(QSurface* theWrappedObject) const;
-   QSize  py_q_size(QSurface* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSurface*)theWrappedObject)->py_q_size());}
-   bool  supportsOpenGL(QSurface* theWrappedObject) const;
-   QSurface::SurfaceClass  surfaceClass(QSurface* theWrappedObject) const;
-   QPlatformSurface*  surfaceHandle(QSurface* theWrappedObject) const;
-   QPlatformSurface*  py_q_surfaceHandle(QSurface* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSurface*)theWrappedObject)->py_q_surfaceHandle());}
-   QSurface::SurfaceType  surfaceType(QSurface* theWrappedObject) const;
-   QSurface::SurfaceType  py_q_surfaceType(QSurface* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSurface*)theWrappedObject)->py_q_surfaceType());}
-};
-
-
-
-
-
-class PythonQtWrapper_QSurfaceFormat : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(FormatOption OpenGLContextProfile RenderableType SwapBehavior )
-Q_FLAGS(FormatOptions )
-enum FormatOption{
-  StereoBuffers = QSurfaceFormat::StereoBuffers,   DebugContext = QSurfaceFormat::DebugContext,   DeprecatedFunctions = QSurfaceFormat::DeprecatedFunctions,   ResetNotification = QSurfaceFormat::ResetNotification};
-enum OpenGLContextProfile{
-  NoProfile = QSurfaceFormat::NoProfile,   CoreProfile = QSurfaceFormat::CoreProfile,   CompatibilityProfile = QSurfaceFormat::CompatibilityProfile};
-enum RenderableType{
-  DefaultRenderableType = QSurfaceFormat::DefaultRenderableType,   OpenGL = QSurfaceFormat::OpenGL,   OpenGLES = QSurfaceFormat::OpenGLES,   OpenVG = QSurfaceFormat::OpenVG};
-enum SwapBehavior{
-  DefaultSwapBehavior = QSurfaceFormat::DefaultSwapBehavior,   SingleBuffer = QSurfaceFormat::SingleBuffer,   DoubleBuffer = QSurfaceFormat::DoubleBuffer,   TripleBuffer = QSurfaceFormat::TripleBuffer};
-Q_DECLARE_FLAGS(FormatOptions, FormatOption)
-public slots:
-QSurfaceFormat* new_QSurfaceFormat();
-QSurfaceFormat* new_QSurfaceFormat(QSurfaceFormat::FormatOptions  options);
-QSurfaceFormat* new_QSurfaceFormat(const QSurfaceFormat&  other);
-void delete_QSurfaceFormat(QSurfaceFormat* obj) { delete obj; } 
-   int  alphaBufferSize(QSurfaceFormat* theWrappedObject) const;
-   int  blueBufferSize(QSurfaceFormat* theWrappedObject) const;
-   QSurfaceFormat  static_QSurfaceFormat_defaultFormat();
-   int  depthBufferSize(QSurfaceFormat* theWrappedObject) const;
-   int  greenBufferSize(QSurfaceFormat* theWrappedObject) const;
-   bool  hasAlpha(QSurfaceFormat* theWrappedObject) const;
-   int  majorVersion(QSurfaceFormat* theWrappedObject) const;
-   int  minorVersion(QSurfaceFormat* theWrappedObject) const;
-   QSurfaceFormat*  operator_assign(QSurfaceFormat* theWrappedObject, const QSurfaceFormat&  other);
-   bool  __eq__(QSurfaceFormat* theWrappedObject, const QSurfaceFormat&  arg__2);
-   QSurfaceFormat::FormatOptions  options(QSurfaceFormat* theWrappedObject) const;
-   QSurfaceFormat::OpenGLContextProfile  profile(QSurfaceFormat* theWrappedObject) const;
-   int  redBufferSize(QSurfaceFormat* theWrappedObject) const;
-   QSurfaceFormat::RenderableType  renderableType(QSurfaceFormat* theWrappedObject) const;
-   int  samples(QSurfaceFormat* theWrappedObject) const;
-   void setAlphaBufferSize(QSurfaceFormat* theWrappedObject, int  size);
-   void setBlueBufferSize(QSurfaceFormat* theWrappedObject, int  size);
-   void static_QSurfaceFormat_setDefaultFormat(const QSurfaceFormat&  format);
-   void setDepthBufferSize(QSurfaceFormat* theWrappedObject, int  size);
-   void setGreenBufferSize(QSurfaceFormat* theWrappedObject, int  size);
-   void setMajorVersion(QSurfaceFormat* theWrappedObject, int  majorVersion);
-   void setMinorVersion(QSurfaceFormat* theWrappedObject, int  minorVersion);
-   void setOption(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOptions  opt);
-   void setOption(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOption  option, bool  on = true);
-   void setOptions(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOptions  options);
-   void setProfile(QSurfaceFormat* theWrappedObject, QSurfaceFormat::OpenGLContextProfile  profile);
-   void setRedBufferSize(QSurfaceFormat* theWrappedObject, int  size);
-   void setRenderableType(QSurfaceFormat* theWrappedObject, QSurfaceFormat::RenderableType  type);
-   void setSamples(QSurfaceFormat* theWrappedObject, int  numSamples);
-   void setStencilBufferSize(QSurfaceFormat* theWrappedObject, int  size);
-   void setStereo(QSurfaceFormat* theWrappedObject, bool  enable);
-   void setSwapBehavior(QSurfaceFormat* theWrappedObject, QSurfaceFormat::SwapBehavior  behavior);
-   void setSwapInterval(QSurfaceFormat* theWrappedObject, int  interval);
-   void setVersion(QSurfaceFormat* theWrappedObject, int  major, int  minor);
-   int  stencilBufferSize(QSurfaceFormat* theWrappedObject) const;
-   bool  stereo(QSurfaceFormat* theWrappedObject) const;
-   QSurfaceFormat::SwapBehavior  swapBehavior(QSurfaceFormat* theWrappedObject) const;
-   int  swapInterval(QSurfaceFormat* theWrappedObject) const;
-   bool  testOption(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOptions  opt) const;
-   bool  testOption(QSurfaceFormat* theWrappedObject, QSurfaceFormat::FormatOption  option) const;
-   QPair<int , int >  version(QSurfaceFormat* theWrappedObject) const;
-    QString py_toString(QSurfaceFormat*);
-};
-
-
-
-
-
-class PythonQtShell_QSwipeGesture : public QSwipeGesture
-{
-public:
-    PythonQtShell_QSwipeGesture(QObject*  parent = nullptr):QSwipeGesture(parent),_wrapper(NULL) {};
-
-   ~PythonQtShell_QSwipeGesture();
-
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
-
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtWrapper_QSwipeGesture : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QSwipeGesture* new_QSwipeGesture(QObject*  parent = nullptr);
-void delete_QSwipeGesture(QSwipeGesture* obj) { delete obj; } 
-   QSwipeGesture::SwipeDirection  horizontalDirection(QSwipeGesture* theWrappedObject) const;
-   void setSwipeAngle(QSwipeGesture* theWrappedObject, qreal  value);
-   qreal  swipeAngle(QSwipeGesture* theWrappedObject) const;
-   QSwipeGesture::SwipeDirection  verticalDirection(QSwipeGesture* theWrappedObject) const;
 };
 
 
