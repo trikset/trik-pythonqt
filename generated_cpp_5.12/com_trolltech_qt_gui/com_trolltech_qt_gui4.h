@@ -48,7 +48,6 @@
 #include <qlayoutitem.h>
 #include <qlcdnumber.h>
 #include <qlineedit.h>
-#include <qlist.h>
 #include <qlistview.h>
 #include <qlistwidget.h>
 #include <qlocale.h>
@@ -912,60 +911,11 @@ QItemSelection* a = new QItemSelection();
 *((QItemSelection*)a) = other;
 return a; }
 void delete_QItemSelection(QItemSelection* obj) { delete obj; } 
-   void append(QItemSelection* theWrappedObject, const QItemSelectionRange&  t);
-   void append(QItemSelection* theWrappedObject, const QList<QItemSelectionRange >&  t);
-   const QItemSelectionRange*  at(QItemSelection* theWrappedObject, int  i) const;
-   const QItemSelectionRange*  back(QItemSelection* theWrappedObject) const;
-   void clear(QItemSelection* theWrappedObject);
-   const QItemSelectionRange*  constFirst(QItemSelection* theWrappedObject) const;
-   const QItemSelectionRange*  constLast(QItemSelection* theWrappedObject) const;
    bool  contains(QItemSelection* theWrappedObject, const QModelIndex&  index) const;
-   int  count(QItemSelection* theWrappedObject) const;
-   int  count(QItemSelection* theWrappedObject, const QItemSelectionRange&  t) const;
-   void detachShared(QItemSelection* theWrappedObject);
-   bool  empty(QItemSelection* theWrappedObject) const;
-   bool  endsWith(QItemSelection* theWrappedObject, const QItemSelectionRange&  t) const;
-   const QItemSelectionRange*  first(QItemSelection* theWrappedObject) const;
-   QList<QItemSelectionRange >  static_QItemSelection_fromVector(const QVector<QItemSelectionRange >&  vector);
-   const QItemSelectionRange*  front(QItemSelection* theWrappedObject) const;
-   int  indexOf(QItemSelection* theWrappedObject, const QItemSelectionRange&  t, int  from = 0) const;
    QList<QModelIndex >  indexes(QItemSelection* theWrappedObject) const;
-   bool  isEmpty(QItemSelection* theWrappedObject) const;
-   bool  isSharedWith(QItemSelection* theWrappedObject, const QList<QItemSelectionRange >&  other) const;
-   const QItemSelectionRange*  last(QItemSelection* theWrappedObject) const;
-   int  lastIndexOf(QItemSelection* theWrappedObject, const QItemSelectionRange&  t, int  from = -1) const;
-   int  length(QItemSelection* theWrappedObject) const;
    void merge(QItemSelection* theWrappedObject, const QItemSelection&  other, QItemSelectionModel::SelectionFlags  command);
-   QList<QItemSelectionRange >  mid(QItemSelection* theWrappedObject, int  pos, int  length = -1) const;
-   void move(QItemSelection* theWrappedObject, int  from, int  to);
-   bool  __ne__(QItemSelection* theWrappedObject, const QList<QItemSelectionRange >&  l) const;
-   bool  __eq__(QItemSelection* theWrappedObject, const QList<QItemSelectionRange >&  l) const;
-   void pop_back(QItemSelection* theWrappedObject);
-   void pop_front(QItemSelection* theWrappedObject);
-   void prepend(QItemSelection* theWrappedObject, const QItemSelectionRange&  t);
-   void push_back(QItemSelection* theWrappedObject, const QItemSelectionRange&  t);
-   void push_front(QItemSelection* theWrappedObject, const QItemSelectionRange&  t);
-   int  removeAll(QItemSelection* theWrappedObject, const QItemSelectionRange&  t);
-   void removeAt(QItemSelection* theWrappedObject, int  i);
-   void removeFirst(QItemSelection* theWrappedObject);
-   void removeLast(QItemSelection* theWrappedObject);
-   bool  removeOne(QItemSelection* theWrappedObject, const QItemSelectionRange&  t);
-   void replace(QItemSelection* theWrappedObject, int  i, const QItemSelectionRange&  t);
-   void reserve(QItemSelection* theWrappedObject, int  size);
    void select(QItemSelection* theWrappedObject, const QModelIndex&  topLeft, const QModelIndex&  bottomRight);
-   void setSharable(QItemSelection* theWrappedObject, bool  sharable);
-   int  size(QItemSelection* theWrappedObject) const;
    void static_QItemSelection_split(const QItemSelectionRange&  range, const QItemSelectionRange&  other, QItemSelection*  result);
-   bool  startsWith(QItemSelection* theWrappedObject, const QItemSelectionRange&  t) const;
-   void swap(QItemSelection* theWrappedObject, QList<QItemSelectionRange >&  other);
-   void swap(QItemSelection* theWrappedObject, int  i, int  j);
-   QItemSelectionRange  takeAt(QItemSelection* theWrappedObject, int  i);
-   QItemSelectionRange  takeFirst(QItemSelection* theWrappedObject);
-   QItemSelectionRange  takeLast(QItemSelection* theWrappedObject);
-   QVector<QItemSelectionRange >  toVector(QItemSelection* theWrappedObject) const;
-   QItemSelectionRange  value(QItemSelection* theWrappedObject, int  i) const;
-   QItemSelectionRange  value(QItemSelection* theWrappedObject, int  i, const QItemSelectionRange&  defaultValue) const;
-    bool __nonzero__(QItemSelection* obj) { return !obj->isEmpty(); }
 };
 
 

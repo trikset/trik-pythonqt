@@ -15,9 +15,9 @@
 #include <qdeadlinetimer.h>
 #include <qdir.h>
 #include <qeasingcurve.h>
+#include <qevent.h>
 #include <qfile.h>
 #include <qiodevice.h>
-#include <qlist.h>
 #include <qlocale.h>
 #include <qmetaobject.h>
 #include <qmutex.h>

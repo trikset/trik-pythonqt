@@ -25,10 +25,10 @@
 #include <qdiriterator.h>
 #include <qeasingcurve.h>
 #include <qelapsedtimer.h>
+#include <qevent.h>
 #include <qeventtransition.h>
 #include <qfileinfo.h>
 #include <qiodevice.h>
-#include <qlist.h>
 #include <qlocale.h>
 #include <qmetaobject.h>
 #include <qmimedata.h>

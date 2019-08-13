@@ -32,7 +32,6 @@
 #include <qkeysequence.h>
 #include <qlayout.h>
 #include <qline.h>
-#include <qlist.h>
 #include <qlocale.h>
 #include <qmargins.h>
 #include <qmatrix.h>

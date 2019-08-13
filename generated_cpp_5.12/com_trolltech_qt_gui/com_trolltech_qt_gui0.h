@@ -69,7 +69,6 @@
 #include <qlayout.h>
 #include <qlayoutitem.h>
 #include <qlineedit.h>
-#include <qlist.h>
 #include <qlocale.h>
 #include <qmargins.h>
 #include <qmatrix.h>

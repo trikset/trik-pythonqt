@@ -14,6 +14,7 @@
 #include <qcolor.h>
 #include <qcursor.h>
 #include <qdatastream.h>
+#include <qevent.h>
 #include <qfont.h>
 #include <qicon.h>
 #include <qiconengine.h>
@@ -23,7 +24,6 @@
 #include <qiodevice.h>
 #include <qkeysequence.h>
 #include <qline.h>
-#include <qlist.h>
 #include <qmatrix.h>
 #include <qobject.h>
 #include <qpaintdevice.h>

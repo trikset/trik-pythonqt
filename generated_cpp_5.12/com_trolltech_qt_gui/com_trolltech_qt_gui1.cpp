@@ -51,7 +51,6 @@
 #include <qkeysequence.h>
 #include <qlayout.h>
 #include <qlineedit.h>
-#include <qlist.h>
 #include <qlocale.h>
 #include <qmargins.h>
 #include <qmetaobject.h>

@@ -15,7 +15,6 @@
 #include <qimage.h>
 #include <qitemeditorfactory.h>
 #include <qline.h>
-#include <qlist.h>
 #include <qlocale.h>
 #include <qmatrix.h>
 #include <qmetaobject.h>
