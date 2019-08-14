@@ -1,7 +1,8 @@
 # profile to include and link Python
 
 # Change this variable to your python version (2.6, 2.7, 3.3, ...)
-win32:PYTHON_VERSION=35
+PYTHON3_VERSION_MINOR=7
+win32:PYTHON_VERSION=3$${PYTHON3_VERSION_MINOR}
 unix:PYTHON_VERSION=UNKNOWN_BECAUSE_DETECT_FAILED
 
 win32 {
@@ -32,7 +33,7 @@ win32 {
   # pkg-config is used to autodetect Python.
   # make sure that you have installed a matching pythonX-dev package.
   CONFIG *= link_pkgconfig
-  PYTHON_PKG = python-3.5
+  PYTHON_PKG = python-3.$${PYTHON3_VERSION_MINOR}
   PKGCONFIG *= $${PYTHON_PKG}
   PYTHON_VERSION_AUTODETECTED=$$system($$pkgConfigExecutable() --modversion $${PYTHON_PKG})
   !isEmpty(PYTHON_VERSION_AUTODETECTED) {
@@ -44,6 +45,6 @@ win32 {
     # No `brew`, ok, then you need to have the Python development kit installed as framework
     INCLUDEPATH += /System/Library/Frameworks/Python.framework/Headers
     LIBS += -F/System/Library/Frameworks -framework Python
-    PYTHON_VERSION=3.5
+    PYTHON_VERSION=3.$${PYTHON3_VERSION_MINOR}
   }
 }
