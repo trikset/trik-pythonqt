@@ -8,8 +8,6 @@ mac:CONFIG -= app_bundle
 INCLUDEPATH += $$GENERATORPATH/.
 INCLUDEPATH += $$GENERATORPATH/../common
 
-unix:CONFIG += debug_and_release
-
 CONFIG += console
 RESOURCES += generator.qrc
 
@@ -58,7 +56,7 @@ SOURCES += \
 
 
    
-QT = core xml
+QT += core xml
 
 win32-msvc.net {
         QMAKE_CXXFLAGS += /Zm500

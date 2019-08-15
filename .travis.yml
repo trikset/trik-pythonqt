@@ -49,6 +49,6 @@ script:
 - qmake -qt=5 -r $QMAKE_EXTRA
 - make -j 2
 - bin/PythonQtTest
-
+- bin/pythonqt_generator --help
 after_script:
 - ccache -s
