@@ -19,6 +19,7 @@ addons:
     packages:
     - python3-dev
     - qtbase5-private-dev
+    - qt5-default
   homebrew:
     update: true
     packages:
@@ -44,10 +45,10 @@ git:
 
 script:
 - export PATH="/usr/local/opt/qt/bin:$PATH"
-- qmake -qt=5 -v
+- qmake -v
 - g++ --version
 - ccache -sz
-- qmake -qt=5 -r $QMAKE_EXTRA
+- qmake -r $QMAKE_EXTRA
 - make -j 2
 - cd bin
 - export LD_LIBRARY_PATH=.
