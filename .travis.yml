@@ -42,6 +42,7 @@ git:
 #- "./.travis/install.sh"
 
 script:
+- export PATH="/usr/local/opt/qt/bin:$PATH"
 - qmake -qt=5 -v
 - g++ --version
 - ccache -sz
