@@ -27,14 +27,11 @@ matrix:
   include:
   - os: linux
     services: docker
-    name: Linux release
-  - os: linux
-    services: docker
-    env: CONFIG=debug     VERA=true SUFFIX=-d
+    env: QMAKE_EXTRA="$QMAKE_EXTRA CONFIG+=debug CONFIG+=debug CONFIG+=sanitizer CONFIG+=sanitize_address CONFIG+=sanitize_undefined"
     name: Linux debug + vera
   - os: osx
     name: macOS release
-    env: QMAKE_EXTRA="$QMAKE_EXTRA CONFIG+=no-sanitizers"
+    env: QMAKE_EXTRA="$QMAKE_EXTRA CONFIG+=no-sanitizers CONFIG+=release"
 git:
   depth: 1
 
@@ -44,10 +41,10 @@ git:
 #- "./.travis/install.sh"
 
 script:
-- qmake -v
+- qmake -qt=5 -v
 - g++ --version
 - ccache -sz
-- qmake -r $QMAKE_EXTRA
+- qmake -qt=5 -r $QMAKE_EXTRA
 - make -j 2
 
 after_script:
