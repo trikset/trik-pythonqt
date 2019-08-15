@@ -1,0 +1,52 @@
+clone_folder: c:\pythonqt
+
+skip_commits:
+  files:
+    - '.travis.yml'
+    - '**/*.md'
+  message: /\[NOCI\]/
+
+
+environment:
+  global:
+    APPVEYOR_SAVE_CACHE_ON_ERROR: true
+    APPVEYOR_CACHE_ENTRY_ZIP_ARGS: -t7z -m0=lzma -mx=3 -md=32m
+    BUILD_DIR: '%APPVEYOR_BUILD_FOLDER%\.build'
+
+  matrix:
+      - MINGW: C:\Qt\Tools\mingw730_32
+        QTDIR: C:\Qt\5.12\mingw73_32
+        PYTHON_PATH: C:\Python37
+      - MINGW: C:\Qt\Tools\mingw730_64
+        QTDIR: C:\Qt\5.12\mingw73_64
+        PYTHON_PATH: C:\Python37-x64
+
+configuration:
+  - debug
+  - release
+
+#cache:
+#  - '%BUILD_DIR% -> **\*.pr?, appveyor.yml'
+
+init:
+  - git config --global core.autocrlf true
+  - if "x%appveyor_pull_request_number%" NEQ "x" set APPVEYOR_CACHE_SKIP_SAVE=true
+  - if "x%appveyor_repo_branch%" NEQ "xmaster" set APPVEYOR_CACHE_SKIP_SAVE=true
+
+before_build:
+  - git submodule update --init --recursive
+  - set PATH=%PYTHON_PATH%;%QTDIR%\bin;%MINGW%\bin;C:\msys64\usr\bin;%PATH%
+  - if not exist %BUILD_DIR% md %BUILD_DIR%
+#  - pacman --verbose --noconfirm --sync rsync
+#  - path
+  - python -V
+  - g++ --version
+
+build_script:
+  - cd %BUILD_DIR%
+  - qmake %APPVEYOR_BUILD_FOLDER% -spec win32-g++ CONFIG+=%CONFIGURATION% CONFIG+=tests
+  - mingw32-make -j2 qmake_all
+  - mingw32-make -j2 all
+
+test_script:
+  - dir

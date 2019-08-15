@@ -2,7 +2,6 @@
 
 # Change this variable to your python version (2.6, 2.7, 3.3, ...)
 PYTHON3_VERSION_MINOR=7
-win32:PYTHON_VERSION=3$${PYTHON3_VERSION_MINOR}
 unix:PYTHON_VERSION=UNKNOWN_BECAUSE_DETECT_FAILED
 
 win32 {
@@ -21,11 +20,12 @@ win32 {
   # set PYTHON_LIB  = c:\yourDir\Python-2.6.1\PCbuild8\Win32
   isEmpty(PYTHON_PATH):PYTHON_PATH=$$(PYTHON_PATH)
   isEmpty(PYTHON_LIB):PYTHON_LIB=$$(PYTHON_LIB)
-  isEmpty(PYTHON_PATH):error("Set PYTHON_PATH, please")
-  isEmpty(PYTHON_LIB):error("Set PYTHON_LIB, please")
+  isEmpty(PYTHON_LIB):!isEmpty(PYTHON_PATH):PYTHON_LIB=$${PYTHON_PATH}/libs
+  isEmpty(PYTHON_PATH)|!exists($$PYTHON_PATH):error("Set PYTHON_PATH, please")
+  isEmpty(PYTHON_LIB)|!exists($$PYTHON_LIB):error("Set PYTHON_LIB, please")
+  PYTHON_VERSION=$$system($$PYTHON_PATH/python.exe -c $$system_quote(import sys;(v1,v2,_,_,_)=sys.version_info;print('"'%s.%s'"'%(v1,v2))))
   INCLUDEPATH += $$PYTHON_PATH/PC $$PYTHON_PATH/include
-  LIBS += -L$$PYTHON_LIB -lpython$${PYTHON_VERSION} #$${DEBUG_EXT}
-
+  LIBS += -L$$PYTHON_LIB -lpython3
 } else:unix {
 
   # workaround Qt issue https://bugreports.qt.io/browse/QTBUG-56164
@@ -33,7 +33,7 @@ win32 {
   # pkg-config is used to autodetect Python.
   # make sure that you have installed a matching pythonX-dev package.
   CONFIG *= link_pkgconfig
-  PYTHON_PKG = python-3.$${PYTHON3_VERSION_MINOR}
+  PYTHON_PKG = python3
   PKGCONFIG *= $${PYTHON_PKG}
   PYTHON_VERSION_AUTODETECTED=$$system($$pkgConfigExecutable() --modversion $${PYTHON_PKG})
   !isEmpty(PYTHON_VERSION_AUTODETECTED) {
