@@ -2,6 +2,7 @@
 # qmake generates NUL file on Linux in ./build subdir
 build/NUL
 
+generator/pythonqt_generator
 .pyenv-*/
 bin/
 *.pch
