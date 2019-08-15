@@ -1,6 +1,7 @@
 language: cpp
 env:
   global:
+    - CCACHE_SLOPPINESS=include_file_ctime,include_file_mtime
     - PYENV_ROOT=$HOME/.pyenv
     - QMAKE_EXTRA="PYTHONQTALL_CONFIG=PythonQtCore PYTHONQTALL_CONFIG+=PythonQtGui CONFIG+=tests CONFIG+=noPch CONFIG+=ccache CONFIG+=generator"
 cache:
