@@ -1,4 +1,7 @@
 # trik-pythonqt
+[![Build status](https://ci.appveyor.com/api/projects/status/7in7dq3dii79p8do/branch/master?svg=true)](https://ci.appveyor.com/project/iakov/trik-pythonqt/branch/master)
+[![Build Status](https://travis-ci.org/trikset/trik-pythonqt.svg?branch=master)](https://travis-ci.org/trikset/trik-pythonqt)
+
 
 PythonQt fork with TRIK-related patches
 
