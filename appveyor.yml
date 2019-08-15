@@ -51,4 +51,3 @@ build_script:
 
 test_script:
   - '%APPVEYOR_BUILD_FOLDER%\bin\PythonQtTest'
-  - '%BUILD_DIR%\generator\pythonqt_generator --help'
