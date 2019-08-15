@@ -6,6 +6,8 @@
 TARGET   = PythonQtTest
 TEMPLATE = app
 
+CONFIG -= app_bundle
+
 #DESTDIR    = ../lib
 
 QT += testlib
