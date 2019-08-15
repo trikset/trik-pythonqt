@@ -41,6 +41,7 @@ before_build:
 #  - path
   - python -V
   - g++ --version
+  - dir %PYTHON_PATH%\libs
 
 build_script:
   - cd %BUILD_DIR%
