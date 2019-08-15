@@ -48,7 +48,10 @@ script:
 - ccache -sz
 - qmake -qt=5 -r $QMAKE_EXTRA
 - make -j 2
-- bin/PythonQtTest
-- bin/pythonqt_generator --help
+- cd bin
+- export LD_LIBRARY_PATH=.
+- ./PythonQtTest
+- ./pythonqt_generator --help
+
 after_script:
 - ccache -s
