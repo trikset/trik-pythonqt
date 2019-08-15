@@ -45,7 +45,7 @@ before_build:
 
 build_script:
   - cd %BUILD_DIR%
-  - qmake %APPVEYOR_BUILD_FOLDER% -spec win32-g++ CONFIG+=%CONFIGURATION% CONFIG+=generator CONFIG+=tests PYTHONQTALL_CONFIG=PythonQtCore
+  - qmake %APPVEYOR_BUILD_FOLDER% -spec win32-g++ CONFIG+=%CONFIGURATION% CONFIG+=generator CONFIG+=tests PYTHONQTALL_CONFIG="PythonQtCore PythonQtGui"
   - mingw32-make -j2 qmake_all
   - mingw32-make -j2 all
 
