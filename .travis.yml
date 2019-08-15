@@ -51,6 +51,7 @@ script:
 - qmake -r $QMAKE_EXTRA
 - make -j 2
 - cd bin
+- export ASAN_OPTIONS=detect_leaks=0
 - export LD_LIBRARY_PATH=.
 - ./PythonQtTest -platform minimal
 - ./pythonqt_generator --help
