@@ -19,10 +19,11 @@ addons:
     - python3-dev
     - qtbase5-private-dev
   homebrew:
-    update: false
+    update: true
     packages:
     - qt
     - python3
+    - ccache
 matrix:
   include:
   - os: linux
