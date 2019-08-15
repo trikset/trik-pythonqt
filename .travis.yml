@@ -48,6 +48,7 @@ script:
 - ccache -sz
 - qmake -qt=5 -r $QMAKE_EXTRA
 - make -j 2
+- bin/PythonQtTest
 
 after_script:
 - ccache -s
