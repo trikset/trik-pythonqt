@@ -50,6 +50,7 @@ build_script:
   - mingw32-make -j2 all
 
 test_script:
+  - cd %BUILD_DIR%
   - dir
   - bin\PythonQtTest
   - generator\pythonqt_generator --help
