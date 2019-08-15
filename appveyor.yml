@@ -50,7 +50,5 @@ build_script:
   - mingw32-make -j2 all
 
 test_script:
-  - cd %BUILD_DIR%
-  - dir
-  - bin\tests\PythonQtTest
-  - generator\pythonqt_generator --help
+  - '%BUILD_DIR%\generator\pythonqt_generator --help'
+  - '%APPVEYOR_BUILD_FOLDER%\bin\PythonQtTest'
