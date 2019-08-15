@@ -52,5 +52,5 @@ build_script:
 test_script:
   - cd %BUILD_DIR%
   - dir
-  - bin\PythonQtTest
+  - bin\tests\PythonQtTest
   - generator\pythonqt_generator --help

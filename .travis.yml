@@ -27,7 +27,7 @@ addons:
 matrix:
   include:
   - os: linux
-    services: docker
+    distro: xenial
     env: QMAKE_EXTRA="$QMAKE_EXTRA CONFIG+=debug CONFIG+=sanitizer CONFIG+=sanitize_address CONFIG+=sanitize_undefined"
     name: Linux debug + vera
   - os: osx
