@@ -45,10 +45,10 @@ before_build:
 
 build_script:
   - cd %BUILD_DIR%
-  - qmake %APPVEYOR_BUILD_FOLDER% -spec win32-g++ CONFIG-=debug CONFIG-=release CONFIG+=%CONFIGURATION% CONFIG+=generator CONFIG+=tests PYTHONQTALL_CONFIG="PythonQtCore PythonQtGui"
+  - qmake %APPVEYOR_BUILD_FOLDER% -spec win32-g++ CONFIG-=debug CONFIG-=release CONFIG+=%CONFIGURATION% CONFIG+=silent CONFIG+=warn_off CONFIG+=generator CONFIG+=tests PYTHONQTALL_CONFIG="PythonQtCore PythonQtGui"
   - mingw32-make -j2 qmake_all
   - mingw32-make -j2 all
 
 test_script:
   - '%APPVEYOR_BUILD_FOLDER%\bin\PythonQtTest'
-  - '%APPVEYOR_BUILD_FOLDER%\bin\pythonqt_generator --help'
+  - '%BUILD_DIR%\generator\pythonqt_generator --help'
