@@ -6,7 +6,7 @@
 TARGET   = PythonQtTest
 TEMPLATE = app
 
-DESTDIR    = ../lib
+#DESTDIR    = ../lib
 
 QT += testlib
 #QT += opengl

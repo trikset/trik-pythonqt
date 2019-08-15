@@ -2,7 +2,7 @@ language: cpp
 env:
   global:
     - PYENV_ROOT=$HOME/.pyenv
-    - QMAKE_EXTRA="CONFIG+=tests CONFIG+=noPch CONFIG+=ccache"
+    - QMAKE_EXTRA="CONFIG+=tests CONFIG+=noPch CONFIG+=ccache CONFIG+=generator"
 cache:
   timeout: 1000
   apt: true
@@ -16,7 +16,13 @@ addons:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-    - python-pip
+    - python3-dev
+    - qtbase5-private-dev
+  homebrew:
+    update: false
+    packages:
+    - qt
+    - python3
 matrix:
   include:
   - os: linux
@@ -34,9 +40,15 @@ git:
 
 #before_install:
 
-install:
-- "./.travis/install.sh"
+#install:
+#- "./.travis/install.sh"
 
 script:
+- qmake -v
+- g++ --version
+- ccache -sz
 - qmake -r $QMAKE_EXTRA
 - make -j 2
+
+after_script:
+- ccache -s
