@@ -51,7 +51,7 @@ script:
 - make -j 2
 - cd bin
 - export LD_LIBRARY_PATH=.
-- ./PythonQtTest
+- ./PythonQtTest -platform minimal
 - ./pythonqt_generator --help
 
 after_script:
