@@ -19,11 +19,15 @@ win32 {
   # set PYTHON_PATH = c:\yourDir\Python-2.6.1\
   # set PYTHON_LIB  = c:\yourDir\Python-2.6.1\PCbuild8\Win32
   isEmpty(PYTHON_PATH):PYTHON_PATH=$$(PYTHON_PATH)
+  isEmpty(PYTHON_PATH)|!exists($$PYTHON_PATH):error("Set correct PYTHON_PATH, please")
   isEmpty(PYTHON_LIB):PYTHON_LIB=$$(PYTHON_LIB)
-  isEmpty(PYTHON_LIB):!isEmpty(PYTHON_PATH):PYTHON_LIB=$${PYTHON_PATH}/libs
-  isEmpty(PYTHON_PATH)|!exists($$PYTHON_PATH):error("Set PYTHON_PATH, please")
-  isEmpty(PYTHON_LIB)|!exists($$PYTHON_LIB):error("Set PYTHON_LIB, please")
+  isEmpty(PYTHON_LIB):!isEmpty(PYTHON_PATH) {
+       PYTHON_LIB=$${PYTHON_PATH}/libs
+       message("PYTHON_PATH was set, setting PYTHON_LIB to $$PYTHON_LIB")
+  }
+  isEmpty(PYTHON_LIB)|!exists($$PYTHON_LIB):error("Set correct PYTHON_LIB, please")
   PYTHON_VERSION=$$system($$PYTHON_PATH/python.exe -c $$system_quote(import sys;(v1,v2,_,_,_)=sys.version_info;print('"'%s%s'"'%(v1,v2))))
+  message(PYTHON_VERSION is detected as $$PYTHON_VERSION)
   INCLUDEPATH += $$PYTHON_PATH/PC $$PYTHON_PATH/include
   LIBS += -L$$PYTHON_LIB -lpython$${PYTHON_VERSION}
 } else:unix {
