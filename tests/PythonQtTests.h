@@ -75,7 +75,7 @@ private Q_SLOTS:
 
   void testProperties();
   void testDynamicProperties();
-  
+
 private:
   PythonQtTestApiHelper* _helper;
   PythonQtObjectPtr _main;
@@ -109,7 +109,7 @@ class ClassD : public QObject, public ClassA, public ClassB {
 public:
   ClassD() { d = 4; }
   public Q_SLOTS:
-    int getD() { return d; }
+	int getD() { return d; }
 private:
   int d;
 
@@ -139,8 +139,8 @@ public Q_SLOTS:
 
 class ClassDWrapper : public QObject {
   Q_OBJECT
-    public Q_SLOTS:
-      ClassD* new_ClassD() { return new ClassD; }
+	public Q_SLOTS:
+	  ClassD* new_ClassD() { return new ClassD; }
 };
 
 
@@ -161,7 +161,7 @@ public:
   virtual bool exists(const QString& filename);
 
   virtual QDateTime lastModifiedDate(const QString& filename);
-  
+
   virtual bool isEggArchive(const QString& filename) { return false; }
 
 public Q_SLOTS:
@@ -178,7 +178,7 @@ private:
 
 
 // test implementation of the wrapper factory
-class PythonQtTestCppFactory : public PythonQtCppWrapperFactory 
+class PythonQtTestCppFactory : public PythonQtCppWrapperFactory
 {
 public:
   virtual QObject* create(const QByteArray& name, void *ptr);
@@ -202,7 +202,7 @@ class PQCppObjectWrapper : public QObject {
   Q_OBJECT
 public:
   PQCppObjectWrapper(void* ptr) {
-    _ptr = (PQCppObject*)ptr;
+	_ptr = (PQCppObject*)ptr;
   }
 
 public Q_SLOTS:
@@ -236,16 +236,16 @@ private:
 
 class PQCppObjectNoWrapDecorator : public QObject {
   Q_OBJECT
-  
+
 public Q_SLOTS:
   PQCppObjectNoWrap* new_PQCppObjectNoWrap() {
-    return new PQCppObjectNoWrap(0);
+	return new PQCppObjectNoWrap(0);
   }
   PQCppObjectNoWrap* new_PQCppObjectNoWrap(const PQCppObjectNoWrap& /*other*/) {
-    return new PQCppObjectNoWrap(1);
+	return new PQCppObjectNoWrap(1);
   }
   PQCppObjectNoWrap* new_PQCppObjectNoWrap(double /*value*/) {
-    return new PQCppObjectNoWrap(2);
+	return new PQCppObjectNoWrap(2);
   }
 
   int  getH(PQCppObjectNoWrap* obj) { return obj->getHeight(); }
@@ -255,40 +255,40 @@ public Q_SLOTS:
 
 //! an cpp object that is to be wrapped by decorators only
 class PQCppObject2 {
-  
+
 public:
   enum TestEnumFlag {
-    TestEnumValue1 = 0,
-    TestEnumValue2 = 1
+	TestEnumValue1 = 0,
+	TestEnumValue2 = 1
   };
-  
+
   PQCppObject2() {}
-  
+
 };
 
 class PQCppObject2Decorator : public QObject {
   Q_OBJECT
-  
+
 public:
   Q_ENUMS(TestEnumFlag)
   Q_FLAGS(TestEnum)
-  
+
   enum TestEnumFlag {
-    TestEnumValue1 = 0,
-    TestEnumValue2 = 1
+	TestEnumValue1 = 0,
+	TestEnumValue2 = 1
   };
-  
+
   Q_DECLARE_FLAGS(TestEnum, TestEnumFlag)
-  
+
   public Q_SLOTS:
   PQCppObject2* new_PQCppObject2() {
-    return new PQCppObject2();
+	return new PQCppObject2();
   }
 
   TestEnumFlag testEnumFlag1(PQCppObject2* obj, TestEnumFlag flag);
 
   PQCppObject2::TestEnumFlag testEnumFlag2(PQCppObject2* obj, PQCppObject2::TestEnumFlag flag);
-    
+
   // with int overload
   TestEnumFlag testEnumFlag3(PQCppObject2* obj, int flag);
   TestEnumFlag testEnumFlag3(PQCppObject2* obj, TestEnumFlag flag);
@@ -343,8 +343,8 @@ class PythonQtTestSlotCallingHelper : public QObject
   Q_OBJECT
 public:
   PythonQtTestSlotCallingHelper(PythonQtTestSlotCalling* test) {
-    _test = test;
-    _qObjectProp = NULL;
+	_test = test;
+	_qObjectProp = NULL;
   };
 
   bool runScript(const char* script, int expectedOverload = -1);
@@ -449,13 +449,13 @@ public Q_SLOTS:
   QList<QSize> getQListQSize(const QList<QSize>& list) { _called = true; return list; }
 
   QList<Qt::DayOfWeek> getQListDayOfWeek(const QList<Qt::DayOfWeek>& days) { _called = true; return days; }
-  
+
   QMap<int, QVariant> getQMapIntVariant(const QMap<int, QVariant>& map) { _called = true; return map; }
   QMap<int, QString> getQMapIntString(const QMap<int, QString>& map) { _called = true; return map; }
 
   QVector<QPair<double, QColor >  > getQVectorQPair1(const QVector<QPair<double, QColor >  > &list) { _called = true; return list; }
   QVector<QPair<qreal, QColor >  > getQVectorQPair2(const QVector<QPair<qreal, QColor >  > &list) { _called = true; return list; }
-  
+
   QPair<double, QColor> getQPair(const QPair<double, QColor>& pair) { _called = true; return pair; }
 
   QPair<double, QVariant> getQPairVariant(const QPair<double, QVariant>& pair) { _called = true; return pair; }
@@ -468,19 +468,19 @@ public Q_SLOTS:
   QColor* getQColor5() { _called = true; static QColor c(1,2,3); return &c; }
 
   PyObject* getPyObject(PyObject* obj) {
-    _called = true;
-    // returned object needs to get an extra ref count!
-    Py_XINCREF(obj);
-    return obj;
+	_called = true;
+	// returned object needs to get an extra ref count!
+	Py_XINCREF(obj);
+	return obj;
   }
 
   PyObject* getPyObjectFromVariant(const QVariant& val) {
-    _called = true;
-    PythonQtObjectPtr value = val;
-    PyObject* obj = value.object();
-    // returned object needs to get an extra ref count!
-    Py_XINCREF(obj);
-    return obj;
+	_called = true;
+	PythonQtObjectPtr value = val;
+	PyObject* obj = value.object();
+	// returned object needs to get an extra ref count!
+	Py_XINCREF(obj);
+	return obj;
   }
   QVariant  getPyObjectFromVariant2(const QVariant& val) { _called = true; return val; }
 
@@ -508,7 +508,7 @@ public Q_SLOTS:
 
   //! get a return by value PQCppObjectNoWrap
   PQCppObjectNoWrap getPQCppObjectNoWrapAsValue() { _called = true; return PQCppObjectNoWrap(47); }
-  
+
   PQUnknownButRegisteredValueObject getUnknownButRegisteredValueObjectAsValue() { _called = true; return PQUnknownButRegisteredValueObject(); }
   PQUnknownValueObject              getUnknownValueObjectAsValue() { _called = true; return PQUnknownValueObject(); }
 
@@ -533,7 +533,7 @@ public Q_SLOTS:
   QBrush  setAutoConvertBrush(const QBrush& brush) { _called = true; return brush; }
   QPen    setAutoConvertPen(const QPen& pen) { _called = true; return pen; }
   QCursor setAutoConvertCursor(const QCursor& cursor) { _called = true; return cursor; }
-  
+
 private:
   bool _passed;
   mutable bool _called;
@@ -566,7 +566,7 @@ class PythonQtTestSignalHandlerHelper : public QObject
 
 public:
   PythonQtTestSignalHandlerHelper(PythonQtTestSignalHandler* test) {
-    _test = test;
+	_test = test;
   }
 
 public Q_SLOTS:
