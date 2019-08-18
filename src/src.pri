@@ -3,6 +3,8 @@ DEFINES +=  PYTHONQT_EXPORTS
 INCLUDEPATH += $$PWD
 
 CONFIG += c++11
+
+!no_warn:gcc: QMAKE_CXXFLAGS += -Werror
 # This was needed to work around "number of sections exceeded object file format limit" linker error
 win32:!gcc:QMAKE_CXXFLAGS += /bigobj
 
