@@ -57,16 +57,16 @@ void PythonQtTestSlotCalling::init() {
 void* polymorphic_ClassB_Handler(const void* ptr, const char** className) {
   ClassB* o = (ClassB*)ptr;
   if (o->type()==2) {
-    *className = "ClassB";
-    return (ClassB*)o;
+	*className = "ClassB";
+	return (ClassB*)o;
   }
   if (o->type()==3) {
-    *className = "ClassC";
-    return (ClassC*)o;
+	*className = "ClassC";
+	return (ClassC*)o;
   }
   if (o->type()==4) {
-    *className = "ClassD";
-    return (ClassD*)o;
+	*className = "ClassD";
+	return (ClassD*)o;
   }
   return NULL;
 }
@@ -271,23 +271,23 @@ void PythonQtTestSlotCalling::testCppFactory()
   QVERIFY(_helper->runScript("if obj.createPQCppObject(12).getHeight()==12: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.createPQCppObject(12).getH()==12: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("pq1 = obj.createPQCppObject(12);\n"
-    "pq2 = obj.createPQCppObject(13);\n"
-    "pq3 = obj.getPQCppObject(pq1);\n"
-    "pq4 = obj.getPQCppObject(pq2);\n"
-    "if pq3.getHeight()==12 and pq4.getHeight()==13: obj.setPassed();\n"
-    ));
+	"pq2 = obj.createPQCppObject(13);\n"
+	"pq3 = obj.getPQCppObject(pq1);\n"
+	"pq4 = obj.getPQCppObject(pq2);\n"
+	"if pq3.getHeight()==12 and pq4.getHeight()==13: obj.setPassed();\n"
+	));
 
   QVERIFY(_helper->runScript("if obj.createPQCppObjectNoWrap(12).getH()==12: obj.setPassed();\n"));
-  
+
   QVERIFY(_helper->runScript("if obj.getPQCppObjectNoWrapAsValue().getH()==47: obj.setPassed();\n"));
-  
+
   qRegisterMetaType<PQUnknownButRegisteredValueObject>("PQUnknownButRegisteredValueObject");
   QVERIFY(_helper->runScript("a = obj.getUnknownButRegisteredValueObjectAsPtr();print(a);\nif a!=None: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("a = obj.getUnknownButRegisteredValueObjectAsValue();print(a);\nif a!=None: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("a = obj.getUnknownValueObjectAsPtr();print(a);\nif a!=None: obj.setPassed();\n"));
   QEXPECT_FAIL("", "Testing by value return without the object being registered as QMetaType or having registered a default constructor decorator", Continue);
   QVERIFY(_helper->runScript("a = obj.getUnknownValueObjectAsValue();print(a);\nif a!=None: obj.setPassed();\n"));
-  
+
   // expect to get strict call to double overload
   QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObjectNoWrap\na = PQCppObjectNoWrap(22.2)\nif a.getH()==2: obj.setPassed();\n"));
   // expect to get un-strict call to double overload
@@ -298,7 +298,7 @@ void PythonQtTestSlotCalling::testCppFactory()
   // test decorated enums
   // already registered by signals test
   //PythonQt::self()->registerCPPClass("PQCppObject2",NULL,NULL, PythonQtCreateObject<PQCppObject2Decorator>);
-  
+
   // local enum (decorated)
   QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObject2\na = PQCppObject2()\nprint(a.testEnumFlag1)\nif a.testEnumFlag1(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
   // enum with namespace (decorated)
@@ -377,7 +377,7 @@ void PythonQtTestSignalHandler::testSignalHandler()
   PyRun_SimpleString("def testEnumSignal(a):\n  if a==1: obj.setPassed();\n");
   QVERIFY(PythonQt::self()->addSignalHandler(_helper, SIGNAL(enumSignal(PQCppObject2::TestEnumFlag)), main, "testEnumSignal"));
   QVERIFY(_helper->emitEnumSignal(PQCppObject2::TestEnumValue2));
-  
+
   PyRun_SimpleString("def testVariantSignal(a):\n  if a==obj.expectedVariant(): obj.setPassed();\n");
   QVERIFY(PythonQt::self()->addSignalHandler(_helper, SIGNAL(variantSignal(QVariant)), main, "testVariantSignal"));
   _helper->setExpectedVariant(QString("Test"));
@@ -447,7 +447,7 @@ void PythonQtTestApi::testDynamicProperties()
 
   // this fails and should fail, but how could that be tested?
   // main.evalScript("obj.testProp = 1");
-  
+
   // create a new dynamic property
   main.evalScript("obj.setProperty('testProp','testValue')");
 
@@ -463,7 +463,7 @@ void PythonQtTestApi::testDynamicProperties()
   // check if dynamic property is in introspection
   QStringList l = PythonQt::self()->introspection(PythonQt::self()->getMainModule(), "obj", PythonQt::Anything);
   QVERIFY(l.contains("testProp"));
-  
+
   // check with None, previous value expected
   main.evalScript("obj.testProp = None");
   QVERIFY(12 == main.getVariable("obj.testProp").toInt());
@@ -474,7 +474,7 @@ void PythonQtTestApi::testDynamicProperties()
   // check if dynamic property is really gone
   QStringList l2 = PythonQt::self()->introspection(PythonQt::self()->getMainModule(), "obj", PythonQt::Anything);
   QVERIFY(!l2.contains("testProp"));
-  
+
 }
 
 
@@ -521,7 +521,7 @@ void PythonQtTestApi::testVariables()
   // check that at least these three variables are set
   s << "obj" << "someObject" << "someValue";
   Q_FOREACH (QString value, s) {
-    QVERIFY(l.indexOf(value)!=-1);
+	QVERIFY(l.indexOf(value)!=-1);
   }
 
   // insert a second time!
@@ -634,7 +634,7 @@ void PythonQtTestApiHelper::stdErr(const QString& s)
 QObject* PythonQtTestCppFactory::create(const QByteArray& name, void *ptr)
 {
   if (name == "PQCppObject") {
-    return new PQCppObjectWrapper(ptr);
+	return new PQCppObjectWrapper(ptr);
   }
   return NULL;
 }

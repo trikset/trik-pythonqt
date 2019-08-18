@@ -57,40 +57,40 @@ static PyObject *PythonQtStdOutRedirect_write(PyObject *self, PyObject *args)
 {
   PythonQtStdOutRedirect*  s = (PythonQtStdOutRedirect*)self;
   if (s->_cb) {
-    QString output;
-    if (PyTuple_GET_SIZE(args)>=1) {
-      PyObject* obj = PyTuple_GET_ITEM(args,0);
-      if (PyUnicode_Check(obj)) {
+	QString output;
+	if (PyTuple_GET_SIZE(args)>=1) {
+	  PyObject* obj = PyTuple_GET_ITEM(args,0);
+	  if (PyUnicode_Check(obj)) {
 #ifdef PY3K
-        output = QString::fromUtf8(PyUnicode_AsUTF8(obj));
+		output = QString::fromUtf8(PyUnicode_AsUTF8(obj));
 #else
-        PyObject *tmp = PyUnicode_AsUTF8String(obj);
-        if(tmp) {
-          output = QString::fromUtf8(PyString_AS_STRING(tmp));
-          Py_DECREF(tmp);
-        } else {
-          return NULL;
-        }
+		PyObject *tmp = PyUnicode_AsUTF8String(obj);
+		if(tmp) {
+		  output = QString::fromUtf8(PyString_AS_STRING(tmp));
+		  Py_DECREF(tmp);
+		} else {
+		  return NULL;
+		}
 #endif
-      } else {
-        char *string;
-        if (!PyArg_ParseTuple(args, "s", &string)) {
-          return NULL;
-        }
+	  } else {
+		char *string;
+		if (!PyArg_ParseTuple(args, "s", &string)) {
+		  return NULL;
+		}
 #ifdef PY3K
-        output = QString::fromUtf8(string);
+		output = QString::fromUtf8(string);
 #else
-        output = QString::fromLatin1(string);
+		output = QString::fromLatin1(string);
 #endif
-      }
-    }
+	  }
+	}
 
-    if (s->softspace > 0) {
-      (*s->_cb)(QString(""));
-      s->softspace = 0;
-    }
+	if (s->softspace > 0) {
+	  (*s->_cb)(QString(""));
+	  s->softspace = 0;
+	}
 
-    (*s->_cb)(output);
+	(*s->_cb)(output);
   }
   return Py_BuildValue("");
 }
@@ -120,7 +120,7 @@ static PyMethodDef PythonQtStdOutRedirect_methods[] = {
 
 static PyMemberDef PythonQtStdOutRedirect_members[] = {
   {const_cast<char*>("softspace"), T_INT, offsetof(PythonQtStdOutRedirect, softspace), 0,
-    const_cast<char*>("soft space flag")
+	const_cast<char*>("soft space flag")
   },
   { const_cast<char*>("closed"), T_BOOL, offsetof(PythonQtStdOutRedirect, closed), 0,
   const_cast<char*>("soft space flag")
@@ -129,42 +129,42 @@ static PyMemberDef PythonQtStdOutRedirect_members[] = {
 };
 
 PyTypeObject PythonQtStdOutRedirectType = {
-    PyVarObject_HEAD_INIT(NULL, 0)
-    "PythonQtStdOutRedirect",             /*tp_name*/
-    sizeof(PythonQtStdOutRedirect),             /*tp_basicsize*/
-    0,                         /*tp_itemsize*/
-    0, /*tp_dealloc*/
-    0,                         /*tp_print*/
-    0,                         /*tp_getattr*/
-    0,                         /*tp_setattr*/
-    0,           /*tp_compare*/
-    0,              /*tp_repr*/
-    0,                         /*tp_as_number*/
-    0,                         /*tp_as_sequence*/
-    0,                         /*tp_as_mapping*/
-    0,                         /*tp_hash */
-    0,                         /*tp_call*/
-    0,                         /*tp_str*/
-    0,                         /*tp_getattro*/
-    0,                         /*tp_setattro*/
-    0,                         /*tp_as_buffer*/
-    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE, /*tp_flags*/
-    "PythonQtStdOutRedirect",           /* tp_doc */
-    0,                   /* tp_traverse */
-    0,                   /* tp_clear */
-    0,                   /* tp_richcompare */
-    0,                   /* tp_weaklistoffset */
-    0,                   /* tp_iter */
-    0,                   /* tp_iternext */
-    PythonQtStdOutRedirect_methods,                   /* tp_methods */
-    PythonQtStdOutRedirect_members,                   /* tp_members */
-    0,                   /* tp_getset */
-    0,                         /* tp_base */
-    0,                         /* tp_dict */
-    0,                         /* tp_descr_get */
-    0,                         /* tp_descr_set */
-    0,                         /* tp_dictoffset */
-    0,                         /* tp_init */
-    0,                         /* tp_alloc */
-    PythonQtStdOutRedirect_new,                 /* tp_new */
+	PyVarObject_HEAD_INIT(NULL, 0)
+	"PythonQtStdOutRedirect",             /*tp_name*/
+	sizeof(PythonQtStdOutRedirect),             /*tp_basicsize*/
+	0,                         /*tp_itemsize*/
+	0, /*tp_dealloc*/
+	0,                         /*tp_print*/
+	0,                         /*tp_getattr*/
+	0,                         /*tp_setattr*/
+	0,           /*tp_compare*/
+	0,              /*tp_repr*/
+	0,                         /*tp_as_number*/
+	0,                         /*tp_as_sequence*/
+	0,                         /*tp_as_mapping*/
+	0,                         /*tp_hash */
+	0,                         /*tp_call*/
+	0,                         /*tp_str*/
+	0,                         /*tp_getattro*/
+	0,                         /*tp_setattro*/
+	0,                         /*tp_as_buffer*/
+	Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE, /*tp_flags*/
+	"PythonQtStdOutRedirect",           /* tp_doc */
+	0,                   /* tp_traverse */
+	0,                   /* tp_clear */
+	0,                   /* tp_richcompare */
+	0,                   /* tp_weaklistoffset */
+	0,                   /* tp_iter */
+	0,                   /* tp_iternext */
+	PythonQtStdOutRedirect_methods,                   /* tp_methods */
+	PythonQtStdOutRedirect_members,                   /* tp_members */
+	0,                   /* tp_getset */
+	0,                         /* tp_base */
+	0,                         /* tp_dict */
+	0,                         /* tp_descr_get */
+	0,                         /* tp_descr_set */
+	0,                         /* tp_dictoffset */
+	0,                         /* tp_init */
+	0,                         /* tp_alloc */
+	PythonQtStdOutRedirect_new,                 /* tp_new */
 };

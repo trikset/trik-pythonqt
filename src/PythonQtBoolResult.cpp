@@ -45,8 +45,8 @@
 static int PythonQtBoolResult_init(PythonQtBoolResultObject *self, PyObject* args, PyObject*)
 {
   if (args && PyTuple_Size(args)>0) {
-    PyErr_SetString(PyExc_ValueError, "No arguments supported for BoolResult!");
-    return -1;
+	PyErr_SetString(PyExc_ValueError, "No arguments supported for BoolResult!");
+	return -1;
   }
   self->_value = false;
   return 0;
@@ -118,41 +118,41 @@ static PyNumberMethods PythonQtBoolResult_as_number = {
 };
 
 PyTypeObject PythonQtBoolResult_Type = {
-    PyVarObject_HEAD_INIT(&PyType_Type, 0)
-    "BoolResult",
-    sizeof(PythonQtBoolResultObject),
-    0,
-    0,     /* tp_dealloc */
-    0,          /* tp_print */
-    0,          /* tp_getattr */
-    0,          /* tp_setattr */
-    0,
-    (reprfunc)PythonQtBoolResult_repr,      /* tp_repr */
-    &PythonQtBoolResult_as_number,          /* tp_as_number */
-    0,          /* tp_as_sequence */
-    0,          /* tp_as_mapping */
-    0,      /* tp_hash */
-    0,      /* tp_call */
-    0,          /* tp_str */
-    0,    /* tp_getattro */
-    0,          /* tp_setattro */
-    0,          /* tp_as_buffer */
-    Py_TPFLAGS_DEFAULT,/* tp_flags */
-    "Result object that is useful for bool* arguments",          /* tp_doc */
-    0,    /* tp_traverse */
-    0,          /* tp_clear */
-    0,          /* tp_richcompare */
-    0,          /* tp_weaklistoffset */
-    0,          /* tp_iter */
-    0,          /* tp_iternext */
-    0,          /* tp_methods */
-    0,       /* tp_members */
-    0,       /* tp_getset */
-    0,          /* tp_base */
-    0,          /* tp_dict */
-    0,                         /* tp_descr_get */
-    0,                         /* tp_descr_set */
-    0,                         /* tp_dictoffset */
-    (initproc)&PythonQtBoolResult_init,      /* tp_init */
+	PyVarObject_HEAD_INIT(&PyType_Type, 0)
+	"BoolResult",
+	sizeof(PythonQtBoolResultObject),
+	0,
+	0,     /* tp_dealloc */
+	0,          /* tp_print */
+	0,          /* tp_getattr */
+	0,          /* tp_setattr */
+	0,
+	(reprfunc)PythonQtBoolResult_repr,      /* tp_repr */
+	&PythonQtBoolResult_as_number,          /* tp_as_number */
+	0,          /* tp_as_sequence */
+	0,          /* tp_as_mapping */
+	0,      /* tp_hash */
+	0,      /* tp_call */
+	0,          /* tp_str */
+	0,    /* tp_getattro */
+	0,          /* tp_setattro */
+	0,          /* tp_as_buffer */
+	Py_TPFLAGS_DEFAULT,/* tp_flags */
+	"Result object that is useful for bool* arguments",          /* tp_doc */
+	0,    /* tp_traverse */
+	0,          /* tp_clear */
+	0,          /* tp_richcompare */
+	0,          /* tp_weaklistoffset */
+	0,          /* tp_iter */
+	0,          /* tp_iternext */
+	0,          /* tp_methods */
+	0,       /* tp_members */
+	0,       /* tp_getset */
+	0,          /* tp_base */
+	0,          /* tp_dict */
+	0,                         /* tp_descr_get */
+	0,                         /* tp_descr_set */
+	0,                         /* tp_dictoffset */
+	(initproc)&PythonQtBoolResult_init,      /* tp_init */
 };
 
