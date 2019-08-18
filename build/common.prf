@@ -17,16 +17,19 @@
 !include (../../../global.pri)
 
 !isEmpty(CONFIGURATION_SUFFIX):isEmpty(DEBUG_EXT):DEBUG_EXT=$${CONFIGURATION_SUFFIX}
+
 isEmpty(DESTDIR) {
   DESTDIR = $$PWD/../bin
 }
+
 CONFIG += c++11
 QMAKE_CXXFLAGS -= -Werror -Werror=pedantic -pedantic-errors -Werror=write-strings
 macx:QMAKE_CXXFLAGS += -Wno-error -Wno-error=sometimes-uninitialized -Wno-unused-variable -Wno-sign-compare
 
 QMAKE_CXXFLAGS += -Wno-cast-qual \
 		  -Wno-conversion-null \
-		  -Wno-sign-compare -Wno-error=unused-parameter -Wno-error=type-limits -Wno-error=parentheses -Wno-error=deprecated-declarations
+		  -Wno-sign-compare -Wno-unused-parameter -Wno-error=type-limits \
+		  -Wno-error=parentheses -Wno-deprecated-declarations
 
 defined(enableFlagIfCan) {
 	TEST_FLAGS_LIST=-Wno-error=implicit-fallthrough

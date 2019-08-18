@@ -65,6 +65,6 @@ int main( int argc, char **argv )
   } else {
 	std::cout << "All tests passed successfully." << std::endl;
   }
-  return failCount;
+  return failCount > 0;
 }
 
