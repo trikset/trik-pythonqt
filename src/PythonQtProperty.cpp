@@ -185,8 +185,8 @@ static PyObject *PythonQtProperty_get_doc(PythonQtProperty* self, void * /*closu
 }
 
 static PyGetSetDef PythonQtProperty_getsets[] = {
-  { const_cast<char*>("__doc__"),  (getter)PythonQtProperty_get_doc,  NULL, NULL },
-  { NULL, NULL, NULL,NULL },
+  { const_cast<char*>("__doc__"),  (getter)PythonQtProperty_get_doc,  NULL, NULL, 0 },
+  { NULL, NULL, NULL,NULL, 0 },
 };
 
 PyDoc_STRVAR(PythonQtProperty_doc,
@@ -241,6 +241,8 @@ PyTypeObject PythonQtProperty_Type = {
 	0,                          /*tp_subclasses */
 	0,                          /*tp_weaklist */
 	0,                          /*tp_del */
+	0,
+	0,
 };
 
 bool PythonQtPropertyData::callSetter(PyObject* wrapper, PyObject* newValue)

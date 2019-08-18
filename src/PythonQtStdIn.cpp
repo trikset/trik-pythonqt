@@ -69,7 +69,7 @@ static PyMethodDef PythonQtStdInRedirect_methods[] = {
 };
 
 static PyMemberDef PythonQtStdInRedirect_members[] = {
-  {NULL}  /* Sentinel */
+  {NULL, 0, 0, 0, 0}  /* Sentinel */
 };
 
 PyTypeObject PythonQtStdInRedirectType = {
@@ -111,4 +111,14 @@ PyTypeObject PythonQtStdInRedirectType = {
 	0,                         /* tp_init */
 	0,                         /* tp_alloc */
 	PythonQtStdInRedirect_new,                 /* tp_new */
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
 };

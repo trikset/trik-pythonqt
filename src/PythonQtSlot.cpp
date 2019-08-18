@@ -609,10 +609,10 @@ meth_get__self__(PythonQtSlotFunctionObject *m, void * /*closure*/)
 }
 
 static PyGetSetDef meth_getsets [] = {
-  {const_cast<char*>("__doc__"),  (getter)meth_get__doc__,  NULL, NULL},
-  {const_cast<char*>("__name__"), (getter)meth_get__name__, NULL, NULL},
-  {const_cast<char*>("__self__"), (getter)meth_get__self__, NULL, NULL},
-  {NULL, NULL, NULL,NULL},
+  {const_cast<char*>("__doc__"),  (getter)meth_get__doc__,  NULL, NULL, 0},
+  {const_cast<char*>("__name__"), (getter)meth_get__name__, NULL, NULL, 0},
+  {const_cast<char*>("__self__"), (getter)meth_get__self__, NULL, NULL, 0},
+  {NULL, NULL, NULL,NULL, 0},
 };
 
 #if PY_MAJOR_VERSION == 2 && PY_MINOR_VERSION < 6
@@ -622,8 +622,8 @@ static PyGetSetDef meth_getsets [] = {
 #define OFF(x) offsetof(PythonQtSlotFunctionObject, x)
 
 static PyMemberDef meth_members[] = {
-  {const_cast<char*>("__module__"),    T_OBJECT,     OFF(m_module), PY_WRITE_RESTRICTED},
-  {NULL}
+  {const_cast<char*>("__module__"),    T_OBJECT,     OFF(m_module), PY_WRITE_RESTRICTED, 0},
+  {NULL, 0, 0, 0, 0}
 };
 
 static PyObject *PythonQtSlotFunction_parameterTypes(PythonQtSlotFunctionObject* type)
@@ -826,6 +826,22 @@ PyTypeObject PythonQtSlotFunction_Type = {
 	meth_getsets,       /* tp_getset */
 	0,          /* tp_base */
 	0,          /* tp_dict */
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
 };
 
 /* Clear out the free list */

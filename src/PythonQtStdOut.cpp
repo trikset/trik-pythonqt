@@ -115,7 +115,7 @@ static PyMethodDef PythonQtStdOutRedirect_methods[] = {
   {"isatty", (PyCFunction)PythonQtStdOutRedirect_isatty,   METH_NOARGS,
   "return False since this object is not a tty-like device. Needed for logging framework"
   },
-  {NULL,    NULL, 0 , NULL} /* sentinel */
+  {nullptr,    nullptr, 0 , nullptr} /* sentinel */
 };
 
 static PyMemberDef PythonQtStdOutRedirect_members[] = {
@@ -125,7 +125,7 @@ static PyMemberDef PythonQtStdOutRedirect_members[] = {
   { const_cast<char*>("closed"), T_BOOL, offsetof(PythonQtStdOutRedirect, closed), 0,
   const_cast<char*>("soft space flag")
   },
-  {NULL}  /* Sentinel */
+  {nullptr, 0, 0, 0, nullptr}  /* Sentinel */
 };
 
 PyTypeObject PythonQtStdOutRedirectType = {
@@ -167,4 +167,14 @@ PyTypeObject PythonQtStdOutRedirectType = {
 	0,                         /* tp_init */
 	0,                         /* tp_alloc */
 	PythonQtStdOutRedirect_new,                 /* tp_new */
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
 };

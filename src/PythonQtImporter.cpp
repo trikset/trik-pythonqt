@@ -499,6 +499,15 @@ PyTypeObject PythonQtImporter_Type = {
   PyType_GenericAlloc,      /* tp_alloc */
   PyType_GenericNew,      /* tp_new */
   PyObject_Del,     /* tp_free */
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
 };
 
 
