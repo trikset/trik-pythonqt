@@ -381,7 +381,7 @@ PythonQt::~PythonQt() {
   delete _p;
   _p = NULL;
   if (finalize) {
-	  Py_FinalizeEx();
+	  Py_Finalize();
   }
 }
 
