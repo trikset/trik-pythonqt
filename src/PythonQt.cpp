@@ -377,12 +377,8 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
 }
 
 PythonQt::~PythonQt() {
-  bool finalize = 0 != (_p->_initFlags & PythonAlreadyInitialized);
   delete _p;
   _p = NULL;
-  if (finalize) {
-	  Py_Finalize();
-  }
 }
 
 PythonQtPrivate::~PythonQtPrivate() {

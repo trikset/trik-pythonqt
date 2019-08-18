@@ -547,7 +547,7 @@ open_exclusive(const QString& filename)
 	flags |= O_BINARY;   /* necessary for Windows */
 #endif
 #ifdef WIN32
-  fd = _wopen((const wchar_t*)filename.utf16(), flags, 0666);
+  fd = _wopen((const wchar_t*)filename.utf16(), flags, S_IREAD|S_IWRITE);
 #else
   fd = open(filename.toLocal8Bit(), flags, 0666);
 #endif
@@ -751,7 +751,10 @@ PythonQtImport::getCodeFromData(const QString& path, int isbytecode,int /*ispack
 	  QDateTime time;
 	  time = PythonQt::importInterface()->lastModifiedDate(path);
 	  QString cacheFilename =  getCacheFilename(path, /*isOptimizedFilename=*/false);
+	#if !defined(WIN32) || defined(_MSC_VER)
+	  // If Python was build with MSVC, then we can crash on FILE* operations when compiling this code with GCC
 	  writeCompiledModule((PyCodeObject*)code, cacheFilename, time.toTime_t(), /*sourceSize=*/qdata.length());
+	#endif
 	}
   }
   return code;
