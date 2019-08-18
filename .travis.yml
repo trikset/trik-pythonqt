@@ -13,9 +13,9 @@ cache:
     - $PYENV_ROOT
 addons:
   apt:
-    update: true
-    sources:
-    - ubuntu-toolchain-r-test
+#    update: true
+#    sources:
+#    - ubuntu-toolchain-r-test
     packages:
     - python3-dev
     - qtbase5-private-dev
@@ -29,9 +29,10 @@ addons:
 matrix:
   include:
   - os: linux
-    distro: xenial
+    dist: xenial
     env: QMAKE_EXTRA="$QMAKE_EXTRA CONFIG+=debug CONFIG+=sanitizer CONFIG+=sanitize_address CONFIG+=sanitize_undefined"
-    name: Linux debug + vera
+    name: Xenial debug
+
   - os: osx
     name: macOS release
     env: QMAKE_EXTRA="$QMAKE_EXTRA CONFIG+=no-sanitizers CONFIG+=release"
@@ -54,7 +55,7 @@ script:
 - export LD_LIBRARY_PATH=$PWD/bin
 - export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH
 - bin/PythonQtTest -platform minimal
-- generator/pythonqt_generator --help
+- if [ -x generator/pythonqt_generator ] ; then generator/pythonqt_generator --help ; fi
 
 after_script:
 - ccache -s
