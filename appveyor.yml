@@ -50,4 +50,5 @@ build_script:
   - mingw32-make -j2 all
 
 test_script:
+  - set PYTHONPATH=%PYTHON_PATH%
   - '%APPVEYOR_BUILD_FOLDER%\bin\PythonQtTest'
