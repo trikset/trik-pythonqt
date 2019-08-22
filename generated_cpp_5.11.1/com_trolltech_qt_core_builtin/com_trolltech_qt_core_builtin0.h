@@ -1328,10 +1328,7 @@ Q_DECLARE_FLAGS(WindowStates, WindowState)
 Q_DECLARE_FLAGS(WindowFlags, WindowType)
 public slots:
    QTextCodec*  static_Qt_codecForHtml(const QByteArray&  ba);
-   QTextCodec*  static_Qt_codecForHtml(const QByteArray&  ba);
    QString  static_Qt_convertFromPlainText(const QString&  plain, Qt::WhiteSpaceMode  mode = Qt::WhiteSpacePre);
-   QString  static_Qt_convertFromPlainText(const QString&  plain, Qt::WhiteSpaceMode  mode = Qt::WhiteSpacePre);
-   bool  static_Qt_mightBeRichText(const QString&  arg__1);
    bool  static_Qt_mightBeRichText(const QString&  arg__1);
 };
 

@@ -4111,24 +4111,9 @@ QTextCodec*  PythonQtWrapper_Qt::static_Qt_codecForHtml(const QByteArray&  ba)
   return (Qt::codecForHtml(ba));
 }
 
-QTextCodec*  PythonQtWrapper_Qt::static_Qt_codecForHtml(const QByteArray&  ba)
-{
-  return (Qt::codecForHtml(ba));
-}
-
 QString  PythonQtWrapper_Qt::static_Qt_convertFromPlainText(const QString&  plain, Qt::WhiteSpaceMode  mode)
 {
   return (Qt::convertFromPlainText(plain, mode));
-}
-
-QString  PythonQtWrapper_Qt::static_Qt_convertFromPlainText(const QString&  plain, Qt::WhiteSpaceMode  mode)
-{
-  return (Qt::convertFromPlainText(plain, mode));
-}
-
-bool  PythonQtWrapper_Qt::static_Qt_mightBeRichText(const QString&  arg__1)
-{
-  return (Qt::mightBeRichText(arg__1));
 }
 
 bool  PythonQtWrapper_Qt::static_Qt_mightBeRichText(const QString&  arg__1)
