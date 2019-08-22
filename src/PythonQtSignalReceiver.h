@@ -111,6 +111,7 @@ public:
 */
 class PythonQtSignalReceiver : public PythonQtSignalReceiverBase {
 
+//	No Q_OBJECT because we need custom qt_metacall implementation
 public:
   PythonQtSignalReceiver(QObject* obj);
   ~PythonQtSignalReceiver();

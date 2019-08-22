@@ -392,7 +392,7 @@ int PythonQtMethodInfo::nameToType(const char* name)
 	_parameterTypeDict.insert("QVariant", PythonQtMethodInfo::Variant);
 	// own special types... (none so far, could be e.g. ObjectList
   }
-  QHash<QByteArray, int>::const_iterator it = _parameterTypeDict.find(name);
+  auto it = _parameterTypeDict.find(name);
   if (it!=_parameterTypeDict.end()) {
 	return it.value();
   } else {

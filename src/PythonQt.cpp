@@ -861,7 +861,7 @@ PythonQtObjectPtr PythonQt::lookupObject(PyObject* module, const QString& name)
   PythonQtObjectPtr p = module;
   PythonQtObjectPtr prev;
   QByteArray b;
-  for (QStringList::ConstIterator i = l.begin(); i!=l.end() && p; ++i) {
+  for (QStringList::ConstIterator i = l.cbegin(); i!=l.cend() && p; ++i) {
 	prev = p;
 	b = QStringToPythonEncoding(*i);
 	if (PyDict_Check(p)) {

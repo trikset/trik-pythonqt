@@ -51,9 +51,11 @@
 //! see PythonQt::setImporter()
 class PythonQtImportFileInterface {
 
+	Q_DISABLE_COPY(PythonQtImportFileInterface)
 public:
   // get rid of warnings
-  virtual ~PythonQtImportFileInterface() {}
+  PythonQtImportFileInterface() = default;
+  virtual ~PythonQtImportFileInterface() = default;
 
   //! read the given file as byte array, without doing any linefeed translations
   virtual QByteArray readFileAsBytes(const QString& filename) = 0;
@@ -78,7 +80,7 @@ public:
 
   //! called by PythonQt after successful import to allow
   //! recording of imports
-  virtual void importedModule(const QString& /*module*/) {};
+  virtual void importedModule(const QString& /*module*/) {}
 
 };
 
