@@ -64,7 +64,7 @@ typedef struct PythonQtInstanceWrapperStruct {
   PyObject_HEAD
 
   //! the class information, this is set even if the _obj or _wrappedPtr is NULL to support typed NULL pointers
-  inline PythonQtClassInfo* classInfo() 
+  inline PythonQtClassInfo* classInfo()
   {  return ((PythonQtClassWrapper*)Py_TYPE(this))->_classInfo; }
 
   inline PythonQtDynamicClassInfo* dynamicClassInfo()
@@ -72,34 +72,34 @@ typedef struct PythonQtInstanceWrapperStruct {
 
   //! set the QObject pointer
   void setQObject(QObject* object) {
-    _obj = object;
-    _objPointerCopy = object;
+	_obj = object;
+	_objPointerCopy = object;
   }
 
   //! Passes the ownership of the wrapped object to C++
   void passOwnershipToCPP() {
-    // we pass the ownership to C++
-    _ownedByPythonQt = false;
-    // handle shell instance
-    if (_isShellInstance) {
-      if (!_shellInstanceRefCountsWrapper) {
-        // ref count the wrapper, so that the Python part of the shell instance can not go
-        // away until the C++ object gets deleted...
-        Py_INCREF((PyObject*)this);
-        _shellInstanceRefCountsWrapper = true;
-      }
-    }
+	// we pass the ownership to C++
+	_ownedByPythonQt = false;
+	// handle shell instance
+	if (_isShellInstance) {
+	  if (!_shellInstanceRefCountsWrapper) {
+		// ref count the wrapper, so that the Python part of the shell instance can not go
+		// away until the C++ object gets deleted...
+		Py_INCREF((PyObject*)this);
+		_shellInstanceRefCountsWrapper = true;
+	  }
+	}
   }
 
   //! Passes the ownership to Python
   void passOwnershipToPython() {
-    _ownedByPythonQt = true;
-    // if the shell instance was owned by C++ and the ownership goes to Python,
-    // we need to remove the extra ref count that kept the Python part alive from the C++ side.
-    if (_shellInstanceRefCountsWrapper) {
-      Py_DECREF((PyObject*)this);
-      _shellInstanceRefCountsWrapper = false;
-    }
+	_ownedByPythonQt = true;
+	// if the shell instance was owned by C++ and the ownership goes to Python,
+	// we need to remove the extra ref count that kept the Python part alive from the C++ side.
+	if (_shellInstanceRefCountsWrapper) {
+	  Py_DECREF((PyObject*)this);
+	  _shellInstanceRefCountsWrapper = false;
+	}
   }
 
 

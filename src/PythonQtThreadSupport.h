@@ -105,22 +105,22 @@ class PythonQtThreadStateSaver
 {
 public:
   PythonQtThreadStateSaver() {
-    save();
+	save();
   }
 
   ~PythonQtThreadStateSaver() {
-    restore();
+	restore();
   }
 
   void save() {
-    _state = PyEval_SaveThread();
+	_state = PyEval_SaveThread();
   }
 
   void restore() {
-    if (_state) {
-      PyEval_RestoreThread(_state);
-      _state = NULL;
-    }
+	if (_state) {
+	  PyEval_RestoreThread(_state);
+	  _state = NULL;
+	}
   }
 
 private:

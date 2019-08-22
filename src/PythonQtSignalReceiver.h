@@ -56,17 +56,17 @@ class PythonQtClassInfo;
 class PYTHONQT_EXPORT PythonQtSignalTarget {
 public:
   PythonQtSignalTarget() {
-    _signalId = -1;
-    _methodInfo = NULL;
-    _slotId = -1;
+	_signalId = -1;
+	_methodInfo = NULL;
+	_slotId = -1;
   }
 
   PythonQtSignalTarget(int signalId,const PythonQtMethodInfo* methodInfo, int slotId, PyObject* callable)
   {
-    _signalId = signalId;
-    _slotId = slotId;
-    _methodInfo = methodInfo;
-    _callable = callable;
+	_signalId = signalId;
+	_slotId = slotId;
+	_methodInfo = methodInfo;
+	_callable = callable;
   };
 
   ~PythonQtSignalTarget() {

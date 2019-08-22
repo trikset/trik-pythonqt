@@ -59,24 +59,24 @@ class PYTHONQT_EXPORT PythonQtMethodInfo
 {
 public:
   enum ParameterType {
-    Unknown = -1,
-    Variant = -2
+	Unknown = -1,
+	Variant = -2
   };
 
   //! stores various informations about a parameter/type name
   struct ParameterInfo {
-    QByteArray name;
-    QByteArray innerName; // if the type is a template, this stores the inner name
-    PyObject*  enumWrapper; // if it is an enum, a pointer to the enum wrapper
-    int  typeId; // a mixture from QMetaType and ParameterType
-    char pointerCount; // the number of pointer indirections
-    char innerNamePointerCount; // the number of pointer indirections in the inner name 
-    bool isConst;
-    bool isReference;
-    bool isQList;
-    bool passOwnershipToCPP;
-    bool passOwnershipToPython;
-    bool newOwnerOfThis;
+	QByteArray name;
+	QByteArray innerName; // if the type is a template, this stores the inner name
+	PyObject*  enumWrapper; // if it is an enum, a pointer to the enum wrapper
+	int  typeId; // a mixture from QMetaType and ParameterType
+	char pointerCount; // the number of pointer indirections
+	char innerNamePointerCount; // the number of pointer indirections in the inner name
+	bool isConst;
+	bool isReference;
+	bool isQList;
+	bool passOwnershipToCPP;
+	bool passOwnershipToPython;
+	bool newOwnerOfThis;
   };
 
   PythonQtMethodInfo() {
@@ -153,31 +153,31 @@ class PYTHONQT_EXPORT PythonQtSlotInfo : public PythonQtMethodInfo
 {
 public:
   enum Type {
-    MemberSlot, InstanceDecorator, ClassDecorator
+	MemberSlot, InstanceDecorator, ClassDecorator
   };
 
   PythonQtSlotInfo(const PythonQtSlotInfo& info):PythonQtMethodInfo() {
-    _meta = info._meta;
-    _parameters = info._parameters;
-    _shouldAllowThreads = info._shouldAllowThreads;
-    _slotIndex = info._slotIndex;
-    _next = NULL;
-    _decorator = info._decorator;
-    _type = info._type;
-    _upcastingOffset = 0;
+	_meta = info._meta;
+	_parameters = info._parameters;
+	_shouldAllowThreads = info._shouldAllowThreads;
+	_slotIndex = info._slotIndex;
+	_next = NULL;
+	_decorator = info._decorator;
+	_type = info._type;
+	_upcastingOffset = 0;
   }
 
   PythonQtSlotInfo(PythonQtClassInfo* classInfo, const QMetaMethod& meta, int slotIndex, QObject* decorator = NULL, Type type = MemberSlot ):PythonQtMethodInfo()
-  { 
-    const PythonQtMethodInfo* info = getCachedMethodInfo(meta, classInfo);
-    _meta = meta;
-    _parameters = info->parameters();
-    _shouldAllowThreads = info->shouldAllowThreads();
-    _slotIndex = slotIndex;
-    _next = NULL;
-    _decorator = decorator;
-    _type = type;
-    _upcastingOffset = 0;
+  {
+	const PythonQtMethodInfo* info = getCachedMethodInfo(meta, classInfo);
+	_meta = meta;
+	_parameters = info->parameters();
+	_shouldAllowThreads = info->shouldAllowThreads();
+	_slotIndex = slotIndex;
+	_next = NULL;
+	_decorator = decorator;
+	_type = type;
+	_upcastingOffset = 0;
   }
 
 

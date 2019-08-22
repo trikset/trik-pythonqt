@@ -60,12 +60,12 @@ public:
 
   PythonQtObjectPtr(const PythonQtObjectPtr &p)
   :_object(NULL) {
-    setObject(p.object());
+	setObject(p.object());
   }
 
   //! rvalue copy constructor, does not need any incref/decref.
   PythonQtObjectPtr(PythonQtObjectPtr &&p)
-    :_object(p.takeObject()) {
+	:_object(p.takeObject()) {
   }
 
   //! rvalue copy constructor, does not need any incref/decref.
@@ -73,13 +73,13 @@ public:
 
   //! If the given variant holds a PythonQtObjectPtr, extract the value from it and hold onto the reference. This results in an increment of the reference count.
   PythonQtObjectPtr(const QVariant& variant):_object(NULL) {
-    fromVariant(variant);
+	fromVariant(variant);
   }
 
   PythonQtObjectPtr(PyObject* o);
-  
+
   ~PythonQtObjectPtr();
-  
+
   //! If the given variant holds a PythonQtObjectPtr, extract the value from it and hold onto the reference. This results in an increment of the reference count.
   bool fromVariant(const QVariant& variant);
 
@@ -90,48 +90,48 @@ public:
   QVariant toLocalVariant();
 
   PythonQtObjectPtr &operator=(const PythonQtObjectPtr &p) {
-    setObject(p.object());
-    return *this;
+	setObject(p.object());
+	return *this;
   }
 
   //! rvalue assignment operator that steals the reference from p
   PythonQtObjectPtr &operator=(PythonQtObjectPtr &&p) {
-    if (_object) {
-      setObject(NULL);
-    }
-    _object = p.takeObject();
-    return *this;
+	if (_object) {
+	  setObject(NULL);
+	}
+	_object = p.takeObject();
+	return *this;
   }
 
   //! rvalue assignment operator that steals the reference from p
   PythonQtObjectPtr &operator=(PythonQtSafeObjectPtr &&p);
 
   PythonQtObjectPtr &operator=(PyObject* o) {
-    setObject(o);
-    return *this;
+	setObject(o);
+	return *this;
   }
 
 
   PythonQtObjectPtr &operator=(const QVariant& variant) {
-    fromVariant(variant);
-    return *this;
+	fromVariant(variant);
+	return *this;
   }
 
 
   bool operator==( const PythonQtObjectPtr &p ) const {
-    return object() == p.object();
+	return object() == p.object();
   }
 
   bool operator!= ( const PythonQtObjectPtr& p ) const {
-    return !( *this == p );
+	return !( *this == p );
   }
 
   bool operator==( PyObject* p ) const {
-    return object() == p;
+	return object() == p;
   }
 
   bool operator!= ( PyObject* p ) const {
-    return object() != p;
+	return object() != p;
   }
 
   bool isNull() const { return !object(); }
@@ -144,9 +144,9 @@ public:
 
   //! sets the object and passes the ownership (stealing the reference, in Python slang)
   void setNewRef(PyObject* o);
-  
+
   PyObject* object() const {
-    return _object;
+	return _object;
   }
 
   //! evaluates the given script code in the context of this object and returns the result value
@@ -180,15 +180,15 @@ public:
   //! takes the object from the pointer, leaving the pointer empty.
   //! the caller has to take care about the decref of the taken object!
   PyObject* takeObject() {
-    PyObject* o = _object;
-    _object = NULL;
-    return o;
+	PyObject* o = _object;
+	_object = NULL;
+	return o;
   }
 
 protected:
 
   void setObject(PyObject* o);
-  
+
 private:
   PyObject* _object;
 };
@@ -200,24 +200,24 @@ public:
   PythonQtSafeObjectPtr() :_object(NULL) {}
 
   PythonQtSafeObjectPtr(const PythonQtSafeObjectPtr &p)
-    :_object(NULL) {
-    setObject(p.object());
+	:_object(NULL) {
+	setObject(p.object());
   }
 
   PythonQtSafeObjectPtr(const PythonQtObjectPtr &p)
-    :_object(NULL) {
-    setObject(p.object());
+	:_object(NULL) {
+	setObject(p.object());
   }
 
   //! rvalue copy constructor, does not need any incref/decref.
   PythonQtSafeObjectPtr(PythonQtSafeObjectPtr &&p)
-    :_object(p._object) {
-    p._object = NULL;
+	:_object(p._object) {
+	p._object = NULL;
   }
 
   //! rvalue copy constructor, does not need any incref/decref.
   PythonQtSafeObjectPtr(PythonQtObjectPtr &&p)
-    :_object(p.takeObject()) {
+	:_object(p.takeObject()) {
   }
 
   PythonQtSafeObjectPtr(PyObject* o);
@@ -225,53 +225,53 @@ public:
   ~PythonQtSafeObjectPtr();
 
   PythonQtSafeObjectPtr &operator=(const PythonQtSafeObjectPtr &p) {
-    setObject(p.object());
-    return *this;
+	setObject(p.object());
+	return *this;
   }
 
   PythonQtSafeObjectPtr &operator=(const PythonQtObjectPtr &p) {
-    setObjectUnsafe(p.object());
-    return *this;
+	setObjectUnsafe(p.object());
+	return *this;
   }
 
   //! rvalue assignment operator that steals the reference from p
   PythonQtSafeObjectPtr &operator=(PythonQtSafeObjectPtr &&p) {
-    if (_object) {
-      setObject(NULL);
-    }
-    _object = p._object;
-    p._object = NULL;
-    return *this;
+	if (_object) {
+	  setObject(NULL);
+	}
+	_object = p._object;
+	p._object = NULL;
+	return *this;
   }
 
   //! rvalue assignment operator that steals the reference from p
   PythonQtSafeObjectPtr &operator=(PythonQtObjectPtr &&p) {
-    if (_object) {
-      setObjectUnsafe(NULL);
-    }
-    _object = p.takeObject();
-    return *this;
+	if (_object) {
+	  setObjectUnsafe(NULL);
+	}
+	_object = p.takeObject();
+	return *this;
   }
 
   PythonQtSafeObjectPtr &operator=(PyObject* o) {
-    setObject(o);
-    return *this;
+	setObject(o);
+	return *this;
   }
 
   bool operator==(const PythonQtSafeObjectPtr &p) const {
-    return object() == p.object();
+	return object() == p.object();
   }
 
   bool operator!= (const PythonQtSafeObjectPtr& p) const {
-    return !(*this == p);
+	return !(*this == p);
   }
 
   bool operator==(PyObject* p) const {
-    return object() == p;
+	return object() == p;
   }
 
   bool operator!= (PyObject* p) const {
-    return object() != p;
+	return object() != p;
   }
 
   bool isNull() const { return !object(); }
@@ -283,15 +283,15 @@ public:
   operator PyObject*() const { return object(); }
 
   PyObject* object() const {
-    return _object;
+	return _object;
   }
 
   //! takes the object from the pointer, leaving the pointer empty.
   //! the caller has to take care about the decref of the taken object!
   PyObject* takeObject() {
-    PyObject* o = _object;
-    _object = NULL;
-    return o;
+	PyObject* o = _object;
+	_object = NULL;
+	return o;
   }
 
 protected:

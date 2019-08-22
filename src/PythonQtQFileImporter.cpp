@@ -53,20 +53,20 @@ PythonQtQFileImporter::~PythonQtQFileImporter()  {
 QByteArray PythonQtQFileImporter::readFileAsBytes (const QString &filename) {
   QFile f(filename);
   if (f.open(QIODevice::ReadOnly)) {
-    return f.readAll();
+	return f.readAll();
   } else {
-    return QByteArray();
+	return QByteArray();
   }
 }
 
 QByteArray PythonQtQFileImporter::readSourceFile (const QString &filename, bool &ok) {
   QFile f(filename);
   if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
-    ok = true;
-    return f.readAll();
+	ok = true;
+	return f.readAll();
   } else {
-    ok = false;
-    return QByteArray();
+	ok = false;
+	return QByteArray();
   }
 }
 
