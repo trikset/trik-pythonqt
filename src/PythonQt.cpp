@@ -2434,6 +2434,24 @@ PythonQtClassInfo* PythonQtPrivate::getClassInfo( const QByteArray& className )
 	  }
 	}
   }
+
+  if (!result) {
+	bool ambiguity = false;
+	for(auto &&key: _knownClassInfos.keys()) {
+		if (key.indexOf(QByteArray("::") + className) >= 0) {
+			if (!result) {
+				result = _knownClassInfos.value(key);
+			} else {
+				ambiguity = true;
+				std::cerr << "Multiple candidates found" << std::endl;
+			}
+		}
+	}
+	if (ambiguity) {
+		return nullptr;
+	}
+  }
+
   return result;
 }
 
