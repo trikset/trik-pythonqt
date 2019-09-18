@@ -753,10 +753,12 @@ PythonQtClassWrapper* PythonQtPrivate::createNewPythonQtClassWrapper(PythonQtCla
   // create the new type object by calling the type
   result = (PythonQtClassWrapper *)PyObject_Call((PyObject *)&PythonQtClassWrapper_Type, args, NULL);
 
+  Py_DECREF(className);
   Py_DECREF(baseClasses);
   Py_DECREF(typeDict);
+  Py_DECREF(moduleName);
   Py_DECREF(args);
-  Py_DECREF(className);
+
 
   return result;
 }
@@ -787,11 +789,11 @@ PyObject* PythonQtPrivate::createNewPythonQtEnumWrapper(const char* enumName, Py
   // create the new int derived type object by calling the core type
   result = PyObject_Call((PyObject *)&PyType_Type, args, NULL);
 
+  Py_DECREF(className);
   Py_DECREF(baseClasses);
+  Py_DECREF(module);
   Py_DECREF(typeDict);
   Py_DECREF(args);
-  Py_DECREF(className);
-  Py_DECREF(module);
   return result;
 }
 
