@@ -236,21 +236,33 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 	PythonQtRegisterToolClassesTemplateConverterForKnownClass(QTextFormat);
 	PythonQtRegisterToolClassesTemplateConverterForKnownClass(QMatrix);
 
-	PyObject* pack = PythonQt::priv()->packageByName("QtCore");
-	PyObject* pack2 = PythonQt::priv()->packageByName("Qt");
+	constexpr auto moduleQt = "Qt";
+	constexpr auto moduleQtCore = "Qt";
+	PyObject* pack = PythonQt::priv()->packageByName(moduleQtCore);
+	PyObject* pack2 = PythonQt::priv()->packageByName(moduleQt);
 	PyObject* qtNamespace = PythonQt::priv()->getClassInfo("Qt")->pythonQtClassWrapper();
 	const char* names[16] = {"SIGNAL", "SLOT", "qAbs", "qBound","qDebug","qWarning","qCritical","qFatal"
 						,"qFuzzyCompare", "qMax","qMin","qRound","qRound64","qVersion","qrand","qsrand"};
-	for (unsigned int i = 0;i<16; i++) {
-	  PyObject* obj = PyObject_GetAttrString(qtNamespace, names[i]);
-	  if (obj) {
-		PyModule_AddObject(pack, names[i], obj);
-		Py_INCREF(obj);
-		PyModule_AddObject(pack2, names[i], obj);
-	  } else {
-		std::cerr << "method not found " << names[i] << std::endl;
-	  }
-	}
+	if (qtNamespace)
+		for (unsigned int i = 0; i < sizeof(names) / sizeof(names[0]); i++) {
+			PyObject *obj = PyObject_GetAttrString(qtNamespace, names[i]);
+			if (obj) {
+				Py_INCREF(obj);
+				if (PyModule_AddObject(pack, names[i], obj) < 0) {
+					Py_DECREF(obj);
+					std::cerr << "failed to add " << names[i] << " to " << moduleQtCore <<  std::endl;
+				} else {
+					Py_INCREF(obj);
+					if(PyModule_AddObject(pack2, names[i], obj) < 0) {
+						Py_DECREF(obj);
+						std::cerr << "failed to add " << names[i] << " to " << moduleQt <<  std::endl;
+					}
+				}
+				Py_DECREF(obj);
+			} else {
+				std::cerr << "method not found " << names[i] << std::endl;
+			}
+		}
 	int enumValues[] = {
 	  QtDebugMsg,
 	  QtWarningMsg,
@@ -779,7 +791,7 @@ PyObject* PythonQtPrivate::createNewPythonQtEnumWrapper(const char* enumName, Py
   Py_DECREF(typeDict);
   Py_DECREF(args);
   Py_DECREF(className);
-
+  Py_DECREF(module);
   return result;
 }
 
