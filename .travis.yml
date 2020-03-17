@@ -45,8 +45,11 @@ git:
 #- "./.travis/install.sh"
 
 script:
-- export PATH="/usr/local/opt/qt/bin:$PATH"
+- export PATH="/usr/local/opt/qt/bin:/usr/local/opt/python/libexec/bin:$PATH"
+- export PKG_CONFIG_PATH="$(python-config --prefix)/lib/pkgconfig"
+- pkg-config --list-all
 - qmake -v
+- python --version
 - g++ --version
 - ccache -sz
 - qmake -r $QMAKE_EXTRA
