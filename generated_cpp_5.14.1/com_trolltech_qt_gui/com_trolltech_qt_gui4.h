@@ -1134,6 +1134,229 @@ void delete_QLabel(QLabel* obj) { delete obj; }
 
 
 
+
+
+class PythonQtShell_QLayout : public QLayout
+{
+public:
+    PythonQtShell_QLayout():QLayout(),_wrapper(NULL) {};
+    PythonQtShell_QLayout(QWidget*  parent):QLayout(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QLayout();
+
+virtual void addItem(QLayoutItem*  arg__1);
+virtual void childEvent(QChildEvent*  e);
+virtual QSizePolicy::ControlTypes  controlTypes() const;
+virtual int  count() const;
+virtual Qt::Orientations  expandingDirections() const;
+virtual QRect  geometry() const;
+virtual int  indexOf(QWidget*  arg__1) const;
+virtual void invalidate();
+virtual bool  isEmpty() const;
+virtual QLayoutItem*  itemAt(int  index) const;
+virtual QLayout*  layout();
+virtual QSize  maximumSize() const;
+virtual QSize  minimumSize() const;
+virtual void setGeometry(const QRect&  arg__1);
+virtual QLayoutItem*  takeAt(int  index);
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QLayout : public QLayout
+{ public:
+inline void promoted_addChildLayout(QLayout*  l) { this->addChildLayout(l); }
+inline void promoted_addChildWidget(QWidget*  w) { this->addChildWidget(w); }
+inline bool  promoted_adoptLayout(QLayout*  layout) { return this->adoptLayout(layout); }
+inline QRect  promoted_alignmentRect(const QRect&  arg__1) const { return this->alignmentRect(arg__1); }
+inline void promoted_childEvent(QChildEvent*  e) { this->childEvent(e); }
+inline void promoted_widgetEvent(QEvent*  arg__1) { this->widgetEvent(arg__1); }
+inline void py_q_addItem(QLayoutItem*  arg__1) { this->addItem(arg__1); }
+inline void py_q_childEvent(QChildEvent*  e) { QLayout::childEvent(e); }
+inline QSizePolicy::ControlTypes  py_q_controlTypes() const { return QLayout::controlTypes(); }
+inline int  py_q_count() const { return this->count(); }
+inline Qt::Orientations  py_q_expandingDirections() const { return QLayout::expandingDirections(); }
+inline QRect  py_q_geometry() const { return QLayout::geometry(); }
+inline int  py_q_indexOf(QWidget*  arg__1) const { return QLayout::indexOf(arg__1); }
+inline void py_q_invalidate() { QLayout::invalidate(); }
+inline bool  py_q_isEmpty() const { return QLayout::isEmpty(); }
+inline QLayoutItem*  py_q_itemAt(int  index) const { return this->itemAt(index); }
+inline QLayout*  py_q_layout() { return QLayout::layout(); }
+inline QSize  py_q_maximumSize() const { return QLayout::maximumSize(); }
+inline QSize  py_q_minimumSize() const { return QLayout::minimumSize(); }
+inline void py_q_setGeometry(const QRect&  arg__1) { QLayout::setGeometry(arg__1); }
+inline QLayoutItem*  py_q_takeAt(int  index) { return this->takeAt(index); }
+};
+
+class PythonQtWrapper_QLayout : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QLayout* new_QLayout();
+QLayout* new_QLayout(QWidget*  parent);
+void delete_QLayout(QLayout* obj) { delete obj; } 
+   bool  activate(QLayout* theWrappedObject);
+   void addChildLayout(QLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QLayout* >  l);
+   void addChildWidget(QLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  w);
+   void addItem(QLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QLayoutItem* >  arg__1);
+   void py_q_addItem(QLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QLayoutItem* >  arg__1){  (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_addItem(arg__1));}
+   void addWidget(QLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  w);
+   bool  adoptLayout(QLayout* theWrappedObject, QLayout*  layout);
+   QRect  alignmentRect(QLayout* theWrappedObject, const QRect&  arg__1) const;
+   void childEvent(QLayout* theWrappedObject, QChildEvent*  e);
+   void py_q_childEvent(QLayout* theWrappedObject, QChildEvent*  e){  (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_childEvent(e));}
+   QSize  static_QLayout_closestAcceptableSize(const QWidget*  w, const QSize&  s);
+   QMargins  contentsMargins(QLayout* theWrappedObject) const;
+   QRect  contentsRect(QLayout* theWrappedObject) const;
+   QSizePolicy::ControlTypes  controlTypes(QLayout* theWrappedObject) const;
+   QSizePolicy::ControlTypes  py_q_controlTypes(QLayout* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_controlTypes());}
+   int  count(QLayout* theWrappedObject) const;
+   int  py_q_count(QLayout* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_count());}
+   Qt::Orientations  expandingDirections(QLayout* theWrappedObject) const;
+   Qt::Orientations  py_q_expandingDirections(QLayout* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_expandingDirections());}
+   QRect  geometry(QLayout* theWrappedObject) const;
+   QRect  py_q_geometry(QLayout* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_geometry());}
+   int  indexOf(QLayout* theWrappedObject, QLayoutItem*  arg__1) const;
+   int  indexOf(QLayout* theWrappedObject, QWidget*  arg__1) const;
+   int  py_q_indexOf(QLayout* theWrappedObject, QWidget*  arg__1) const{  return (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_indexOf(arg__1));}
+   void invalidate(QLayout* theWrappedObject);
+   void py_q_invalidate(QLayout* theWrappedObject){  (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_invalidate());}
+   bool  isEmpty(QLayout* theWrappedObject) const;
+   bool  py_q_isEmpty(QLayout* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_isEmpty());}
+   bool  isEnabled(QLayout* theWrappedObject) const;
+   QLayoutItem*  itemAt(QLayout* theWrappedObject, int  index) const;
+   QLayoutItem*  py_q_itemAt(QLayout* theWrappedObject, int  index) const{  return (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_itemAt(index));}
+   QLayout*  layout(QLayout* theWrappedObject);
+   QLayout*  py_q_layout(QLayout* theWrappedObject){  return (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_layout());}
+   QSize  maximumSize(QLayout* theWrappedObject) const;
+   QSize  py_q_maximumSize(QLayout* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_maximumSize());}
+   QWidget*  menuBar(QLayout* theWrappedObject) const;
+   QSize  minimumSize(QLayout* theWrappedObject) const;
+   QSize  py_q_minimumSize(QLayout* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_minimumSize());}
+   QWidget*  parentWidget(QLayout* theWrappedObject) const;
+   void removeItem(QLayout* theWrappedObject, PythonQtPassOwnershipToPython<QLayoutItem* >  arg__1);
+   void removeWidget(QLayout* theWrappedObject, PythonQtPassOwnershipToPython<QWidget* >  w);
+   QLayoutItem*  replaceWidget(QLayout* theWrappedObject, QWidget*  from, QWidget*  to, Qt::FindChildOptions  options = Qt::FindChildrenRecursively);
+   bool  setAlignment(QLayout* theWrappedObject, QLayout*  l, Qt::Alignment  alignment);
+   bool  setAlignment(QLayout* theWrappedObject, QWidget*  w, Qt::Alignment  alignment);
+   void setContentsMargins(QLayout* theWrappedObject, const QMargins&  margins);
+   void setContentsMargins(QLayout* theWrappedObject, int  left, int  top, int  right, int  bottom);
+   void setEnabled(QLayout* theWrappedObject, bool  arg__1);
+   void setGeometry(QLayout* theWrappedObject, const QRect&  arg__1);
+   void py_q_setGeometry(QLayout* theWrappedObject, const QRect&  arg__1){  (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_setGeometry(arg__1));}
+   void setMargin(QLayout* theWrappedObject, int  arg__1);
+   void setMenuBar(QLayout* theWrappedObject, QWidget*  w);
+   void setSizeConstraint(QLayout* theWrappedObject, QLayout::SizeConstraint  arg__1);
+   void setSpacing(QLayout* theWrappedObject, int  arg__1);
+   QLayout::SizeConstraint  sizeConstraint(QLayout* theWrappedObject) const;
+   int  spacing(QLayout* theWrappedObject) const;
+   PythonQtPassOwnershipToPython<QLayoutItem*  > takeAt(QLayout* theWrappedObject, int  index);
+   PythonQtPassOwnershipToPython<QLayoutItem*  > py_q_takeAt(QLayout* theWrappedObject, int  index){  return (((PythonQtPublicPromoter_QLayout*)theWrappedObject)->py_q_takeAt(index));}
+   int  totalHeightForWidth(QLayout* theWrappedObject, int  w) const;
+   QSize  totalMaximumSize(QLayout* theWrappedObject) const;
+   QSize  totalMinimumSize(QLayout* theWrappedObject) const;
+   QSize  totalSizeHint(QLayout* theWrappedObject) const;
+   void update(QLayout* theWrappedObject);
+   void widgetEvent(QLayout* theWrappedObject, QEvent*  arg__1);
+    bool __nonzero__(QLayout* obj) { return !obj->isEmpty(); }
+};
+
+
+
+
+
+class PythonQtShell_QLayoutItem : public QLayoutItem
+{
+public:
+    PythonQtShell_QLayoutItem(Qt::Alignment  alignment = Qt::Alignment()):QLayoutItem(alignment),_wrapper(NULL) {};
+
+   ~PythonQtShell_QLayoutItem();
+
+virtual QSizePolicy::ControlTypes  controlTypes() const;
+virtual Qt::Orientations  expandingDirections() const;
+virtual QRect  geometry() const;
+virtual bool  hasHeightForWidth() const;
+virtual int  heightForWidth(int  arg__1) const;
+virtual void invalidate();
+virtual bool  isEmpty() const;
+virtual QLayout*  layout();
+virtual QSize  maximumSize() const;
+virtual int  minimumHeightForWidth(int  arg__1) const;
+virtual QSize  minimumSize() const;
+virtual void setGeometry(const QRect&  arg__1);
+virtual QSize  sizeHint() const;
+virtual QSpacerItem*  spacerItem();
+virtual QWidget*  widget();
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QLayoutItem : public QLayoutItem
+{ public:
+inline QSizePolicy::ControlTypes  py_q_controlTypes() const { return QLayoutItem::controlTypes(); }
+inline Qt::Orientations  py_q_expandingDirections() const { return this->expandingDirections(); }
+inline QRect  py_q_geometry() const { return this->geometry(); }
+inline bool  py_q_hasHeightForWidth() const { return QLayoutItem::hasHeightForWidth(); }
+inline int  py_q_heightForWidth(int  arg__1) const { return QLayoutItem::heightForWidth(arg__1); }
+inline void py_q_invalidate() { QLayoutItem::invalidate(); }
+inline bool  py_q_isEmpty() const { return this->isEmpty(); }
+inline QLayout*  py_q_layout() { return QLayoutItem::layout(); }
+inline QSize  py_q_maximumSize() const { return this->maximumSize(); }
+inline int  py_q_minimumHeightForWidth(int  arg__1) const { return QLayoutItem::minimumHeightForWidth(arg__1); }
+inline QSize  py_q_minimumSize() const { return this->minimumSize(); }
+inline void py_q_setGeometry(const QRect&  arg__1) { this->setGeometry(arg__1); }
+inline QSize  py_q_sizeHint() const { return this->sizeHint(); }
+inline QSpacerItem*  py_q_spacerItem() { return QLayoutItem::spacerItem(); }
+inline QWidget*  py_q_widget() { return QLayoutItem::widget(); }
+};
+
+class PythonQtWrapper_QLayoutItem : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QLayoutItem* new_QLayoutItem(Qt::Alignment  alignment = Qt::Alignment());
+void delete_QLayoutItem(QLayoutItem* obj) { delete obj; } 
+   Qt::Alignment  alignment(QLayoutItem* theWrappedObject) const;
+   QSizePolicy::ControlTypes  controlTypes(QLayoutItem* theWrappedObject) const;
+   QSizePolicy::ControlTypes  py_q_controlTypes(QLayoutItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_controlTypes());}
+   Qt::Orientations  expandingDirections(QLayoutItem* theWrappedObject) const;
+   Qt::Orientations  py_q_expandingDirections(QLayoutItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_expandingDirections());}
+   QRect  geometry(QLayoutItem* theWrappedObject) const;
+   QRect  py_q_geometry(QLayoutItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_geometry());}
+   bool  hasHeightForWidth(QLayoutItem* theWrappedObject) const;
+   bool  py_q_hasHeightForWidth(QLayoutItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_hasHeightForWidth());}
+   int  heightForWidth(QLayoutItem* theWrappedObject, int  arg__1) const;
+   int  py_q_heightForWidth(QLayoutItem* theWrappedObject, int  arg__1) const{  return (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_heightForWidth(arg__1));}
+   void invalidate(QLayoutItem* theWrappedObject);
+   void py_q_invalidate(QLayoutItem* theWrappedObject){  (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_invalidate());}
+   bool  isEmpty(QLayoutItem* theWrappedObject) const;
+   bool  py_q_isEmpty(QLayoutItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_isEmpty());}
+   QLayout*  layout(QLayoutItem* theWrappedObject);
+   QLayout*  py_q_layout(QLayoutItem* theWrappedObject){  return (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_layout());}
+   QSize  maximumSize(QLayoutItem* theWrappedObject) const;
+   QSize  py_q_maximumSize(QLayoutItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_maximumSize());}
+   int  minimumHeightForWidth(QLayoutItem* theWrappedObject, int  arg__1) const;
+   int  py_q_minimumHeightForWidth(QLayoutItem* theWrappedObject, int  arg__1) const{  return (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_minimumHeightForWidth(arg__1));}
+   QSize  minimumSize(QLayoutItem* theWrappedObject) const;
+   QSize  py_q_minimumSize(QLayoutItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_minimumSize());}
+   void setAlignment(QLayoutItem* theWrappedObject, Qt::Alignment  a);
+   void setGeometry(QLayoutItem* theWrappedObject, const QRect&  arg__1);
+   void py_q_setGeometry(QLayoutItem* theWrappedObject, const QRect&  arg__1){  (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_setGeometry(arg__1));}
+   QSize  sizeHint(QLayoutItem* theWrappedObject) const;
+   QSize  py_q_sizeHint(QLayoutItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_sizeHint());}
+   QSpacerItem*  spacerItem(QLayoutItem* theWrappedObject);
+   QSpacerItem*  py_q_spacerItem(QLayoutItem* theWrappedObject){  return (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_spacerItem());}
+   QWidget*  widget(QLayoutItem* theWrappedObject);
+   QWidget*  py_q_widget(QLayoutItem* theWrappedObject){  return (((PythonQtPublicPromoter_QLayoutItem*)theWrappedObject)->py_q_widget());}
+    bool __nonzero__(QLayoutItem* obj) { return !obj->isEmpty(); }
+};
+
+
+
+
+
 class PythonQtShell_QLineEdit : public QLineEdit
 {
 public:

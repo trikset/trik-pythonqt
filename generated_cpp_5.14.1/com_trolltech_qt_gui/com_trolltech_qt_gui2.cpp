@@ -10485,6 +10485,84 @@ int  PythonQtWrapper_QGraphicsLinearLayout::stretchFactor(QGraphicsLinearLayout*
 
 
 
+PythonQtShell_QGraphicsObject::~PythonQtShell_QGraphicsObject() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+bool  PythonQtShell_QGraphicsObject::event(QEvent*  ev0)
+{
+if (_wrapper) {
+  PYTHONQT_GIL_SCOPE
+  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+    static PyObject* name = PyString_FromString("event");
+    PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+    if (obj) {
+      static const char* argumentList[] ={"bool" , "QEvent*"};
+      static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue{};
+      void* args[2] = {NULL, (void*)&ev0};
+      PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+      if (result) {
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        if (args[0]!=&returnValue) {
+          if (args[0]==NULL) {
+            PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+          } else {
+            returnValue = *((bool*)args[0]);
+          }
+        }
+      }
+      if (result) { Py_DECREF(result); } 
+      Py_DECREF(obj);
+      return returnValue;
+    } else {
+      PyErr_Clear();
+    }
+  }
+}
+  return QGraphicsObject::event(ev0);
+}
+QGraphicsObject* PythonQtWrapper_QGraphicsObject::new_QGraphicsObject(QGraphicsItem*  parent)
+{Q_UNUSED(parent) return NULL;}
+//{
+//return new PythonQtShell_QGraphicsObject(parent); }
+
+const QMetaObject* PythonQtShell_QGraphicsObject::metaObject() const {
+  if (QObject::d_ptr->metaObject) {
+    return QObject::d_ptr->dynamicMetaObject();
+  } else if (_wrapper) {
+    return PythonQt::priv()->getDynamicMetaObject(_wrapper, &QGraphicsObject::staticMetaObject);
+  } else {
+    return &QGraphicsObject::staticMetaObject;
+  }
+}
+int PythonQtShell_QGraphicsObject::qt_metacall(QMetaObject::Call call, int id, void** args) {
+  int result = QGraphicsObject::qt_metacall(call, id, args);
+  return result >= 0 ? PythonQt::priv()->handleMetaCall(this, _wrapper, call, id, args) : result;
+}
+bool  PythonQtWrapper_QGraphicsObject::event(QGraphicsObject* theWrappedObject, QEvent*  ev)
+{
+  return ( ((PythonQtPublicPromoter_QGraphicsObject*)theWrappedObject)->promoted_event(ev));
+}
+
+void PythonQtWrapper_QGraphicsObject::grabGesture(QGraphicsObject* theWrappedObject, Qt::GestureType  type, Qt::GestureFlags  flags)
+{
+  ( theWrappedObject->grabGesture(type, flags));
+}
+
+void PythonQtWrapper_QGraphicsObject::ungrabGesture(QGraphicsObject* theWrappedObject, Qt::GestureType  type)
+{
+  ( theWrappedObject->ungrabGesture(type));
+}
+
+QString PythonQtWrapper_QGraphicsObject::py_toString(QGraphicsObject* obj) {
+  QString result;
+  QDebug d(&result);
+  d << obj;
+  return result;
+}
+
+
 
 PythonQtShell_QGraphicsOpacityEffect::~PythonQtShell_QGraphicsOpacityEffect() {
   PythonQtPrivate* priv = PythonQt::priv();

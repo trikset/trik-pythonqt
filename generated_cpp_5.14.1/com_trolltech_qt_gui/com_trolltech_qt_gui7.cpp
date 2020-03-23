@@ -2140,6 +2140,206 @@ QRubberBand::Shape  PythonQtWrapper_QRubberBand::shape(QRubberBand* theWrappedOb
 
 
 
+PythonQtShell_QScreen::~PythonQtShell_QScreen() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QScreen* PythonQtWrapper_QScreen::new_QScreen()
+{return NULL;}
+//{
+//return new PythonQtShell_QScreen(); }
+
+const QMetaObject* PythonQtShell_QScreen::metaObject() const {
+  if (QObject::d_ptr->metaObject) {
+    return QObject::d_ptr->dynamicMetaObject();
+  } else if (_wrapper) {
+    return PythonQt::priv()->getDynamicMetaObject(_wrapper, &QScreen::staticMetaObject);
+  } else {
+    return &QScreen::staticMetaObject;
+  }
+}
+int PythonQtShell_QScreen::qt_metacall(QMetaObject::Call call, int id, void** args) {
+  int result = QScreen::qt_metacall(call, id, args);
+  return result >= 0 ? PythonQt::priv()->handleMetaCall(this, _wrapper, call, id, args) : result;
+}
+int  PythonQtWrapper_QScreen::angleBetween(QScreen* theWrappedObject, Qt::ScreenOrientation  a, Qt::ScreenOrientation  b) const
+{
+  return ( theWrappedObject->angleBetween(a, b));
+}
+
+QRect  PythonQtWrapper_QScreen::availableGeometry(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->availableGeometry());
+}
+
+QSize  PythonQtWrapper_QScreen::availableSize(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->availableSize());
+}
+
+QRect  PythonQtWrapper_QScreen::availableVirtualGeometry(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->availableVirtualGeometry());
+}
+
+QSize  PythonQtWrapper_QScreen::availableVirtualSize(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->availableVirtualSize());
+}
+
+int  PythonQtWrapper_QScreen::depth(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->depth());
+}
+
+qreal  PythonQtWrapper_QScreen::devicePixelRatio(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->devicePixelRatio());
+}
+
+QRect  PythonQtWrapper_QScreen::geometry(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->geometry());
+}
+
+QPixmap  PythonQtWrapper_QScreen::grabWindow(QScreen* theWrappedObject, WId  window, int  x, int  y, int  w, int  h)
+{
+  return ( theWrappedObject->grabWindow(window, x, y, w, h));
+}
+
+bool  PythonQtWrapper_QScreen::isLandscape(QScreen* theWrappedObject, Qt::ScreenOrientation  orientation) const
+{
+  return ( theWrappedObject->isLandscape(orientation));
+}
+
+bool  PythonQtWrapper_QScreen::isPortrait(QScreen* theWrappedObject, Qt::ScreenOrientation  orientation) const
+{
+  return ( theWrappedObject->isPortrait(orientation));
+}
+
+qreal  PythonQtWrapper_QScreen::logicalDotsPerInch(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->logicalDotsPerInch());
+}
+
+qreal  PythonQtWrapper_QScreen::logicalDotsPerInchX(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->logicalDotsPerInchX());
+}
+
+qreal  PythonQtWrapper_QScreen::logicalDotsPerInchY(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->logicalDotsPerInchY());
+}
+
+QString  PythonQtWrapper_QScreen::manufacturer(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->manufacturer());
+}
+
+QRect  PythonQtWrapper_QScreen::mapBetween(QScreen* theWrappedObject, Qt::ScreenOrientation  a, Qt::ScreenOrientation  b, const QRect&  rect) const
+{
+  return ( theWrappedObject->mapBetween(a, b, rect));
+}
+
+QString  PythonQtWrapper_QScreen::model(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->model());
+}
+
+QString  PythonQtWrapper_QScreen::name(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->name());
+}
+
+Qt::ScreenOrientation  PythonQtWrapper_QScreen::nativeOrientation(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->nativeOrientation());
+}
+
+Qt::ScreenOrientation  PythonQtWrapper_QScreen::orientation(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->orientation());
+}
+
+Qt::ScreenOrientations  PythonQtWrapper_QScreen::orientationUpdateMask(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->orientationUpdateMask());
+}
+
+qreal  PythonQtWrapper_QScreen::physicalDotsPerInch(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->physicalDotsPerInch());
+}
+
+qreal  PythonQtWrapper_QScreen::physicalDotsPerInchX(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->physicalDotsPerInchX());
+}
+
+qreal  PythonQtWrapper_QScreen::physicalDotsPerInchY(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->physicalDotsPerInchY());
+}
+
+QSizeF  PythonQtWrapper_QScreen::physicalSize(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->physicalSize());
+}
+
+Qt::ScreenOrientation  PythonQtWrapper_QScreen::primaryOrientation(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->primaryOrientation());
+}
+
+qreal  PythonQtWrapper_QScreen::refreshRate(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->refreshRate());
+}
+
+QString  PythonQtWrapper_QScreen::serialNumber(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->serialNumber());
+}
+
+void PythonQtWrapper_QScreen::setOrientationUpdateMask(QScreen* theWrappedObject, Qt::ScreenOrientations  mask)
+{
+  ( theWrappedObject->setOrientationUpdateMask(mask));
+}
+
+QSize  PythonQtWrapper_QScreen::size(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->size());
+}
+
+QTransform  PythonQtWrapper_QScreen::transformBetween(QScreen* theWrappedObject, Qt::ScreenOrientation  a, Qt::ScreenOrientation  b, const QRect&  target) const
+{
+  return ( theWrappedObject->transformBetween(a, b, target));
+}
+
+QRect  PythonQtWrapper_QScreen::virtualGeometry(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->virtualGeometry());
+}
+
+QList<QScreen* >  PythonQtWrapper_QScreen::virtualSiblings(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->virtualSiblings());
+}
+
+QSize  PythonQtWrapper_QScreen::virtualSize(QScreen* theWrappedObject) const
+{
+  return ( theWrappedObject->virtualSize());
+}
+
+QString PythonQtWrapper_QScreen::py_toString(QScreen* obj) {
+  QString result;
+  QDebug d(&result);
+  d << obj;
+  return result;
+}
+
+
 
 QScreenOrientationChangeEvent* PythonQtWrapper_QScreenOrientationChangeEvent::new_QScreenOrientationChangeEvent(QScreen*  screen, Qt::ScreenOrientation  orientation)
 { 
@@ -4599,6 +4799,124 @@ QSizeF  PythonQtWrapper_QScrollPrepareEvent::viewportSize(QScrollPrepareEvent* t
   return ( theWrappedObject->viewportSize());
 }
 
+
+
+//PythonQtShell_QScroller::~PythonQtShell_QScroller() {
+//  PythonQtPrivate* priv = PythonQt::priv();
+//  if (priv) { priv->shellClassDeleted(this); }
+//}
+QScroller* PythonQtWrapper_QScroller::new_QScroller()
+{return NULL;}
+//{
+//return new PythonQtShell_QScroller(); }
+
+const QMetaObject* PythonQtShell_QScroller::metaObject() const {
+  if (QObject::d_ptr->metaObject) {
+    return QObject::d_ptr->dynamicMetaObject();
+  } else if (_wrapper) {
+    return PythonQt::priv()->getDynamicMetaObject(_wrapper, &QScroller::staticMetaObject);
+  } else {
+    return &QScroller::staticMetaObject;
+  }
+}
+int PythonQtShell_QScroller::qt_metacall(QMetaObject::Call call, int id, void** args) {
+  int result = QScroller::qt_metacall(call, id, args);
+  return result >= 0 ? PythonQt::priv()->handleMetaCall(this, _wrapper, call, id, args) : result;
+}
+QList<QScroller* >  PythonQtWrapper_QScroller::static_QScroller_activeScrollers()
+{
+  return (QScroller::activeScrollers());
+}
+
+QPointF  PythonQtWrapper_QScroller::finalPosition(QScroller* theWrappedObject) const
+{
+  return ( theWrappedObject->finalPosition());
+}
+
+Qt::GestureType  PythonQtWrapper_QScroller::static_QScroller_grabGesture(QObject*  target, QScroller::ScrollerGestureType  gestureType)
+{
+  return (QScroller::grabGesture(target, gestureType));
+}
+
+Qt::GestureType  PythonQtWrapper_QScroller::static_QScroller_grabbedGesture(QObject*  target)
+{
+  return (QScroller::grabbedGesture(target));
+}
+
+bool  PythonQtWrapper_QScroller::handleInput(QScroller* theWrappedObject, QScroller::Input  input, const QPointF&  position, qint64  timestamp)
+{
+  return ( theWrappedObject->handleInput(input, position, timestamp));
+}
+
+bool  PythonQtWrapper_QScroller::static_QScroller_hasScroller(QObject*  target)
+{
+  return (QScroller::hasScroller(target));
+}
+
+QPointF  PythonQtWrapper_QScroller::pixelPerMeter(QScroller* theWrappedObject) const
+{
+  return ( theWrappedObject->pixelPerMeter());
+}
+
+QScroller*  PythonQtWrapper_QScroller::static_QScroller_scroller(QObject*  target)
+{
+  return (QScroller::scroller(target));
+}
+
+const QScroller*  PythonQtWrapper_QScroller::static_QScroller_scroller(const QObject*  target)
+{
+  return (QScroller::scroller(target));
+}
+
+QScrollerProperties  PythonQtWrapper_QScroller::scrollerProperties(QScroller* theWrappedObject) const
+{
+  return ( theWrappedObject->scrollerProperties());
+}
+
+void PythonQtWrapper_QScroller::setSnapPositionsX(QScroller* theWrappedObject, const QList<qreal >&  positions)
+{
+  ( theWrappedObject->setSnapPositionsX(positions));
+}
+
+void PythonQtWrapper_QScroller::setSnapPositionsX(QScroller* theWrappedObject, qreal  first, qreal  interval)
+{
+  ( theWrappedObject->setSnapPositionsX(first, interval));
+}
+
+void PythonQtWrapper_QScroller::setSnapPositionsY(QScroller* theWrappedObject, const QList<qreal >&  positions)
+{
+  ( theWrappedObject->setSnapPositionsY(positions));
+}
+
+void PythonQtWrapper_QScroller::setSnapPositionsY(QScroller* theWrappedObject, qreal  first, qreal  interval)
+{
+  ( theWrappedObject->setSnapPositionsY(first, interval));
+}
+
+QScroller::State  PythonQtWrapper_QScroller::state(QScroller* theWrappedObject) const
+{
+  return ( theWrappedObject->state());
+}
+
+void PythonQtWrapper_QScroller::stop(QScroller* theWrappedObject)
+{
+  ( theWrappedObject->stop());
+}
+
+QObject*  PythonQtWrapper_QScroller::target(QScroller* theWrappedObject) const
+{
+  return ( theWrappedObject->target());
+}
+
+void PythonQtWrapper_QScroller::static_QScroller_ungrabGesture(QObject*  target)
+{
+  (QScroller::ungrabGesture(target));
+}
+
+QPointF  PythonQtWrapper_QScroller::velocity(QScroller* theWrappedObject) const
+{
+  return ( theWrappedObject->velocity());
+}
 
 
 

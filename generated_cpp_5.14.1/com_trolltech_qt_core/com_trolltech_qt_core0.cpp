@@ -21,7 +21,6 @@
 #include <qevent.h>
 #include <qeventtransition.h>
 #include <qfile.h>
-#include <qdatetime.h>
 #include <qfiledevice.h>
 #include <qfinalstate.h>
 #include <qhistorystate.h>

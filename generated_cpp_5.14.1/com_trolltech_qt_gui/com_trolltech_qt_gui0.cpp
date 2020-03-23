@@ -17345,6 +17345,103 @@ QSize  PythonQtWrapper_QCheckBox::sizeHint(QCheckBox* theWrappedObject) const
 
 
 
+//PythonQtShell_QClipboard::~PythonQtShell_QClipboard() {
+//  PythonQtPrivate* priv = PythonQt::priv();
+//  if (priv) { priv->shellClassDeleted(this); }
+//}
+QClipboard* PythonQtWrapper_QClipboard::new_QClipboard()
+{return NULL;}
+//{
+//return new PythonQtShell_QClipboard(); }
+
+const QMetaObject* PythonQtShell_QClipboard::metaObject() const {
+  if (QObject::d_ptr->metaObject) {
+    return QObject::d_ptr->dynamicMetaObject();
+  } else if (_wrapper) {
+    return PythonQt::priv()->getDynamicMetaObject(_wrapper, &QClipboard::staticMetaObject);
+  } else {
+    return &QClipboard::staticMetaObject;
+  }
+}
+int PythonQtShell_QClipboard::qt_metacall(QMetaObject::Call call, int id, void** args) {
+  int result = QClipboard::qt_metacall(call, id, args);
+  return result >= 0 ? PythonQt::priv()->handleMetaCall(this, _wrapper, call, id, args) : result;
+}
+void PythonQtWrapper_QClipboard::clear(QClipboard* theWrappedObject, QClipboard::Mode  mode)
+{
+  ( theWrappedObject->clear(mode));
+}
+
+QImage  PythonQtWrapper_QClipboard::image(QClipboard* theWrappedObject, QClipboard::Mode  mode) const
+{
+  return ( theWrappedObject->image(mode));
+}
+
+const QMimeData*  PythonQtWrapper_QClipboard::mimeData(QClipboard* theWrappedObject, QClipboard::Mode  mode) const
+{
+  return ( theWrappedObject->mimeData(mode));
+}
+
+bool  PythonQtWrapper_QClipboard::ownsClipboard(QClipboard* theWrappedObject) const
+{
+  return ( theWrappedObject->ownsClipboard());
+}
+
+bool  PythonQtWrapper_QClipboard::ownsFindBuffer(QClipboard* theWrappedObject) const
+{
+  return ( theWrappedObject->ownsFindBuffer());
+}
+
+bool  PythonQtWrapper_QClipboard::ownsSelection(QClipboard* theWrappedObject) const
+{
+  return ( theWrappedObject->ownsSelection());
+}
+
+QPixmap  PythonQtWrapper_QClipboard::pixmap(QClipboard* theWrappedObject, QClipboard::Mode  mode) const
+{
+  return ( theWrappedObject->pixmap(mode));
+}
+
+void PythonQtWrapper_QClipboard::setImage(QClipboard* theWrappedObject, const QImage&  arg__1, QClipboard::Mode  mode)
+{
+  ( theWrappedObject->setImage(arg__1, mode));
+}
+
+void PythonQtWrapper_QClipboard::setMimeData(QClipboard* theWrappedObject, PythonQtPassOwnershipToCPP<QMimeData* >  data, QClipboard::Mode  mode)
+{
+  ( theWrappedObject->setMimeData(data, mode));
+}
+
+void PythonQtWrapper_QClipboard::setPixmap(QClipboard* theWrappedObject, const QPixmap&  arg__1, QClipboard::Mode  mode)
+{
+  ( theWrappedObject->setPixmap(arg__1, mode));
+}
+
+void PythonQtWrapper_QClipboard::setText(QClipboard* theWrappedObject, const QString&  arg__1, QClipboard::Mode  mode)
+{
+  ( theWrappedObject->setText(arg__1, mode));
+}
+
+bool  PythonQtWrapper_QClipboard::supportsFindBuffer(QClipboard* theWrappedObject) const
+{
+  return ( theWrappedObject->supportsFindBuffer());
+}
+
+bool  PythonQtWrapper_QClipboard::supportsSelection(QClipboard* theWrappedObject) const
+{
+  return ( theWrappedObject->supportsSelection());
+}
+
+QString  PythonQtWrapper_QClipboard::text(QClipboard* theWrappedObject, QClipboard::Mode  mode) const
+{
+  return ( theWrappedObject->text(mode));
+}
+
+QString  PythonQtWrapper_QClipboard::text(QClipboard* theWrappedObject, QString&  subtype, QClipboard::Mode  mode) const
+{
+  return ( theWrappedObject->text(subtype, mode));
+}
+
 
 
 QCloseEvent* PythonQtWrapper_QCloseEvent::new_QCloseEvent()

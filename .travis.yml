@@ -1,8 +1,8 @@
-language: cpp
+language: minimal
+sudo: false
 env:
   global:
     - CCACHE_SLOPPINESS=include_file_ctime,include_file_mtime
-    - PYENV_ROOT=$HOME/.pyenv
     - QMAKE_EXTRA="PYTHONQTALL_CONFIG=PythonQtCore PYTHONQTALL_CONFIG+=PythonQtGui CONFIG+=tests CONFIG+=noPch CONFIG+=ccache CONFIG+=generator"
 cache:
   timeout: 1000
@@ -11,33 +11,54 @@ cache:
   pip: true
   directories:
     - $PYENV_ROOT
-addons:
-  apt:
-#    update: true
-#    sources:
-#    - ubuntu-toolchain-r-test
-    packages:
-    - python3-dev
-    - qtbase5-private-dev
-    - qt5-default
-  homebrew:
-    update: true
-    packages:
-    - qt
-    - python3
-    - ccache
+    - $HOME/Library/Caches/Homebrew
+    - /usr/local/Homebrew
+
 matrix:
   include:
   - os: linux
     dist: xenial
     env: QMAKE_EXTRA="$QMAKE_EXTRA CONFIG+=debug CONFIG+=sanitizer CONFIG+=sanitize_address CONFIG+=sanitize_undefined"
     name: Xenial debug
+    addons:
+      apt:
+        packages:
+        - qtbase5-private-dev
+        - qt5-default
+        - python3-dev
+        - g++
+  - os: linux
+    dist: bionic
+    env: QMAKE_EXTRA="$QMAKE_EXTRA QMAKE_CXX=g++-9 QMAKE_LINK=g++-9 CONFIG+=debug CONFIG+=sanitizer CONFIG+=sanitize_address CONFIG+=sanitize_undefined"
+    name: 'Bionic debug + GCC-9'
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test # g++-9
+        packages:
+        - qtbase5-private-dev
+        - qt5-default
+        - g++-9
+        - python3-dev
 
   - os: osx
     name: macOS release
     env: QMAKE_EXTRA="$QMAKE_EXTRA CONFIG+=no-sanitizers CONFIG+=release"
+    addons:
+      homebrew:
+        update: true # `brew bundle` fails otherwise
+        packages:
+        - qt
+        - python3
+        - ccache
 git:
   depth: 1
+
+before_cache:
+  - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then brew cleanup; fi
+# Credit https://discourse.brew.sh/t/best-practice-for-homebrew-on-travis-brew-update-is-5min-to-build-time/5215/9
+# Cache only .git files under "/usr/local/Homebrew" so "brew update" does not take 5min every build
+  - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then find /usr/local/Homebrew \! -regex ".+\.git.+" -delete; fi
 
 #before_install:
 

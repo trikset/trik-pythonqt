@@ -72,6 +72,80 @@
 #include <qwindow.h>
 
 
+
+class PythonQtShell_QPaintDeviceWindow : public QPaintDeviceWindow
+{
+public:
+    PythonQtShell_QPaintDeviceWindow() = delete;
+//    PythonQtShell_QPaintDeviceWindow():QPaintDeviceWindow(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QPaintDeviceWindow();
+
+virtual int  devType() const;
+virtual bool  event(QEvent*  event);
+virtual void exposeEvent(QExposeEvent*  arg__1);
+virtual void focusInEvent(QFocusEvent*  arg__1);
+virtual QObject*  focusObject() const;
+virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual QSurfaceFormat  format() const;
+virtual void hideEvent(QHideEvent*  arg__1);
+virtual void initPainter(QPainter*  painter) const;
+virtual void keyPressEvent(QKeyEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  arg__1);
+virtual int  metric(QPaintDevice::PaintDeviceMetric  metric) const;
+virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
+virtual void mouseMoveEvent(QMouseEvent*  arg__1);
+virtual void mousePressEvent(QMouseEvent*  arg__1);
+virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
+virtual void moveEvent(QMoveEvent*  arg__1);
+virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
+virtual void paintEvent(QPaintEvent*  event);
+virtual QPaintDevice*  redirected(QPoint*  offset) const;
+virtual void resizeEvent(QResizeEvent*  arg__1);
+virtual QPainter*  sharedPainter() const;
+virtual void showEvent(QShowEvent*  arg__1);
+virtual QSize  size() const;
+virtual QSurface::SurfaceType  surfaceType() const;
+virtual void tabletEvent(QTabletEvent*  arg__1);
+virtual void touchEvent(QTouchEvent*  arg__1);
+virtual void wheelEvent(QWheelEvent*  arg__1);
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QPaintDeviceWindow : public QPaintDeviceWindow
+{ public:
+inline bool  promoted_event(QEvent*  event) { return this->event(event); }
+inline void promoted_exposeEvent(QExposeEvent*  arg__1) { this->exposeEvent(arg__1); }
+inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  metric) const { return this->metric(metric); }
+inline void promoted_paintEvent(QPaintEvent*  event) { this->paintEvent(event); }
+inline bool  py_q_event(QEvent*  event) { return QPaintDeviceWindow::event(event); }
+inline void py_q_exposeEvent(QExposeEvent*  arg__1) { QPaintDeviceWindow::exposeEvent(arg__1); }
+inline int  py_q_metric(QPaintDevice::PaintDeviceMetric  metric) const { return QPaintDeviceWindow::metric(metric); }
+inline void py_q_paintEvent(QPaintEvent*  event) { QPaintDeviceWindow::paintEvent(event); }
+};
+
+class PythonQtWrapper_QPaintDeviceWindow : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QPaintDeviceWindow* new_QPaintDeviceWindow();
+void delete_QPaintDeviceWindow(QPaintDeviceWindow* obj) { delete obj; } 
+   bool  py_q_event(QPaintDeviceWindow* theWrappedObject, QEvent*  event){  return (((PythonQtPublicPromoter_QPaintDeviceWindow*)theWrappedObject)->py_q_event(event));}
+   void py_q_exposeEvent(QPaintDeviceWindow* theWrappedObject, QExposeEvent*  arg__1){  (((PythonQtPublicPromoter_QPaintDeviceWindow*)theWrappedObject)->py_q_exposeEvent(arg__1));}
+   int  py_q_metric(QPaintDeviceWindow* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const{  return (((PythonQtPublicPromoter_QPaintDeviceWindow*)theWrappedObject)->py_q_metric(metric));}
+   void paintEvent(QPaintDeviceWindow* theWrappedObject, QPaintEvent*  event);
+   void py_q_paintEvent(QPaintDeviceWindow* theWrappedObject, QPaintEvent*  event){  (((PythonQtPublicPromoter_QPaintDeviceWindow*)theWrappedObject)->py_q_paintEvent(event));}
+   void update(QPaintDeviceWindow* theWrappedObject, const QRect&  rect);
+   void update(QPaintDeviceWindow* theWrappedObject, const QRegion&  region);
+};
+
+
+
+
+
 class PythonQtShell_QPaintEngine : public QPaintEngine
 {
 public:

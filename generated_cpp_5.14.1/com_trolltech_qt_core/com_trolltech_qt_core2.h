@@ -7,6 +7,7 @@
 #include <qabstracttransition.h>
 #include <qanimationgroup.h>
 #include <qcoreevent.h>
+#include <qdatetime.h>
 #include <qdeadlinetimer.h>
 #include <qevent.h>
 #include <qfile.h>

@@ -10,6 +10,7 @@
 #include <qline.h>
 #include <qtextcodec.h>
 #include <qurl.h>
+#include <qmatrix.h>
 #include <qtransform.h>
 
 QDate* PythonQtWrapper_QDate::new_QDate()

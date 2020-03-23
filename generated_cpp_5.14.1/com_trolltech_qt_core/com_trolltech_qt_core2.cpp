@@ -19,7 +19,6 @@
 #include <qsignaltransition.h>
 #include <qsocketnotifier.h>
 #include <qstate.h>
-#include <qdeadlinetimer.h>
 #include <qstatemachine.h>
 #include <qstringmatcher.h>
 #include <qsystemsemaphore.h>

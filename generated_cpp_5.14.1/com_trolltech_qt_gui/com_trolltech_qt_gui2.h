@@ -1837,6 +1837,48 @@ void delete_QGraphicsLinearLayout(QGraphicsLinearLayout* obj) { delete obj; }
    int  stretchFactor(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item) const;
 };
 
+
+
+
+
+class PythonQtShell_QGraphicsObject : public QGraphicsObject
+{
+public:
+    PythonQtShell_QGraphicsObject(QGraphicsItem*  parent = nullptr):QGraphicsObject(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QGraphicsObject();
+
+virtual bool  event(QEvent*  ev);
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QGraphicsObject : public QGraphicsObject
+{ public:
+inline bool  promoted_event(QEvent*  ev) { return this->event(ev); }
+inline void promoted_updateMicroFocus() { this->updateMicroFocus(); }
+inline bool  py_q_event(QEvent*  ev) { return QGraphicsObject::event(ev); }
+};
+
+class PythonQtWrapper_QGraphicsObject : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QGraphicsObject* new_QGraphicsObject(QGraphicsItem*  parent = nullptr);
+void delete_QGraphicsObject(QGraphicsObject* obj) { delete obj; } 
+   bool  event(QGraphicsObject* theWrappedObject, QEvent*  ev);
+   bool  py_q_event(QGraphicsObject* theWrappedObject, QEvent*  ev){  return (((PythonQtPublicPromoter_QGraphicsObject*)theWrappedObject)->py_q_event(ev));}
+   void grabGesture(QGraphicsObject* theWrappedObject, Qt::GestureType  type, Qt::GestureFlags  flags = Qt::GestureFlags());
+   void ungrabGesture(QGraphicsObject* theWrappedObject, Qt::GestureType  type);
+    QString py_toString(QGraphicsObject*);
+};
+
+
+
+
+
 class PythonQtShell_QGraphicsOpacityEffect : public QGraphicsOpacityEffect
 {
 public:

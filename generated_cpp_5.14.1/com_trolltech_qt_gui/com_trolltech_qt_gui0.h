@@ -2294,6 +2294,48 @@ void delete_QCheckBox(QCheckBox* obj) { delete obj; }
 };
 
 
+
+
+
+class PythonQtShell_QClipboard : public QClipboard
+{
+       ~PythonQtShell_QClipboard();
+public:
+  //  PythonQtShell_QClipboard():QClipboard(),_wrapper(NULL) {};
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QClipboard : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(Mode )
+enum Mode{
+  Clipboard = QClipboard::Clipboard,   Selection = QClipboard::Selection,   FindBuffer = QClipboard::FindBuffer,   LastMode = QClipboard::LastMode};
+public slots:
+QClipboard* new_QClipboard();
+   void clear(QClipboard* theWrappedObject, QClipboard::Mode  mode = QClipboard::Clipboard);
+   QImage  image(QClipboard* theWrappedObject, QClipboard::Mode  mode = QClipboard::Clipboard) const;
+   const QMimeData*  mimeData(QClipboard* theWrappedObject, QClipboard::Mode  mode = QClipboard::Clipboard) const;
+   bool  ownsClipboard(QClipboard* theWrappedObject) const;
+   bool  ownsFindBuffer(QClipboard* theWrappedObject) const;
+   bool  ownsSelection(QClipboard* theWrappedObject) const;
+   QPixmap  pixmap(QClipboard* theWrappedObject, QClipboard::Mode  mode = QClipboard::Clipboard) const;
+   void setImage(QClipboard* theWrappedObject, const QImage&  arg__1, QClipboard::Mode  mode = QClipboard::Clipboard);
+   void setMimeData(QClipboard* theWrappedObject, PythonQtPassOwnershipToCPP<QMimeData* >  data, QClipboard::Mode  mode = QClipboard::Clipboard);
+   void setPixmap(QClipboard* theWrappedObject, const QPixmap&  arg__1, QClipboard::Mode  mode = QClipboard::Clipboard);
+   void setText(QClipboard* theWrappedObject, const QString&  arg__1, QClipboard::Mode  mode = QClipboard::Clipboard);
+   bool  supportsFindBuffer(QClipboard* theWrappedObject) const;
+   bool  supportsSelection(QClipboard* theWrappedObject) const;
+   QString  text(QClipboard* theWrappedObject, QClipboard::Mode  mode = QClipboard::Clipboard) const;
+   QString  text(QClipboard* theWrappedObject, QString&  subtype, QClipboard::Mode  mode = QClipboard::Clipboard) const;
+};
+
+
+
+
+
 class PythonQtWrapper_QCloseEvent : public QObject
 { Q_OBJECT
 public:

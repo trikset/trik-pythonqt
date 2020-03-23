@@ -346,6 +346,63 @@ void delete_QRubberBand(QRubberBand* obj) { delete obj; }
 
 
 
+class PythonQtShell_QScreen : public QScreen
+{
+public:
+//    PythonQtShell_QScreen():QScreen(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QScreen();
+
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QScreen : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QScreen* new_QScreen();
+void delete_QScreen(QScreen* obj) { delete obj; } 
+   int  angleBetween(QScreen* theWrappedObject, Qt::ScreenOrientation  a, Qt::ScreenOrientation  b) const;
+   QRect  availableGeometry(QScreen* theWrappedObject) const;
+   QSize  availableSize(QScreen* theWrappedObject) const;
+   QRect  availableVirtualGeometry(QScreen* theWrappedObject) const;
+   QSize  availableVirtualSize(QScreen* theWrappedObject) const;
+   int  depth(QScreen* theWrappedObject) const;
+   qreal  devicePixelRatio(QScreen* theWrappedObject) const;
+   QRect  geometry(QScreen* theWrappedObject) const;
+   QPixmap  grabWindow(QScreen* theWrappedObject, WId  window, int  x = 0, int  y = 0, int  w = -1, int  h = -1);
+   bool  isLandscape(QScreen* theWrappedObject, Qt::ScreenOrientation  orientation) const;
+   bool  isPortrait(QScreen* theWrappedObject, Qt::ScreenOrientation  orientation) const;
+   qreal  logicalDotsPerInch(QScreen* theWrappedObject) const;
+   qreal  logicalDotsPerInchX(QScreen* theWrappedObject) const;
+   qreal  logicalDotsPerInchY(QScreen* theWrappedObject) const;
+   QString  manufacturer(QScreen* theWrappedObject) const;
+   QRect  mapBetween(QScreen* theWrappedObject, Qt::ScreenOrientation  a, Qt::ScreenOrientation  b, const QRect&  rect) const;
+   QString  model(QScreen* theWrappedObject) const;
+   QString  name(QScreen* theWrappedObject) const;
+   Qt::ScreenOrientation  nativeOrientation(QScreen* theWrappedObject) const;
+   Qt::ScreenOrientation  orientation(QScreen* theWrappedObject) const;
+   Qt::ScreenOrientations  orientationUpdateMask(QScreen* theWrappedObject) const;
+   qreal  physicalDotsPerInch(QScreen* theWrappedObject) const;
+   qreal  physicalDotsPerInchX(QScreen* theWrappedObject) const;
+   qreal  physicalDotsPerInchY(QScreen* theWrappedObject) const;
+   QSizeF  physicalSize(QScreen* theWrappedObject) const;
+   Qt::ScreenOrientation  primaryOrientation(QScreen* theWrappedObject) const;
+   qreal  refreshRate(QScreen* theWrappedObject) const;
+   QString  serialNumber(QScreen* theWrappedObject) const;
+   void setOrientationUpdateMask(QScreen* theWrappedObject, Qt::ScreenOrientations  mask);
+   QSize  size(QScreen* theWrappedObject) const;
+   QTransform  transformBetween(QScreen* theWrappedObject, Qt::ScreenOrientation  a, Qt::ScreenOrientation  b, const QRect&  target) const;
+   QRect  virtualGeometry(QScreen* theWrappedObject) const;
+   QList<QScreen* >  virtualSiblings(QScreen* theWrappedObject) const;
+   QSize  virtualSize(QScreen* theWrappedObject) const;
+    QString py_toString(QScreen*);
+};
+
+
 
 
 
@@ -603,6 +660,55 @@ void delete_QScrollPrepareEvent(QScrollPrepareEvent* obj) { delete obj; }
    QPointF  startPos(QScrollPrepareEvent* theWrappedObject) const;
    QSizeF  viewportSize(QScrollPrepareEvent* theWrappedObject) const;
 };
+
+
+
+
+
+class PythonQtShell_QScroller : public QScroller
+{
+public:
+//    PythonQtShell_QScroller():QScroller(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QScroller();
+
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QScroller : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(Input ScrollerGestureType )
+enum Input{
+  InputPress = QScroller::InputPress,   InputMove = QScroller::InputMove,   InputRelease = QScroller::InputRelease};
+enum ScrollerGestureType{
+  TouchGesture = QScroller::TouchGesture,   LeftMouseButtonGesture = QScroller::LeftMouseButtonGesture,   RightMouseButtonGesture = QScroller::RightMouseButtonGesture,   MiddleMouseButtonGesture = QScroller::MiddleMouseButtonGesture};
+public slots:
+QScroller* new_QScroller();
+   QList<QScroller* >  static_QScroller_activeScrollers();
+   QPointF  finalPosition(QScroller* theWrappedObject) const;
+   Qt::GestureType  static_QScroller_grabGesture(QObject*  target, QScroller::ScrollerGestureType  gestureType = QScroller::TouchGesture);
+   Qt::GestureType  static_QScroller_grabbedGesture(QObject*  target);
+   bool  handleInput(QScroller* theWrappedObject, QScroller::Input  input, const QPointF&  position, qint64  timestamp = 0);
+   bool  static_QScroller_hasScroller(QObject*  target);
+   QPointF  pixelPerMeter(QScroller* theWrappedObject) const;
+   QScroller*  static_QScroller_scroller(QObject*  target);
+   const QScroller*  static_QScroller_scroller(const QObject*  target);
+   QScrollerProperties  scrollerProperties(QScroller* theWrappedObject) const;
+   void setSnapPositionsX(QScroller* theWrappedObject, const QList<qreal >&  positions);
+   void setSnapPositionsX(QScroller* theWrappedObject, qreal  first, qreal  interval);
+   void setSnapPositionsY(QScroller* theWrappedObject, const QList<qreal >&  positions);
+   void setSnapPositionsY(QScroller* theWrappedObject, qreal  first, qreal  interval);
+   QScroller::State  state(QScroller* theWrappedObject) const;
+   void stop(QScroller* theWrappedObject);
+   QObject*  target(QScroller* theWrappedObject) const;
+   void static_QScroller_ungrabGesture(QObject*  target);
+   QPointF  velocity(QScroller* theWrappedObject) const;
+};
+
 
 
 

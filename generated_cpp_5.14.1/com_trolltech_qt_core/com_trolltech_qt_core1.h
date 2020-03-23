@@ -1145,7 +1145,7 @@ void delete_QSharedMemory(QSharedMemory* obj) { delete obj; }
 class PythonQtShell_QSignalBlocker : public QSignalBlocker
 {
 public:
-	PythonQtShell_QSignalBlocker():QSignalBlocker(NULL),_wrapper(NULL) {};
+    PythonQtShell_QSignalBlocker():QSignalBlocker(NULL),_wrapper(NULL) {};
 
    ~PythonQtShell_QSignalBlocker();
 
