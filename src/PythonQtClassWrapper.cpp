@@ -382,12 +382,12 @@ static int PythonQtClassWrapper_init(PythonQtClassWrapper* self, PyObject* args,
   return 0;
 }
 
-static PyObject *PythonQtClassWrapper_classname(PythonQtClassWrapper* type)
+static PyObject *PythonQtClassWrapper_classname(PythonQtClassWrapper* type, PyObject *)
 {
   return PyString_FromString((QByteArray("Class_") + type->classInfo()->className()).constData());
 }
 
-static PyObject *PythonQtClassWrapper_help(PythonQtClassWrapper* type)
+static PyObject *PythonQtClassWrapper_help(PythonQtClassWrapper* type, PyObject *)
 {
   return PythonQt::self()->helpCalled(type->classInfo());
 }
@@ -400,7 +400,7 @@ PyObject *PythonQtClassWrapper_delete(PythonQtClassWrapper *type, PyObject *args
   if (argc>0) {
 	PyObject* self = PyTuple_GET_ITEM(args, 0);
 	if (PyObject_TypeCheck(self, &PythonQtInstanceWrapper_Type)) {
-	  return PythonQtInstanceWrapper_delete((PythonQtInstanceWrapper*)self);
+	  return PythonQtInstanceWrapper_delete((PythonQtInstanceWrapper*)self, nullptr);
 	}
   }
   return NULL;

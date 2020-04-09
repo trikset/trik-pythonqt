@@ -218,7 +218,7 @@ protected:
 template<class ListType, class T>
 PyObject* PythonQtConvertListOfValueTypeToPythonList(const void* /*QList<T>* */ inList, int metaTypeId)
 {
-  ListType* list = (ListType*)inList; 
+  auto *list = (const ListType*)inList;
   static const int innerType = PythonQtMethodInfo::getInnerTemplateMetaType(QByteArray(QMetaType::typeName(metaTypeId)));
   if (innerType == QVariant::Invalid) {
     std::cerr << "PythonQtConvertListOfValueTypeToPythonList: unknown inner type " << QMetaType::typeName(metaTypeId) << std::endl;

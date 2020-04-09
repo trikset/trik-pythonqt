@@ -130,7 +130,7 @@ typedef struct PythonQtInstanceWrapperStruct {
 
 int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args, PyObject * kwds);
 
-PyObject *PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper * self);
+PyObject *PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper * self, PyObject *);
 
 #endif
 

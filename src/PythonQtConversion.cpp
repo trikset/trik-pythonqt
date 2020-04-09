@@ -503,7 +503,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
 	   break;
 	 case QMetaType::Long:
 	   {
-		 qint64 val = PyObjGetLongLong(obj, strict, ok);
+		 auto val = PyObjGetLongLong(obj, strict, ok);
 		 if (ok && (val >= LONG_MIN && val <= LONG_MAX)) {
 		   PythonQtArgumentFrame_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame, long, val, ptr);
 		 }
@@ -511,8 +511,8 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
 	   break;
 	 case QMetaType::ULong:
 	   {
-		 qint64 val = (unsigned long)PyObjGetLongLong(obj, strict, ok);
-		 if (ok && (val >= 0 && val <= ULONG_MAX)) {
+		 quint64 val = (unsigned long)PyObjGetLongLong(obj, strict, ok);
+		 if (ok && val <= ULONG_MAX) {
 		   PythonQtArgumentFrame_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame, unsigned long, val, ptr);
 		 }
 	   }
@@ -536,7 +536,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
 	 case QMetaType::UInt:
 	   {
 		 quint64 val = PyObjGetLongLong(obj, strict, ok);
-		 if (ok && (val >= 0 && val <= UINT_MAX)) {
+		 if (ok && val <= UINT_MAX) {
 		   PythonQtArgumentFrame_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame, unsigned int, val, ptr);
 		 }
 	   }
