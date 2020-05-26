@@ -42,7 +42,7 @@
 
 #include <PythonQtPythonInclude.h>
 #include <PythonQtSystem.h>
-
+#include <QtGlobal>
 #define PYTHONQT_FULL_THREAD_SUPPORT
 
 #ifdef PYTHONQT_FULL_THREAD_SUPPORT
@@ -103,6 +103,7 @@ public:
 //! from Python code.
 class PythonQtThreadStateSaver
 {
+	Q_DISABLE_COPY(PythonQtThreadStateSaver)
 public:
   PythonQtThreadStateSaver() {
 	save();
