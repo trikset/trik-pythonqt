@@ -16,21 +16,28 @@ cache:
 
 matrix:
   include:
-  - os: linux
+  - name: Xenial debug with Python 3.7
+    os: linux
     dist: xenial
-    env: QMAKE_EXTRA="$QMAKE_EXTRA CONFIG+=debug CONFIG+=sanitizer CONFIG+=sanitize_address CONFIG+=sanitize_undefined"
-    name: Xenial debug
+    env: QMAKE_EXTRA="PYTHON3_VERSION_MINOR=7 $QMAKE_EXTRA CONFIG+=debug CONFIG+=sanitizer CONFIG+=sanitize_address CONFIG+=sanitize_undefined"
     addons:
       apt:
+        sources:
+        - deadsnakes # python3.7
+        packages:
+        - qtbase5-private-dev
+        - qt5-default
+        - libpython3.7-dev
+
         packages:
         - qtbase5-private-dev
         - qt5-default
         - python3-dev
         - g++
-  - os: linux
+  - name: 'Bionic debug Python 3.8 + GCC-9'
+    os: linux
     dist: bionic
     env: QMAKE_EXTRA="PYTHON3_VERSION_MINOR=8 $QMAKE_EXTRA QMAKE_CXX=g++-9 QMAKE_LINK=g++-9 CONFIG+=debug CONFIG+=sanitizer CONFIG+=sanitize_address CONFIG+=sanitize_undefined"
-    name: 'Bionic debug Python 3.8 + GCC-9'
     addons:
       apt:
         sources:
@@ -42,8 +49,8 @@ matrix:
         - g++-9
         - python3.8-dev
 
-  - os: osx
-    name: macOS release
+  - name: macOS release
+    os: osx
     env: QMAKE_EXTRA="$QMAKE_EXTRA CONFIG+=no-sanitizers CONFIG+=release"
     addons:
       homebrew:
