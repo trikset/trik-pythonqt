@@ -27,12 +27,7 @@ matrix:
         packages:
         - qtbase5-private-dev
         - qt5-default
-        - libpython3.7-dev
-
-        packages:
-        - qtbase5-private-dev
-        - qt5-default
-        - python3-dev
+        - python3.7-dev
         - g++
   - name: 'Bionic debug Python 3.8 + GCC-9'
     os: linux
