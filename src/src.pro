@@ -4,7 +4,7 @@
 # $Source$
 # --------------------------------------------------
 
-TARGET   = PythonQt-QtXY-PythonXY
+TARGET   = trikPythonQt-QtXY-PythonXY
 TEMPLATE = lib
 
 
