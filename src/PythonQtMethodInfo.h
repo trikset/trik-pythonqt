@@ -132,7 +132,7 @@ protected:
   static QHash<QByteArray, QByteArray> _parameterNameAliases;
 
   //! stores the cached signatures of methods to speedup mapping from Qt to Python types
-  static QHash<QByteArray, PythonQtMethodInfo*> _cachedSignatures;
+  static QHash<QByteArray, QSharedPointer<PythonQtMethodInfo>> _cachedSignatures;
 
   static QHash<int, ParameterInfo> _cachedParameterInfos;
 
@@ -151,11 +151,14 @@ public:
   };
 
   ~PythonQtSlotInfo() = default;
-  PythonQtSlotInfo(const PythonQtSlotInfo& info):PythonQtMethodInfo(info) {
-	_meta = info._meta;
-	_slotIndex = info._slotIndex;
-	_decorator = info._decorator;
-	_type = info._type;
+  PythonQtSlotInfo(const PythonQtSlotInfo& info)
+	  : PythonQtMethodInfo(info)
+	  ,_slotIndex(info._slotIndex)
+	  ,_decorator(info._decorator)
+	  ,_type(info._type)
+	  ,_meta(info._meta)
+  {
+
   }
 
   PythonQtSlotInfo(PythonQtClassInfo* classInfo, const QMetaMethod& meta, int slotIndex, QObject* decorator = NULL, Type type = MemberSlot ):PythonQtMethodInfo()
@@ -230,7 +233,7 @@ public:
 
 private:
   int               _slotIndex {};
-  PythonQtSlotInfo* _next {};
+  PythonQtSlotInfo *_next {};
   QObject*          _decorator{};
   Type              _type { MemberSlot } ;
   QMetaMethod       _meta;

@@ -46,11 +46,8 @@ class PythonQtClassInfo;
 
 struct PythonQtDynamicClassInfo
 {
-  PythonQtDynamicClassInfo() { _dynamicMetaObject = NULL; _classInfo = NULL; }
-  ~PythonQtDynamicClassInfo();
-
-  const QMetaObject* _dynamicMetaObject;
-  PythonQtClassInfo* _classInfo;
+  const QMetaObject* _dynamicMetaObject {};
+  QScopedPointer<PythonQtClassInfo> _classInfo;
 };
 
 struct PythonQtMemberInfo {
@@ -69,8 +66,8 @@ struct PythonQtMemberInfo {
   Type              _type;
 
   // TODO: this could be a union...
-  PythonQtSlotInfo* _slot;
-  PyObject*         _pythonType;
+  PythonQtSlotInfo* _slot {};
+  PyObject*         _pythonType {};
   PythonQtObjectPtr _enumValue;
   QMetaProperty     _property;
 };
@@ -177,10 +174,11 @@ public:
   void addParentClass(const ParentClassInfo& info) { _parentClasses.append(info); }
 
   //! set the associated PythonQtClassWrapper (which handles instance creation of this type)
-  void setPythonQtClassWrapper(PyObject* obj) { _pythonQtClassWrapper = obj; }
+  //! takes ownership
+  void setPythonQtClassWrapper(PyObject *obj) { _pythonQtClassWrapper.setNewRef(obj); }
 
   //! get the associated PythonQtClassWrapper (which handles instance creation of this type)
-  PyObject* pythonQtClassWrapper() { return _pythonQtClassWrapper; }
+  PyObject* pythonQtClassWrapper() { return _pythonQtClassWrapper.object(); }
 
   //! set the shell set instance wrapper cb
   void setShellSetInstanceWrapperCB(PythonQtShellSetInstanceWrapperCB* cb) {
@@ -287,7 +285,7 @@ private:
   QObject*                             _decoratorProvider;
   PythonQtQObjectCreatorFunctionCB*    _decoratorProviderCB;
   
-  PyObject*                            _pythonQtClassWrapper;
+  PythonQtObjectPtr	                   _pythonQtClassWrapper;
   
   PythonQtShellSetInstanceWrapperCB*   _shellSetInstanceWrapperCB;
   

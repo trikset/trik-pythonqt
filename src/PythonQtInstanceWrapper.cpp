@@ -457,7 +457,7 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
 		  PythonQtClassInfo* classInfo = NULL;
 		  PythonQtClassWrapper* classType = (PythonQtClassWrapper*)Py_TYPE(wrapper);
 		  while (classType->_dynamicClassInfo) {
-			classInfo = classType->_dynamicClassInfo->_classInfo;
+			classInfo = classType->_dynamicClassInfo->_classInfo.get();
 			if (classInfo) {
 			  PythonQtMemberInfo member = classInfo->member(attributeName);
 			  if (member._type == PythonQtMemberInfo::Signal) {

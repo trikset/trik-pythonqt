@@ -110,14 +110,11 @@ static Py_ssize_t PythonQtInstanceWrapper_length(PythonQtInstanceWrapper* wrappe
 static int PythonQtInstanceWrapper_setitem(PyObject* self, PyObject* index, PyObject* value)
 {
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)self;
-  PythonQtMemberInfo opSlot;
-  bool isSetItem = false;
-  if (value) {
-	isSetItem = true;
-	opSlot = wrapper->classInfo()->member("__setitem__");
-  } else {
-	opSlot = wrapper->classInfo()->member("__delitem__");
-  }
+  bool isSetItem = value;
+  PythonQtMemberInfo opSlot = isSetItem ?
+	wrapper->classInfo()->member("__setitem__")
+	: wrapper->classInfo()->member("__delitem__");
+
   if (opSlot._type == PythonQtMemberInfo::Slot) {
 	PyObject* args = PyTuple_New(isSetItem?2:1);
 	Py_INCREF(index);
@@ -540,9 +537,8 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
 	  PyObject* dummy = PythonQtClassWrapper_getDummyInstanceForProperty(wrapper, attributeName);
 	  return dummy;
 	}
-	QByteArray pyget = "py_get_";
-	member = wrapper->classInfo()->member((pyget + attributeName).constData());
-	if (member._type == PythonQtMemberInfo::Slot) {
+	QByteArray pyget = "py_get_";	
+	if (wrapper->classInfo()->member((pyget + attributeName).constData())._type == PythonQtMemberInfo::Slot) {
 	  PyObject* dummy = PythonQtClassWrapper_getDummyInstanceForProperty(wrapper, attributeName);
 	  return dummy;
 	}

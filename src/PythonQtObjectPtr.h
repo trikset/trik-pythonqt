@@ -56,10 +56,10 @@ class PythonQtSafeObjectPtr;
 class PYTHONQT_EXPORT PythonQtObjectPtr
 {
 public:
-  PythonQtObjectPtr():_object(NULL) {}
+  PythonQtObjectPtr() = default;
 
   PythonQtObjectPtr(const PythonQtObjectPtr &p)
-  :_object(NULL) {
+  {
 	setObject(p.object());
   }
 
@@ -190,22 +190,22 @@ protected:
   void setObject(PyObject* o);
 
 private:
-  PyObject* _object;
+  PyObject* _object {};
 };
 
 //! a smart pointer that stores a PyObject pointer and that handles reference counting automatically
 class PYTHONQT_EXPORT PythonQtSafeObjectPtr
 {
 public:
-  PythonQtSafeObjectPtr() :_object(NULL) {}
+  PythonQtSafeObjectPtr() = default;
 
   PythonQtSafeObjectPtr(const PythonQtSafeObjectPtr &p)
-	:_object(NULL) {
+  {
 	setObject(p.object());
   }
 
   PythonQtSafeObjectPtr(const PythonQtObjectPtr &p)
-	:_object(NULL) {
+  {
 	setObject(p.object());
   }
 
@@ -280,7 +280,7 @@ public:
 
   PyObject& operator*() const { return *(object()); }
 
-  operator PyObject*() const { return object(); }
+  //operator PyObject*() const { return object(); }
 
   PyObject* object() const {
 	return _object;
@@ -299,7 +299,7 @@ protected:
   void setObjectUnsafe(PyObject* o);
 
 private:
-  PyObject* _object;
+  PyObject* _object {};
 };
 
 // We don't want QVariant to take PythonQtObjectPtr via QVariant::fromValue, because it is unsafe when using multi-threading/GIL

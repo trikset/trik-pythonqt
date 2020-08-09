@@ -43,7 +43,7 @@
 #include "PythonQtClassInfo.h"
 #include <iostream>
 
-QHash<QByteArray, PythonQtMethodInfo*> PythonQtMethodInfo::_cachedSignatures;
+QHash<QByteArray, QSharedPointer<PythonQtMethodInfo>> PythonQtMethodInfo::_cachedSignatures;
 QHash<int, PythonQtMethodInfo::ParameterInfo> PythonQtMethodInfo::_cachedParameterInfos;
 QHash<QByteArray, QByteArray> PythonQtMethodInfo::_parameterNameAliases;
 
@@ -100,12 +100,11 @@ const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfo(const QMetaMet
   QByteArray sig(PythonQtUtils::signature(signal));
   sig = sig.mid(sig.indexOf('('));
   QByteArray fullSig = QByteArray(signal.typeName()) + " " + sig;
-  PythonQtMethodInfo* result = _cachedSignatures.value(fullSig);
+  auto &result = _cachedSignatures[fullSig];
   if (!result) {
-	result = new PythonQtMethodInfo(signal, classInfo);
-	_cachedSignatures.insert(fullSig, result);
+	  result.reset(new PythonQtMethodInfo(signal, classInfo));
   }
-  return result;
+  return result.get();
 }
 
 const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(int numArgs, const char** args)
@@ -123,12 +122,11 @@ const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfoFromArgumentLis
 	arguments << arg;
   }
   fullSig += ")";
-  PythonQtMethodInfo* result = _cachedSignatures.value(fullSig);
+  auto &result = _cachedSignatures[fullSig];
   if (!result) {
-	result = new PythonQtMethodInfo(typeName, arguments);
-	_cachedSignatures.insert(fullSig, result);
+	result.reset(new PythonQtMethodInfo(typeName, arguments));
   }
-  return result;
+  return result.get();
 }
 
 void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray& orgName, PythonQtClassInfo* classInfo)
@@ -402,10 +400,6 @@ int PythonQtMethodInfo::nameToType(const char* name)
 
 void PythonQtMethodInfo::cleanupCachedMethodInfos()
 {
-  QHashIterator<QByteArray, PythonQtMethodInfo *> i(_cachedSignatures);
-  while (i.hasNext()) {
-	delete i.next().value();
-  }
   _cachedSignatures.clear();
   _cachedParameterInfos.clear();
 }
@@ -432,7 +426,7 @@ const PythonQtMethodInfo::ParameterInfo& PythonQtMethodInfo::getParameterInfoFor
 void PythonQtSlotInfo::deleteOverloadsAndThis()
 {
   PythonQtSlotInfo* cur = this;
-  while(cur->nextInfo()) {
+  while(cur) {
 	PythonQtSlotInfo* next = cur->nextInfo();
 	delete cur;
 	cur = next;

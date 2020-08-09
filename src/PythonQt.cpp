@@ -284,9 +284,12 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 
 	for (int i = 0; i<sizeof(enumValues)/sizeof(int); i++) {
 	  PyObject* obj = PyInt_FromLong(enumValues[i]);
-	  PyModule_AddObject(pack, enumNames[i], obj);
-	  Py_INCREF(obj);
-	  PyModule_AddObject(pack2, enumNames[i], obj);
+	  if (PyModule_AddObject(pack, enumNames[i], obj) >= 0) {
+		Py_INCREF(obj);
+	  }
+	  if (PyModule_AddObject(pack2, enumNames[i], obj) < 0) {
+		Py_DECREF(obj);
+	  }
 	}
 
 	_self->priv()->pythonQtModule().addObject("Debug", _self->priv()->_debugAPI);
@@ -416,10 +419,7 @@ PythonQtPrivate::~PythonQtPrivate() {
   _defaultImporter = NULL;
 
   {
-	QHashIterator<QByteArray, PythonQtClassInfo *> i(_knownClassInfos);
-	while (i.hasNext()) {
-	  delete i.next().value();
-	}
+	qDeleteAll(_knownClassInfos);
   }
 
   PythonQtMethodInfo::cleanupCachedMethodInfos();
@@ -522,7 +522,9 @@ void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* p
 	  PyObject* classWrapper = info->pythonQtClassWrapper();
 	  // AddObject steals a reference, so we need to INCREF
 	  Py_INCREF(classWrapper);
-	  PyModule_AddObject(module, info->className(), classWrapper);
+	  if (PyModule_AddObject(module, info->className(), classWrapper) < 0) {
+		  Py_DECREF(classWrapper);
+	  }
 	}
 	if (first) {
 	  first = false;
@@ -555,13 +557,18 @@ void PythonQtPrivate::createPythonQtClassWrapper(PythonQtClassInfo* info, const 
 	PythonQtClassInfo* outerClassInfo = lookupClassInfoAndCreateIfNotPresent(outerClass);
 	outerClassInfo->addNestedClass(info);
   } else {
-	PyModule_AddObject(pack, info->className(), pyobj);
+	if (!PyModule_AddObject(pack, info->className(), pyobj)) {
+		// since PyModule_AddObject steals the reference, we need a incref once more...
+		Py_INCREF(pyobj);
+	}
   }
   if (!module && package && strncmp(package, "Qt", 2) == 0) {
-	// since PyModule_AddObject steals the reference, we need a incref once more...
-	Py_INCREF(pyobj);
+
 	// put all qt objects into Qt as well
-	PyModule_AddObject(packageByName("Qt"), info->className(), pyobj);
+	if (!PyModule_AddObject(packageByName("Qt"), info->className(), pyobj)) {
+		// since PyModule_AddObject steals the reference, we need a incref once more...
+		Py_INCREF(pyobj);
+	}
   }
   info->setPythonQtClassWrapper(pyobj);
 }
@@ -776,7 +783,6 @@ PythonQtClassWrapper* PythonQtPrivate::createNewPythonQtClassWrapper(PythonQtCla
   Py_DECREF(typeDict);
   Py_DECREF(moduleName);
   Py_DECREF(args);
-
 
   return result;
 }
@@ -1081,7 +1087,10 @@ PythonQtObjectPtr PythonQt::createUniqueModule()
 void PythonQt::addObject(PyObject* object, const QString& name, QObject* qObject)
 {
   if (PyModule_Check(object)) {
-	PyModule_AddObject(object, QStringToPythonCharPointer(name), _p->wrapQObject(qObject));
+	auto pyobj = _p->wrapQObject(qObject);
+	if (PyModule_AddObject(object, QStringToPythonCharPointer(name), pyobj) < 0) {
+		Py_DECREF(pyobj);
+	}
   } else if (PyDict_Check(object)) {
 	PyDict_SetItemString(object, QStringToPythonCharPointer(name), _p->wrapQObject(qObject));
   } else {
@@ -1092,7 +1101,10 @@ void PythonQt::addObject(PyObject* object, const QString& name, QObject* qObject
 void PythonQt::addVariable(PyObject* object, const QString& name, const QVariant& v)
 {
   if (PyModule_Check(object)) {
-	PyModule_AddObject(object, QStringToPythonCharPointer(name), PythonQtConv::QVariantToPyObject(v));
+	auto pyobj = PythonQtConv::QVariantToPyObject(v);
+	if (PyModule_AddObject(object, QStringToPythonCharPointer(name), pyobj) < 0) {
+		Py_DECREF(pyobj);
+	}
   } else if (PyDict_Check(object)) {
 	PyDict_SetItemString(object, QStringToPythonCharPointer(name), PythonQtConv::QVariantToPyObject(v));
   } else {
@@ -1969,7 +1981,9 @@ PyObject* PythonQtPrivate::packageByName(const char* name)
 	_packages.insert(name, v);
 	// AddObject steals the reference, so increment it!
 	Py_INCREF(v);
-	PyModule_AddObject(_pythonQtModule, name, v);
+	if (PyModule_AddObject(_pythonQtModule, name, v) < 0) {
+		Py_DECREF(v);
+	}
   }
   return v;
 }
@@ -2185,7 +2199,7 @@ const QMetaObject* PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper*
   }
   if (needsMetaObject) {
 	type->_dynamicClassInfo->_dynamicMetaObject = builder.toMetaObject();
-	type->_dynamicClassInfo->_classInfo = new PythonQtClassInfo();
+	type->_dynamicClassInfo->_classInfo.reset(new PythonQtClassInfo());
 	type->_dynamicClassInfo->_classInfo->setupQObject(type->_dynamicClassInfo->_dynamicMetaObject);
   } else {
 	// we don't need an own meta object, just use the one from our base class
