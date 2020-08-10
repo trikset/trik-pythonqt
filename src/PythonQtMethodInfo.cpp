@@ -104,7 +104,7 @@ const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfo(const QMetaMet
   if (!result) {
 	  result.reset(new PythonQtMethodInfo(signal, classInfo));
   }
-  return result.get();
+  return result.data();
 }
 
 const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(int numArgs, const char** args)
@@ -126,7 +126,7 @@ const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfoFromArgumentLis
   if (!result) {
 	result.reset(new PythonQtMethodInfo(typeName, arguments));
   }
-  return result.get();
+  return result.data();
 }
 
 void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray& orgName, PythonQtClassInfo* classInfo)
