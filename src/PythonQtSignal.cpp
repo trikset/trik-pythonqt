@@ -450,6 +450,8 @@ PyTypeObject PythonQtSignalFunction_Type = {
 	0,                          /*tp_del */
 	0,
 	0,
+	0,
+	0,
 };
 
 /* Clear out the free list */

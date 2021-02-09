@@ -168,5 +168,7 @@ PyTypeObject PythonQtBoolResult_Type = {
 	0,
 	0,
 	0,
+	0,
+	0,
 };
 

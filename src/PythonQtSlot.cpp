@@ -843,6 +843,8 @@ PyTypeObject PythonQtSlotFunction_Type = {
 	0,
 	0,
 	0,
+	0,
+	0,
 };
 
 /* Clear out the free list */
