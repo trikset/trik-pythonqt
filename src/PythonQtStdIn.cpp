@@ -122,5 +122,4 @@ PyTypeObject PythonQtStdInRedirectType = {
 	0,
 	0,
 	0,
-	0,
 };

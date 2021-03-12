@@ -244,7 +244,6 @@ PyTypeObject PythonQtProperty_Type = {
 	0,
 	0,
 	0,
-	0,
 };
 
 bool PythonQtPropertyData::callSetter(PyObject* wrapper, PyObject* newValue)

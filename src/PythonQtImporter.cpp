@@ -509,7 +509,6 @@ PyTypeObject PythonQtImporter_Type = {
 		0,
 		0,
 		0,
-		0,
 };
 
 
