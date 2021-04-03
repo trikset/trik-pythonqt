@@ -250,7 +250,6 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 
 	if (PyDict_SetItemString(dict, "__loader__", (PyObject *)self) != 0) {
 	  Py_DECREF(code);
-	  Py_DECREF(mod);
 	  return NULL;
 	}
 
@@ -265,7 +264,6 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 									 QStringToPythonConstCharPointer(subname));
 	  if (fullpath == NULL) {
 		Py_DECREF(code);
-		Py_DECREF(mod);
 		return NULL;
 	  }
 
@@ -280,7 +278,6 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 	  Py_DECREF(pkgpath);
 	  if (err != 0) {
 		Py_DECREF(code);
-		Py_DECREF(mod);
 		return NULL;
 	  }
 
@@ -289,15 +286,15 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 	  // The package attribute is needed to resolve the package name if it is referenced as '.'. For example,
 	  // when importing the encodings package, there is an import statement 'from . import aliases'. This import
 	  // would fail when reloading the encodings package with importlib.
-	  err = PyDict_SetItemString(dict, "__package__", PyUnicode_FromString(fullname));
+	  PyObject* fullnameObj = PyUnicode_FromString(fullname);
+	  err = PyDict_SetItemString(dict, "__package__", fullnameObj);
+	  Py_XDECREF(fullnameObj);
 	  if (err != 0) {
 		Py_DECREF(code);
-		Py_DECREF(mod);
 		return NULL;
 	  }
 #endif
 	}
-
 #ifdef PY3K
 	PyObject* fullnameObj = PyUnicode_FromString(fullname);
 	PyObject* fullPathObj = PythonQtConv::QStringToPyObject(fullPath);
@@ -895,7 +892,7 @@ void PythonQtImport::init()
   }
   first = false;
 
-  PyObject *mod;
+  PyObject *mod {};
 
   if (PyType_Ready(&PythonQtImporter_Type) < 0)
 	return;
@@ -924,13 +921,16 @@ void PythonQtImport::init()
 
   PythonQtImportError = PyErr_NewException(const_cast<char*>("PythonQtImport.PythonQtImportError"),
 			  PyExc_ImportError, NULL);
-  if (PythonQtImportError == NULL)
+  if (PythonQtImportError == NULL) {
+	Py_XDECREF(mod);
 	return;
+  }
 
   Py_INCREF(PythonQtImportError);
   if (PyModule_AddObject(mod, "PythonQtImportError",
 			 PythonQtImportError) < 0) {
 	Py_DECREF(PythonQtImportError);
+	Py_DECREF(mod);
 	return;
   }
 
@@ -938,6 +938,7 @@ void PythonQtImport::init()
   if (PyModule_AddObject(mod, "PythonQtImporter",
 			 (PyObject *)&PythonQtImporter_Type) < 0) {
 	Py_DECREF(&PythonQtImporter_Type);
+	Py_DECREF(mod);
 	return;
    }
 
@@ -947,4 +948,5 @@ void PythonQtImport::init()
   PyObject* path_hooks = PySys_GetObject(const_cast<char*>("path_hooks"));
   // insert our importer before all other loaders
   PyList_Insert(path_hooks, 0, classobj);
+  Py_DECREF(mod);
 }

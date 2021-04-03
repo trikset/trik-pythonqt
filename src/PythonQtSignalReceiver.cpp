@@ -100,9 +100,9 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
 	}
   }
 
-  PyObject* pargs = NULL;
+  PythonQtObjectPtr pargs;
   if (count>1) {
-	pargs = PyTuple_New(count-1);
+	pargs.setNewRef(PyTuple_New(count-1));
   }
   bool err = false;
   // transform Qt values to Python
@@ -133,10 +133,6 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
 	} else {
 	  PythonQt::self()->handleError();
 	}
-  }
-  if (pargs) {
-	// free the arguments again
-	Py_DECREF(pargs);
   }
 
   return result;
@@ -268,9 +264,9 @@ int PythonQtSignalReceiver::qt_metacall(QMetaObject::Call c, int id, void **argu
   bool shouldDelete = false;
   for(const PythonQtSignalTarget& t : _targets) {
 	if (t.slotId() == id) {
+	  int sigId = t.signalId();
 	  t.call(arguments);
 	  // if the signal is the last destroyed signal, we delete ourselves
-	  int sigId = t.signalId();
 	  if ((sigId == _destroyedSignal1Id) || (sigId == _destroyedSignal2Id)) {
 		_destroyedSignalCount--;
 		if (_destroyedSignalCount == 0) {
