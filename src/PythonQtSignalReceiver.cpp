@@ -100,9 +100,9 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
 	}
   }
 
-  PyObject* pargs = nullptr;
+  PythonQtObjectPtr pargs;
   if (count>1) {
-	pargs = PyTuple_New(count-1);
+	pargs.setNewRef(PyTuple_New(count-1));
   }
   bool err = false;
   // transform Qt values to Python
@@ -133,10 +133,6 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
 	} else {
 	  PythonQt::self()->handleError();
 	}
-  }
-  if (pargs) {
-	// free the arguments again
-	Py_DECREF(pargs);
   }
 
   return result;
