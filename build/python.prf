@@ -3,7 +3,6 @@
 # Change this variable to your python version (3.5, 3,7, 3.8, ...)
 isEmpty(PYTHON3_VERSION_MINOR):PYTHON3_VERSION_MINOR=7
 unix:PYTHON_VERSION=UNKNOWN_BECAUSE_DETECT_FAILED
-
 win32 {
   # for windows install a Python development kit or build Python yourself from the sources
   # Make sure that you set the environment variable PYTHON_PATH to point to your
@@ -30,6 +29,7 @@ win32 {
   message(PYTHON_VERSION is detected as $$PYTHON_VERSION)
   INCLUDEPATH += $$PYTHON_PATH/PC $$PYTHON_PATH/include
   LIBS += -L$$PYTHON_LIB -lpython$${PYTHON_VERSION}
+  mingw:DEFINES += HAVE_ROUND
 } else:unix {
 
   # workaround Qt issue https://bugreports.qt.io/browse/QTBUG-56164

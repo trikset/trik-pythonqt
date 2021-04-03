@@ -1,7 +1,14 @@
 TEMPLATE = subdirs
 
-CONFIG += ordered
 SUBDIRS = src extensions
 
-CONFIG(tests) { SUBDIRS += tests }
-CONFIG(generator) { SUBDIRS += generator }
+extensions.depends += src
+
+CONFIG(tests) {
+    SUBDIRS += tests
+    tests.depends += extensions
+}
+
+CONFIG(generator) {
+    SUBDIRS += generator
+}

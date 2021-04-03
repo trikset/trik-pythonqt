@@ -43,7 +43,6 @@
 #include <qtextcodec.h>
 #include <qthread.h>
 #include <qvector.h>
-#include <qwidget.h>
 
 QModelIndex* PythonQtWrapper_QModelIndex::new_QModelIndex()
 { 
