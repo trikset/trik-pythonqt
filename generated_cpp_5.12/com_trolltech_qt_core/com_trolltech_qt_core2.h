@@ -44,9 +44,6 @@
 #include <qtextcodec.h>
 #include <qthread.h>
 #include <qvector.h>
-#include <qwidget.h>
-
-
 
 class PythonQtWrapper_QModelIndex : public QObject
 { Q_OBJECT
