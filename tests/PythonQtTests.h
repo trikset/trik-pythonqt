@@ -535,10 +535,10 @@ public Q_SLOTS:
   QCursor setAutoConvertCursor(const QCursor& cursor) { _called = true; return cursor; }
 
 private:
-  PythonQtTestSlotCalling* _test;
-  int  _calledOverload;
   bool _passed;
   mutable bool _called;
+  int  _calledOverload;
+  PythonQtTestSlotCalling* _test;
 };
 
 class PythonQtTestSignalHandlerHelper;

@@ -374,6 +374,7 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
 		kwSlotFound = true;
 		break;
 	  }
+      slotInfo = slotInfo->nextInfo();
 	}
 	if (kwSlotFound) {
 #ifdef PYTHONQT_DEBUG
@@ -491,10 +492,9 @@ PythonQtSlotFunction_GetSelf(PyObject *op)
 /* Methods (the standard built-in methods, that is) */
 
 static void
-meth_dealloc(PyObject *o)
+meth_dealloc(PythonQtSlotFunctionObject *m)
 {
-  PyObject_GC_UnTrack(o);
-  auto m = static_cast<PythonQtSlotFunctionObject *>(static_cast<void *>(o));
+  PyObject_GC_UnTrack(m);
   Py_XDECREF(m->m_self);
   Py_XDECREF(m->m_module);
   m->m_self = (PyObject *)pythonqtslot_free_list;
@@ -628,17 +628,17 @@ static PyMemberDef meth_members[] = {
   {NULL, 0, 0, 0, 0}
 };
 
-static PyObject *PythonQtSlotFunction_parameterTypes(PythonQtSlotFunctionObject* type, PyObject *)
+static PyObject *PythonQtSlotFunction_parameterTypes(PythonQtSlotFunctionObject* type)
 {
   return PythonQtMemberFunction_parameterTypes(type->m_ml);
 }
 
-static PyObject *PythonQtSlotFunction_parameterNames(PythonQtSlotFunctionObject* type, PyObject *)
+static PyObject *PythonQtSlotFunction_parameterNames(PythonQtSlotFunctionObject* type)
 {
   return PythonQtMemberFunction_parameterNames(type->m_ml);
 }
 
-static PyObject *PythonQtSlotFunction_typeName(PythonQtSlotFunctionObject* type, PyObject *)
+static PyObject *PythonQtSlotFunction_typeName(PythonQtSlotFunctionObject* type)
 {
   return PythonQtMemberFunction_typeName(type->m_ml);
 }
@@ -791,6 +791,20 @@ meth_richcompare(PythonQtSlotFunctionObject *a, PythonQtSlotFunctionObject *b, i
 	Py_RETURN_FALSE;
 }
 
+static PyObject*
+meth_descr_get(PyObject *descr, PyObject *obj, PyObject* type)
+{
+  if (PythonQtSlotFunction_Check(descr)) {
+    PythonQtSlotFunctionObject *slotObj = (PythonQtSlotFunctionObject*)descr;
+    return PythonQtSlotFunction_New(slotObj->m_ml, obj, NULL);
+  }
+  else {
+    // wrong type
+    Py_IncRef(descr);
+    return descr;
+  }
+}
+
 PyTypeObject PythonQtSlotFunction_Type = {
 	PyVarObject_HEAD_INIT(&PyType_Type, 0)
 	"builtin_qt_slot",
@@ -828,22 +842,7 @@ PyTypeObject PythonQtSlotFunction_Type = {
 	meth_getsets,       /* tp_getset */
 	0,          /* tp_base */
 	0,          /* tp_dict */
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
+    meth_descr_get,     /* tp_descr_get */
 };
 
 /* Clear out the free list */

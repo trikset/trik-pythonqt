@@ -208,6 +208,8 @@ public:
     Type_MappingSetItem = 1 << 21,
     Type_MappingGetItem = 1 << 22,
 
+    Type_EnterExit = 1 << 23,
+
     Type_Invert = 1 << 29,
     Type_RichCompare = 1 << 30,
     Type_NonZero     = 1 << 31,
@@ -811,7 +813,7 @@ private:
   PythonQtInstanceWrapper* findWrapperAndRemoveUnused(void* obj);
 
   //! stores pointer to PyObject mapping of wrapped QObjects AND C++ objects
-  QHash<void* , PythonQtInstanceWrapper *> _wrappedObjects;
+  QHash<void* , PythonQtInstanceWrapper *> _wrappedObjects; // FIXME: remove unused entries in cleanup()
 
   //! stores the meta info of known Qt classes
   QHash<QByteArray, PythonQtClassInfo *>   _knownClassInfos;

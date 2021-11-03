@@ -23,14 +23,17 @@ environment:
         QTDIR: C:\Qt\5.12\mingw73_32
         PYTHON_PATH: C:\Python37
         CONFIGURATION: debug
+        APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
       - MINGW: C:\Qt\Tools\mingw730_32
         QTDIR: C:\Qt\5.12\mingw73_32
         PYTHON_PATH: C:\Python37
         CONFIGURATION: release
+        APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
       - MINGW: C:\Qt\Tools\mingw730_64
         QTDIR: C:\Qt\5.12\mingw73_64
         PYTHON_PATH: C:\Python37-x64
         CONFIGURATION: debug
+        APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
       - MINGW: C:\Qt\Tools\mingw730_32
         QTDIR: C:\Qt\5.14\mingw73_32
         PYTHON_PATH: C:\Python38
@@ -64,4 +67,4 @@ build_script:
 
 test_script:
   - set PYTHONPATH=%PYTHON_PATH%
-  - '%APPVEYOR_BUILD_FOLDER%\bin\PythonQtTest'
+  - '%APPVEYOR_BUILD_FOLDER%\bin\PythonQtTest -platform minimal'

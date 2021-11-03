@@ -322,7 +322,7 @@ static PyObject *PythonQtInstanceWrapper_richcompare(PythonQtInstanceWrapper* wr
 }
 
 
-static PyObject *PythonQtInstanceWrapper_classname(PythonQtInstanceWrapper* obj, PyObject *)
+static PyObject *PythonQtInstanceWrapper_classname(PythonQtInstanceWrapper* obj)
 {
   return PyString_FromString(Py_TYPE(obj)->tp_name);
 }
@@ -336,12 +336,12 @@ PyObject *PythonQtInstanceWrapper_inherits(PythonQtInstanceWrapper* obj, PyObjec
   return PythonQtConv::GetPyBool(obj->classInfo()->inherits(name));
 }
 
-static PyObject *PythonQtInstanceWrapper_help(PythonQtInstanceWrapper* obj, PyObject *)
+static PyObject *PythonQtInstanceWrapper_help(PythonQtInstanceWrapper* obj)
 {
   return PythonQt::self()->helpCalled(obj->classInfo());
 }
 
-PyObject *PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper * self, PyObject *)
+PyObject *PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper * self)
 {
   PythonQtMemberInfo deleteSlot = self->classInfo()->member("py_delete");
   if (deleteSlot._type == PythonQtMemberInfo::Slot) {
@@ -457,7 +457,7 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
 		  PythonQtClassInfo* classInfo = NULL;
 		  PythonQtClassWrapper* classType = (PythonQtClassWrapper*)Py_TYPE(wrapper);
 		  while (classType->_dynamicClassInfo) {
-			classInfo = classType->_dynamicClassInfo->_classInfo.data();
+            classInfo = classType->_dynamicClassInfo->_classInfo;
 			if (classInfo) {
 			  PythonQtMemberInfo member = classInfo->member(attributeName);
 			  if (member._type == PythonQtMemberInfo::Signal) {

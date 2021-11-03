@@ -40,8 +40,8 @@
 //----------------------------------------------------------------------------------
 
 
-#include <PythonQtPythonInclude.h>
-#include <PythonQtSystem.h>
+#include "PythonQtPythonInclude.h"
+#include "PythonQtSystem.h"
 #include <QtGlobal>
 #define PYTHONQT_FULL_THREAD_SUPPORT
 

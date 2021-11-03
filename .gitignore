@@ -23,8 +23,21 @@ src/.build/*
 *.dll
 *.dylib
 
-# Qt-es
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
 
+# Executables
+*.exe
+*.out
+*.app
+
+# Qt
+object_script.*.Release
+object_script.*.Debug
+*_plugin_import.cpp
 /.qmake.cache
 /.qmake.stash
 *.pro.user
@@ -36,17 +49,52 @@ moc_*.cpp
 moc_*.h
 qrc_*.cpp
 ui_*.h
+*.qmlc
+*.jsc
 Makefile*
 *build-*
 
+# CMake
+CMakeLists.txt.user
+CMakeLists.txt.user*
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+
 # QtCreator
-
 *.autosave
-
-# QtCtreator Qml
 *.qmlproject.user
 *.qmlproject.user.*
+compile_commands.json
+*creator.user*
 
-# QtCtreator CMake
-CMakeLists.txt.user*
+# macOS/Windows
+.DS_Store
+Thumbs.db
+*.lnk
 
+# patch/diff
+*.orig
+*.rej
+*.patch
+*.diff
+
+# vim
+*~
+
+# Visual Studio Code
+.vscode/*
+
+# Doxygen
+doxygen/html/*
+doxygen.log
+
+# Backup files
+*.bak

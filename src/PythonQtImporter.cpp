@@ -224,9 +224,9 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
   PyObject *code = NULL, *mod = NULL, *dict = NULL;
   char *fullname;
 
-  if (!PyArg_ParseTuple(args, "s:PythonQtImporter.load_module",
-			&fullname))
+  if (!PyArg_ParseTuple(args, "s:PythonQtImporter.load_module", &fullname)) {
 	return NULL;
+  }
 
   PythonQtImport::ModuleInfo info = PythonQtImport::getModuleInfo(self, fullname);
   if (info.type == PythonQtImport::MI_NOT_FOUND) {
@@ -271,7 +271,6 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 	  Py_DECREF(fullpath);
 	  if (pkgpath == NULL) {
 		Py_DECREF(code);
-		Py_DECREF(mod);
 		return NULL;
 	  }
 	  err = PyDict_SetItemString(dict, "__path__", pkgpath);
@@ -295,6 +294,7 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 	  }
 #endif
 	}
+
 #ifdef PY3K
 	PyObject* fullnameObj = PyUnicode_FromString(fullname);
 	PyObject* fullPathObj = PythonQtConv::QStringToPyObject(fullPath);
@@ -544,7 +544,7 @@ open_exclusive(const QString& filename)
 	flags |= O_BINARY;   /* necessary for Windows */
 #endif
 #ifdef WIN32
-  fd = _wopen((const wchar_t*)filename.utf16(), flags, S_IREAD|S_IWRITE);
+  fd = _wopen((const wchar_t*)filename.utf16(), flags, 0666);
 #else
   fd = open(filename.toLocal8Bit(), flags, 0666);
 #endif
@@ -942,11 +942,11 @@ void PythonQtImport::init()
 	return;
    }
 
-
   // set our importer into the path_hooks to handle all path on sys.path
   PyObject* classobj = PyDict_GetItemString(PyModule_GetDict(mod), "PythonQtImporter");
   PyObject* path_hooks = PySys_GetObject(const_cast<char*>("path_hooks"));
   // insert our importer before all other loaders
   PyList_Insert(path_hooks, 0, classobj);
+
   Py_DECREF(mod);
 }

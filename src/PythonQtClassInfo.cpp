@@ -131,11 +131,11 @@ bool PythonQtClassInfo::lookForPropertyAndCache(const char* memberName)
   if (!_meta) return false;
   
   bool found = false;
+  bool nameMapped = false;
   const char* attributeName = memberName;
   // look for properties
   int i = _meta->indexOfProperty(attributeName);
 #ifdef PYTHONQT_SUPPORT_NAME_PROPERTY
-  bool nameMapped = false;
   if (i==-1) {
     // try to map name to objectName
     if (qstrcmp(attributeName, "name")==0) {
@@ -154,11 +154,9 @@ bool PythonQtClassInfo::lookForPropertyAndCache(const char* memberName)
   if (i!=-1) {
     PythonQtMemberInfo newInfo(_meta->property(i));
 	_cachedMembers.insert(attributeName, newInfo);
-	#ifdef PYTHONQT_SUPPORT_NAME_PROPERTY
     if (nameMapped) {
       _cachedMembers.insert(memberName, newInfo);
     }
-	#endif
   #ifdef PYTHONQT_DEBUG
     std::cout << "caching property " << memberName << " on " << _meta->className() << std::endl;
   #endif
@@ -854,7 +852,7 @@ void PythonQtClassInfo::createEnumWrappers(const QMetaObject* meta)
   for (int i = meta->enumeratorOffset();i<meta->enumeratorCount();i++) {
     QMetaEnum e = meta->enumerator(i);
 	PythonQtObjectPtr p;
-	p.setNewRef(PythonQtPrivate::createNewPythonQtEnumWrapper(e.name(), _pythonQtClassWrapper.object()));
+    p.setNewRef(PythonQtPrivate::createNewPythonQtEnumWrapper(e.name(), _pythonQtClassWrapper));
     _enumWrappers.append(p);
   }
 }
@@ -1028,13 +1026,13 @@ PyObject* PythonQtClassInfo::getPythonTypeForProperty( const QString& name )
 PythonQtClassInfo* PythonQtClassInfo::getClassInfoForProperty( const QString& name )
 {
   QByteArray typeName;
-  PythonQtMemberInfo info1 = member(QStringToPythonConstCharPointer(name));
-  if (info1._type == PythonQtMemberInfo::Property) {
-	typeName = info1._property.typeName();
+  PythonQtMemberInfo info = member(QStringToPythonConstCharPointer(name));
+  if (info._type == PythonQtMemberInfo::Property) {
+    typeName = info._property.typeName();
   } else {
-	PythonQtMemberInfo info2 = member(QStringToPythonConstCharPointer(QString("py_get_" + name)));
-	if (info2._type == PythonQtMemberInfo::Slot) {
-	  typeName = info2._slot->parameters().at(0).name;
+    info = member(QStringToPythonConstCharPointer(QString("py_get_" + name)));
+    if (info._type == PythonQtMemberInfo::Slot) {
+      typeName = info._slot->parameters().at(0).name;
     }
   }
   if (!typeName.isEmpty()) {
@@ -1076,13 +1074,14 @@ bool PythonQtClassInfo::supportsRichCompare()
 
 //-------------------------------------------------------------------------
 
-PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info ) : _slot(info)
+PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info )
 {
   if (info->metaMethod()->methodType() == QMetaMethod::Signal) {
     _type = Signal;
   } else {
     _type = Slot;
   }
+  _slot = info;
   _enumValue = NULL;
   _pythonType = NULL;
 }
@@ -1090,6 +1089,7 @@ PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info ) : _slot(info)
 PythonQtMemberInfo::PythonQtMemberInfo( const PythonQtObjectPtr& enumValue )
 {
   _type = EnumValue;
+  _slot = NULL;
   _enumValue = enumValue;
   _pythonType = NULL;
 }
@@ -1097,7 +1097,13 @@ PythonQtMemberInfo::PythonQtMemberInfo( const PythonQtObjectPtr& enumValue )
 PythonQtMemberInfo::PythonQtMemberInfo( const QMetaProperty& prop )
 {
   _type = Property;
+  _slot = NULL;
   _property = prop;
   _enumValue = NULL;
   _pythonType = NULL;
+}
+
+PythonQtDynamicClassInfo::~PythonQtDynamicClassInfo()
+{
+  delete _classInfo;
 }

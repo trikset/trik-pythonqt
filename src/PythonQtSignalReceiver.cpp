@@ -54,9 +54,7 @@ int PythonQtSignalReceiver::_destroyedSignal2Id = -2;
 void PythonQtSignalTarget::call(void **arguments) const {
   PYTHONQT_GIL_SCOPE
   PyObject* result = call(_callable, methodInfo(), arguments);
-  if (result) {
-	Py_DECREF(result);
-  }
+  Py_XDECREF(result);
 }
 
 PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInfo* methodInfos, void **arguments, bool skipFirstArgumentOfMethodInfo)
@@ -117,7 +115,7 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
 	}
 	if (arg) {
 	  // steals reference, no unref
-	  PyTuple_SetItem(pargs, i-1,arg);
+      PyTuple_SetItem(pargs, i-1, arg);
 	} else {
 	  err = true;
 	  break;
@@ -264,7 +262,7 @@ int PythonQtSignalReceiver::qt_metacall(QMetaObject::Call c, int id, void **argu
   bool shouldDelete = false;
   for(const PythonQtSignalTarget& t : _targets) {
 	if (t.slotId() == id) {
-	  int sigId = t.signalId();
+      const int sigId = t.signalId();
 	  t.call(arguments);
 	  // if the signal is the last destroyed signal, we delete ourselves
 	  if ((sigId == _destroyedSignal1Id) || (sigId == _destroyedSignal2Id)) {
