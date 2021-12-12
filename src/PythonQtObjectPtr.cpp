@@ -88,9 +88,9 @@ QVariant PythonQtObjectPtr::call(const QVariantList& args, const QVariantMap& kw
 }
 
 PythonQtObjectPtr::PythonQtObjectPtr(PyObject* o)
+: _object(o)
 {
-  _object = o;
-  if (o) Py_INCREF(_object);
+  Py_XINCREF(_object);
 }
 
 PythonQtObjectPtr::PythonQtObjectPtr(PythonQtSafeObjectPtr &&p) :_object(p.takeObject())
@@ -99,15 +99,14 @@ PythonQtObjectPtr::PythonQtObjectPtr(PythonQtSafeObjectPtr &&p) :_object(p.takeO
 
 PythonQtObjectPtr::~PythonQtObjectPtr()
 {
-  if (_object) Py_DECREF(_object);
+  Py_XDECREF(_object);
 }
 
 void PythonQtObjectPtr::setNewRef(PyObject* o)
 {
-  if (o != _object) {
-    if (_object) Py_DECREF(_object);
-    _object = o;
-  }
+	if (o != _object) {
+	  Py_XSETREF(_object, o); // see comment for Py_SETREF in Python3.x/object.h
+	}
 }
 
 bool PythonQtObjectPtr::fromVariant(const QVariant& variant) 
@@ -145,11 +144,8 @@ PythonQtObjectPtr & PythonQtObjectPtr::operator=(PythonQtSafeObjectPtr &&p)
 
 void PythonQtObjectPtr::setObject(PyObject* o)
 {
-  if (o != _object) {
-    if (_object) Py_DECREF(_object);
-    _object = o;
-    if (_object) Py_INCREF(_object);
-  }
+  setNewRef(o);
+  Py_XINCREF(_object);
 }
 
 //------------------------------------------------------------------------------
@@ -175,18 +171,16 @@ void PythonQtSafeObjectPtr::setObject(PyObject* o)
 {
   if (o != _object) {
     PYTHONQT_GIL_SCOPE
-    if (_object) Py_DECREF(_object);
-    _object = o;
-    if (_object) Py_INCREF(_object);
+	Py_XSETREF(_object, o);
+	Py_XINCREF(_object);
   }
 }
 
 void PythonQtSafeObjectPtr::setObjectUnsafe(PyObject* o)
 {
   if (o != _object) {
-    if (_object) Py_DECREF(_object);
-    _object = o;
-    if (_object) Py_INCREF(_object);
+	Py_XSETREF(_object, o);
+	Py_XINCREF(_object);
   }
 }
 

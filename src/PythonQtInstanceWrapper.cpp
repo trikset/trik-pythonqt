@@ -322,7 +322,7 @@ static PyObject *PythonQtInstanceWrapper_richcompare(PythonQtInstanceWrapper* wr
 }
 
 
-static PyObject *PythonQtInstanceWrapper_classname(PythonQtInstanceWrapper* obj)
+static PyObject *PythonQtInstanceWrapper_classname(PythonQtInstanceWrapper* obj, PyObject*)
 {
   return PyString_FromString(Py_TYPE(obj)->tp_name);
 }
@@ -336,12 +336,12 @@ PyObject *PythonQtInstanceWrapper_inherits(PythonQtInstanceWrapper* obj, PyObjec
   return PythonQtConv::GetPyBool(obj->classInfo()->inherits(name));
 }
 
-static PyObject *PythonQtInstanceWrapper_help(PythonQtInstanceWrapper* obj)
+static PyObject *PythonQtInstanceWrapper_help(PythonQtInstanceWrapper* obj, PyObject*)
 {
   return PythonQt::self()->helpCalled(obj->classInfo());
 }
 
-PyObject *PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper * self)
+PyObject *PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper * self, PyObject*)
 {
   PythonQtMemberInfo deleteSlot = self->classInfo()->member("py_delete");
   if (deleteSlot._type == PythonQtMemberInfo::Slot) {

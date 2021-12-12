@@ -143,23 +143,13 @@ protected:
 
 //! stores information about a slot, including a next pointer to overloaded slots
 class PYTHONQT_EXPORT PythonQtSlotInfo : public PythonQtMethodInfo
-{
-	PythonQtSlotInfo &operator =(const PythonQtSlotInfo &) = delete;
+{	
 public:
   enum Type {
 	MemberSlot, InstanceDecorator, ClassDecorator
   };
 
-  ~PythonQtSlotInfo() = default;
-  PythonQtSlotInfo(const PythonQtSlotInfo& info)
-	  : PythonQtMethodInfo(info)
-	  ,_slotIndex(info._slotIndex)
-	  ,_decorator(info._decorator)
-	  ,_type(info._type)
-	  ,_meta(info._meta)
-  {
-
-  }
+  PythonQtSlotInfo(const PythonQtSlotInfo&) = default;
 
   PythonQtSlotInfo(PythonQtClassInfo* classInfo, const QMetaMethod& meta, int slotIndex, QObject* decorator = NULL, Type type = MemberSlot ):PythonQtMethodInfo()
   {

@@ -628,17 +628,17 @@ static PyMemberDef meth_members[] = {
   {NULL, 0, 0, 0, 0}
 };
 
-static PyObject *PythonQtSlotFunction_parameterTypes(PythonQtSlotFunctionObject* type)
+static PyObject *PythonQtSlotFunction_parameterTypes(PythonQtSlotFunctionObject* type, PyObject*)
 {
   return PythonQtMemberFunction_parameterTypes(type->m_ml);
 }
 
-static PyObject *PythonQtSlotFunction_parameterNames(PythonQtSlotFunctionObject* type)
+static PyObject *PythonQtSlotFunction_parameterNames(PythonQtSlotFunctionObject* type, PyObject*)
 {
   return PythonQtMemberFunction_parameterNames(type->m_ml);
 }
 
-static PyObject *PythonQtSlotFunction_typeName(PythonQtSlotFunctionObject* type)
+static PyObject *PythonQtSlotFunction_typeName(PythonQtSlotFunctionObject* type, PyObject*)
 {
   return PythonQtMemberFunction_typeName(type->m_ml);
 }

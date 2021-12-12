@@ -834,14 +834,14 @@ private:
   QByteArray _pythonQtModuleName;
 
   //! the importer interface (if set)
-  PythonQtImportFileInterface* _importInterface;
+  PythonQtImportFileInterface* _importInterface {};
 
   //! the default importer
-  PythonQtQFileImporter* _defaultImporter;
+  PythonQtQFileImporter* _defaultImporter {};
 
-  PythonQtQObjectNoLongerWrappedCB* _noLongerWrappedCB;
-  PythonQtQObjectWrappedCB* _wrappedCB;
-  PythonQtQObjectMissingAttributeCB* _qObjectMissingAttribCB;
+  PythonQtQObjectNoLongerWrappedCB* _noLongerWrappedCB {};
+  PythonQtQObjectWrappedCB* _wrappedCB {};
+  PythonQtQObjectMissingAttributeCB* _qObjectMissingAttribCB {};
 
   QStringList _importIgnorePaths;
   QStringList _sharedLibrarySuffixes;

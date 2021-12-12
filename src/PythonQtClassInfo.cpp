@@ -407,6 +407,7 @@ PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlots(const char* memberName, 
     if (signature == memberName) {
       //make a copy, otherwise we will have trouble on overloads!
       PythonQtSlotInfo* info = new PythonQtSlotInfo(*infoOrig);
+	  info->setNextInfo(nullptr);
       info->setUpcastingOffset(upcastingOffset);
       found = true;
       if (tail) {

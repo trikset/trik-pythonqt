@@ -261,9 +261,9 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 		for (unsigned int i = 0; i < sizeof(names) / sizeof(names[0]); i++) {
 			PyObject *obj = PyObject_GetAttrString(qtNamespace, names[i]);
 			if (obj) {
-        PyModule_AddObject_DECREF(pack, names[i], obj);
 				Py_INCREF(obj);
-        PyModule_AddObject_DECREF(pack2, names[i], obj);
+				PyModule_AddObject_DECREF(pack, names[i], obj);
+				PyModule_AddObject_DECREF(pack2, names[i], obj);
 			} else {
 				std::cerr << "method not found " << names[i] << std::endl;
 			}
@@ -285,8 +285,8 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 
 	for (int i = 0; i<sizeof(enumValues)/sizeof(int); i++) {
 	  PyObject* obj = PyInt_FromLong(enumValues[i]);
+	  Py_INCREF(obj);
       PyModule_AddObject_DECREF(pack, enumNames[i], obj);
-		Py_INCREF(obj);
       PyModule_AddObject_DECREF(pack2, enumNames[i], obj);
 	}
 
@@ -423,10 +423,13 @@ PythonQt::~PythonQt() {
 }
 
 PythonQtPrivate::~PythonQtPrivate() {
+  _pythonQtModule = nullptr;
+  _pySourceFileLoader = nullptr;
+  _pySourcelessFileLoader = nullptr;
   delete _defaultImporter;
   _defaultImporter = NULL;
 
-	qDeleteAll(_knownClassInfos);
+  qDeleteAll(_knownClassInfos);
 
   PythonQtMethodInfo::cleanupCachedMethodInfos();
   PythonQtArgumentFrame::cleanupFreeList();
@@ -1102,7 +1105,7 @@ void PythonQt::addObject(PyObject* object, const QString& name, QObject* qObject
 	PyObject *wrappedObject = _p->wrapQObject(qObject);
 	if (PyModule_Check(object)) {
 	  Py_XINCREF(wrappedObject);
-    PyModule_AddObject_DECREF(object, QStringToPythonCharPointer(name), wrappedObject);
+	  PyModule_AddObject_DECREF(object, QStringToPythonCharPointer(name), wrappedObject);
 	} else if (PyDict_Check(object)) {
 	  PyDict_SetItemString(object, QStringToPythonCharPointer(name), wrappedObject);
 	} else {

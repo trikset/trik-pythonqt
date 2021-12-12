@@ -230,17 +230,17 @@ int PythonQtSignalFunction_init(PyObject *object, PyObject *args, PyObject *kw)
   return 1;
 }
 
-static PyObject *PythonQtSignalFunction_parameterTypes(PythonQtSignalFunctionObject* type)
+static PyObject *PythonQtSignalFunction_parameterTypes(PythonQtSignalFunctionObject* type, PyObject*)
 {
   return PythonQtMemberFunction_parameterTypes(type->m_ml);
 }
 
-static PyObject *PythonQtSignalFunction_parameterNames(PythonQtSignalFunctionObject* type)
+static PyObject *PythonQtSignalFunction_parameterNames(PythonQtSignalFunctionObject* type, PyObject*)
 {
   return PythonQtMemberFunction_parameterNames(type->m_ml);
 }
 
-static PyObject *PythonQtSignalFunction_typeName(PythonQtSignalFunctionObject* type)
+static PyObject *PythonQtSignalFunction_typeName(PythonQtSignalFunctionObject* type, PyObject*)
 {
   return PythonQtMemberFunction_typeName(type->m_ml);
 }
@@ -387,6 +387,9 @@ meth_richcompare(PythonQtSignalFunctionObject *a, PythonQtSignalFunctionObject *
 	r = x > -1;
   else if (op == Py_GT)
 	r = x > 0;
+  else
+	  std::abort();
+
   if (r)
 	Py_RETURN_TRUE;
   else
