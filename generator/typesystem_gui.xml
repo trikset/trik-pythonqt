@@ -1661,7 +1661,7 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="getColor(const QColor &amp;, QWidget *)">
     </modify-function>
   </object-type>
-
+<!--
   <object-type name="QLayout">
 
     <modify-function signature="removeWidget(QWidget*)">
@@ -1707,9 +1707,9 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="spacing()const" rename="widgetSpacing"/>
     <modify-function signature="getContentsMargins(int*,int*,int*,int*)const" remove="all"/>
 
-    <modify-function signature="margin()const" remove="all"/> <!--### Obsolete in 4.3-->
+    <modify-function signature="margin()const" remove="all"/>
   </object-type>
-
+	  -->
   <object-type name="QStackedLayout">
     <modify-function signature="insertWidget(int,QWidget*)">
       <modify-argument index="2">
@@ -2416,7 +2416,7 @@ PyObject* constScanLine(QImage* image, int line) {
 
   <object-type name="QScrollBar">
   </object-type>
-
+  <!--
   <object-type name="QClipboard">
     <extra-includes>
         <include file-name="QImage" location="global"/>
@@ -2432,7 +2432,7 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="event(QEvent*)" remove="all"/>
     <modify-function signature="connectNotify(const char*)" remove="all"/>
   </object-type>
-
+  -->
   <object-type name="QAbstractScrollArea">
     <modify-function signature="setupViewport(QWidget *)" access="non-final"/>
 
@@ -2978,10 +2978,11 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QGraphicsAnchor"/>
   <object-type name="QGraphicsEffect"/>
   <object-type name="QStaticText"/>
-  <object-type name="QGraphicsObject">
-    <!-- Duplicate function to QObject::children() to override accidental shadowing which is not present in Jambi -->
+	  <!--
+	  <object-type name="QGraphicsObject">
     <modify-function signature="children()const" remove="all"/>
   </object-type>
+	  -->
   <object-type name="QGraphicsBlurEffect"/>
   <object-type name="QGraphicsColorizeEffect"/>
   <object-type name="QGraphicsDropShadowEffect"/>
@@ -3036,11 +3037,11 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QPageSize"/>
   <object-type name="QPdfWriter"/>
   <object-type name="QRegularExpressionValidator"/>
-  <object-type name="QScreen"/>
+  <!--<object-type name="QScreen"/>-->
   <object-type name="QStyleHints"/>
   <object-type name="QTouchDevice"/>
   <object-type name="QWindow"/>
-  <object-type name="QScroller"/>
+	  <!-- <object-type name="QScroller"/>-->
   <object-type name="QScrollerProperties"/>
 
   <object-type name="QGuiApplication">
@@ -3063,7 +3064,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QKeySequenceEdit"/>
   <object-type name="QOpenGLWindow"/>
   <object-type name="QOpenGLWidget"/>
-  <object-type name="QPaintDeviceWindow"/>
+	  <!-- <object-type name="QPaintDeviceWindow"/>-->
   <object-type name="QRasterWindow"/>
   <object-type name="QPixelFormat"/>
   <value-type name="QRgba64">

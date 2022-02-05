@@ -852,9 +852,18 @@
     <modify-function signature="ry()" remove="all"/> 
   </value-type>
   <enum-type name="QLineF::IntersectType"/>
-  <value-type name="QLineF"/>
-  <value-type name="QLine"/>
- 
+  <value-type name="QLineF">
+    <extra-includes>
+        <include file-name="QMatrix" location="global"/>
+        <include file-name="QTransform" location="global"/>
+    </extra-includes>
+  </value-type>
+  <value-type name="QLine">
+    <extra-includes>
+        <include file-name="QMatrix" location="global"/>
+        <include file-name="QTransform" location="global"/>
+    </extra-includes>
+  </value-type>
   <value-type name="QRect">
     <modify-function signature="getCoords(int*,int*,int*,int*)const">
       <remove/>
@@ -1322,7 +1331,11 @@
   <object-type name="QTranslator">
   </object-type>
 
-  <object-type name="QWaitCondition"/>
+  <object-type name="QWaitCondition">
+    <extra-includes>
+      <include file-name="QDeadlineTimer" location="global"/>
+    </extra-includes>
+  </object-type>
 
   <object-type name="QFileSystemWatcher">
     <extra-includes>
@@ -1432,7 +1445,7 @@
   <object-type name="QApplicationStateChangeEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::ApplicationStateChange"/>
   <object-type name="QDeferredDeleteEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::DeferredDelete"/>
 
-  <object-type name="QSignalBlocker"/>
+	  <!--  <object-type name="QSignalBlocker"/> -->
   <object-type name="QStorageInfo"/>
     
   <object-type name="QDataStream">
@@ -1880,7 +1893,11 @@
   <suppress-warning text="WARNING(MetaJavaBuilder) :: enum '*' is specified in typesystem, but not declared"/>
 
   <!-- Qt 5 new classes -->
-  <object-type name="QFileDevice"/>
+  <object-type name="QFileDevice">
+    <extra-includes>
+        <include file-name="QDateTime" location="global"/>
+    </extra-includes>
+  </object-type>
   <object-type name="QBasicMutex"/>
   <object-type name="QCollator"/>
   <object-type name="QCollatorSortKey"/>
