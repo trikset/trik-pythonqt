@@ -324,7 +324,7 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
 
 // TODO: Someting like PyRun_String("sysconfig.get_config_var('LDLIBRARY')")
 // should be used to extract shared object name for current interpreter
-  const auto &libName = QString("libpython3.%1.so").arg(PY_MINOR_VERSION).toStdString();
+  const auto &libName = QString("libpython3.%1.so.1.0").arg(PY_MINOR_VERSION).toStdString();
   if (NULL == dlopen(libName.c_str(), RTLD_GLOBAL | RTLD_LAZY)) {
 	  qFatal("Failed to load %s", libName.c_str());
 	  abort();
