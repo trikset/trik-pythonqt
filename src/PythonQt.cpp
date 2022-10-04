@@ -58,7 +58,12 @@
 
 #include <QDir>
 
+#if PY_MINOR_VERSION >= 10
+#include <cpython/pydebug.h>
+#else
 #include <pydebug.h>
+#endif
+
 #include <vector>
 
 #ifdef __linux__

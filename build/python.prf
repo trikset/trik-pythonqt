@@ -1,8 +1,6 @@
 # profile to include and link Python
 
 # Change this variable to your python version (3.5, 3,7, 3.8, ...)
-isEmpty(PYTHON3_VERSION_MINOR):PYTHON3_VERSION_MINOR=7
-unix:PYTHON_VERSION=UNKNOWN_BECAUSE_DETECT_FAILED
 win32 {
   # for windows install a Python development kit or build Python yourself from the sources
   # Make sure that you set the environment variable PYTHON_PATH to point to your
@@ -38,14 +36,19 @@ win32 {
   # make sure that you have installed a matching pythonX-dev package.
   CONFIG *= link_pkgconfig
   PYTHON_VERSION_AUTODETECTED = $$system($$pkgConfigExecutable() --modversion python3)
-  PYTHON_VERSION = $$system($$pkgConfigExecutable() --modversion python-3.$${PYTHON3_VERSION_MINOR})
-  isEmpty(PYTHON_VERSION) {
-    !isEmpty(PYTHON_VERSION_AUTODETECTED) {
-      PYTHON_VERSION=$$PYTHON_VERSION_AUTODETECTED
-    } else {
-      error("Missing python3-dev package or similar, or set PYTHON3_VERSION_MINOR")
-    }
+
+  !isEmpty(PYTHON3_VERSION_MINOR){
+	PYTHON_VERSION=$$system($$pkgConfigExecutable() --modversion python-3.$${PYTHON3_VERSION_MINOR})
+	isEmpty(PYTHON_VERSION){
+	  error("Missing python3-dev package or similar for Python 3.$${PYTHON3_VERSION_MINOR} as requested via PYTHON3_VERSION_MINOR")
+	}
+  } else {
+	PYTHON_VERSION=$$PYTHON_VERSION_AUTODETECTED
+	isEmpty(PYTHON_VERSION){
+	  error("Missing python3-dev package or similar for Python 3")
+	}
   }
+
   PYTHON_PKG = python-$${PYTHON_VERSION}
   equals(PYTHON_VERSION, 3.8) | versionAtLeast(PYTHON_VERSION, 3.8) { # versionAtLeast requires Qt 5.10+
           PYTHON_PKG = $${PYTHON_PKG}-embed
@@ -58,5 +61,10 @@ win32 {
     # No `brew`, ok, then you need to have the Python development kit installed as framework
     INCLUDEPATH += /System/Library/Frameworks/Python.framework/Headers
     LIBS += -F/System/Library/Frameworks -framework Python
+    isEmpty(PYTHON3_VERSION_MINOR){
+	error("PYTHON3_VERSION_MINOR must be set")
+    }
     PYTHON_VERSION=3.$${PYTHON3_VERSION_MINOR}
 }
+
+ message(Building PythonQt with Python $$PYTHON_VERSION)
