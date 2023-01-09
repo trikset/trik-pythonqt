@@ -1,0 +1,626 @@
+#include "com_trolltech_qt_gui8.h"
+#include <PythonQtConversion.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtSignalReceiver.h>
+#include <QVariant>
+#include <qstyleoption.h>
+#include <qwidget.h>
+
+PythonQtShell_QStyleHintReturnMask::~PythonQtShell_QStyleHintReturnMask() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleHintReturnMask* PythonQtWrapper_QStyleHintReturnMask::new_QStyleHintReturnMask()
+{ 
+return new PythonQtShell_QStyleHintReturnMask(); }
+
+
+
+PythonQtShell_QStyleHintReturnVariant::~PythonQtShell_QStyleHintReturnVariant() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleHintReturnVariant* PythonQtWrapper_QStyleHintReturnVariant::new_QStyleHintReturnVariant()
+{ 
+return new PythonQtShell_QStyleHintReturnVariant(); }
+
+
+
+int  PythonQtWrapper_QStyleHints::cursorFlashTime(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->cursorFlashTime());
+}
+
+qreal  PythonQtWrapper_QStyleHints::fontSmoothingGamma(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->fontSmoothingGamma());
+}
+
+int  PythonQtWrapper_QStyleHints::keyboardAutoRepeatRate(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->keyboardAutoRepeatRate());
+}
+
+int  PythonQtWrapper_QStyleHints::keyboardInputInterval(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->keyboardInputInterval());
+}
+
+int  PythonQtWrapper_QStyleHints::mouseDoubleClickDistance(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->mouseDoubleClickDistance());
+}
+
+int  PythonQtWrapper_QStyleHints::mouseDoubleClickInterval(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->mouseDoubleClickInterval());
+}
+
+int  PythonQtWrapper_QStyleHints::mousePressAndHoldInterval(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->mousePressAndHoldInterval());
+}
+
+int  PythonQtWrapper_QStyleHints::mouseQuickSelectionThreshold(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->mouseQuickSelectionThreshold());
+}
+
+QChar  PythonQtWrapper_QStyleHints::passwordMaskCharacter(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->passwordMaskCharacter());
+}
+
+int  PythonQtWrapper_QStyleHints::passwordMaskDelay(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->passwordMaskDelay());
+}
+
+void PythonQtWrapper_QStyleHints::setCursorFlashTime(QStyleHints* theWrappedObject, int  cursorFlashTime)
+{
+  ( theWrappedObject->setCursorFlashTime(cursorFlashTime));
+}
+
+bool  PythonQtWrapper_QStyleHints::setFocusOnTouchRelease(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->setFocusOnTouchRelease());
+}
+
+void PythonQtWrapper_QStyleHints::setKeyboardInputInterval(QStyleHints* theWrappedObject, int  keyboardInputInterval)
+{
+  ( theWrappedObject->setKeyboardInputInterval(keyboardInputInterval));
+}
+
+void PythonQtWrapper_QStyleHints::setMouseDoubleClickInterval(QStyleHints* theWrappedObject, int  mouseDoubleClickInterval)
+{
+  ( theWrappedObject->setMouseDoubleClickInterval(mouseDoubleClickInterval));
+}
+
+void PythonQtWrapper_QStyleHints::setMousePressAndHoldInterval(QStyleHints* theWrappedObject, int  mousePressAndHoldInterval)
+{
+  ( theWrappedObject->setMousePressAndHoldInterval(mousePressAndHoldInterval));
+}
+
+void PythonQtWrapper_QStyleHints::setMouseQuickSelectionThreshold(QStyleHints* theWrappedObject, int  threshold)
+{
+  ( theWrappedObject->setMouseQuickSelectionThreshold(threshold));
+}
+
+void PythonQtWrapper_QStyleHints::setShowShortcutsInContextMenus(QStyleHints* theWrappedObject, bool  showShortcutsInContextMenus)
+{
+  ( theWrappedObject->setShowShortcutsInContextMenus(showShortcutsInContextMenus));
+}
+
+void PythonQtWrapper_QStyleHints::setStartDragDistance(QStyleHints* theWrappedObject, int  startDragDistance)
+{
+  ( theWrappedObject->setStartDragDistance(startDragDistance));
+}
+
+void PythonQtWrapper_QStyleHints::setStartDragTime(QStyleHints* theWrappedObject, int  startDragTime)
+{
+  ( theWrappedObject->setStartDragTime(startDragTime));
+}
+
+void PythonQtWrapper_QStyleHints::setTabFocusBehavior(QStyleHints* theWrappedObject, Qt::TabFocusBehavior  tabFocusBehavior)
+{
+  ( theWrappedObject->setTabFocusBehavior(tabFocusBehavior));
+}
+
+void PythonQtWrapper_QStyleHints::setUseHoverEffects(QStyleHints* theWrappedObject, bool  useHoverEffects)
+{
+  ( theWrappedObject->setUseHoverEffects(useHoverEffects));
+}
+
+void PythonQtWrapper_QStyleHints::setWheelScrollLines(QStyleHints* theWrappedObject, int  scrollLines)
+{
+  ( theWrappedObject->setWheelScrollLines(scrollLines));
+}
+
+bool  PythonQtWrapper_QStyleHints::showIsFullScreen(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->showIsFullScreen());
+}
+
+bool  PythonQtWrapper_QStyleHints::showIsMaximized(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->showIsMaximized());
+}
+
+bool  PythonQtWrapper_QStyleHints::showShortcutsInContextMenus(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->showShortcutsInContextMenus());
+}
+
+bool  PythonQtWrapper_QStyleHints::singleClickActivation(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->singleClickActivation());
+}
+
+int  PythonQtWrapper_QStyleHints::startDragDistance(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->startDragDistance());
+}
+
+int  PythonQtWrapper_QStyleHints::startDragTime(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->startDragTime());
+}
+
+int  PythonQtWrapper_QStyleHints::startDragVelocity(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->startDragVelocity());
+}
+
+Qt::TabFocusBehavior  PythonQtWrapper_QStyleHints::tabFocusBehavior(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->tabFocusBehavior());
+}
+
+int  PythonQtWrapper_QStyleHints::touchDoubleTapDistance(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->touchDoubleTapDistance());
+}
+
+bool  PythonQtWrapper_QStyleHints::useHoverEffects(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->useHoverEffects());
+}
+
+bool  PythonQtWrapper_QStyleHints::useRtlExtensions(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->useRtlExtensions());
+}
+
+int  PythonQtWrapper_QStyleHints::wheelScrollLines(QStyleHints* theWrappedObject) const
+{
+  return ( theWrappedObject->wheelScrollLines());
+}
+
+
+
+PythonQtShell_QStyleOption::~PythonQtShell_QStyleOption() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOption* PythonQtWrapper_QStyleOption::new_QStyleOption(const QStyleOption&  other)
+{ 
+return new PythonQtShell_QStyleOption(other); }
+
+QStyleOption* PythonQtWrapper_QStyleOption::new_QStyleOption(int  version, int  type)
+{ 
+return new PythonQtShell_QStyleOption(version, type); }
+
+void PythonQtWrapper_QStyleOption::initFrom(QStyleOption* theWrappedObject, const QWidget*  w)
+{
+  ( theWrappedObject->initFrom(w));
+}
+
+QString PythonQtWrapper_QStyleOption::py_toString(QStyleOption* obj) {
+  QString result;
+  QDebug d(&result);
+  d << *obj;
+  return result;
+}
+
+
+
+PythonQtShell_QStyleOptionButton::~PythonQtShell_QStyleOptionButton() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionButton* PythonQtWrapper_QStyleOptionButton::new_QStyleOptionButton()
+{ 
+return new PythonQtShell_QStyleOptionButton(); }
+
+QStyleOptionButton* PythonQtWrapper_QStyleOptionButton::new_QStyleOptionButton(const QStyleOptionButton&  other)
+{ 
+return new PythonQtShell_QStyleOptionButton(other); }
+
+QStyleOptionButton* PythonQtWrapper_QStyleOptionButton::new_QStyleOptionButton(int  version)
+{ 
+return new PythonQtShell_QStyleOptionButton(version); }
+
+
+
+PythonQtShell_QStyleOptionDockWidget::~PythonQtShell_QStyleOptionDockWidget() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionDockWidget* PythonQtWrapper_QStyleOptionDockWidget::new_QStyleOptionDockWidget()
+{ 
+return new PythonQtShell_QStyleOptionDockWidget(); }
+
+QStyleOptionDockWidget* PythonQtWrapper_QStyleOptionDockWidget::new_QStyleOptionDockWidget(const QStyleOptionDockWidget&  other)
+{ 
+return new PythonQtShell_QStyleOptionDockWidget(other); }
+
+QStyleOptionDockWidget* PythonQtWrapper_QStyleOptionDockWidget::new_QStyleOptionDockWidget(int  version)
+{ 
+return new PythonQtShell_QStyleOptionDockWidget(version); }
+
+
+
+PythonQtShell_QStyleOptionDockWidgetV2::~PythonQtShell_QStyleOptionDockWidgetV2() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionDockWidgetV2* PythonQtWrapper_QStyleOptionDockWidgetV2::new_QStyleOptionDockWidgetV2()
+{ 
+return new PythonQtShell_QStyleOptionDockWidgetV2(); }
+
+
+
+PythonQtShell_QStyleOptionFocusRect::~PythonQtShell_QStyleOptionFocusRect() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionFocusRect* PythonQtWrapper_QStyleOptionFocusRect::new_QStyleOptionFocusRect()
+{ 
+return new PythonQtShell_QStyleOptionFocusRect(); }
+
+QStyleOptionFocusRect* PythonQtWrapper_QStyleOptionFocusRect::new_QStyleOptionFocusRect(const QStyleOptionFocusRect&  other)
+{ 
+return new PythonQtShell_QStyleOptionFocusRect(other); }
+
+QStyleOptionFocusRect* PythonQtWrapper_QStyleOptionFocusRect::new_QStyleOptionFocusRect(int  version)
+{ 
+return new PythonQtShell_QStyleOptionFocusRect(version); }
+
+
+
+PythonQtShell_QStyleOptionFrame::~PythonQtShell_QStyleOptionFrame() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionFrame* PythonQtWrapper_QStyleOptionFrame::new_QStyleOptionFrame()
+{ 
+return new PythonQtShell_QStyleOptionFrame(); }
+
+QStyleOptionFrame* PythonQtWrapper_QStyleOptionFrame::new_QStyleOptionFrame(const QStyleOptionFrame&  other)
+{ 
+return new PythonQtShell_QStyleOptionFrame(other); }
+
+QStyleOptionFrame* PythonQtWrapper_QStyleOptionFrame::new_QStyleOptionFrame(int  version)
+{ 
+return new PythonQtShell_QStyleOptionFrame(version); }
+
+
+
+PythonQtShell_QStyleOptionFrameV2::~PythonQtShell_QStyleOptionFrameV2() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionFrameV2* PythonQtWrapper_QStyleOptionFrameV2::new_QStyleOptionFrameV2()
+{ 
+return new PythonQtShell_QStyleOptionFrameV2(); }
+
+
+
+PythonQtShell_QStyleOptionFrameV3::~PythonQtShell_QStyleOptionFrameV3() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionFrameV3* PythonQtWrapper_QStyleOptionFrameV3::new_QStyleOptionFrameV3()
+{ 
+return new PythonQtShell_QStyleOptionFrameV3(); }
+
+
+
+PythonQtShell_QStyleOptionGraphicsItem::~PythonQtShell_QStyleOptionGraphicsItem() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionGraphicsItem* PythonQtWrapper_QStyleOptionGraphicsItem::new_QStyleOptionGraphicsItem()
+{ 
+return new PythonQtShell_QStyleOptionGraphicsItem(); }
+
+QStyleOptionGraphicsItem* PythonQtWrapper_QStyleOptionGraphicsItem::new_QStyleOptionGraphicsItem(const QStyleOptionGraphicsItem&  other)
+{ 
+return new PythonQtShell_QStyleOptionGraphicsItem(other); }
+
+QStyleOptionGraphicsItem* PythonQtWrapper_QStyleOptionGraphicsItem::new_QStyleOptionGraphicsItem(int  version)
+{ 
+return new PythonQtShell_QStyleOptionGraphicsItem(version); }
+
+qreal  PythonQtWrapper_QStyleOptionGraphicsItem::static_QStyleOptionGraphicsItem_levelOfDetailFromTransform(const QTransform&  worldTransform)
+{
+  return (QStyleOptionGraphicsItem::levelOfDetailFromTransform(worldTransform));
+}
+
+
+
+PythonQtShell_QStyleOptionGroupBox::~PythonQtShell_QStyleOptionGroupBox() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionGroupBox* PythonQtWrapper_QStyleOptionGroupBox::new_QStyleOptionGroupBox()
+{ 
+return new PythonQtShell_QStyleOptionGroupBox(); }
+
+QStyleOptionGroupBox* PythonQtWrapper_QStyleOptionGroupBox::new_QStyleOptionGroupBox(const QStyleOptionGroupBox&  other)
+{ 
+return new PythonQtShell_QStyleOptionGroupBox(other); }
+
+QStyleOptionGroupBox* PythonQtWrapper_QStyleOptionGroupBox::new_QStyleOptionGroupBox(int  version)
+{ 
+return new PythonQtShell_QStyleOptionGroupBox(version); }
+
+
+
+PythonQtShell_QStyleOptionHeader::~PythonQtShell_QStyleOptionHeader() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionHeader* PythonQtWrapper_QStyleOptionHeader::new_QStyleOptionHeader()
+{ 
+return new PythonQtShell_QStyleOptionHeader(); }
+
+QStyleOptionHeader* PythonQtWrapper_QStyleOptionHeader::new_QStyleOptionHeader(const QStyleOptionHeader&  other)
+{ 
+return new PythonQtShell_QStyleOptionHeader(other); }
+
+QStyleOptionHeader* PythonQtWrapper_QStyleOptionHeader::new_QStyleOptionHeader(int  version)
+{ 
+return new PythonQtShell_QStyleOptionHeader(version); }
+
+
+
+PythonQtShell_QStyleOptionMenuItem::~PythonQtShell_QStyleOptionMenuItem() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionMenuItem* PythonQtWrapper_QStyleOptionMenuItem::new_QStyleOptionMenuItem()
+{ 
+return new PythonQtShell_QStyleOptionMenuItem(); }
+
+QStyleOptionMenuItem* PythonQtWrapper_QStyleOptionMenuItem::new_QStyleOptionMenuItem(const QStyleOptionMenuItem&  other)
+{ 
+return new PythonQtShell_QStyleOptionMenuItem(other); }
+
+QStyleOptionMenuItem* PythonQtWrapper_QStyleOptionMenuItem::new_QStyleOptionMenuItem(int  version)
+{ 
+return new PythonQtShell_QStyleOptionMenuItem(version); }
+
+
+
+PythonQtShell_QStyleOptionProgressBarV2::~PythonQtShell_QStyleOptionProgressBarV2() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionProgressBarV2* PythonQtWrapper_QStyleOptionProgressBarV2::new_QStyleOptionProgressBarV2()
+{ 
+return new PythonQtShell_QStyleOptionProgressBarV2(); }
+
+
+
+PythonQtShell_QStyleOptionRubberBand::~PythonQtShell_QStyleOptionRubberBand() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionRubberBand* PythonQtWrapper_QStyleOptionRubberBand::new_QStyleOptionRubberBand()
+{ 
+return new PythonQtShell_QStyleOptionRubberBand(); }
+
+QStyleOptionRubberBand* PythonQtWrapper_QStyleOptionRubberBand::new_QStyleOptionRubberBand(const QStyleOptionRubberBand&  other)
+{ 
+return new PythonQtShell_QStyleOptionRubberBand(other); }
+
+QStyleOptionRubberBand* PythonQtWrapper_QStyleOptionRubberBand::new_QStyleOptionRubberBand(int  version)
+{ 
+return new PythonQtShell_QStyleOptionRubberBand(version); }
+
+
+
+PythonQtShell_QStyleOptionSizeGrip::~PythonQtShell_QStyleOptionSizeGrip() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionSizeGrip* PythonQtWrapper_QStyleOptionSizeGrip::new_QStyleOptionSizeGrip()
+{ 
+return new PythonQtShell_QStyleOptionSizeGrip(); }
+
+QStyleOptionSizeGrip* PythonQtWrapper_QStyleOptionSizeGrip::new_QStyleOptionSizeGrip(const QStyleOptionSizeGrip&  other)
+{ 
+return new PythonQtShell_QStyleOptionSizeGrip(other); }
+
+QStyleOptionSizeGrip* PythonQtWrapper_QStyleOptionSizeGrip::new_QStyleOptionSizeGrip(int  version)
+{ 
+return new PythonQtShell_QStyleOptionSizeGrip(version); }
+
+
+
+PythonQtShell_QStyleOptionSlider::~PythonQtShell_QStyleOptionSlider() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionSlider* PythonQtWrapper_QStyleOptionSlider::new_QStyleOptionSlider()
+{ 
+return new PythonQtShell_QStyleOptionSlider(); }
+
+QStyleOptionSlider* PythonQtWrapper_QStyleOptionSlider::new_QStyleOptionSlider(const QStyleOptionSlider&  other)
+{ 
+return new PythonQtShell_QStyleOptionSlider(other); }
+
+QStyleOptionSlider* PythonQtWrapper_QStyleOptionSlider::new_QStyleOptionSlider(int  version)
+{ 
+return new PythonQtShell_QStyleOptionSlider(version); }
+
+
+
+PythonQtShell_QStyleOptionSpinBox::~PythonQtShell_QStyleOptionSpinBox() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionSpinBox* PythonQtWrapper_QStyleOptionSpinBox::new_QStyleOptionSpinBox()
+{ 
+return new PythonQtShell_QStyleOptionSpinBox(); }
+
+QStyleOptionSpinBox* PythonQtWrapper_QStyleOptionSpinBox::new_QStyleOptionSpinBox(const QStyleOptionSpinBox&  other)
+{ 
+return new PythonQtShell_QStyleOptionSpinBox(other); }
+
+QStyleOptionSpinBox* PythonQtWrapper_QStyleOptionSpinBox::new_QStyleOptionSpinBox(int  version)
+{ 
+return new PythonQtShell_QStyleOptionSpinBox(version); }
+
+
+
+PythonQtShell_QStyleOptionTabBarBase::~PythonQtShell_QStyleOptionTabBarBase() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionTabBarBase* PythonQtWrapper_QStyleOptionTabBarBase::new_QStyleOptionTabBarBase()
+{ 
+return new PythonQtShell_QStyleOptionTabBarBase(); }
+
+QStyleOptionTabBarBase* PythonQtWrapper_QStyleOptionTabBarBase::new_QStyleOptionTabBarBase(const QStyleOptionTabBarBase&  other)
+{ 
+return new PythonQtShell_QStyleOptionTabBarBase(other); }
+
+QStyleOptionTabBarBase* PythonQtWrapper_QStyleOptionTabBarBase::new_QStyleOptionTabBarBase(int  version)
+{ 
+return new PythonQtShell_QStyleOptionTabBarBase(version); }
+
+
+
+PythonQtShell_QStyleOptionTabBarBaseV2::~PythonQtShell_QStyleOptionTabBarBaseV2() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionTabBarBaseV2* PythonQtWrapper_QStyleOptionTabBarBaseV2::new_QStyleOptionTabBarBaseV2()
+{ 
+return new PythonQtShell_QStyleOptionTabBarBaseV2(); }
+
+
+
+PythonQtShell_QStyleOptionTabV2::~PythonQtShell_QStyleOptionTabV2() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionTabV2* PythonQtWrapper_QStyleOptionTabV2::new_QStyleOptionTabV2()
+{ 
+return new PythonQtShell_QStyleOptionTabV2(); }
+
+
+
+PythonQtShell_QStyleOptionTabV3::~PythonQtShell_QStyleOptionTabV3() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionTabV3* PythonQtWrapper_QStyleOptionTabV3::new_QStyleOptionTabV3()
+{ 
+return new PythonQtShell_QStyleOptionTabV3(); }
+
+
+
+PythonQtShell_QStyleOptionTabWidgetFrame::~PythonQtShell_QStyleOptionTabWidgetFrame() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionTabWidgetFrame* PythonQtWrapper_QStyleOptionTabWidgetFrame::new_QStyleOptionTabWidgetFrame()
+{ 
+return new PythonQtShell_QStyleOptionTabWidgetFrame(); }
+
+QStyleOptionTabWidgetFrame* PythonQtWrapper_QStyleOptionTabWidgetFrame::new_QStyleOptionTabWidgetFrame(const QStyleOptionTabWidgetFrame&  other)
+{ 
+return new PythonQtShell_QStyleOptionTabWidgetFrame(other); }
+
+QStyleOptionTabWidgetFrame* PythonQtWrapper_QStyleOptionTabWidgetFrame::new_QStyleOptionTabWidgetFrame(int  version)
+{ 
+return new PythonQtShell_QStyleOptionTabWidgetFrame(version); }
+
+
+
+PythonQtShell_QStyleOptionTabWidgetFrameV2::~PythonQtShell_QStyleOptionTabWidgetFrameV2() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionTabWidgetFrameV2* PythonQtWrapper_QStyleOptionTabWidgetFrameV2::new_QStyleOptionTabWidgetFrameV2()
+{ 
+return new PythonQtShell_QStyleOptionTabWidgetFrameV2(); }
+
+
+
+PythonQtShell_QStyleOptionTitleBar::~PythonQtShell_QStyleOptionTitleBar() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionTitleBar* PythonQtWrapper_QStyleOptionTitleBar::new_QStyleOptionTitleBar()
+{ 
+return new PythonQtShell_QStyleOptionTitleBar(); }
+
+QStyleOptionTitleBar* PythonQtWrapper_QStyleOptionTitleBar::new_QStyleOptionTitleBar(const QStyleOptionTitleBar&  other)
+{ 
+return new PythonQtShell_QStyleOptionTitleBar(other); }
+
+QStyleOptionTitleBar* PythonQtWrapper_QStyleOptionTitleBar::new_QStyleOptionTitleBar(int  version)
+{ 
+return new PythonQtShell_QStyleOptionTitleBar(version); }
+
+
+
+PythonQtShell_QStyleOptionToolBar::~PythonQtShell_QStyleOptionToolBar() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionToolBar* PythonQtWrapper_QStyleOptionToolBar::new_QStyleOptionToolBar()
+{ 
+return new PythonQtShell_QStyleOptionToolBar(); }
+
+QStyleOptionToolBar* PythonQtWrapper_QStyleOptionToolBar::new_QStyleOptionToolBar(const QStyleOptionToolBar&  other)
+{ 
+return new PythonQtShell_QStyleOptionToolBar(other); }
+
+QStyleOptionToolBar* PythonQtWrapper_QStyleOptionToolBar::new_QStyleOptionToolBar(int  version)
+{ 
+return new PythonQtShell_QStyleOptionToolBar(version); }
+
+
+
+PythonQtShell_QStyleOptionToolBox::~PythonQtShell_QStyleOptionToolBox() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionToolBox* PythonQtWrapper_QStyleOptionToolBox::new_QStyleOptionToolBox()
+{ 
+return new PythonQtShell_QStyleOptionToolBox(); }
+
+QStyleOptionToolBox* PythonQtWrapper_QStyleOptionToolBox::new_QStyleOptionToolBox(const QStyleOptionToolBox&  other)
+{ 
+return new PythonQtShell_QStyleOptionToolBox(other); }
+
+QStyleOptionToolBox* PythonQtWrapper_QStyleOptionToolBox::new_QStyleOptionToolBox(int  version)
+{ 
+return new PythonQtShell_QStyleOptionToolBox(version); }
+
+
+
+PythonQtShell_QStyleOptionToolBoxV2::~PythonQtShell_QStyleOptionToolBoxV2() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleOptionToolBoxV2* PythonQtWrapper_QStyleOptionToolBoxV2::new_QStyleOptionToolBoxV2()
+{ 
+return new PythonQtShell_QStyleOptionToolBoxV2(); }
+
+
