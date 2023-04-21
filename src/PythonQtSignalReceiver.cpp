@@ -55,6 +55,7 @@ void PythonQtSignalTarget::call(void **arguments) const {
   PYTHONQT_GIL_SCOPE
   PyObject* result = call(_callable, methodInfo(), arguments);
   if (result) {
+    PythonQt::priv()->checkAndRunCoroutine(result);
 	Py_DECREF(result);
   }
 }
@@ -100,7 +101,7 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
 	}
   }
 
-  PyObject* pargs = NULL;
+  PyObject* pargs = nullptr;
   if (count>1) {
 	pargs = PyTuple_New(count-1);
   }
@@ -124,7 +125,7 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
 	}
   }
 
-  PyObject* result = NULL;
+  PyObject* result = nullptr;
   if (!err) {
 	PyErr_Clear();
 	result = PyObject_CallObject(callable, pargs);
@@ -196,7 +197,7 @@ bool PythonQtSignalReceiver::addSignalHandler(const char* signal, PyObject* call
 	PythonQtSignalTarget t(sigId, signalInfo, _slotCount, callable);
 	_targets.append(t);
 	// now connect to ourselves with the new slot id
-	QMetaObject::connect(_obj, sigId, this, _slotCount, Qt::AutoConnection, 0);
+    QMetaObject::connect(_obj, sigId, this, _slotCount, Qt::AutoConnection, nullptr);
 
 	_slotCount++;
 	flag = true;
@@ -268,9 +269,9 @@ int PythonQtSignalReceiver::qt_metacall(QMetaObject::Call c, int id, void **argu
   bool shouldDelete = false;
   for(const PythonQtSignalTarget& t : _targets) {
 	if (t.slotId() == id) {
+      const int sigId = t.signalId();
 	  t.call(arguments);
 	  // if the signal is the last destroyed signal, we delete ourselves
-	  int sigId = t.signalId();
 	  if ((sigId == _destroyedSignal1Id) || (sigId == _destroyedSignal2Id)) {
 		_destroyedSignalCount--;
 		if (_destroyedSignalCount == 0) {
