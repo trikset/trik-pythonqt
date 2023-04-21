@@ -13,8 +13,6 @@ TEMPLATE = lib
 CONFIG += qt
 CONFIG -= flat
 
-mingw:QMAKE_CXXFLAGS+=-Wa,-mbig-obj
-
 # allow to choose static linking through the environment variable PYTHONQT_STATIC
 isEmpty(PYTHONQT_STATIC) {
   PYTHONQT_STATIC = $$(PYTHONQT_STATIC)
@@ -32,17 +30,14 @@ contains(QT_MAJOR_VERSION, 5) {
   QT += widgets core-private
 }
 
-# Qt 5.4 adds this option, but this is not compatible with the Python API
-QMAKE_CXXFLAGS_RELEASE -= -Zc:strictStrings
-
 INCLUDEPATH += $$PWD
-
-include ( src.pri )
 
 include ( ../build/common.prf )
 include ( ../build/python.prf )
 TARGET = $$replace(TARGET, PythonXY, Python$${PYTHON_VERSION})
 TARGET = $$replace(TARGET, QtXY, Qt$${QT_MAJOR_VERSION}$${QT_MINOR_VERSION})
+
+include ( src.pri )
 
 include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin.pri)
 include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin.pri)
@@ -58,10 +53,10 @@ unix {
   QMAKE_PKGCONFIG_VERSION = $$VERSION
 }
 
-#unix: target.path = /lib
+unix: target.path = $${INSTALL_PREFIX}/lib
 win32: target.path = /
 
 headers.files = $${HEADERS} $$PWD/PythonQtPythonInclude.h
-#headers.path = /include
+headers.path = $${INSTALL_PREFIX}/include
 
 INSTALLS += target headers

@@ -34,7 +34,14 @@ TEMPLATE = lib
 include ( ../../build/common.prf )  
 include ( ../../build/PythonQt.prf )  
 TARGET = $$replace(TARGET, PythonXY, Python$${PYTHON_VERSION})
-CONFIG += dll qt
+
+CONFIG += qt strict_c++
+
+!static:!staticlib {
+  CONFIG += dll
+  # Force linker to complain on undefined references for dll/so/dylib build when possible
+  QMAKE_LFLAGS_SHLIB += $$QMAKE_LFLAGS_NOUNDEF
+}
 
 DEFINES += PYTHONQT_QTALL_EXPORTS
 
@@ -43,11 +50,6 @@ HEADERS +=                \
   
 SOURCES +=                \
   $$PWD/PythonQt_QtAll.cpp
-
-# TODO: add these only when needed by configuration below
-# QT += gui svg sql network xml xmlpatterns
-# QT += widgets printsupport multimedia multimediawidgets
-# QT += quick qml quickwidgets uitools
 
 unix {
   CONFIG += create_pc create_prl no_install_prl
@@ -60,11 +62,11 @@ unix {
   QMAKE_PKGCONFIG_VERSION = $$VERSION
 }
 
-unix: target.path = /lib
+unix: target.path = $${INSTALL_PREFIX}/lib
 win32: target.path = /
 
 headers.files = $${HEADERS}
-headers.path = /include
+headers.path = $${INSTALL_PREFIX}/include
 
 INSTALLS += target headers
 
@@ -78,6 +80,7 @@ defineTest(Xinclude) {
 PythonQtCore {
   DEFINES += PYTHONQT_WITH_CORE
   Xinclude (com_trolltech_qt_core)
+  QT += core
 }
 
 PythonQtGui  {

@@ -12,3 +12,5 @@ CONFIG(tests) {
 CONFIG(generator) {
     SUBDIRS += generator
 }
+
+OTHER_FILES += $$PWD/.github/workflows/build.yml
