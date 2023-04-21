@@ -1384,22 +1384,6 @@ void delete_QCameraControl(QCameraControl* obj) { delete obj; }
 };
 
 
-
-
-
-class PythonQtShell_QCameraExposure : public QCameraExposure
-{
-public:
-    PythonQtShell_QCameraExposure():QCameraExposure(),_wrapper(NULL) {};
-
-   ~PythonQtShell_QCameraExposure();
-
-
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
 class PythonQtWrapper_QCameraExposure : public QObject
 { Q_OBJECT
 public:

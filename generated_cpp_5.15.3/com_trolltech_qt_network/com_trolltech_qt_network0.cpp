@@ -2,6 +2,9 @@
 #include <PythonQtConversion.h>
 #include <PythonQtMethodInfo.h>
 #include <PythonQtSignalReceiver.h>
+#include <QNetworkDatagram>
+#include <QNetworkProxy>
+#include <QSslKey>
 #include <QVariant>
 #include <qabstractnetworkcache.h>
 #include <qabstractsocket.h>

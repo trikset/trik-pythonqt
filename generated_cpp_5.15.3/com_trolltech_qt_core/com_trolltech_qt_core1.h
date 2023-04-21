@@ -39,8 +39,6 @@
 #include <qsignalmapper.h>
 #include <qtextcodec.h>
 #include <qurl.h>
-#include <qwidget.h>
-
 
 
 class PythonQtWrapper_QLibrary : public QObject
@@ -369,7 +367,7 @@ void delete_QMetaType(QMetaType* obj) { delete obj; }
    void destruct(QMetaType* theWrappedObject, void*  data) const;
    bool  static_QMetaType_equals(const void*  lhs, const void*  rhs, int  typeId, int*  result);
    QMetaType::TypeFlags  flags(QMetaType* theWrappedObject) const;
-   QMetaType  static_QMetaType_fromType();
+   //QMetaType  static_QMetaType_fromType();
    bool  static_QMetaType_hasRegisteredComparators(int  typeId);
    bool  static_QMetaType_hasRegisteredConverterFunction(int  fromTypeId, int  toTypeId);
    bool  static_QMetaType_hasRegisteredDebugStreamOperator(int  typeId);

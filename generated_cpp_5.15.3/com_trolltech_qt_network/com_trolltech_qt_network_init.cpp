@@ -1,5 +1,6 @@
 #include <PythonQt.h>
 #include <PythonQtConversion.h>
+#include <QNetworkCookie>
 #include "com_trolltech_qt_network0.h"
 
 

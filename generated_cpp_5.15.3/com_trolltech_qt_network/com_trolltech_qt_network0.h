@@ -1,5 +1,10 @@
 #include <PythonQt.h>
+#include <QNetworkCookie>
+#include <QNetworkDatagram>
+#include <QNetworkProxy>
 #include <QObject>
+#include <QSslCipher>
+#include <QSslKey>
 #include <QVariant>
 #include <qabstractnetworkcache.h>
 #include <qabstractsocket.h>

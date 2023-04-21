@@ -45,102 +45,6 @@
 #include <qwidget.h>
 #include <qwindow.h>
 
-PythonQtShell_QCameraFocus::~PythonQtShell_QCameraFocus() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-QCameraFocus* PythonQtWrapper_QCameraFocus::new_QCameraFocus()
-{ 
-return new PythonQtShell_QCameraFocus(); }
-
-const QMetaObject* PythonQtShell_QCameraFocus::metaObject() const {
-  if (QObject::d_ptr->metaObject) {
-    return QObject::d_ptr->dynamicMetaObject();
-  } else if (_wrapper) {
-    return PythonQt::priv()->getDynamicMetaObject(_wrapper, &QCameraFocus::staticMetaObject);
-  } else {
-    return &QCameraFocus::staticMetaObject;
-  }
-}
-int PythonQtShell_QCameraFocus::qt_metacall(QMetaObject::Call call, int id, void** args) {
-  int result = QCameraFocus::qt_metacall(call, id, args);
-  return result >= 0 ? PythonQt::priv()->handleMetaCall(this, _wrapper, call, id, args) : result;
-}
-QPointF  PythonQtWrapper_QCameraFocus::customFocusPoint(QCameraFocus* theWrappedObject) const
-{
-  return ( theWrappedObject->customFocusPoint());
-}
-
-qreal  PythonQtWrapper_QCameraFocus::digitalZoom(QCameraFocus* theWrappedObject) const
-{
-  return ( theWrappedObject->digitalZoom());
-}
-
-QCameraFocus::FocusModes  PythonQtWrapper_QCameraFocus::focusMode(QCameraFocus* theWrappedObject) const
-{
-  return ( theWrappedObject->focusMode());
-}
-
-QCameraFocus::FocusPointMode  PythonQtWrapper_QCameraFocus::focusPointMode(QCameraFocus* theWrappedObject) const
-{
-  return ( theWrappedObject->focusPointMode());
-}
-
-QList<QCameraFocusZone >  PythonQtWrapper_QCameraFocus::focusZones(QCameraFocus* theWrappedObject) const
-{
-  return ( theWrappedObject->focusZones());
-}
-
-bool  PythonQtWrapper_QCameraFocus::isAvailable(QCameraFocus* theWrappedObject) const
-{
-  return ( theWrappedObject->isAvailable());
-}
-
-bool  PythonQtWrapper_QCameraFocus::isFocusModeSupported(QCameraFocus* theWrappedObject, QCameraFocus::FocusModes  mode) const
-{
-  return ( theWrappedObject->isFocusModeSupported(mode));
-}
-
-bool  PythonQtWrapper_QCameraFocus::isFocusPointModeSupported(QCameraFocus* theWrappedObject, QCameraFocus::FocusPointMode  arg__1) const
-{
-  return ( theWrappedObject->isFocusPointModeSupported(arg__1));
-}
-
-qreal  PythonQtWrapper_QCameraFocus::maximumDigitalZoom(QCameraFocus* theWrappedObject) const
-{
-  return ( theWrappedObject->maximumDigitalZoom());
-}
-
-qreal  PythonQtWrapper_QCameraFocus::maximumOpticalZoom(QCameraFocus* theWrappedObject) const
-{
-  return ( theWrappedObject->maximumOpticalZoom());
-}
-
-qreal  PythonQtWrapper_QCameraFocus::opticalZoom(QCameraFocus* theWrappedObject) const
-{
-  return ( theWrappedObject->opticalZoom());
-}
-
-void PythonQtWrapper_QCameraFocus::setCustomFocusPoint(QCameraFocus* theWrappedObject, const QPointF&  point)
-{
-  ( theWrappedObject->setCustomFocusPoint(point));
-}
-
-void PythonQtWrapper_QCameraFocus::setFocusMode(QCameraFocus* theWrappedObject, QCameraFocus::FocusModes  mode)
-{
-  ( theWrappedObject->setFocusMode(mode));
-}
-
-void PythonQtWrapper_QCameraFocus::setFocusPointMode(QCameraFocus* theWrappedObject, QCameraFocus::FocusPointMode  mode)
-{
-  ( theWrappedObject->setFocusPointMode(mode));
-}
-
-void PythonQtWrapper_QCameraFocus::zoomTo(QCameraFocus* theWrappedObject, qreal  opticalZoom, qreal  digitalZoom)
-{
-  ( theWrappedObject->zoomTo(opticalZoom, digitalZoom));
-}
-
 
 
 PythonQtShell_QCameraFocusControl::~PythonQtShell_QCameraFocusControl() {
@@ -893,28 +797,6 @@ void PythonQtWrapper_QCameraImageCaptureControl::setDriveMode(QCameraImageCaptur
 }
 
 
-
-PythonQtShell_QCameraImageProcessing::~PythonQtShell_QCameraImageProcessing() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-QCameraImageProcessing* PythonQtWrapper_QCameraImageProcessing::new_QCameraImageProcessing()
-{ 
-return new PythonQtShell_QCameraImageProcessing(); }
-
-const QMetaObject* PythonQtShell_QCameraImageProcessing::metaObject() const {
-  if (QObject::d_ptr->metaObject) {
-    return QObject::d_ptr->dynamicMetaObject();
-  } else if (_wrapper) {
-    return PythonQt::priv()->getDynamicMetaObject(_wrapper, &QCameraImageProcessing::staticMetaObject);
-  } else {
-    return &QCameraImageProcessing::staticMetaObject;
-  }
-}
-int PythonQtShell_QCameraImageProcessing::qt_metacall(QMetaObject::Call call, int id, void** args) {
-  int result = QCameraImageProcessing::qt_metacall(call, id, args);
-  return result >= 0 ? PythonQt::priv()->handleMetaCall(this, _wrapper, call, id, args) : result;
-}
 qreal  PythonQtWrapper_QCameraImageProcessing::brightness(QCameraImageProcessing* theWrappedObject) const
 {
   return ( theWrappedObject->brightness());

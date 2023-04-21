@@ -61,48 +61,6 @@
 
 
 
-class PythonQtShell_QCameraFocus : public QCameraFocus
-{
-public:
-    PythonQtShell_QCameraFocus():QCameraFocus(),_wrapper(NULL) {};
-
-   ~PythonQtShell_QCameraFocus();
-
-
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtWrapper_QCameraFocus : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(FocusMode )
-Q_FLAGS(FocusModes )
-enum FocusMode{
-  ManualFocus = QCameraFocus::ManualFocus,   HyperfocalFocus = QCameraFocus::HyperfocalFocus,   InfinityFocus = QCameraFocus::InfinityFocus,   AutoFocus = QCameraFocus::AutoFocus,   ContinuousFocus = QCameraFocus::ContinuousFocus,   MacroFocus = QCameraFocus::MacroFocus};
-Q_DECLARE_FLAGS(FocusModes, FocusMode)
-public slots:
-QCameraFocus* new_QCameraFocus();
-   QPointF  customFocusPoint(QCameraFocus* theWrappedObject) const;
-   qreal  digitalZoom(QCameraFocus* theWrappedObject) const;
-   QCameraFocus::FocusModes  focusMode(QCameraFocus* theWrappedObject) const;
-   QCameraFocus::FocusPointMode  focusPointMode(QCameraFocus* theWrappedObject) const;
-   QList<QCameraFocusZone >  focusZones(QCameraFocus* theWrappedObject) const;
-   bool  isAvailable(QCameraFocus* theWrappedObject) const;
-   bool  isFocusModeSupported(QCameraFocus* theWrappedObject, QCameraFocus::FocusModes  mode) const;
-   bool  isFocusPointModeSupported(QCameraFocus* theWrappedObject, QCameraFocus::FocusPointMode  arg__1) const;
-   qreal  maximumDigitalZoom(QCameraFocus* theWrappedObject) const;
-   qreal  maximumOpticalZoom(QCameraFocus* theWrappedObject) const;
-   qreal  opticalZoom(QCameraFocus* theWrappedObject) const;
-   void setCustomFocusPoint(QCameraFocus* theWrappedObject, const QPointF&  point);
-   void setFocusMode(QCameraFocus* theWrappedObject, QCameraFocus::FocusModes  mode);
-   void setFocusPointMode(QCameraFocus* theWrappedObject, QCameraFocus::FocusPointMode  mode);
-   void zoomTo(QCameraFocus* theWrappedObject, qreal  opticalZoom, qreal  digitalZoom);
-};
-
-
-
 
 
 class PythonQtShell_QCameraFocusControl : public QCameraFocusControl
@@ -302,21 +260,6 @@ void delete_QCameraImageCaptureControl(QCameraImageCaptureControl* obj) { delete
 };
 
 
-
-
-
-class PythonQtShell_QCameraImageProcessing : public QCameraImageProcessing
-{
-public:
-    PythonQtShell_QCameraImageProcessing():QCameraImageProcessing(),_wrapper(NULL) {};
-
-   ~PythonQtShell_QCameraImageProcessing();
-
-
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
-};
 
 class PythonQtWrapper_QCameraImageProcessing : public QObject
 { Q_OBJECT

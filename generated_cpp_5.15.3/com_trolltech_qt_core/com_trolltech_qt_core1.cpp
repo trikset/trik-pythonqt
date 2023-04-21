@@ -38,7 +38,6 @@
 #include <qsignalmapper.h>
 #include <qtextcodec.h>
 #include <qurl.h>
-#include <qwidget.h>
 
 QString  PythonQtWrapper_QLibrary::errorString(QLibrary* theWrappedObject) const
 {
@@ -737,10 +736,12 @@ QMetaType::TypeFlags  PythonQtWrapper_QMetaType::flags(QMetaType* theWrappedObje
   return ( theWrappedObject->flags());
 }
 
-QMetaType  PythonQtWrapper_QMetaType::static_QMetaType_fromType()
+/*
+ * template <typename T> QMetaType  PythonQtWrapper_QMetaType::static_QMetaType_fromType()
 {
-  return (QMetaType::fromType());
+  return (QMetaType::fromType<T>());
 }
+*/
 
 bool  PythonQtWrapper_QMetaType::static_QMetaType_hasRegisteredComparators(int  typeId)
 {
