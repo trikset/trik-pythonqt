@@ -744,7 +744,7 @@ Operator findOperator(QString *s) {
 int AbstractMetaBuilder::figureOutEnumValue(const QString &stringValue,
                                         int oldValuevalue,
                                         AbstractMetaEnum *meta_enum,
-                                        AbstractMetaFunction *meta_function)
+										AbstractMetaFunction */* meta_function*/)
 {
     if (stringValue.isEmpty())
         return oldValuevalue;
@@ -1619,12 +1619,15 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
 
     // If we where not able to translate the default argument make it
     // reset all default arguments before this one too.
-    for (int i=0; i<first_default_argument; ++i)
+	for (int i=0; i<first_default_argument; ++i) {
         meta_arguments[i]->setDefaultValueExpression(QString());
+	}
 
-    if (ReportHandler::debugLevel() == ReportHandler::FullDebug)
-        foreach(AbstractMetaArgument *arg, meta_arguments)
+	if (ReportHandler::debugLevel() == ReportHandler::FullDebug) {
+		foreach(AbstractMetaArgument *arg, meta_arguments) {
             ReportHandler::debugFull("   - " + arg->toString());
+		}
+	}
 
     return meta_function;
 }
@@ -1940,7 +1943,7 @@ void AbstractMetaBuilder::decideUsagePattern(AbstractMetaType *meta_type)
     }
 }
 
-QString AbstractMetaBuilder::translateDefaultValue(ArgumentModelItem item, AbstractMetaType *type,
+QString AbstractMetaBuilder::translateDefaultValue(ArgumentModelItem item, AbstractMetaType *,
                                                AbstractMetaFunction *fnc, AbstractMetaClass *implementing_class,
                                                int argument_index)
 {

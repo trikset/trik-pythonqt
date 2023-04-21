@@ -355,8 +355,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     }
   }
   if (meta_class->hasPublicDestructor() && !meta_class->isNamespace()) {
-    s << "void delete_" << meta_class->name() << "(" << meta_class->qualifiedCppName() << "* obj) { delete obj; } ";
-    s << endl;
+    s << "void delete_" << meta_class->name() << "(" << meta_class->qualifiedCppName() << "* obj) { delete obj; }" << endl;
   }
 
   AbstractMetaFunctionList functions = getFunctionsToWrap(meta_class);

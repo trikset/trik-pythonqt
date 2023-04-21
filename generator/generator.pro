@@ -1,6 +1,6 @@
 TARGET = pythonqt_generator
 include(generator.pri)
-
+gcc:QMAKE_CXXFLAGS += -Wno-error=maybe-uninitialized
 
 # Input
 HEADERS += \
