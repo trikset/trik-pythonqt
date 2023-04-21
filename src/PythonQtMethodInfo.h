@@ -106,7 +106,7 @@ public:
   static void addParameterTypeAlias(const QByteArray& alias, const QByteArray& name);
 
   //! fill the parameter info for the given type name
-  static void fillParameterInfo(ParameterInfo& type, const QByteArray& name, PythonQtClassInfo* classInfo = NULL);
+  static void fillParameterInfo(ParameterInfo& type, const QByteArray& name, PythonQtClassInfo* classInfo = nullptr);
 
   //! returns a parameter info for the given metatype (and creates and caches one if it is not yet present)
   static const ParameterInfo& getParameterInfoForMetaType(int type);
@@ -161,14 +161,14 @@ public:
 
   }
 
-  PythonQtSlotInfo(PythonQtClassInfo* classInfo, const QMetaMethod& meta, int slotIndex, QObject* decorator = NULL, Type type = MemberSlot ):PythonQtMethodInfo()
+  PythonQtSlotInfo(PythonQtClassInfo* classInfo, const QMetaMethod& meta, int slotIndex, QObject* decorator = nullptr, Type type = MemberSlot ):PythonQtMethodInfo()
   {
 	const PythonQtMethodInfo* info = getCachedMethodInfo(meta, classInfo);
 	_meta = meta;
 	_parameters = info->parameters();
 	_shouldAllowThreads = info->shouldAllowThreads();
 	_slotIndex = slotIndex;
-	_next = NULL;
+    _next = nullptr;
 	_decorator = decorator;
 	_type = type;
 	_upcastingOffset = 0;
@@ -197,10 +197,10 @@ public:
   void setNextInfo(PythonQtSlotInfo* next) { _next = next; }
 
   //! returns if the slot is a decorator slot
-  bool isInstanceDecorator() const { return _decorator!=NULL && _type == InstanceDecorator; }
+  bool isInstanceDecorator() const { return _decorator!=nullptr && _type == InstanceDecorator; }
 
   //! returns if the slot is a constructor slot
-  bool isClassDecorator() const { return _decorator!=NULL && _type == ClassDecorator; }
+  bool isClassDecorator() const { return _decorator!=nullptr && _type == ClassDecorator; }
 
   QObject* decorator() const { return _decorator; }
 

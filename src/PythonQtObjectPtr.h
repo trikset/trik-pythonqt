@@ -64,7 +64,7 @@ public:
   }
 
   //! rvalue copy constructor, does not need any incref/decref.
-  PythonQtObjectPtr(PythonQtObjectPtr &&p)
+  PythonQtObjectPtr(PythonQtObjectPtr &&p) noexcept
 	:_object(p.takeObject()) {
   }
 
@@ -72,7 +72,7 @@ public:
   PythonQtObjectPtr(PythonQtSafeObjectPtr &&p);
 
   //! If the given variant holds a PythonQtObjectPtr, extract the value from it and hold onto the reference. This results in an increment of the reference count.
-  PythonQtObjectPtr(const QVariant& variant):_object(NULL) {
+  PythonQtObjectPtr(const QVariant& variant):_object(nullptr) {
 	fromVariant(variant);
   }
 
@@ -95,9 +95,9 @@ public:
   }
 
   //! rvalue assignment operator that steals the reference from p
-  PythonQtObjectPtr &operator=(PythonQtObjectPtr &&p) {
+  PythonQtObjectPtr &operator=(PythonQtObjectPtr &&p) noexcept {
 	if (_object) {
-	  setObject(NULL);
+      setObject(nullptr);
 	}
 	_object = p.takeObject();
 	return *this;
@@ -181,7 +181,7 @@ public:
   //! the caller has to take care about the decref of the taken object!
   PyObject* takeObject() {
 	PyObject* o = _object;
-	_object = NULL;
+    _object = nullptr;
 	return o;
   }
 
@@ -210,9 +210,9 @@ public:
   }
 
   //! rvalue copy constructor, does not need any incref/decref.
-  PythonQtSafeObjectPtr(PythonQtSafeObjectPtr &&p)
+  PythonQtSafeObjectPtr(PythonQtSafeObjectPtr &&p) noexcept
 	:_object(p._object) {
-	p._object = NULL;
+    p._object = nullptr;
   }
 
   //! rvalue copy constructor, does not need any incref/decref.
@@ -235,19 +235,19 @@ public:
   }
 
   //! rvalue assignment operator that steals the reference from p
-  PythonQtSafeObjectPtr &operator=(PythonQtSafeObjectPtr &&p) {
+  PythonQtSafeObjectPtr &operator=(PythonQtSafeObjectPtr &&p) noexcept {
 	if (_object) {
-	  setObject(NULL);
+      setObject(nullptr);
 	}
 	_object = p._object;
-	p._object = NULL;
+    p._object = nullptr;
 	return *this;
   }
 
   //! rvalue assignment operator that steals the reference from p
   PythonQtSafeObjectPtr &operator=(PythonQtObjectPtr &&p) {
 	if (_object) {
-	  setObjectUnsafe(NULL);
+      setObjectUnsafe(nullptr);
 	}
 	_object = p.takeObject();
 	return *this;
@@ -290,7 +290,7 @@ public:
   //! the caller has to take care about the decref of the taken object!
   PyObject* takeObject() {
 	PyObject* o = _object;
-	_object = NULL;
+    _object = nullptr;
 	return o;
   }
 

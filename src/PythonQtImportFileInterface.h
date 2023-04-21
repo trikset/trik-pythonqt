@@ -50,7 +50,6 @@
 //! Defines an abstract interface to file access for the Python import statement.
 //! see PythonQt::setImporter()
 class PythonQtImportFileInterface {
-
 	Q_DISABLE_COPY(PythonQtImportFileInterface)
 public:
   // get rid of warnings

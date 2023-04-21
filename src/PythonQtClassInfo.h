@@ -55,7 +55,7 @@ struct PythonQtMemberInfo {
     Invalid, Slot, Signal, EnumValue, EnumWrapper, Property, NestedClass, NotFound 
   };
 
-  PythonQtMemberInfo():_type(Invalid),_slot(NULL),_pythonType(NULL),_enumValue(0) { }
+  PythonQtMemberInfo():_type(Invalid),_slot(nullptr),_pythonType(nullptr),_enumValue(nullptr) { }
   
   PythonQtMemberInfo(PythonQtSlotInfo* info);
 
@@ -197,7 +197,7 @@ public:
   void* castDownIfPossible(void* ptr, PythonQtClassInfo** resultClassInfo);
 
   //! returns if the localScope has an enum of that type name or if the enum contains a :: scope, if that class contails the enum
-  static PyObject* findEnumWrapper(const QByteArray& name, PythonQtClassInfo* localScope, bool* isLocalEnum = NULL);
+  static PyObject* findEnumWrapper(const QByteArray& name, PythonQtClassInfo* localScope, bool* isLocalEnum = nullptr);
 
   //! clear all members that where cached as "NotFound"
   void clearNotFoundCachedMembers();

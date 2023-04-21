@@ -55,7 +55,7 @@ A factory can be added to PythonQt by PythonQt::addCppWrapperFactory().
 */
 class PYTHONQT_EXPORT PythonQtCppWrapperFactory
 {
-	Q_DISABLE_COPY(PythonQtCppWrapperFactory);
+	Q_DISABLE_COPY(PythonQtCppWrapperFactory)
 public:
   PythonQtCppWrapperFactory() {};
   virtual ~PythonQtCppWrapperFactory() {};

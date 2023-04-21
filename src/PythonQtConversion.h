@@ -109,7 +109,7 @@ public:
   static PyObject* ConvertQtValueToPython(const PythonQtMethodInfo::ParameterInfo& info, const void* data);
 
   //! convert python object to Qt (according to the given parameter) and if the conversion should be strict (classInfo is currently not used anymore)
-  static void* ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, PythonQtClassInfo* classInfo, void* alreadyAllocatedCPPObject, PythonQtArgumentFrame* frame = NULL);
+  static void* ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, PythonQtClassInfo* classInfo, void* alreadyAllocatedCPPObject, PythonQtArgumentFrame* frame = nullptr);
 
   //! creates a data storage for the passed parameter type and returns a void pointer to be set as arg[0] of qt_metacall
   static void* CreateQtReturnValue(const PythonQtMethodInfo::ParameterInfo& info, PythonQtArgumentFrame* frame);
@@ -270,7 +270,7 @@ PyObject* PythonQtConvertListOfKnownClassToPythonList(const void* /*QList<T>* */
 {
   ListType* list = (ListType*)inList;
   static PythonQtClassInfo* innerType = PythonQt::priv()->getClassInfo(PythonQtMethodInfo::getInnerListTypeName(QByteArray(QMetaType::typeName(metaTypeId))));
-  if (innerType == NULL) {
+  if (innerType == nullptr) {
     std::cerr << "PythonQtConvertListOfKnownClassToPythonList: unknown inner type " << innerType->className().constData() << std::endl;
   }
   PyObject* result = PyTuple_New(list->size());
@@ -290,7 +290,7 @@ bool PythonQtConvertPythonListToListOfKnownClass(PyObject* obj, void* /*QList<T>
 {
   ListType* list = (ListType*)outList;
   static PythonQtClassInfo* innerType = PythonQt::priv()->getClassInfo(PythonQtMethodInfo::getInnerListTypeName(QByteArray(QMetaType::typeName(metaTypeId))));
-  if (innerType == NULL) {
+  if (innerType == nullptr) {
     std::cerr << "PythonQtConvertListOfKnownClassToPythonList: unknown inner type " << innerType->className().constData() << std::endl;
   }
   bool result = false;
