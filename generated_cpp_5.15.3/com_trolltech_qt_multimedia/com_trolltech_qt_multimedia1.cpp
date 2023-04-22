@@ -46,6 +46,81 @@
 #include <qwindow.h>
 
 
+QPointF  PythonQtWrapper_QCameraFocus::customFocusPoint(QCameraFocus* theWrappedObject) const
+{
+  return ( theWrappedObject->customFocusPoint());
+}
+
+qreal  PythonQtWrapper_QCameraFocus::digitalZoom(QCameraFocus* theWrappedObject) const
+{
+  return ( theWrappedObject->digitalZoom());
+}
+
+QCameraFocus::FocusModes  PythonQtWrapper_QCameraFocus::focusMode(QCameraFocus* theWrappedObject) const
+{
+  return ( theWrappedObject->focusMode());
+}
+
+QCameraFocus::FocusPointMode  PythonQtWrapper_QCameraFocus::focusPointMode(QCameraFocus* theWrappedObject) const
+{
+  return ( theWrappedObject->focusPointMode());
+}
+
+QList<QCameraFocusZone >  PythonQtWrapper_QCameraFocus::focusZones(QCameraFocus* theWrappedObject) const
+{
+  return ( theWrappedObject->focusZones());
+}
+
+bool  PythonQtWrapper_QCameraFocus::isAvailable(QCameraFocus* theWrappedObject) const
+{
+  return ( theWrappedObject->isAvailable());
+}
+
+bool  PythonQtWrapper_QCameraFocus::isFocusModeSupported(QCameraFocus* theWrappedObject, QCameraFocus::FocusModes  mode) const
+{
+  return ( theWrappedObject->isFocusModeSupported(mode));
+}
+
+bool  PythonQtWrapper_QCameraFocus::isFocusPointModeSupported(QCameraFocus* theWrappedObject, QCameraFocus::FocusPointMode  arg__1) const
+{
+  return ( theWrappedObject->isFocusPointModeSupported(arg__1));
+}
+
+qreal  PythonQtWrapper_QCameraFocus::maximumDigitalZoom(QCameraFocus* theWrappedObject) const
+{
+  return ( theWrappedObject->maximumDigitalZoom());
+}
+
+qreal  PythonQtWrapper_QCameraFocus::maximumOpticalZoom(QCameraFocus* theWrappedObject) const
+{
+  return ( theWrappedObject->maximumOpticalZoom());
+}
+
+qreal  PythonQtWrapper_QCameraFocus::opticalZoom(QCameraFocus* theWrappedObject) const
+{
+  return ( theWrappedObject->opticalZoom());
+}
+
+void PythonQtWrapper_QCameraFocus::setCustomFocusPoint(QCameraFocus* theWrappedObject, const QPointF&  point)
+{
+  ( theWrappedObject->setCustomFocusPoint(point));
+}
+
+void PythonQtWrapper_QCameraFocus::setFocusMode(QCameraFocus* theWrappedObject, QCameraFocus::FocusModes  mode)
+{
+  ( theWrappedObject->setFocusMode(mode));
+}
+
+void PythonQtWrapper_QCameraFocus::setFocusPointMode(QCameraFocus* theWrappedObject, QCameraFocus::FocusPointMode  mode)
+{
+  ( theWrappedObject->setFocusPointMode(mode));
+}
+
+void PythonQtWrapper_QCameraFocus::zoomTo(QCameraFocus* theWrappedObject, qreal  opticalZoom, qreal  digitalZoom)
+{
+  ( theWrappedObject->zoomTo(opticalZoom, digitalZoom));
+}
+
 
 PythonQtShell_QCameraFocusControl::~PythonQtShell_QCameraFocusControl() {
   PythonQtPrivate* priv = PythonQt::priv();
@@ -797,6 +872,100 @@ void PythonQtWrapper_QCameraImageCaptureControl::setDriveMode(QCameraImageCaptur
 }
 
 
+qreal  PythonQtWrapper_QCameraImageProcessing::brightness(QCameraImageProcessing* theWrappedObject) const
+{
+  return ( theWrappedObject->brightness());
+}
+
+QCameraImageProcessing::ColorFilter  PythonQtWrapper_QCameraImageProcessing::colorFilter(QCameraImageProcessing* theWrappedObject) const
+{
+  return ( theWrappedObject->colorFilter());
+}
+
+qreal  PythonQtWrapper_QCameraImageProcessing::contrast(QCameraImageProcessing* theWrappedObject) const
+{
+  return ( theWrappedObject->contrast());
+}
+
+qreal  PythonQtWrapper_QCameraImageProcessing::denoisingLevel(QCameraImageProcessing* theWrappedObject) const
+{
+  return ( theWrappedObject->denoisingLevel());
+}
+
+bool  PythonQtWrapper_QCameraImageProcessing::isAvailable(QCameraImageProcessing* theWrappedObject) const
+{
+  return ( theWrappedObject->isAvailable());
+}
+
+bool  PythonQtWrapper_QCameraImageProcessing::isColorFilterSupported(QCameraImageProcessing* theWrappedObject, QCameraImageProcessing::ColorFilter  filter) const
+{
+  return ( theWrappedObject->isColorFilterSupported(filter));
+}
+
+bool  PythonQtWrapper_QCameraImageProcessing::isWhiteBalanceModeSupported(QCameraImageProcessing* theWrappedObject, QCameraImageProcessing::WhiteBalanceMode  mode) const
+{
+  return ( theWrappedObject->isWhiteBalanceModeSupported(mode));
+}
+
+qreal  PythonQtWrapper_QCameraImageProcessing::manualWhiteBalance(QCameraImageProcessing* theWrappedObject) const
+{
+  return ( theWrappedObject->manualWhiteBalance());
+}
+
+qreal  PythonQtWrapper_QCameraImageProcessing::saturation(QCameraImageProcessing* theWrappedObject) const
+{
+  return ( theWrappedObject->saturation());
+}
+
+void PythonQtWrapper_QCameraImageProcessing::setBrightness(QCameraImageProcessing* theWrappedObject, qreal  value)
+{
+  ( theWrappedObject->setBrightness(value));
+}
+
+void PythonQtWrapper_QCameraImageProcessing::setColorFilter(QCameraImageProcessing* theWrappedObject, QCameraImageProcessing::ColorFilter  filter)
+{
+  ( theWrappedObject->setColorFilter(filter));
+}
+
+void PythonQtWrapper_QCameraImageProcessing::setContrast(QCameraImageProcessing* theWrappedObject, qreal  value)
+{
+  ( theWrappedObject->setContrast(value));
+}
+
+void PythonQtWrapper_QCameraImageProcessing::setDenoisingLevel(QCameraImageProcessing* theWrappedObject, qreal  value)
+{
+  ( theWrappedObject->setDenoisingLevel(value));
+}
+
+void PythonQtWrapper_QCameraImageProcessing::setManualWhiteBalance(QCameraImageProcessing* theWrappedObject, qreal  colorTemperature)
+{
+  ( theWrappedObject->setManualWhiteBalance(colorTemperature));
+}
+
+void PythonQtWrapper_QCameraImageProcessing::setSaturation(QCameraImageProcessing* theWrappedObject, qreal  value)
+{
+  ( theWrappedObject->setSaturation(value));
+}
+
+void PythonQtWrapper_QCameraImageProcessing::setSharpeningLevel(QCameraImageProcessing* theWrappedObject, qreal  value)
+{
+  ( theWrappedObject->setSharpeningLevel(value));
+}
+
+void PythonQtWrapper_QCameraImageProcessing::setWhiteBalanceMode(QCameraImageProcessing* theWrappedObject, QCameraImageProcessing::WhiteBalanceMode  mode)
+{
+  ( theWrappedObject->setWhiteBalanceMode(mode));
+}
+
+qreal  PythonQtWrapper_QCameraImageProcessing::sharpeningLevel(QCameraImageProcessing* theWrappedObject) const
+{
+  return ( theWrappedObject->sharpeningLevel());
+}
+
+QCameraImageProcessing::WhiteBalanceMode  PythonQtWrapper_QCameraImageProcessing::whiteBalanceMode(QCameraImageProcessing* theWrappedObject) const
+{
+  return ( theWrappedObject->whiteBalanceMode());
+}
 
 
 PythonQtShell_QCameraImageProcessingControl::~PythonQtShell_QCameraImageProcessingControl() {

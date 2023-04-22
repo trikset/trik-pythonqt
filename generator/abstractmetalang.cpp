@@ -1018,8 +1018,8 @@ void AbstractMetaClass::setFunctions(const AbstractMetaFunctionList &functions)
     }
 
 #ifndef QT_NO_DEBUG
-    bool duplicate_function = false;
-    for (int j=0; j<m_functions.size(); ++j) {
+	bool duplicate_function = false;
+	for (int j=0; j<m_functions.size(); ++j) {
         FunctionModificationList mods = m_functions.at(j)->modifications(m_functions.at(j)->implementingClass());
 
         bool removed = false;
@@ -1058,7 +1058,7 @@ void AbstractMetaClass::setFunctions(const AbstractMetaFunctionList &functions)
             }
         }
     }
-    //Q_ASSERT(!duplicate_function);
+	Q_UNUSED(duplicate_function); //Use: Q_ASSERT(!duplicate_function);
 #endif
 }
 

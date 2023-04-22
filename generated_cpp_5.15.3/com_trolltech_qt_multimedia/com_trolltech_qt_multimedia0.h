@@ -1384,6 +1384,85 @@ void delete_QCameraControl(QCameraControl* obj) { delete obj; }
 };
 
 
+class PythonQtWrapper_QCameraExposure : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(FlashMode )
+Q_FLAGS(FlashModes )
+enum FlashMode{
+  FlashAuto = QCameraExposure::FlashAuto,   FlashOff = QCameraExposure::FlashOff,   FlashOn = QCameraExposure::FlashOn,   FlashRedEyeReduction = QCameraExposure::FlashRedEyeReduction,   FlashFill = QCameraExposure::FlashFill,   FlashTorch = QCameraExposure::FlashTorch,   FlashVideoLight = QCameraExposure::FlashVideoLight,   FlashSlowSyncFrontCurtain = QCameraExposure::FlashSlowSyncFrontCurtain,   FlashSlowSyncRearCurtain = QCameraExposure::FlashSlowSyncRearCurtain,   FlashManual = QCameraExposure::FlashManual};
+Q_DECLARE_FLAGS(FlashModes, FlashMode)
+public slots:
+   qreal  aperture(QCameraExposure* theWrappedObject) const;
+   qreal  exposureCompensation(QCameraExposure* theWrappedObject) const;
+   QCameraExposure::ExposureMode  exposureMode(QCameraExposure* theWrappedObject) const;
+   QCameraExposure::FlashModes  flashMode(QCameraExposure* theWrappedObject) const;
+   bool  isAvailable(QCameraExposure* theWrappedObject) const;
+   bool  isExposureModeSupported(QCameraExposure* theWrappedObject, QCameraExposure::ExposureMode  mode) const;
+   bool  isFlashModeSupported(QCameraExposure* theWrappedObject, QCameraExposure::FlashModes  mode) const;
+   bool  isFlashReady(QCameraExposure* theWrappedObject) const;
+   bool  isMeteringModeSupported(QCameraExposure* theWrappedObject, QCameraExposure::MeteringMode  mode) const;
+   int  isoSensitivity(QCameraExposure* theWrappedObject) const;
+   QCameraExposure::MeteringMode  meteringMode(QCameraExposure* theWrappedObject) const;
+   qreal  requestedAperture(QCameraExposure* theWrappedObject) const;
+   int  requestedIsoSensitivity(QCameraExposure* theWrappedObject) const;
+   qreal  requestedShutterSpeed(QCameraExposure* theWrappedObject) const;
+   void setSpotMeteringPoint(QCameraExposure* theWrappedObject, const QPointF&  point);
+   qreal  shutterSpeed(QCameraExposure* theWrappedObject) const;
+   QPointF  spotMeteringPoint(QCameraExposure* theWrappedObject) const;
+   QList<qreal >  supportedApertures(QCameraExposure* theWrappedObject, bool*  continuous = nullptr) const;
+   QList<int >  supportedIsoSensitivities(QCameraExposure* theWrappedObject, bool*  continuous = nullptr) const;
+   QList<qreal >  supportedShutterSpeeds(QCameraExposure* theWrappedObject, bool*  continuous = nullptr) const;
+};
+
+
+
+
+
+class PythonQtShell_QCameraExposureControl : public QCameraExposureControl
+{
+public:
+    PythonQtShell_QCameraExposureControl(QObject*  parent = nullptr):QCameraExposureControl(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QCameraExposureControl();
+
+virtual QVariant  actualValue(QCameraExposureControl::ExposureParameter  parameter) const;
+virtual bool  isParameterSupported(QCameraExposureControl::ExposureParameter  parameter) const;
+virtual QVariant  requestedValue(QCameraExposureControl::ExposureParameter  parameter) const;
+virtual bool  setValue(QCameraExposureControl::ExposureParameter  parameter, const QVariant&  value);
+virtual QList<QVariant >  supportedParameterRange(QCameraExposureControl::ExposureParameter  parameter, bool*  continuous) const;
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QCameraExposureControl : public QCameraExposureControl
+{ public:
+inline QVariant  py_q_actualValue(QCameraExposureControl::ExposureParameter  parameter) const { return this->actualValue(parameter); }
+inline bool  py_q_isParameterSupported(QCameraExposureControl::ExposureParameter  parameter) const { return this->isParameterSupported(parameter); }
+inline QVariant  py_q_requestedValue(QCameraExposureControl::ExposureParameter  parameter) const { return this->requestedValue(parameter); }
+inline bool  py_q_setValue(QCameraExposureControl::ExposureParameter  parameter, const QVariant&  value) { return this->setValue(parameter, value); }
+inline QList<QVariant >  py_q_supportedParameterRange(QCameraExposureControl::ExposureParameter  parameter, bool*  continuous) const { return this->supportedParameterRange(parameter, continuous); }
+};
+
+class PythonQtWrapper_QCameraExposureControl : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QCameraExposureControl* new_QCameraExposureControl(QObject*  parent = nullptr);
+void delete_QCameraExposureControl(QCameraExposureControl* obj) { delete obj; } 
+   QVariant  actualValue(QCameraExposureControl* theWrappedObject, QCameraExposureControl::ExposureParameter  parameter) const;
+   QVariant  py_q_actualValue(QCameraExposureControl* theWrappedObject, QCameraExposureControl::ExposureParameter  parameter) const{  return (((PythonQtPublicPromoter_QCameraExposureControl*)theWrappedObject)->py_q_actualValue(parameter));}
+   bool  isParameterSupported(QCameraExposureControl* theWrappedObject, QCameraExposureControl::ExposureParameter  parameter) const;
+   bool  py_q_isParameterSupported(QCameraExposureControl* theWrappedObject, QCameraExposureControl::ExposureParameter  parameter) const{  return (((PythonQtPublicPromoter_QCameraExposureControl*)theWrappedObject)->py_q_isParameterSupported(parameter));}
+   QVariant  requestedValue(QCameraExposureControl* theWrappedObject, QCameraExposureControl::ExposureParameter  parameter) const;
+   QVariant  py_q_requestedValue(QCameraExposureControl* theWrappedObject, QCameraExposureControl::ExposureParameter  parameter) const{  return (((PythonQtPublicPromoter_QCameraExposureControl*)theWrappedObject)->py_q_requestedValue(parameter));}
+   bool  setValue(QCameraExposureControl* theWrappedObject, QCameraExposureControl::ExposureParameter  parameter, const QVariant&  value);
+   bool  py_q_setValue(QCameraExposureControl* theWrappedObject, QCameraExposureControl::ExposureParameter  parameter, const QVariant&  value){  return (((PythonQtPublicPromoter_QCameraExposureControl*)theWrappedObject)->py_q_setValue(parameter, value));}
+   QList<QVariant >  supportedParameterRange(QCameraExposureControl* theWrappedObject, QCameraExposureControl::ExposureParameter  parameter, bool*  continuous) const;
+   QList<QVariant >  py_q_supportedParameterRange(QCameraExposureControl* theWrappedObject, QCameraExposureControl::ExposureParameter  parameter, bool*  continuous) const{  return (((PythonQtPublicPromoter_QCameraExposureControl*)theWrappedObject)->py_q_supportedParameterRange(parameter, continuous));}
+};
 
 class PythonQtShell_QCameraFeedbackControl : public QCameraFeedbackControl
 {

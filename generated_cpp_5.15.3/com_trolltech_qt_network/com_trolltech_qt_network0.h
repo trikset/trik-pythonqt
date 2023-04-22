@@ -22,11 +22,16 @@
 #include <qnetworkaccessmanager.h>
 #include <qnetworkconfigmanager.h>
 #include <qnetworkcookiejar.h>
+#include <qnetworkcookie.h>
+#include <qnetworkproxy.h>
 #include <qnetworkdiskcache.h>
+#include <qnetworkdatagram.h>
 #include <qnetworkreply.h>
 #include <qnetworksession.h>
 #include <qpair.h>
 #include <qssl.h>
+#include <qsslcipher.h>
+#include <qsslkey.h>
 #include <qsslerror.h>
 #include <qsslsocket.h>
 #include <qtcpserver.h>

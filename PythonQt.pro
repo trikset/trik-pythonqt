@@ -13,4 +13,9 @@ CONFIG(generator) {
     SUBDIRS += generator
 }
 
+CONFIG(examples) {
+    SUBDIRS += examples
+    examples.depends += extensions
+}
+
 OTHER_FILES += $$PWD/.github/workflows/build.yml

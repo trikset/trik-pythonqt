@@ -59,9 +59,32 @@
 #include <qwidget.h>
 #include <qwindow.h>
 
+class PythonQtWrapper_QCameraFocus : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(FocusMode )
+Q_FLAGS(FocusModes )
+enum FocusMode{
+  ManualFocus = QCameraFocus::ManualFocus,   HyperfocalFocus = QCameraFocus::HyperfocalFocus,   InfinityFocus = QCameraFocus::InfinityFocus,   AutoFocus = QCameraFocus::AutoFocus,   ContinuousFocus = QCameraFocus::ContinuousFocus,   MacroFocus = QCameraFocus::MacroFocus};
+Q_DECLARE_FLAGS(FocusModes, FocusMode)
+public slots:
 
-
-
+   QPointF  customFocusPoint(QCameraFocus* theWrappedObject) const;
+   qreal  digitalZoom(QCameraFocus* theWrappedObject) const;
+   QCameraFocus::FocusModes  focusMode(QCameraFocus* theWrappedObject) const;
+   QCameraFocus::FocusPointMode  focusPointMode(QCameraFocus* theWrappedObject) const;
+   QList<QCameraFocusZone >  focusZones(QCameraFocus* theWrappedObject) const;
+   bool  isAvailable(QCameraFocus* theWrappedObject) const;
+   bool  isFocusModeSupported(QCameraFocus* theWrappedObject, QCameraFocus::FocusModes  mode) const;
+   bool  isFocusPointModeSupported(QCameraFocus* theWrappedObject, QCameraFocus::FocusPointMode  arg__1) const;
+   qreal  maximumDigitalZoom(QCameraFocus* theWrappedObject) const;
+   qreal  maximumOpticalZoom(QCameraFocus* theWrappedObject) const;
+   qreal  opticalZoom(QCameraFocus* theWrappedObject) const;
+   void setCustomFocusPoint(QCameraFocus* theWrappedObject, const QPointF&  point);
+   void setFocusMode(QCameraFocus* theWrappedObject, QCameraFocus::FocusModes  mode);
+   void setFocusPointMode(QCameraFocus* theWrappedObject, QCameraFocus::FocusPointMode  mode);
+   void zoomTo(QCameraFocus* theWrappedObject, qreal  opticalZoom, qreal  digitalZoom);
+};
 
 class PythonQtShell_QCameraFocusControl : public QCameraFocusControl
 {
@@ -259,12 +282,30 @@ void delete_QCameraImageCaptureControl(QCameraImageCaptureControl* obj) { delete
    void py_q_setDriveMode(QCameraImageCaptureControl* theWrappedObject, QCameraImageCapture::DriveMode  mode){  (((PythonQtPublicPromoter_QCameraImageCaptureControl*)theWrappedObject)->py_q_setDriveMode(mode));}
 };
 
-
-
-
-
-
-
+class PythonQtWrapper_QCameraImageProcessing : public QObject
+{ Q_OBJECT
+public:
+public slots:
+   qreal  brightness(QCameraImageProcessing* theWrappedObject) const;
+   QCameraImageProcessing::ColorFilter  colorFilter(QCameraImageProcessing* theWrappedObject) const;
+   qreal  contrast(QCameraImageProcessing* theWrappedObject) const;
+   qreal  denoisingLevel(QCameraImageProcessing* theWrappedObject) const;
+   bool  isAvailable(QCameraImageProcessing* theWrappedObject) const;
+   bool  isColorFilterSupported(QCameraImageProcessing* theWrappedObject, QCameraImageProcessing::ColorFilter  filter) const;
+   bool  isWhiteBalanceModeSupported(QCameraImageProcessing* theWrappedObject, QCameraImageProcessing::WhiteBalanceMode  mode) const;
+   qreal  manualWhiteBalance(QCameraImageProcessing* theWrappedObject) const;
+   qreal  saturation(QCameraImageProcessing* theWrappedObject) const;
+   void setBrightness(QCameraImageProcessing* theWrappedObject, qreal  value);
+   void setColorFilter(QCameraImageProcessing* theWrappedObject, QCameraImageProcessing::ColorFilter  filter);
+   void setContrast(QCameraImageProcessing* theWrappedObject, qreal  value);
+   void setDenoisingLevel(QCameraImageProcessing* theWrappedObject, qreal  value);
+   void setManualWhiteBalance(QCameraImageProcessing* theWrappedObject, qreal  colorTemperature);
+   void setSaturation(QCameraImageProcessing* theWrappedObject, qreal  value);
+   void setSharpeningLevel(QCameraImageProcessing* theWrappedObject, qreal  value);
+   void setWhiteBalanceMode(QCameraImageProcessing* theWrappedObject, QCameraImageProcessing::WhiteBalanceMode  mode);
+   qreal  sharpeningLevel(QCameraImageProcessing* theWrappedObject) const;
+   QCameraImageProcessing::WhiteBalanceMode  whiteBalanceMode(QCameraImageProcessing* theWrappedObject) const;
+};
 
 class PythonQtShell_QCameraImageProcessingControl : public QCameraImageProcessingControl
 {

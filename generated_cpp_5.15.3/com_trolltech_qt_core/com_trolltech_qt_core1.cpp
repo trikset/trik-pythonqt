@@ -736,13 +736,6 @@ QMetaType::TypeFlags  PythonQtWrapper_QMetaType::flags(QMetaType* theWrappedObje
   return ( theWrappedObject->flags());
 }
 
-/*
- * template <typename T> QMetaType  PythonQtWrapper_QMetaType::static_QMetaType_fromType()
-{
-  return (QMetaType::fromType<T>());
-}
-*/
-
 bool  PythonQtWrapper_QMetaType::static_QMetaType_hasRegisteredComparators(int  typeId)
 {
   return (QMetaType::hasRegisteredComparators(typeId));
