@@ -261,31 +261,6 @@ void delete_QCameraImageCaptureControl(QCameraImageCaptureControl* obj) { delete
 
 
 
-class PythonQtWrapper_QCameraImageProcessing : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QCameraImageProcessing* new_QCameraImageProcessing();
-   qreal  brightness(QCameraImageProcessing* theWrappedObject) const;
-   QCameraImageProcessing::ColorFilter  colorFilter(QCameraImageProcessing* theWrappedObject) const;
-   qreal  contrast(QCameraImageProcessing* theWrappedObject) const;
-   qreal  denoisingLevel(QCameraImageProcessing* theWrappedObject) const;
-   bool  isAvailable(QCameraImageProcessing* theWrappedObject) const;
-   bool  isColorFilterSupported(QCameraImageProcessing* theWrappedObject, QCameraImageProcessing::ColorFilter  filter) const;
-   bool  isWhiteBalanceModeSupported(QCameraImageProcessing* theWrappedObject, QCameraImageProcessing::WhiteBalanceMode  mode) const;
-   qreal  manualWhiteBalance(QCameraImageProcessing* theWrappedObject) const;
-   qreal  saturation(QCameraImageProcessing* theWrappedObject) const;
-   void setBrightness(QCameraImageProcessing* theWrappedObject, qreal  value);
-   void setColorFilter(QCameraImageProcessing* theWrappedObject, QCameraImageProcessing::ColorFilter  filter);
-   void setContrast(QCameraImageProcessing* theWrappedObject, qreal  value);
-   void setDenoisingLevel(QCameraImageProcessing* theWrappedObject, qreal  value);
-   void setManualWhiteBalance(QCameraImageProcessing* theWrappedObject, qreal  colorTemperature);
-   void setSaturation(QCameraImageProcessing* theWrappedObject, qreal  value);
-   void setSharpeningLevel(QCameraImageProcessing* theWrappedObject, qreal  value);
-   void setWhiteBalanceMode(QCameraImageProcessing* theWrappedObject, QCameraImageProcessing::WhiteBalanceMode  mode);
-   qreal  sharpeningLevel(QCameraImageProcessing* theWrappedObject) const;
-   QCameraImageProcessing::WhiteBalanceMode  whiteBalanceMode(QCameraImageProcessing* theWrappedObject) const;
-};
 
 
 
