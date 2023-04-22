@@ -68,7 +68,7 @@ enum FocusMode{
   ManualFocus = QCameraFocus::ManualFocus,   HyperfocalFocus = QCameraFocus::HyperfocalFocus,   InfinityFocus = QCameraFocus::InfinityFocus,   AutoFocus = QCameraFocus::AutoFocus,   ContinuousFocus = QCameraFocus::ContinuousFocus,   MacroFocus = QCameraFocus::MacroFocus};
 Q_DECLARE_FLAGS(FocusModes, FocusMode)
 public slots:
-QCameraFocus* new_QCameraFocus();
+
    QPointF  customFocusPoint(QCameraFocus* theWrappedObject) const;
    qreal  digitalZoom(QCameraFocus* theWrappedObject) const;
    QCameraFocus::FocusModes  focusMode(QCameraFocus* theWrappedObject) const;
@@ -292,7 +292,6 @@ class PythonQtWrapper_QCameraImageProcessing : public QObject
 { Q_OBJECT
 public:
 public slots:
-QCameraImageProcessing* new_QCameraImageProcessing();
    qreal  brightness(QCameraImageProcessing* theWrappedObject) const;
    QCameraImageProcessing::ColorFilter  colorFilter(QCameraImageProcessing* theWrappedObject) const;
    qreal  contrast(QCameraImageProcessing* theWrappedObject) const;

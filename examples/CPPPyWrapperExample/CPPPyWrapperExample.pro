@@ -4,7 +4,7 @@ TEMPLATE = app
 
 mac:CONFIG -= app_bundle
 
-DESTDIR           = ../../lib
+#DESTDIR           = ../../lib
 
 include ( ../../build/common.prf )  
 include ( ../../build/PythonQt.prf )  

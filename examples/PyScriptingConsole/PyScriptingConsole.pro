@@ -7,7 +7,7 @@
 TARGET   = PyScriptingConsole
 TEMPLATE = app
 
-DESTDIR           = ../../lib
+#DESTDIR           = ../../lib
 
 mac:CONFIG-= app_bundle
 

@@ -1393,7 +1393,6 @@ enum FlashMode{
   FlashAuto = QCameraExposure::FlashAuto,   FlashOff = QCameraExposure::FlashOff,   FlashOn = QCameraExposure::FlashOn,   FlashRedEyeReduction = QCameraExposure::FlashRedEyeReduction,   FlashFill = QCameraExposure::FlashFill,   FlashTorch = QCameraExposure::FlashTorch,   FlashVideoLight = QCameraExposure::FlashVideoLight,   FlashSlowSyncFrontCurtain = QCameraExposure::FlashSlowSyncFrontCurtain,   FlashSlowSyncRearCurtain = QCameraExposure::FlashSlowSyncRearCurtain,   FlashManual = QCameraExposure::FlashManual};
 Q_DECLARE_FLAGS(FlashModes, FlashMode)
 public slots:
-QCameraExposure* new_QCameraExposure();
    qreal  aperture(QCameraExposure* theWrappedObject) const;
    qreal  exposureCompensation(QCameraExposure* theWrappedObject) const;
    QCameraExposure::ExposureMode  exposureMode(QCameraExposure* theWrappedObject) const;

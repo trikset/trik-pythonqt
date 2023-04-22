@@ -12,3 +12,7 @@ CONFIG(tests) {
 CONFIG(generator) {
     SUBDIRS += generator
 }
+
+CONFIG(examples) {
+    SUBDIRS += examples
+}
