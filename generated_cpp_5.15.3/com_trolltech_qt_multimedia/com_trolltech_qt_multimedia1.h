@@ -59,21 +59,6 @@
 #include <qwidget.h>
 #include <qwindow.h>
 
-
-
-class PythonQtShell_QCameraFocus : public QCameraFocus
-{
-public:
-    PythonQtShell_QCameraFocus():QCameraFocus(),_wrapper(NULL) {};
-
-   ~PythonQtShell_QCameraFocus();
-
-
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
 class PythonQtWrapper_QCameraFocus : public QObject
 { Q_OBJECT
 public:
@@ -302,21 +287,6 @@ void delete_QCameraImageCaptureControl(QCameraImageCaptureControl* obj) { delete
 };
 
 
-
-
-
-class PythonQtShell_QCameraImageProcessing : public QCameraImageProcessing
-{
-public:
-    PythonQtShell_QCameraImageProcessing():QCameraImageProcessing(),_wrapper(NULL) {};
-
-   ~PythonQtShell_QCameraImageProcessing();
-
-
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
-};
 
 class PythonQtWrapper_QCameraImageProcessing : public QObject
 { Q_OBJECT

@@ -45,27 +45,7 @@
 #include <qwidget.h>
 #include <qwindow.h>
 
-PythonQtShell_QCameraFocus::~PythonQtShell_QCameraFocus() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-QCameraFocus* PythonQtWrapper_QCameraFocus::new_QCameraFocus()
-{ 
-return new PythonQtShell_QCameraFocus(); }
 
-const QMetaObject* PythonQtShell_QCameraFocus::metaObject() const {
-  if (QObject::d_ptr->metaObject) {
-    return QObject::d_ptr->dynamicMetaObject();
-  } else if (_wrapper) {
-    return PythonQt::priv()->getDynamicMetaObject(_wrapper, &QCameraFocus::staticMetaObject);
-  } else {
-    return &QCameraFocus::staticMetaObject;
-  }
-}
-int PythonQtShell_QCameraFocus::qt_metacall(QMetaObject::Call call, int id, void** args) {
-  int result = QCameraFocus::qt_metacall(call, id, args);
-  return result >= 0 ? PythonQt::priv()->handleMetaCall(this, _wrapper, call, id, args) : result;
-}
 QPointF  PythonQtWrapper_QCameraFocus::customFocusPoint(QCameraFocus* theWrappedObject) const
 {
   return ( theWrappedObject->customFocusPoint());
@@ -894,27 +874,6 @@ void PythonQtWrapper_QCameraImageCaptureControl::setDriveMode(QCameraImageCaptur
 
 
 
-PythonQtShell_QCameraImageProcessing::~PythonQtShell_QCameraImageProcessing() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-QCameraImageProcessing* PythonQtWrapper_QCameraImageProcessing::new_QCameraImageProcessing()
-{ 
-return new PythonQtShell_QCameraImageProcessing(); }
-
-const QMetaObject* PythonQtShell_QCameraImageProcessing::metaObject() const {
-  if (QObject::d_ptr->metaObject) {
-    return QObject::d_ptr->dynamicMetaObject();
-  } else if (_wrapper) {
-    return PythonQt::priv()->getDynamicMetaObject(_wrapper, &QCameraImageProcessing::staticMetaObject);
-  } else {
-    return &QCameraImageProcessing::staticMetaObject;
-  }
-}
-int PythonQtShell_QCameraImageProcessing::qt_metacall(QMetaObject::Call call, int id, void** args) {
-  int result = QCameraImageProcessing::qt_metacall(call, id, args);
-  return result >= 0 ? PythonQt::priv()->handleMetaCall(this, _wrapper, call, id, args) : result;
-}
 qreal  PythonQtWrapper_QCameraImageProcessing::brightness(QCameraImageProcessing* theWrappedObject) const
 {
   return ( theWrappedObject->brightness());

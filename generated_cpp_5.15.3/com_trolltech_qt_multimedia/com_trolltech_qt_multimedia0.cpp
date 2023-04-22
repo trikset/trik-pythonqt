@@ -5701,27 +5701,6 @@ QCamera::Status  PythonQtWrapper_QCameraControl::status(QCameraControl* theWrapp
 
 
 
-PythonQtShell_QCameraExposure::~PythonQtShell_QCameraExposure() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-QCameraExposure* PythonQtWrapper_QCameraExposure::new_QCameraExposure()
-{ 
-return new PythonQtShell_QCameraExposure(); }
-
-const QMetaObject* PythonQtShell_QCameraExposure::metaObject() const {
-  if (QObject::d_ptr->metaObject) {
-    return QObject::d_ptr->dynamicMetaObject();
-  } else if (_wrapper) {
-    return PythonQt::priv()->getDynamicMetaObject(_wrapper, &QCameraExposure::staticMetaObject);
-  } else {
-    return &QCameraExposure::staticMetaObject;
-  }
-}
-int PythonQtShell_QCameraExposure::qt_metacall(QMetaObject::Call call, int id, void** args) {
-  int result = QCameraExposure::qt_metacall(call, id, args);
-  return result >= 0 ? PythonQt::priv()->handleMetaCall(this, _wrapper, call, id, args) : result;
-}
 qreal  PythonQtWrapper_QCameraExposure::aperture(QCameraExposure* theWrappedObject) const
 {
   return ( theWrappedObject->aperture());

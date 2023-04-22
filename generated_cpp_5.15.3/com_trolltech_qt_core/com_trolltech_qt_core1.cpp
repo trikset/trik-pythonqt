@@ -737,11 +737,6 @@ QMetaType::TypeFlags  PythonQtWrapper_QMetaType::flags(QMetaType* theWrappedObje
   return ( theWrappedObject->flags());
 }
 
-QMetaType  PythonQtWrapper_QMetaType::static_QMetaType_fromType()
-{
-  return (QMetaType::fromType());
-}
-
 bool  PythonQtWrapper_QMetaType::static_QMetaType_hasRegisteredComparators(int  typeId)
 {
   return (QMetaType::hasRegisteredComparators(typeId));
