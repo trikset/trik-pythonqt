@@ -372,6 +372,7 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
 		kwSlotFound = true;
 		break;
 	  }
+          slotInfo = slotInfo->nextInfo();
 	}
 	if (kwSlotFound) {
 #ifdef PYTHONQT_DEBUG
@@ -552,7 +553,8 @@ meth_get__doc__(PythonQtSlotFunctionObject * m, void * /*closure*/)
 	pyReturnType = "float";
   } else {
 	PythonQtClassInfo* returnTypeClassInfo = PythonQt::priv()->getClassInfo(returnType);
-	if (returnTypeClassInfo) {
+    // a class wrapper needs not necessarily to exist
+       if (returnTypeClassInfo && returnTypeClassInfo->pythonQtClassWrapper()) {
 	  PyObject* s = PyObject_GetAttrString(returnTypeClassInfo->pythonQtClassWrapper(), "__module__");
 	  if (s) {
 		pyReturnType = QByteArray(PyString_AsString(s)) + "." + returnType;

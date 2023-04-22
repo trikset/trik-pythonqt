@@ -263,33 +263,28 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 	PythonQtRegisterToolClassesTemplateConverterForKnownClass(QTextFormat);
 	PythonQtRegisterToolClassesTemplateConverterForKnownClass(QMatrix);
 
-	constexpr auto moduleQt = "Qt";
-	constexpr auto moduleQtCore = "Qt";
-	PyObject* pack = PythonQt::priv()->packageByName(moduleQtCore);
-	PyObject* pack2 = PythonQt::priv()->packageByName(moduleQt);
+    PyObject* pack = PythonQt::priv()->packageByName("QtCore");
+    PyObject* pack2 = PythonQt::priv()->packageByName("Qt");
 	PyObject* qtNamespace = PythonQt::priv()->getClassInfo("Qt")->pythonQtClassWrapper();
 	const char* names[16] = {"SIGNAL", "SLOT", "qAbs", "qBound","qDebug","qWarning","qCritical","qFatal"
 						,"qFuzzyCompare", "qMax","qMin","qRound","qRound64","qVersion","qrand","qsrand"};
 	if (qtNamespace)
-		for (unsigned int i = 0; i < sizeof(names) / sizeof(names[0]); i++) {
-			PyObject *obj = PyObject_GetAttrString(qtNamespace, names[i]);
-			if (obj) {
-				Py_INCREF(obj);
-				if (PyModule_AddObject(pack, names[i], obj) < 0) {
-					Py_DECREF(obj);
-					std::cerr << "failed to add " << names[i] << " to " << moduleQtCore <<  std::endl;
-				} else {
-					Py_INCREF(obj);
-					if(PyModule_AddObject(pack2, names[i], obj) < 0) {
-						Py_DECREF(obj);
-						std::cerr << "failed to add " << names[i] << " to " << moduleQt <<  std::endl;
-					}
-				}
-				Py_DECREF(obj);
-			} else {
-				std::cerr << "method not found " << names[i] << std::endl;
-			}
-		}
+    for (unsigned int i = 0; i < sizeof(names) / sizeof(names[0]); i++) {
+      PyObject* obj = PyObject_GetAttrString(qtNamespace, names[i]);
+      if (obj) {
+        if (PyModule_AddObject(pack, names[i], obj) < 0) {
+          std::cerr << "failed to add " << names[i] << " to QtCore\n";
+        } else {
+          Py_INCREF(obj);
+        }
+        if(PyModule_AddObject(pack2, names[i], obj) < 0) {
+          Py_DECREF(obj);
+          std::cerr << "failed to add " << names[i] << " to Qt\n";
+        }
+      } else {
+        std::cerr << "method not found " << names[i] << std::endl;
+      }
+    }	
 	int enumValues[] = {
 	  QtDebugMsg,
 	  QtWarningMsg,
@@ -971,7 +966,7 @@ PythonQtObjectPtr PythonQt::lookupObject(PyObject* module, const QString& name)
   PythonQtObjectPtr p = module;
   PythonQtObjectPtr prev;
   QByteArray b;
-  for (QStringList::ConstIterator i = l.cbegin(); i!=l.cend() && p; ++i) {
+  for (QStringList::ConstIterator i = l.begin(); i!=l.end() && p; ++i) {
 	prev = p;
 	b = QStringToPythonEncoding(*i);
 	if (PyDict_Check(p)) {
@@ -2092,9 +2087,8 @@ PyObject* PythonQtPrivate::packageByName(const char* name)
 	v = PyImport_AddModule((_pythonQtModuleName + "." + name).constData());
 	_packages.insert(name, v);
 	// AddObject steals the reference, so increment it!
-	Py_INCREF(v);
-	if (PyModule_AddObject(_pythonQtModule, name, v) < 0) {
-		Py_DECREF(v);
+	if (PyModule_AddObject(_pythonQtModule, name, v) == 0) {
+		Py_INCREF(v);
 	}
   }
   return v;
@@ -2461,25 +2455,26 @@ QString PythonQtPrivate::getSignature(PyObject* object)
 	  //       inspect.getargs() can handle anonymous (tuple) arguments, while this code does not.
 	  //       It can be implemented, but it may be rarely needed and not necessary.
 	  PyCodeObject* code = (PyCodeObject*)func->func_code;
-	  if (code->co_varnames) {
+      if (auto co_varnames = PyCode_GetVarnames(code)) {
 		int nargs = code->co_argcount;
-		Q_ASSERT(PyTuple_Check(code->co_varnames));
+        Q_ASSERT(PyTuple_Check(co_varnames));
 		for (int i=0; i<nargs; i++) {
-		  PyObject* name = PyTuple_GetItem(code->co_varnames, i);
+          PyObject* name = PyTuple_GetItem(co_varnames, i);
 		  Q_ASSERT(PyString_Check(name));
 		  arguments << PyString_AsString(name);
 		}
 		if (code->co_flags & CO_VARARGS) {
-		  PyObject* s = PyTuple_GetItem(code->co_varnames, nargs);
+          PyObject* s = PyTuple_GetItem(co_varnames, nargs);
 		  Q_ASSERT(PyString_Check(s));
 		  varargs = PyString_AsString(s);
 		  nargs += 1;
 		}
 		if (code->co_flags & CO_VARKEYWORDS) {
-		  PyObject* s = PyTuple_GetItem(code->co_varnames, nargs);
+          PyObject* s = PyTuple_GetItem(co_varnames, nargs);
 		  Q_ASSERT(PyString_Check(s));
 		  varkeywords = PyString_AsString(s);
 		}
+        Py_DECREF(co_varnames);
 	  }
 
 	  PyObject* defaultsTuple = func->func_defaults;
