@@ -840,17 +840,17 @@ AbstractMetaFunctionList AbstractMetaClass::queryFunctionsByName(const QString &
 
 QString AbstractMetaClass::getDefaultNonZeroFunction() const
 {
-  foreach(const AbstractMetaFunction* fun, queryFunctionsByName("isEmpty")) {
+  for (const AbstractMetaFunction* fun :  queryFunctionsByName("isEmpty")) {
     if (fun->actualMinimumArgumentCount()==0 && fun->isPublic()) {
       return "isEmpty";
     }
   }
-  foreach(const AbstractMetaFunction* fun, queryFunctionsByName("isValid")) {
+  for (const AbstractMetaFunction* fun :  queryFunctionsByName("isValid")) {
     if (fun->actualMinimumArgumentCount() == 0 && fun->isPublic()) {
       return "isValid";
     }
   }
-  foreach(const AbstractMetaFunction* fun, queryFunctionsByName("isNull")) {
+  for (const AbstractMetaFunction* fun :  queryFunctionsByName("isNull")) {
     if (fun->actualMinimumArgumentCount() == 0 && fun->isPublic()) {
       return "isNull";
     }
@@ -1173,6 +1173,23 @@ QPropertySpec *AbstractMetaClass::propertySpecForReset(const QString &name) cons
     return 0;
 }
 
+bool AbstractMetaClass::hasVirtualDestructor() const
+{
+    if (m_has_virtual_destructor) {
+        return true;
+    }
+    else {
+        // check all super classes
+        for (int i = 0; i < m_super_classes.size(); ++i) {
+            AbstractMetaClass* super_class = m_super_classes.at(i);
+            if (super_class->hasVirtualDestructor()) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 
 
 static bool functions_contains(const AbstractMetaFunctionList &l, const AbstractMetaFunction *func)
@@ -1182,10 +1199,6 @@ static bool functions_contains(const AbstractMetaFunctionList &l, const Abstract
             return true;
     }
     return false;
-}
-
-AbstractMetaField::AbstractMetaField() : m_getter(0), m_setter(0), m_class(0)
-{
 }
 
 AbstractMetaField::~AbstractMetaField()
@@ -1616,20 +1629,21 @@ void AbstractMetaClass::fixFunctions()
 
     AbstractMetaClass *super_class = baseClass();
     AbstractMetaFunctionList funcs = functions();
+    AbstractMetaClassList interfaceClasses = interfaces();
 
 //     printf("fix functions for %s\n", qPrintable(name()));
 
     if (super_class != 0)
         super_class->fixFunctions();
     int iface_idx = 0;
-    while (super_class || iface_idx < interfaces().size()) {
-//         printf(" - base: %s\n", qPrintable(super_class->name()));
+    while (super_class || iface_idx < interfaceClasses.size()) {
 
         // Since we always traverse the complete hierarchy we are only
         // interested in what each super class implements, not what
         // we may have propagated from their base classes again.
         AbstractMetaFunctionList super_funcs;
         if (super_class) {
+//             printf(" - base: %s\n", qPrintable(super_class->name()));
 
             // Super classes can never be final
             if (super_class->isFinalInTargetLang()) {
@@ -1638,7 +1652,10 @@ void AbstractMetaClass::fixFunctions()
             }
             super_funcs = super_class->queryFunctions(AbstractMetaClass::ClassImplements);
         } else {
-            super_funcs = interfaces().at(iface_idx)->queryFunctions(AbstractMetaClass::NormalFunctions);
+            AbstractMetaClass *iface_class = interfaceClasses.at(iface_idx);
+//             printf(" - iface: %s\n", qPrintable(iface_class->name()));
+            iface_class->fixFunctions();
+            super_funcs = iface_class->queryFunctions(AbstractMetaClass::NormalFunctions);
         }
 
         QSet<AbstractMetaFunction *> funcs_to_add;
@@ -1795,11 +1812,15 @@ void AbstractMetaClass::fixFunctions()
         foreach (AbstractMetaFunction *f, funcs_to_add)
             funcs << f->copy();
 
-        if (super_class)
+        if (super_class) {
+            interfaceClasses += super_class->interfaces();
             super_class = super_class->baseClass();
-        else
+        } else {
             iface_idx++;
     }
+    }
+
+//     printf("end fix functions for %s\n", qPrintable(name()));
 
     bool hasPrivateConstructors = false;
     bool hasPublicConstructors = false;

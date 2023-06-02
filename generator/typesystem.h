@@ -133,7 +133,7 @@ namespace TypeSystem {
 
     //! A better normalized signature, which takes care of PODs with the same name
     QByteArray normalizedSignature(const char* signature);
-};
+}
 
 struct ReferenceCount
 {
@@ -1052,7 +1052,7 @@ public:
     }
 
 private:
-    ObjectTypeEntry *m_origin;
+    ObjectTypeEntry *m_origin{};
 };
 
 
@@ -1120,7 +1120,7 @@ public:
         SingleTypeEntryHash returned;
         QList<QString> keys = entries.keys();
 
-        foreach(QString key, keys) {
+        for (QString key :  keys) {
             returned[key] = findType(key);
         }
 

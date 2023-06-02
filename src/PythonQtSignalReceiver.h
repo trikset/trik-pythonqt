@@ -94,7 +94,7 @@ private:
   int       _signalId;
   int       _slotId;
   const PythonQtMethodInfo* _methodInfo;
-  PythonQtObjectPtr _callable;
+  PythonQtSafeObjectPtr _callable;
 };
 
 //! base class for signal receivers
@@ -110,7 +110,6 @@ public:
 /*! we derive from our base but do not declare the QObject macro because we want to reimplement qt_metacall only.
 */
 class PythonQtSignalReceiver : public PythonQtSignalReceiverBase {
-
 //	No Q_OBJECT because we need custom qt_metacall implementation
 public:
   PythonQtSignalReceiver(QObject* obj);
@@ -123,7 +122,7 @@ public:
   bool removeSignalHandler(const char* signal, PyObject* callable = nullptr);
 
   //! we implement this method to simulate a number of slots that match the ids in _targets
-  virtual int qt_metacall(QMetaObject::Call c, int id, void **arguments) override;
+  int qt_metacall(QMetaObject::Call c, int id, void **arguments) override;
 
 private:
   //! get the index of the signal

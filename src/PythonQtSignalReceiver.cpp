@@ -45,7 +45,6 @@
 #include "PythonQtConversion.h"
 #include <QMetaObject>
 #include <QMetaMethod>
-#include "funcobject.h"
 
 // use -2 to signal that the variable is uninitialized
 int PythonQtSignalReceiver::_destroyedSignal1Id = -2;
@@ -53,7 +52,7 @@ int PythonQtSignalReceiver::_destroyedSignal2Id = -2;
 
 void PythonQtSignalTarget::call(void **arguments) const {
   PYTHONQT_GIL_SCOPE
-  PyObject* result = call(_callable, methodInfo(), arguments);
+  PyObject* result = call(_callable.object(), methodInfo(), arguments);
   if (result) {
     PythonQt::priv()->checkAndRunCoroutine(result);
 	Py_DECREF(result);
@@ -145,7 +144,7 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
 
 bool PythonQtSignalTarget::isSame( int signalId, PyObject* callable ) const
 {
-  return PyObject_RichCompareBool(callable, _callable, Py_EQ) && (signalId == _signalId);
+  return PyObject_RichCompareBool(callable, _callable.object(), Py_EQ) && (signalId == _signalId);
 }
 
 //------------------------------------------------------------------------------
@@ -267,7 +266,7 @@ int PythonQtSignalReceiver::qt_metacall(QMetaObject::Call c, int id, void **argu
   }
 
   bool shouldDelete = false;
-  for(const PythonQtSignalTarget& t : _targets) {
+  for(const PythonQtSignalTarget& t : qAsConst(_targets)) {
 	if (t.slotId() == id) {
       const int sigId = t.signalId();
 	  t.call(arguments);

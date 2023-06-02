@@ -79,9 +79,16 @@ public:
 	bool newOwnerOfThis;
   };
 
-  PythonQtMethodInfo() = default;
+  PythonQtMethodInfo() {
+    _shouldAllowThreads = true;
+  };
+  ~PythonQtMethodInfo() {};
   PythonQtMethodInfo(const QMetaMethod& meta, PythonQtClassInfo* classInfo);
   PythonQtMethodInfo(const QByteArray& typeName, const QList<QByteArray>& args);
+  PythonQtMethodInfo(const PythonQtMethodInfo& other) {
+    _parameters = other._parameters;
+    _shouldAllowThreads = other._shouldAllowThreads;
+  }
 
   //! returns the method info of the signature, uses a cache internally to speed up
   //! multiple requests for the same method, classInfo is passed to allow local enum resolution (if NULL is passed, no local enums are recognized)
@@ -137,28 +144,27 @@ protected:
   static QHash<int, ParameterInfo> _cachedParameterInfos;
 
   QList<ParameterInfo> _parameters;
-  bool _shouldAllowThreads { true };
+  bool _shouldAllowThreads;
 
 };
 
 //! stores information about a slot, including a next pointer to overloaded slots
 class PYTHONQT_EXPORT PythonQtSlotInfo : public PythonQtMethodInfo
 {
-	PythonQtSlotInfo &operator =(const PythonQtSlotInfo &) = delete;
 public:
   enum Type {
 	MemberSlot, InstanceDecorator, ClassDecorator
   };
 
-  ~PythonQtSlotInfo() = default;
-  PythonQtSlotInfo(const PythonQtSlotInfo& info)
-	  : PythonQtMethodInfo(info)
-	  ,_slotIndex(info._slotIndex)
-	  ,_decorator(info._decorator)
-	  ,_type(info._type)
-	  ,_meta(info._meta)
-  {
-
+  PythonQtSlotInfo(const PythonQtSlotInfo& info):PythonQtMethodInfo() {
+    _meta = info._meta;
+    _parameters = info._parameters;
+    _shouldAllowThreads = info._shouldAllowThreads;
+    _slotIndex = info._slotIndex;
+    _next = nullptr;
+    _decorator = info._decorator;
+    _type = info._type;
+    _upcastingOffset = 0;
   }
 
   PythonQtSlotInfo(PythonQtClassInfo* classInfo, const QMetaMethod& meta, int slotIndex, QObject* decorator = nullptr, Type type = MemberSlot ):PythonQtMethodInfo()
@@ -232,12 +238,12 @@ public:
   static bool getGlobalShouldAllowThreads();
 
 private:
-  int               _slotIndex {};
-  PythonQtSlotInfo *_next {};
-  QObject*          _decorator{};
-  Type              _type { MemberSlot } ;
+  int               _slotIndex;
+  PythonQtSlotInfo* _next;
+  QObject*          _decorator;
+  Type              _type;
   QMetaMethod       _meta;
-  int               _upcastingOffset { 0 };
+  int               _upcastingOffset;
 
   static bool _globalShouldAllowThreads;
 };

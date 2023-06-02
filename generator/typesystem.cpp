@@ -483,7 +483,6 @@ bool Handler::startElement(const QString &, const QString &n,
 		case StackElement::ValueTypeEntry:
 			attributes["force-abstract"] = QString("no");
 			attributes["deprecated"] = QString("no");
-			// fall throooough
 			Q_FALLTHROUGH();
 		case StackElement::InterfaceTypeEntry:
 			attributes["default-superclass"] = m_defaultSuperclass;
@@ -1837,7 +1836,7 @@ QString TemplateInstance::expandCode() const{
 	TemplateEntry *templateEntry = TypeDatabase::instance()->findTemplate(m_name);
 	if(templateEntry){
 		QString res = templateEntry->code();
-		foreach(QString key, replaceRules.keys()){
+        for (QString key :  replaceRules.keys()){
 			res.replace(key, replaceRules[key]);
 		}
 		return "// TEMPLATE - " + m_name + " - START" + res + "// TEMPLATE - " + m_name + " - END";
@@ -1851,7 +1850,7 @@ QString TemplateInstance::expandCode() const{
 
 QString CodeSnipAbstract::code() const{
 	QString res;
-	foreach(CodeSnipFragment *codeFrag, codeList){
+    for (CodeSnipFragment *codeFrag :  codeList){
 		res.append(codeFrag->code());
 	}
 	return res;

@@ -48,8 +48,8 @@
 //! default importer implementation using QFile to load python code
 class PythonQtQFileImporter : public PythonQtImportFileInterface {
 public:
-	PythonQtQFileImporter() = default;
-//    ~PythonQtQFileImporter();
+    PythonQtQFileImporter();
+    ~PythonQtQFileImporter() override;
 
 	QByteArray readFileAsBytes (const QString &filename) override;
 
