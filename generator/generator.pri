@@ -13,7 +13,7 @@ INCLUDEPATH += $$GENERATORPATH/../common
 
 RESOURCES += generator.qrc
 
-!no_warn:gcc: QMAKE_CXXFLAGS += -Werror -Wno-deprecated-declarations -Wno-error=cpp
+!no_warn:gcc: QMAKE_CXXFLAGS += -Wno-deprecated-declarations
 
 include($$GENERATORPATH/parser/rxx.pri)
 
