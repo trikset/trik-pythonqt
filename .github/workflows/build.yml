@@ -18,7 +18,7 @@ jobs:
       matrix:
         container: 
         - 'ubuntu:20.04'
-        - 'ubuntu:22.04'
+#        - 'ubuntu:22.04'
     runs-on: ubuntu-latest
     container: ${{ matrix.container }}
     steps:
@@ -229,20 +229,20 @@ jobs:
       fail-fast: false
       matrix:
        qt-arch: ['win64_mingw73']
-       python-version: ['3.10']
+       python-version: ['3.11']
        qt-version: ['5.12.*']
        python-arch: ['x64']
        pythonqtall-config: ['']
 #       msvc-toolset: ['14.0']
        include:
-         - qt-arch: 'win64_msvc2017_64'
-           python-version: '3.6'
-           python-arch: 'x64'
-           qt-version: '5.12.*'
+#         - qt-arch: 'win64_msvc2017_64'
+#           python-version: '3.6'
+#           python-arch: 'x64'
+#           qt-version: '5.12.*'
 #           msvc-toolset: '14.16'
 
          - qt-arch: 'win32_mingw73'
-           python-version: '2.7'
+           python-version: '3.11'
            python-arch: 'x86'
            qt-version: '5.12.*'
 
