@@ -241,7 +241,7 @@ jobs:
            qt-version: '5.12.*'
 #           msvc-toolset: '14.16'
 
-         - qt-arch: 'win32_mingw53'
+         - qt-arch: 'win32_mingw73'
            python-version: '2.7'
            python-arch: 'x86'
            qt-version: '5.12.*'
@@ -267,7 +267,7 @@ jobs:
       uses: ilammy/msvc-dev-cmd@v1
       if: ${{ contains(matrix.qt-arch, 'msvc') }}
       with:
-        arch: amd64${{ contains(matrix.python-arch, 'x86') && '_x86' || '' }}
+        arch: ${{ matrix.python-arch }}
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
