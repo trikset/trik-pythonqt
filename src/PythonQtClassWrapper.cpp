@@ -633,6 +633,14 @@ PyTypeObject PythonQtClassWrapper_Type = {
 	PythonQtClassWrapper_alloc,                         /* tp_alloc */
     nullptr,                         /* tp_new */
     nullptr,                         /* tp_free */
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
 };
 
 //-------------------------------------------------------

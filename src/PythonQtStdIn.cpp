@@ -133,5 +133,7 @@ PyTypeObject PythonQtStdInRedirectType = {
 	0,
 	0,
 	0,
+#ifdef PY3K
 	0,
+#endif
 };

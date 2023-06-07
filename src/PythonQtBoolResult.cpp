@@ -114,9 +114,9 @@ static PyNumberMethods PythonQtBoolResult_as_number = {
   nullptr,      /* nb_inplace_true_divide */
 #ifdef PY3K
   nullptr,      /* nb_index in Py3K */
+	0,
 #endif
-  0,
-  0,
+	0,
 };
 
 PyTypeObject PythonQtBoolResult_Type = {
@@ -167,6 +167,8 @@ PyTypeObject PythonQtBoolResult_Type = {
 	0,
 	0,
 	0,
+#ifdef PY3K
 	0,
+#endif
 };
 

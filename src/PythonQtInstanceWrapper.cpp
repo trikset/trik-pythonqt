@@ -895,9 +895,9 @@ static PyNumberMethods PythonQtInstanceWrapper_as_number = {
     nullptr,      /* nb_inplace_true_divide */
 #ifdef PY3K
     nullptr,      /* nb_index in Py3K */
+	0,
+	0,
 #endif
-	0,
-	0,
 };
 
 PyTypeObject PythonQtInstanceWrapper_Type = {
@@ -956,7 +956,9 @@ PyTypeObject PythonQtInstanceWrapper_Type = {
 	0,
 	0,
 	0,
+#ifdef PY3K
 	0,
+#endif
 };
 
 //-------------------------------------------------------

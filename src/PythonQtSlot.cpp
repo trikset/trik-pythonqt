@@ -857,6 +857,20 @@ PyTypeObject PythonQtSlotFunction_Type = {
     nullptr,                    /* tp_base */
     nullptr,                    /* tp_dict */
     meth_descr_get,             /* tp_descr_get */
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
 };
 
 /* Clear out the free list */

@@ -77,75 +77,63 @@ defineTest(Xinclude) {
 }
 
 
-PythonQtCore {
+PythonQtCore:Xinclude (com_trolltech_qt_core) {
   DEFINES += PYTHONQT_WITH_CORE
-  Xinclude (com_trolltech_qt_core)
   QT += core
 }
 
-PythonQtGui  {
+PythonQtGui:Xinclude (com_trolltech_qt_gui)  {
   DEFINES += PYTHONQT_WITH_GUI
-  Xinclude (com_trolltech_qt_gui)
   QT += gui widgets printsupport
 }
 
-PythonQtSvg {
+PythonQtSvg:Xinclude (com_trolltech_qt_svg) {
   DEFINES += PYTHONQT_WITH_SVG
-  Xinclude (com_trolltech_qt_svg)
   QT +=svg
 }
 
-PythonQtSql {
+PythonQtSql:Xinclude (com_trolltech_qt_sql) {
   DEFINES += PYTHONQT_WITH_SQL
-  Xinclude (com_trolltech_qt_sql)
   QT += sql
 }
 
-PythonQtNetwork {
+PythonQtNetwork:Xinclude (com_trolltech_qt_network) {
   DEFINES += PYTHONQT_WITH_NETWORK
-  Xinclude (com_trolltech_qt_network)
   QT += network
 }
 
-PythonQtOpengl {
+PythonQtOpengl:PythonQtCore: Xinclude (com_trolltech_qt_opengl) {
   DEFINES += PYTHONQT_WITH_OPENGL
   QT += opengl
-  PythonQtCore: Xinclude (com_trolltech_qt_opengl)
   QT += xml
 }
 
-PythonQtXmlpatterns {
+PythonQtXmlpatterns:Xinclude (com_trolltech_qt_xmlpatterns) {
   DEFINES += PYTHONQT_WITH_XMLPATTERNS
-  Xinclude (com_trolltech_qt_xmlpatterns)
   QT += xmlpatterns
 }
 
-PythonQtMultimedia {
+PythonQtMultimedia:Xinclude (com_trolltech_qt_multimedia) {
   DEFINES += PYTHONQT_WITH_MULTIMEDIA
-  Xinclude (com_trolltech_qt_multimedia)
   QT += multimedia multimediawidgets
 }
 
-PythonQtQml {
+PythonQtQml:Xinclude (com_trolltech_qt_qml) {
   DEFINES += PYTHONQT_WITH_QML
-  Xinclude (com_trolltech_qt_qml)
   QT += qml
 }
 
-PythonQtQuick {
+PythonQtQuick:Xinclude (com_trolltech_qt_quick) {
   DEFINES += PYTHONQT_WITH_QUICK
-  Xinclude (com_trolltech_qt_quick)
   QT += quick quickwidgets
 }
 
-PythonQtUiTools {
+PythonQtUiTools:Xinclude (com_trolltech_qt_uitools) {
   DEFINES += PYTHONQT_WITH_UITOOLS
-  Xinclude (com_trolltech_qt_uitools)
   QT += uitools
 }
 
-PythonQtWebKit {
+PythonQtWebKit:Xinclude (com_trolltech_qt_webkit) {
   DEFINES += PYTHONQT_WITH_WEBKIT
-  Xinclude (com_trolltech_qt_webkit)
   QT += webkit webkitwidgets
 }

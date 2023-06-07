@@ -54,7 +54,7 @@ jobs:
         echo ======= SYSTEM INFO ========
         uname -a; gcc --version | grep "gcc"; python3 --version; qmake --version
         echo ============================
-        qmake -r PythonQt.pro CONFIG+=release CONFIG+=sanitizer CONFIG+=sanitize_undefined \
+        qmake -r PythonQt.pro CONFIG+=release CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=generator CONFIG+=tests \
         PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
         PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
         make -j 2
@@ -117,7 +117,7 @@ jobs:
         echo ======= SYSTEM INFO ========
         uname -a; gcc --version | grep "gcc"; python --version; qmake-qt5 --version
         echo ============================
-        qmake-qt5 -r PythonQt.pro CONFIG+=${{ matrix.configuration }} \
+        qmake-qt5 -r PythonQt.pro CONFIG+=${{ matrix.configuration }} CONFIG+=generator CONFIG+=tests \
           PYTHON_VERSION=$(python --version | cut -d " " -f 2 | cut -d "." -f1,2) \
           PYTHON_DIR=$(which python | xargs dirname | xargs dirname)
         make -j 2 && make check TESTARGS="-platform offscreen"
@@ -147,7 +147,7 @@ jobs:
        include:
          - macos-version: '11'
            python-version: '3.6'
-           qt-version: '5.11.*'
+           qt-version: '5.12.*'
            configuration: 'release'
          - macos-version: '12'
            python-version: '3.11'
@@ -202,7 +202,7 @@ jobs:
         for i in "python${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}-embed" "python${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}" \
                  "python${PYTHON_VERSION_MAJOR}-embed" "python${PYTHON_VERSION_MAJOR}"
         do if pkg-config --exists "$i"; then PYTHON_PKGCONFIG_NAME="$i"; break; fi; done
-        qmake CONFIG+=${{ matrix.configuration }} CONFIG+=sanitizer CONFIG+=sanitize_undefined \
+        qmake CONFIG+=${{ matrix.configuration }} CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=generator CONFIG+=tests \
           PYTHON_VERSION=${{ steps.versions.outputs.PYTHON_VERSION_SHORT }} \
           PYTHON_DIR="$pythonLocation" \
           PKGCONFIG+=$PYTHON_PKGCONFIG_NAME \
@@ -238,13 +238,13 @@ jobs:
          - qt-arch: 'win64_msvc2017_64'
            python-version: '3.6'
            python-arch: 'x64'
-           qt-version: '5.11.*'
+           qt-version: '5.12.*'
 #           msvc-toolset: '14.16'
 
          - qt-arch: 'win32_mingw53'
            python-version: '2.7'
            python-arch: 'x86'
-           qt-version: '5.11.*'
+           qt-version: '5.12.*'
 
 #Either MSVC2015 is sick or Qt5.9 is buggy :(
 #Main problem is QBasicMutex with default ctor, that (by no means) is missing in dll-export of QtCore, but linker tries to find it
@@ -313,7 +313,7 @@ jobs:
       run: |
         qmake -query
         python --version
-        qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target ^
+        qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target CONFIG+=generator CONFIG+=tests ^
            "PYTHONQTALL_CONFIG=${{ matrix.pythonqtall-config }}" ^
            "PYTHON_PATH=%pythonLocation%" ^
            "PYTHON_VERSION=${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}" ^
