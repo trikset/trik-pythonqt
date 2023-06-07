@@ -50,12 +50,11 @@
 //! Defines an abstract interface to file access for the Python import statement.
 //! see PythonQt::setImporter()
 class PythonQtImportFileInterface {
-
 	Q_DISABLE_COPY(PythonQtImportFileInterface)
 public:
   // get rid of warnings
-  PythonQtImportFileInterface() = default;
-  virtual ~PythonQtImportFileInterface() = default;
+  virtual ~PythonQtImportFileInterface() {}
+  PythonQtImportFileInterface() {}
 
   //! read the given file as byte array, without doing any linefeed translations
   virtual QByteArray readFileAsBytes(const QString& filename) = 0;

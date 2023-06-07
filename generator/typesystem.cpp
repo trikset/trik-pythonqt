@@ -49,6 +49,7 @@
 #include <memory>
 
 #include <QtXml>
+#include <qcompilerdetection.h> // Q_FALLTHROUGH
 
 QString strings_Object = QLatin1String("Object");
 QString strings_String = QLatin1String("String");
@@ -482,12 +483,12 @@ bool Handler::startElement(const QString &, const QString &n,
 		case StackElement::ValueTypeEntry:
 			attributes["force-abstract"] = QString("no");
 			attributes["deprecated"] = QString("no");
-			// fall throooough
+			Q_FALLTHROUGH();
 		case StackElement::InterfaceTypeEntry:
 			attributes["default-superclass"] = m_defaultSuperclass;
 			attributes["polymorphic-id-expression"] = QString();
 			attributes["delete-in-main-thread"] = QString("no");
-			// fall through
+			Q_FALLTHROUGH();
 		case StackElement::NamespaceTypeEntry:
 			attributes["java-name"] = QString();
 			attributes["package"] = m_defaultPackage;
@@ -1835,7 +1836,7 @@ QString TemplateInstance::expandCode() const{
 	TemplateEntry *templateEntry = TypeDatabase::instance()->findTemplate(m_name);
 	if(templateEntry){
 		QString res = templateEntry->code();
-		foreach(QString key, replaceRules.keys()){
+        for (QString key :  replaceRules.keys()){
 			res.replace(key, replaceRules[key]);
 		}
 		return "// TEMPLATE - " + m_name + " - START" + res + "// TEMPLATE - " + m_name + " - END";
@@ -1849,7 +1850,7 @@ QString TemplateInstance::expandCode() const{
 
 QString CodeSnipAbstract::code() const{
 	QString res;
-	foreach(CodeSnipFragment *codeFrag, codeList){
+    for (CodeSnipFragment *codeFrag :  codeList){
 		res.append(codeFrag->code());
 	}
 	return res;

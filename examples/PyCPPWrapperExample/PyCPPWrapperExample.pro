@@ -7,7 +7,7 @@
 TARGET   = PyCPPWrapperExample
 TEMPLATE = app
 
-DESTDIR           = ../../lib
+#DESTDIR           = ../../lib
 
 include ( ../../build/common.prf )  
 include ( ../../build/PythonQt.prf )  

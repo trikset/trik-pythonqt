@@ -44,21 +44,21 @@
 
 #include "PythonQtPythonInclude.h"
 
-#include "structmember.h"
-#include "osdefs.h"
-#include "marshal.h"
 #include "compile.h"
-#include <time.h>
+#include "marshal.h"
+#include "osdefs.h"
+#include "structmember.h"
+#include <ctime>
 
 #include <qobject.h>
 #include <qstring.h>
 
 
 //! defines a python object that stores a Qt slot info
-typedef struct _PythonQtImporter {
+struct PythonQtImporter {
   PyObject_HEAD
   QString* _path;
-} PythonQtImporter;
+};
 
 
 //! implements importing of python files into PythonQt

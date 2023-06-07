@@ -44,6 +44,12 @@
 
 #include "PythonQtQFileImporter.h"
 
+PythonQtQFileImporter::PythonQtQFileImporter() {
+}    
+
+PythonQtQFileImporter::~PythonQtQFileImporter()  {
+}
+
 QByteArray PythonQtQFileImporter::readFileAsBytes (const QString &filename) {
   QFile f(filename);
   if (f.open(QIODevice::ReadOnly)) {

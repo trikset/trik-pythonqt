@@ -79,9 +79,16 @@ public:
 	bool newOwnerOfThis;
   };
 
-  PythonQtMethodInfo() = default;
+  PythonQtMethodInfo() {
+    _shouldAllowThreads = true;
+  };
+  ~PythonQtMethodInfo() {};
   PythonQtMethodInfo(const QMetaMethod& meta, PythonQtClassInfo* classInfo);
   PythonQtMethodInfo(const QByteArray& typeName, const QList<QByteArray>& args);
+  PythonQtMethodInfo(const PythonQtMethodInfo& other) {
+    _parameters = other._parameters;
+    _shouldAllowThreads = other._shouldAllowThreads;
+  }
 
   //! returns the method info of the signature, uses a cache internally to speed up
   //! multiple requests for the same method, classInfo is passed to allow local enum resolution (if NULL is passed, no local enums are recognized)
@@ -106,7 +113,7 @@ public:
   static void addParameterTypeAlias(const QByteArray& alias, const QByteArray& name);
 
   //! fill the parameter info for the given type name
-  static void fillParameterInfo(ParameterInfo& type, const QByteArray& name, PythonQtClassInfo* classInfo = NULL);
+  static void fillParameterInfo(ParameterInfo& type, const QByteArray& name, PythonQtClassInfo* classInfo = nullptr);
 
   //! returns a parameter info for the given metatype (and creates and caches one if it is not yet present)
   static const ParameterInfo& getParameterInfoForMetaType(int type);
@@ -137,38 +144,37 @@ protected:
   static QHash<int, ParameterInfo> _cachedParameterInfos;
 
   QList<ParameterInfo> _parameters;
-  bool _shouldAllowThreads { true };
+  bool _shouldAllowThreads;
 
 };
 
 //! stores information about a slot, including a next pointer to overloaded slots
 class PYTHONQT_EXPORT PythonQtSlotInfo : public PythonQtMethodInfo
 {
-	PythonQtSlotInfo &operator =(const PythonQtSlotInfo &) = delete;
 public:
   enum Type {
 	MemberSlot, InstanceDecorator, ClassDecorator
   };
 
-  ~PythonQtSlotInfo() = default;
-  PythonQtSlotInfo(const PythonQtSlotInfo& info)
-	  : PythonQtMethodInfo(info)
-	  ,_slotIndex(info._slotIndex)
-	  ,_decorator(info._decorator)
-	  ,_type(info._type)
-	  ,_meta(info._meta)
-  {
-
+  PythonQtSlotInfo(const PythonQtSlotInfo& info):PythonQtMethodInfo() {
+    _meta = info._meta;
+    _parameters = info._parameters;
+    _shouldAllowThreads = info._shouldAllowThreads;
+    _slotIndex = info._slotIndex;
+    _next = nullptr;
+    _decorator = info._decorator;
+    _type = info._type;
+    _upcastingOffset = 0;
   }
 
-  PythonQtSlotInfo(PythonQtClassInfo* classInfo, const QMetaMethod& meta, int slotIndex, QObject* decorator = NULL, Type type = MemberSlot ):PythonQtMethodInfo()
+  PythonQtSlotInfo(PythonQtClassInfo* classInfo, const QMetaMethod& meta, int slotIndex, QObject* decorator = nullptr, Type type = MemberSlot ):PythonQtMethodInfo()
   {
 	const PythonQtMethodInfo* info = getCachedMethodInfo(meta, classInfo);
 	_meta = meta;
 	_parameters = info->parameters();
 	_shouldAllowThreads = info->shouldAllowThreads();
 	_slotIndex = slotIndex;
-	_next = NULL;
+    _next = nullptr;
 	_decorator = decorator;
 	_type = type;
 	_upcastingOffset = 0;
@@ -197,10 +203,10 @@ public:
   void setNextInfo(PythonQtSlotInfo* next) { _next = next; }
 
   //! returns if the slot is a decorator slot
-  bool isInstanceDecorator() const { return _decorator!=NULL && _type == InstanceDecorator; }
+  bool isInstanceDecorator() const { return _decorator!=nullptr && _type == InstanceDecorator; }
 
   //! returns if the slot is a constructor slot
-  bool isClassDecorator() const { return _decorator!=NULL && _type == ClassDecorator; }
+  bool isClassDecorator() const { return _decorator!=nullptr && _type == ClassDecorator; }
 
   QObject* decorator() const { return _decorator; }
 
@@ -232,12 +238,12 @@ public:
   static bool getGlobalShouldAllowThreads();
 
 private:
-  int               _slotIndex {};
-  PythonQtSlotInfo *_next {};
-  QObject*          _decorator{};
-  Type              _type { MemberSlot } ;
+  int               _slotIndex;
+  PythonQtSlotInfo* _next;
+  QObject*          _decorator;
+  Type              _type;
   QMetaMethod       _meta;
-  int               _upcastingOffset { 0 };
+  int               _upcastingOffset;
 
   static bool _globalShouldAllowThreads;
 };

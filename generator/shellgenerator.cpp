@@ -129,7 +129,6 @@ void ShellGenerator::writeFunctionArguments(QTextStream &s,
                                             Option option,
                                             int numArguments)
 {
-  const AbstractMetaClass* owner = meta_function->ownerClass();
   const AbstractMetaArgumentList &arguments = meta_function->arguments();
 
     if (numArguments < 0) numArguments = arguments.size();
@@ -159,6 +158,10 @@ void ShellGenerator::writeFunctionArguments(QTextStream &s,
             s << " = "; 
 
             QString expr = arg->defaultValueExpression();
+          if (expr == "NULL")
+          {
+            expr = "nullptr";
+          }
           if (expr != "0") {
             QString qualifier;
             if (arg->type()->typeEntry()->isEnum() && expr.indexOf("::") < 0) {
@@ -282,7 +285,7 @@ bool function_sorter(AbstractMetaFunction *a, AbstractMetaFunction *b);
 
 bool ShellGenerator::functionHasNonConstReferences(const AbstractMetaFunction* function)
 {
-  foreach(const AbstractMetaArgument* arg, function->arguments())
+  for (const AbstractMetaArgument* arg :  function->arguments())
   {
     if (!arg->type()->isConstant() && arg->type()->isReference()) {
       QString s;
@@ -320,7 +323,7 @@ AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaCl
     | AbstractMetaClass::NotRemovedFromTargetLang | AbstractMetaClass::ClassImplements
     );
   QSet<AbstractMetaFunction*> set1 = QSet<AbstractMetaFunction*>::fromList(functions);
-  foreach(AbstractMetaFunction* func, functions2) {
+  for (AbstractMetaFunction* func :  functions2) {
     set1.insert(func);
   }
 
@@ -328,7 +331,7 @@ AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaCl
 
   bool hasPromoter = meta_class->typeEntry()->shouldCreatePromoter();
 
-  foreach(AbstractMetaFunction* func, set1.toList()) {
+  for (AbstractMetaFunction* func :  set1.toList()) {
     if (func->implementingClass()==meta_class) {
       if (hasPromoter || func->wasPublic()) {
         resultFunctions << func;
@@ -343,8 +346,7 @@ AbstractMetaFunctionList ShellGenerator::getVirtualFunctionsForShell(const Abstr
 {
   AbstractMetaFunctionList functions = meta_class->queryFunctions( 
     AbstractMetaClass::VirtualFunctions | AbstractMetaClass::WasVisible
-    // in case of abstract base classes, we need a shell implementation even for removed virtual functions...
-    //    | AbstractMetaClass::NotRemovedFromTargetLang
+        | AbstractMetaClass::NotRemovedFromTargetLang
     );
   qSort(functions.begin(), functions.end(), function_sorter);
   return functions;
@@ -354,7 +356,7 @@ AbstractMetaFunctionList ShellGenerator::getProtectedFunctionsThatNeedPromotion(
 {
   AbstractMetaFunctionList functions; 
   AbstractMetaFunctionList functions1 = getFunctionsToWrap(meta_class); 
-  foreach(AbstractMetaFunction* func, functions1) {
+  for (AbstractMetaFunction* func :  functions1) {
     if (func->wasProtected() || func->isVirtual()) {
       functions << func;
     }

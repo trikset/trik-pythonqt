@@ -6,12 +6,18 @@
 TARGET   = PythonQtTest
 TEMPLATE = app
 
-CONFIG -= app_bundle
+#isEmpty(DESTDIR):DESTDIR = ../lib
+QMAKE_RPATHDIR += $$DESTDIR
 
-#DESTDIR    = ../lib
+QT += testlib opengl
+CONFIG += testcase cmdline exceptions testcase_no_bundle no_testcase_installs
 
-QT += testlib
-#QT += opengl
+#Workaround for MinGW build. Qt incorrectly sets it to empty string on Win32 for bash
+mingw: TEST_TARGET_DIR = .
+
+DEFINES += QT_NO_CAST_TO_ASCII
+
+gcc: QMAKE_CXXFLAGS += -pedantic -ansi -Winit-self -Wuninitialized
 
 contains(QT_MAJOR_VERSION, 5) {
   QT += widgets

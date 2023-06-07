@@ -1,6 +1,9 @@
 TARGET = pythonqt_generator
-include(generator.pri)
+#DESTDIR = .
 
+include(generator.pri)
+DEFINES += QT_NO_CAST_TO_ASCII
+gcc:QMAKE_CXXFLAGS += -Wno-error=maybe-uninitialized
 
 # Input
 HEADERS += \

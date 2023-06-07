@@ -3,5 +3,9 @@
 include ( python.prf )  
 
 INCLUDEPATH += $$PWD/../src
-!isEmpty(DESTDIR):LIBS += -L$$DESTDIR
+!isEmpty(DESTDIR) {
+    LIBS += -L$$DESTDIR
+    QMAKE_RPATHDIR += $$DESTDIR
+}
+
 LIBS += -ltrikPythonQt-Qt$${QT_MAJOR_VERSION}$${QT_MINOR_VERSION}-Python$${PYTHON_VERSION}$${DEBUG_EXT}

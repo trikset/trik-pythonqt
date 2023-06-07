@@ -34,15 +34,24 @@
 #define __PythonQtPythonInclude_h
 
 // Undefine macros that Python.h defines to avoid redefinition warning.
+#ifdef _POSIX_C_SOURCE
 #undef _POSIX_C_SOURCE
+#endif
+
+#ifdef _POSIX_THREADS
 #undef _POSIX_THREADS
+#endif
+
+#ifdef _XOPEN_SOURCE
 #undef _XOPEN_SOURCE
+#endif
 
 // Undefine Qt keywords that conflict with Python headers
 #ifdef slots
 #undef slots
 #define PYTHONQT_RESTORE_KEYWORDS
 #endif
+
 //From https://github.com/boostorg/python/pull/253
 // Python.h defines a macro with hypot name, what breaks libstdc++ math header
 // that it tries to include afterwards.

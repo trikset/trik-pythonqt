@@ -696,6 +696,7 @@
   <enum-type name="QTimeLine::Direction"/>
   <enum-type name="QTimeLine::State"/>
   <enum-type name="QUrl::FormattingOption" flags="QUrl::FormattingOptions"/>
+  <enum-type name="QUrl::UrlFormattingOption" flags="QUrl::FormattingOptions"/>
   <enum-type name="QUrl::ComponentFormattingOption" flags="QUrl::ComponentFormattingOptions"/> <!-- Qt 5 -->
   <enum-type name="QUrl::UrlFormattingOption"/> <!-- Qt 5 -->
   <enum-type name="QUrl::ParsingMode"/>
@@ -852,18 +853,9 @@
     <modify-function signature="ry()" remove="all"/> 
   </value-type>
   <enum-type name="QLineF::IntersectType"/>
-  <value-type name="QLineF">
-    <extra-includes>
-        <include file-name="QMatrix" location="global"/>
-        <include file-name="QTransform" location="global"/>
-    </extra-includes>
-  </value-type>
-  <value-type name="QLine">
-    <extra-includes>
-        <include file-name="QMatrix" location="global"/>
-        <include file-name="QTransform" location="global"/>
-    </extra-includes>
-  </value-type>
+  <value-type name="QLineF"/>
+  <value-type name="QLine"/>
+ 
   <value-type name="QRect">
     <modify-function signature="getCoords(int*,int*,int*,int*)const">
       <remove/>
@@ -1280,9 +1272,27 @@
   <object-type name="QLibraryInfo"/>
   <object-type name="QMutex"/>
   <value-type name="QMutexLocker">
+    <!-- special handling for context handlers -->
+    <inject-code class="pywrap-operators">PythonQt::Type_EnterExit</inject-code>
     <inject-code class="pywrap-h">
     void __enter__(QMutexLocker* self) {}
-    void __exit__(QMutexLocker* self) { self->unlock(); }
+    void __exit__(QMutexLocker* self, PyObject* type, PyObject* value, PyObject* traceback) { self->unlock(); }
+    </inject-code>
+  </value-type>
+  <value-type name="QReadLocker">
+    <!-- special handling for context handlers -->
+    <inject-code class="pywrap-operators">PythonQt::Type_EnterExit</inject-code>
+    <inject-code class="pywrap-h">
+    void __enter__(QReadLocker* self) {}
+    void __exit__(QReadLocker* self, PyObject* type, PyObject* value, PyObject* traceback) { self->unlock(); }
+    </inject-code>
+  </value-type>
+  <value-type name="QWriteLocker">
+    <!-- special handling for context handlers -->
+    <inject-code class="pywrap-operators">PythonQt::Type_EnterExit</inject-code>
+    <inject-code class="pywrap-h">
+    void __enter__(QWriteLocker* self) {}
+    void __exit__(QWriteLocker* self, PyObject* type, PyObject* value, PyObject* traceback) { self->unlock(); }
     </inject-code>
   </value-type>
   <object-type name="QSemaphore"/>
