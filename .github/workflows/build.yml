@@ -244,7 +244,12 @@ jobs:
          - qt-arch: 'win32_mingw73'
            python-version: '3.11'
            python-arch: 'x86'
-           qt-version: '5.12.*'
+           qt-version: '5.12'
+
+         - qt-arch: 'win32_mingw81'
+           python-version: '3.12'
+           python-arch: 'x86'
+           qt-version: '5.15'
 
 #Either MSVC2015 is sick or Qt5.9 is buggy :(
 #Main problem is QBasicMutex with default ctor, that (by no means) is missing in dll-export of QtCore, but linker tries to find it
@@ -272,7 +277,6 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
       with:
-        aqtversion: '==2.1.*'
         version: ${{ matrix.qt-version }}
         host: 'windows'
         target: 'desktop'
