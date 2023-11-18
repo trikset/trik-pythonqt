@@ -39,6 +39,8 @@
 **
 ****************************************************************************/
 
+#include <algorithm> // for std::sort
+
 #include "shellimplgenerator.h"
 #include "reporthandler.h"
 #include "fileout.h"
@@ -82,7 +84,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
   //    return;
 
   IncludeList list = meta_class->typeEntry()->extraIncludes();
-  qSort(list.begin(), list.end());
+  std::sort(list.begin(), list.end());
   foreach (const Include &inc, list) {
     ShellGenerator::writeInclude(s, inc);
   }  
@@ -176,7 +178,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
           s << "        }" << endl;
           s << "      }" << endl;
         }
-        s << "      if (result) { Py_DECREF(result); } " << endl;
+        s << "      if (result) { Py_DECREF(result); }" << endl;
         s << "      Py_DECREF(obj);" << endl;
         // ugly hack, we don't support QGraphicsScene* nor QGraphicsItem* QVariants in PythonQt...
         if (fun->name() == "itemChange" && fun->type() && fun->type()->isVariant()) {

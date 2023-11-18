@@ -46,7 +46,6 @@
 
 #include <QFile>
 #include <QDir>
-#include <QProcess>
 
 struct Preprocess
 {
@@ -88,14 +87,8 @@ struct Preprocess
             includes += commandLineIncludes.split(path_splitter);
 
         // Include Qt
-        QProcess process;
-        QString qtHeadersVariable = "QT_INSTALL_HEADERS";
-        process.start("qmake -query " + qtHeadersVariable);
-        process.waitForFinished(-1);
-
-        QString qtHeadersDir = process.readAllStandardOutput().simplified();
-
-        if (qtHeadersDir.isEmpty()) {
+        QString qtdir = getenv ("QTDIR");
+        if (qtdir.isEmpty()) {
 #if defined(Q_OS_MAC)
             qWarning("QTDIR environment variable not set. Assuming standard binary install using frameworks.");
             QString frameworkDir = "/Library/Frameworks";
@@ -110,14 +103,15 @@ struct Preprocess
 #endif
         } else {
             std::cout << "-------------------------------------------------------------" << std::endl;
-            std::cout << "Using QT headers at: " << qtHeadersDir.toLocal8Bit().constData() << std::endl;
+            std::cout << "Using QT at: " << qtdir.toLocal8Bit().constData() << std::endl;
             std::cout << "-------------------------------------------------------------" << std::endl;
-            includes << (qtHeadersDir + "/QtXml");
-            includes << (qtHeadersDir + "/QtNetwork");
-            includes << (qtHeadersDir + "/QtCore");
-            includes << (qtHeadersDir + "/QtGui");
-            includes << (qtHeadersDir + "/QtOpenGL");
-            includes << qtHeadersDir;
+            qtdir += "/include";
+            includes << (qtdir + "/QtXml");
+            includes << (qtdir + "/QtNetwork");
+            includes << (qtdir + "/QtCore");
+            includes << (qtdir + "/QtGui");
+            includes << (qtdir + "/QtOpenGL");
+            includes << qtdir;
         }
         foreach (QString include, includes) {
             preprocess.push_include_path(QDir::toNativeSeparators(include).toStdString());

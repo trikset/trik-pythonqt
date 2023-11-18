@@ -190,6 +190,7 @@
   <enum-type name="QAbstractSlider::SliderChange"/>
   <enum-type name="QAbstractSpinBox::ButtonSymbols"/>
   <enum-type name="QAbstractSpinBox::CorrectionMode"/>
+  <enum-type name="QAbstractSpinBox::StepType"/>
   <enum-type name="QAbstractSpinBox::StepEnabledFlag" flags="QAbstractSpinBox::StepEnabled"/>
   <enum-type name="QAccessible::Event"/>
   <enum-type name="QAccessible::Method"/>
@@ -256,6 +257,7 @@
   <enum-type name="QFrame::Shape"/>
   <enum-type name="QFrame::StyleMask"/>
   <enum-type name="QGradient::CoordinateMode"/>
+  <enum-type name="QGradient::Preset"/>
   <enum-type name="QGradient::Spread" lower-bound="QGradient.PadSpread" upper-bound="QGradient.RepeatSpread"/>
   <enum-type name="QGradient::Type"/>
   <enum-type name="QGraphicsEllipseItem::enum_1"/>
@@ -1670,7 +1672,7 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="getColor(const QColor &amp;, QWidget *)">
     </modify-function>
   </object-type>
-<!--
+
   <object-type name="QLayout">
 
     <modify-function signature="removeWidget(QWidget*)">
@@ -1716,9 +1718,9 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="spacing()const" rename="widgetSpacing"/>
     <modify-function signature="getContentsMargins(int*,int*,int*,int*)const" remove="all"/>
 
-    <modify-function signature="margin()const" remove="all"/>
+    <modify-function signature="margin()const" remove="all"/> <!--### Obsolete in 4.3-->
   </object-type>
-	  -->
+
   <object-type name="QStackedLayout">
     <modify-function signature="insertWidget(int,QWidget*)">
       <modify-argument index="2">
@@ -2425,7 +2427,7 @@ PyObject* constScanLine(QImage* image, int line) {
 
   <object-type name="QScrollBar">
   </object-type>
-  <!--
+
   <object-type name="QClipboard">
     <extra-includes>
         <include file-name="QImage" location="global"/>
@@ -2441,7 +2443,7 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="event(QEvent*)" remove="all"/>
     <modify-function signature="connectNotify(const char*)" remove="all"/>
   </object-type>
-  -->
+
   <object-type name="QAbstractScrollArea">
     <modify-function signature="setupViewport(QWidget *)" access="non-final"/>
 
@@ -2987,11 +2989,10 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QGraphicsAnchor"/>
   <object-type name="QGraphicsEffect"/>
   <object-type name="QStaticText"/>
-	  <!--
-	  <object-type name="QGraphicsObject">
+  <object-type name="QGraphicsObject">
+    <!-- Duplicate function to QObject::children() to override accidental shadowing which is not present in Jambi -->
     <modify-function signature="children()const" remove="all"/>
   </object-type>
-	  -->
   <object-type name="QGraphicsBlurEffect"/>
   <object-type name="QGraphicsColorizeEffect"/>
   <object-type name="QGraphicsDropShadowEffect"/>
@@ -3046,11 +3047,11 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QPageSize"/>
   <object-type name="QPdfWriter"/>
   <object-type name="QRegularExpressionValidator"/>
-  <!--<object-type name="QScreen"/>-->
+  <object-type name="QScreen"/>
   <object-type name="QStyleHints"/>
   <object-type name="QTouchDevice"/>
   <object-type name="QWindow"/>
-	  <!-- <object-type name="QScroller"/>-->
+  <object-type name="QScroller"/>
   <object-type name="QScrollerProperties"/>
 
   <object-type name="QGuiApplication">
@@ -3073,7 +3074,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QKeySequenceEdit"/>
   <object-type name="QOpenGLWindow"/>
   <object-type name="QOpenGLWidget"/>
-	  <!-- <object-type name="QPaintDeviceWindow"/>-->
+  <object-type name="QPaintDeviceWindow"/>
   <object-type name="QRasterWindow"/>
   <object-type name="QPixelFormat"/>
   <value-type name="QRgba64">
