@@ -884,6 +884,7 @@ private:
 
   bool _hadError;
   bool _systemExitExceptionHandlerEnabled;
+  PythonQtObjectPtr _qtSlotsName;
 
   friend class PythonQt;
 };
