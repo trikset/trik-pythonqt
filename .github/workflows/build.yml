@@ -85,17 +85,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        container_os: ['centos']
-        container_os_version: ['7']
-        container_os_python_package: ['python-debug']
+        container_os: ['rockylinux']
+        container_os_version: ['9']
+        container_os_python_package: ['python-devel']
         configuration: ['debug', 'release']        
         pythonqtall-config: ['PythonQtCore PythonQtGui PythonQtMultimedia']
-        include:
-          - container_os: 'rockylinux'
-            container_os_version: '9'
-            container_os_python_package: 'python3-devel'
-            configuration: 'release'
-            pythonqtall-config: 'PythonQtCore PythonQtGui PythonQtMultimedia'
 
     runs-on: ubuntu-latest
     container: '${{ matrix.container_os }}:${{ matrix.container_os_version }}'
