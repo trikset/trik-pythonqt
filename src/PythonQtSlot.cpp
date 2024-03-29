@@ -540,7 +540,7 @@ meth_get__doc__(PythonQtSlotFunctionObject * m, void * /*closure*/)
 	if (!names.at(i - 1).isEmpty()) {
 	  doc += names.at(i - 1);
 	} else {
-      doc += QString('a' + i - firstArgOffset).toLatin1();
+      doc += QString(QChar((char) ('a' + i - firstArgOffset))).toLatin1();
 	}
   }
   doc += ")";
@@ -568,12 +568,12 @@ meth_get__doc__(PythonQtSlotFunctionObject * m, void * /*closure*/)
   } else {
 	PythonQtClassInfo* returnTypeClassInfo = PythonQt::priv()->getClassInfo(returnType);
     // a class wrapper needs not necessarily to exist
-       if (returnTypeClassInfo && returnTypeClassInfo->pythonQtClassWrapper()) {
-	  PyObject* s = PyObject_GetAttrString(returnTypeClassInfo->pythonQtClassWrapper(), "__module__");
-	  if (s) {
-		pyReturnType = QByteArray(PyString_AsString(s)) + "." + returnType;
-		Py_DECREF(s);
-	  }
+	  if (returnTypeClassInfo && returnTypeClassInfo->pythonQtClassWrapper()) {
+		  PyObject* s = PyObject_GetAttrString(returnTypeClassInfo->pythonQtClassWrapper(), "__module__");
+		  if (s) {
+			pyReturnType = QByteArray(PyString_AsString(s)) + "." + returnType;
+			Py_DECREF(s);
+		  }
 	}
   }
   if (!pyReturnType.isEmpty()) {

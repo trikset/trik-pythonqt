@@ -222,7 +222,7 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 {
   PythonQtImporter *self = (PythonQtImporter *)obj;
   PyObject *code = nullptr, *mod = nullptr, *dict = nullptr;
-  char *fullname;
+  char *fullname = NULL;
 
   if (!PyArg_ParseTuple(args, "s:PythonQtImporter.load_module",
 			&fullname))
@@ -289,7 +289,9 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 	  // The package attribute is needed to resolve the package name if it is referenced as '.'. For example,
 	  // when importing the encodings package, there is an import statement 'from . import aliases'. This import
 	  // would fail when reloading the encodings package with importlib.
-	  err = PyDict_SetItemString(dict, "__package__", PyUnicode_FromString(fullname));
+	  PyObject* fullnameObj = PyUnicode_FromString(fullname);
+	  err = PyDict_SetItemString(dict, "__package__", fullnameObj);
+	  Py_XDECREF(fullnameObj);
 	  if (err != 0) {
 		Py_DECREF(code);
 		Py_DECREF(mod);
@@ -297,7 +299,6 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 	  }
 #endif
 	}
-
 #ifdef PY3K
 	PyObject* fullnameObj = PyUnicode_FromString(fullname);
 	PyObject* fullPathObj = PythonQtConv::QStringToPyObject(fullPath);
@@ -338,7 +339,7 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 	  QVariantList list = result.toList();
 	  if (list.count()==3) {
 		// We prepend the full module name (including package prefix)
-		list.prepend(fullname);
+        list.prepend(QString(fullname));
 #ifdef __linux
   #ifdef _DEBUG
 		// imp_find_module() does not respect the debug suffix '_d' on Linux,
@@ -716,6 +717,18 @@ QString PythonQtImport::getSourceFilename(const QString& cacheFile)
   return pyFilename;
 }
 
+namespace
+{
+    qint64 toSecsSinceEpoch(const QDateTime& time)
+  {
+#if QT_VERSION < 0x060000
+    return time.toTime_t();
+#else
+    return time.toSecsSinceEpoch();
+#endif
+  }
+}
+
 /* Return the code object for the module named by 'fullname' from the
    Zip archive as a new reference. */
 PyObject *
@@ -768,7 +781,7 @@ PythonQtImport::getMTimeOfSource(const QString& path)
   if (PythonQt::importInterface()->exists(path2)) {
 	QDateTime t = PythonQt::importInterface()->lastModifiedDate(path2);
 	if (t.isValid()) {
-	  mtime = t.toTime_t();
+      mtime = toSecsSinceEpoch(t);
 	}
   }
 
@@ -897,7 +910,7 @@ void PythonQtImport::init()
   }
   first = false;
 
-  PyObject *mod;
+  PyObject *mod {};
 
   if (PyType_Ready(&PythonQtImporter_Type) < 0)
 	return;
@@ -920,19 +933,22 @@ void PythonQtImport::init()
 #ifdef PY3K
   mod = PyModule_Create(&PythonQtImport_def);
 #else
-  mod = Py_InitModule4("PythonQtImport", nullptr, mlabimport_doc,
-		   nullptr, PYTHON_API_VERSION);
+  mod = Py_InitModule4("PythonQtImport", NULL, mlabimport_doc,
+           NULL, PYTHON_API_VERSION);
 #endif
 
   PythonQtImportError = PyErr_NewException(const_cast<char*>("PythonQtImport.PythonQtImportError"),
 			  PyExc_ImportError, nullptr);
-  if (PythonQtImportError == nullptr)
+  if (PythonQtImportError == nullptr) {
+	Py_XDECREF(mod);
 	return;
+  }
 
   Py_INCREF(PythonQtImportError);
   if (PyModule_AddObject(mod, "PythonQtImportError",
 			 PythonQtImportError) < 0) {
 	Py_DECREF(PythonQtImportError);
+	Py_DECREF(mod);
 	return;
   }
 
@@ -940,6 +956,7 @@ void PythonQtImport::init()
   if (PyModule_AddObject(mod, "PythonQtImporter",
 			 (PyObject *)&PythonQtImporter_Type) < 0) {
 	Py_DECREF(&PythonQtImporter_Type);
+	Py_DECREF(mod);
 	return;
    }
 
@@ -948,4 +965,5 @@ void PythonQtImport::init()
   PyObject* path_hooks = PySys_GetObject(const_cast<char*>("path_hooks"));
   // insert our importer before all other loaders
   PyList_Insert(path_hooks, 0, classobj);
+  Py_DECREF(mod);
 }

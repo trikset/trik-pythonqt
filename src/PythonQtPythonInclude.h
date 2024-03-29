@@ -38,10 +38,6 @@
 #undef _POSIX_C_SOURCE
 #endif
 
-#ifdef _POSIX_THREADS
-#undef _POSIX_THREADS
-#endif
-
 #ifdef _XOPEN_SOURCE
 #undef _XOPEN_SOURCE
 #endif
