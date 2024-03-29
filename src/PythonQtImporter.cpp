@@ -765,7 +765,7 @@ PythonQtImport::getCodeFromData(const QString& path, int isbytecode,int /*ispack
 	  QString cacheFilename =  getCacheFilename(path, /*isOptimizedFilename=*/false);
 	#if !defined(WIN32) || defined(_MSC_VER)
 	  // If Python was build with MSVC, then we can crash on FILE* operations when compiling this code with GCC
-	  writeCompiledModule((PyCodeObject*)code, cacheFilename, time.toTime_t(), /*sourceSize=*/qdata.length());
+	  writeCompiledModule((PyCodeObject*)code, cacheFilename, toSecsSinceEpoch(time), /*sourceSize=*/qdata.length());
 	#endif
 	}
   }

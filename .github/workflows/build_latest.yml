@@ -64,7 +64,7 @@ jobs:
       run: |
         cd generator
         qmake -r generator.pro CONFIG+=release CONFIG-=debug_and_release CONFIG+=force_debug_info \
-        CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address
+        CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address CONFIG+=c++latest
         make -j $(nproc)
 
     - name: Build generator Windows
@@ -72,7 +72,7 @@ jobs:
       if: ${{ matrix.os == 'windows' }}
       run: |
         cd generator
-        qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target generator.pro
+        qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target CONFIG+=c++latest generator.pro
         nmake
 
     - name: Generate Wrappers
@@ -96,7 +96,7 @@ jobs:
         echo ======= SYSTEM INFO ========
         uname -a; gcc --version | grep "gcc"; python3 --version; qmake --version
         echo ============================
-        qmake -r PythonQt.pro CONFIG+=release CONFIG+=force_debug_info \
+        qmake -r PythonQt.pro CONFIG+=release CONFIG+=force_debug_info CONFIG+=c++latest \
         PYTHONQTALL_CONFIG="${{ matrix.pythonqtall-config }}" \
         CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
         PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
@@ -112,7 +112,7 @@ jobs:
       run: |
         qmake -query
         python --version
-        qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target ^
+        qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target CONFIG+=c++latest ^
            CONFIG+=sanitizer CONFIG+=sanitize_address ^
            "PYTHONQTALL_CONFIG=${{ matrix.pythonqtall-config }}" ^
            "PYTHON_PATH=%pythonLocation%" ^
