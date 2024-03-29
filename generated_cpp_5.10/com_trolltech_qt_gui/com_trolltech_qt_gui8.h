@@ -3,7 +3,7 @@
 #include <QVariant>
 #include <qbytearray.h>
 #include <qcoreevent.h>
-#include <qevent.h>
+#include <qlist.h>
 #include <qmetaobject.h>
 #include <qobject.h>
 #include <qstylehints.h>
@@ -17,12 +17,12 @@
 class PythonQtShell_QStyleHintReturn : public QStyleHintReturn
 {
 public:
-    PythonQtShell_QStyleHintReturn(int  version = QStyleOption::Version, int  type = SH_Default):QStyleHintReturn(version, type),_wrapper(NULL) {};
+    PythonQtShell_QStyleHintReturn(int  version = QStyleOption::Version, int  type = SH_Default):QStyleHintReturn(version, type),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleHintReturn();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleHintReturn : public QObject
@@ -37,7 +37,7 @@ enum StyleOptionVersion{
   Version = QStyleHintReturn::Version};
 public slots:
 QStyleHintReturn* new_QStyleHintReturn(int  version = QStyleOption::Version, int  type = SH_Default);
-void delete_QStyleHintReturn(QStyleHintReturn* obj) { delete obj; } 
+void delete_QStyleHintReturn(QStyleHintReturn* obj) { delete obj; }
 void py_set_type(QStyleHintReturn* theWrappedObject, int  type){ theWrappedObject->type = type; }
 int  py_get_type(QStyleHintReturn* theWrappedObject){ return theWrappedObject->type; }
 void py_set_version(QStyleHintReturn* theWrappedObject, int  version){ theWrappedObject->version = version; }
@@ -51,12 +51,12 @@ int  py_get_version(QStyleHintReturn* theWrappedObject){ return theWrappedObject
 class PythonQtShell_QStyleHintReturnMask : public QStyleHintReturnMask
 {
 public:
-    PythonQtShell_QStyleHintReturnMask():QStyleHintReturnMask(),_wrapper(NULL) {};
+    PythonQtShell_QStyleHintReturnMask():QStyleHintReturnMask(),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleHintReturnMask();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleHintReturnMask : public QObject
@@ -69,7 +69,7 @@ enum StyleOptionVersion{
   Version = QStyleHintReturnMask::Version};
 public slots:
 QStyleHintReturnMask* new_QStyleHintReturnMask();
-void delete_QStyleHintReturnMask(QStyleHintReturnMask* obj) { delete obj; } 
+void delete_QStyleHintReturnMask(QStyleHintReturnMask* obj) { delete obj; }
 void py_set_region(QStyleHintReturnMask* theWrappedObject, QRegion  region){ theWrappedObject->region = region; }
 QRegion  py_get_region(QStyleHintReturnMask* theWrappedObject){ return theWrappedObject->region; }
 };
@@ -81,12 +81,12 @@ QRegion  py_get_region(QStyleHintReturnMask* theWrappedObject){ return theWrappe
 class PythonQtShell_QStyleHintReturnVariant : public QStyleHintReturnVariant
 {
 public:
-    PythonQtShell_QStyleHintReturnVariant():QStyleHintReturnVariant(),_wrapper(NULL) {};
+    PythonQtShell_QStyleHintReturnVariant():QStyleHintReturnVariant(),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleHintReturnVariant();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleHintReturnVariant : public QObject
@@ -99,7 +99,7 @@ enum StyleOptionVersion{
   Version = QStyleHintReturnVariant::Version};
 public slots:
 QStyleHintReturnVariant* new_QStyleHintReturnVariant();
-void delete_QStyleHintReturnVariant(QStyleHintReturnVariant* obj) { delete obj; } 
+void delete_QStyleHintReturnVariant(QStyleHintReturnVariant* obj) { delete obj; }
 void py_set_variant(QStyleHintReturnVariant* theWrappedObject, QVariant  variant){ theWrappedObject->variant = variant; }
 QVariant  py_get_variant(QStyleHintReturnVariant* theWrappedObject){ return theWrappedObject->variant; }
 };
@@ -112,7 +112,7 @@ class PythonQtWrapper_QStyleHints : public QObject
 { Q_OBJECT
 public:
 public slots:
-void delete_QStyleHints(QStyleHints* obj) { delete obj; } 
+void delete_QStyleHints(QStyleHints* obj) { delete obj; }
    int  cursorFlashTime(QStyleHints* theWrappedObject) const;
    qreal  fontSmoothingGamma(QStyleHints* theWrappedObject) const;
    int  keyboardAutoRepeatRate(QStyleHints* theWrappedObject) const;
@@ -151,13 +151,13 @@ void delete_QStyleHints(QStyleHints* obj) { delete obj; }
 class PythonQtShell_QStyleOption : public QStyleOption
 {
 public:
-    PythonQtShell_QStyleOption(const QStyleOption&  other):QStyleOption(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOption(int  version = QStyleOption::Version, int  type = SO_Default):QStyleOption(version, type),_wrapper(NULL) {};
+    PythonQtShell_QStyleOption(const QStyleOption&  other):QStyleOption(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOption(int  version = QStyleOption::Version, int  type = SO_Default):QStyleOption(version, type),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOption();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOption : public QObject
@@ -173,7 +173,7 @@ enum StyleOptionVersion{
 public slots:
 QStyleOption* new_QStyleOption(const QStyleOption&  other);
 QStyleOption* new_QStyleOption(int  version = QStyleOption::Version, int  type = SO_Default);
-void delete_QStyleOption(QStyleOption* obj) { delete obj; } 
+void delete_QStyleOption(QStyleOption* obj) { delete obj; }
    void initFrom(QStyleOption* theWrappedObject, const QWidget*  w);
     QString py_toString(QStyleOption*);
 void py_set_direction(QStyleOption* theWrappedObject, Qt::LayoutDirection  direction){ theWrappedObject->direction = direction; }
@@ -201,14 +201,14 @@ int  py_get_version(QStyleOption* theWrappedObject){ return theWrappedObject->ve
 class PythonQtShell_QStyleOptionButton : public QStyleOptionButton
 {
 public:
-    PythonQtShell_QStyleOptionButton():QStyleOptionButton(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionButton(const QStyleOptionButton&  other):QStyleOptionButton(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionButton(int  version):QStyleOptionButton(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionButton():QStyleOptionButton(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionButton(const QStyleOptionButton&  other):QStyleOptionButton(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionButton(int  version):QStyleOptionButton(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionButton();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionButton : public QObject
@@ -227,7 +227,7 @@ public slots:
 QStyleOptionButton* new_QStyleOptionButton();
 QStyleOptionButton* new_QStyleOptionButton(const QStyleOptionButton&  other);
 QStyleOptionButton* new_QStyleOptionButton(int  version);
-void delete_QStyleOptionButton(QStyleOptionButton* obj) { delete obj; } 
+void delete_QStyleOptionButton(QStyleOptionButton* obj) { delete obj; }
 void py_set_features(QStyleOptionButton* theWrappedObject, QStyleOptionButton::ButtonFeatures  features){ theWrappedObject->features = features; }
 QStyleOptionButton::ButtonFeatures  py_get_features(QStyleOptionButton* theWrappedObject){ return theWrappedObject->features; }
 void py_set_icon(QStyleOptionButton* theWrappedObject, QIcon  icon){ theWrappedObject->icon = icon; }
@@ -245,14 +245,14 @@ QString  py_get_text(QStyleOptionButton* theWrappedObject){ return theWrappedObj
 class PythonQtShell_QStyleOptionComboBox : public QStyleOptionComboBox
 {
 public:
-    PythonQtShell_QStyleOptionComboBox():QStyleOptionComboBox(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionComboBox(const QStyleOptionComboBox&  other):QStyleOptionComboBox(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionComboBox(int  version):QStyleOptionComboBox(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionComboBox():QStyleOptionComboBox(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionComboBox(const QStyleOptionComboBox&  other):QStyleOptionComboBox(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionComboBox(int  version):QStyleOptionComboBox(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionComboBox();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionComboBox : public QObject
@@ -267,7 +267,7 @@ public slots:
 QStyleOptionComboBox* new_QStyleOptionComboBox();
 QStyleOptionComboBox* new_QStyleOptionComboBox(const QStyleOptionComboBox&  other);
 QStyleOptionComboBox* new_QStyleOptionComboBox(int  version);
-void delete_QStyleOptionComboBox(QStyleOptionComboBox* obj) { delete obj; } 
+void delete_QStyleOptionComboBox(QStyleOptionComboBox* obj) { delete obj; }
 void py_set_currentIcon(QStyleOptionComboBox* theWrappedObject, QIcon  currentIcon){ theWrappedObject->currentIcon = currentIcon; }
 QIcon  py_get_currentIcon(QStyleOptionComboBox* theWrappedObject){ return theWrappedObject->currentIcon; }
 void py_set_currentText(QStyleOptionComboBox* theWrappedObject, QString  currentText){ theWrappedObject->currentText = currentText; }
@@ -289,14 +289,14 @@ QRect  py_get_popupRect(QStyleOptionComboBox* theWrappedObject){ return theWrapp
 class PythonQtShell_QStyleOptionDockWidget : public QStyleOptionDockWidget
 {
 public:
-    PythonQtShell_QStyleOptionDockWidget():QStyleOptionDockWidget(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionDockWidget(const QStyleOptionDockWidget&  other):QStyleOptionDockWidget(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionDockWidget(int  version):QStyleOptionDockWidget(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionDockWidget():QStyleOptionDockWidget(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionDockWidget(const QStyleOptionDockWidget&  other):QStyleOptionDockWidget(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionDockWidget(int  version):QStyleOptionDockWidget(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionDockWidget();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionDockWidget : public QObject
@@ -311,7 +311,7 @@ public slots:
 QStyleOptionDockWidget* new_QStyleOptionDockWidget();
 QStyleOptionDockWidget* new_QStyleOptionDockWidget(const QStyleOptionDockWidget&  other);
 QStyleOptionDockWidget* new_QStyleOptionDockWidget(int  version);
-void delete_QStyleOptionDockWidget(QStyleOptionDockWidget* obj) { delete obj; } 
+void delete_QStyleOptionDockWidget(QStyleOptionDockWidget* obj) { delete obj; }
 void py_set_closable(QStyleOptionDockWidget* theWrappedObject, bool  closable){ theWrappedObject->closable = closable; }
 bool  py_get_closable(QStyleOptionDockWidget* theWrappedObject){ return theWrappedObject->closable; }
 void py_set_floatable(QStyleOptionDockWidget* theWrappedObject, bool  floatable){ theWrappedObject->floatable = floatable; }
@@ -331,12 +331,12 @@ bool  py_get_verticalTitleBar(QStyleOptionDockWidget* theWrappedObject){ return 
 class PythonQtShell_QStyleOptionDockWidgetV2 : public QStyleOptionDockWidgetV2
 {
 public:
-    PythonQtShell_QStyleOptionDockWidgetV2():QStyleOptionDockWidgetV2(),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionDockWidgetV2():QStyleOptionDockWidgetV2(),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionDockWidgetV2();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionDockWidgetV2 : public QObject
@@ -348,7 +348,7 @@ QStyleOptionDockWidgetV2* new_QStyleOptionDockWidgetV2(const QStyleOptionDockWid
 PythonQtShell_QStyleOptionDockWidgetV2* a = new PythonQtShell_QStyleOptionDockWidgetV2();
 *((QStyleOptionDockWidgetV2*)a) = other;
 return a; }
-void delete_QStyleOptionDockWidgetV2(QStyleOptionDockWidgetV2* obj) { delete obj; } 
+void delete_QStyleOptionDockWidgetV2(QStyleOptionDockWidgetV2* obj) { delete obj; }
 };
 
 
@@ -358,14 +358,14 @@ void delete_QStyleOptionDockWidgetV2(QStyleOptionDockWidgetV2* obj) { delete obj
 class PythonQtShell_QStyleOptionFocusRect : public QStyleOptionFocusRect
 {
 public:
-    PythonQtShell_QStyleOptionFocusRect():QStyleOptionFocusRect(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionFocusRect(const QStyleOptionFocusRect&  other):QStyleOptionFocusRect(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionFocusRect(int  version):QStyleOptionFocusRect(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionFocusRect():QStyleOptionFocusRect(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionFocusRect(const QStyleOptionFocusRect&  other):QStyleOptionFocusRect(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionFocusRect(int  version):QStyleOptionFocusRect(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionFocusRect();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionFocusRect : public QObject
@@ -380,7 +380,7 @@ public slots:
 QStyleOptionFocusRect* new_QStyleOptionFocusRect();
 QStyleOptionFocusRect* new_QStyleOptionFocusRect(const QStyleOptionFocusRect&  other);
 QStyleOptionFocusRect* new_QStyleOptionFocusRect(int  version);
-void delete_QStyleOptionFocusRect(QStyleOptionFocusRect* obj) { delete obj; } 
+void delete_QStyleOptionFocusRect(QStyleOptionFocusRect* obj) { delete obj; }
 void py_set_backgroundColor(QStyleOptionFocusRect* theWrappedObject, QColor  backgroundColor){ theWrappedObject->backgroundColor = backgroundColor; }
 QColor  py_get_backgroundColor(QStyleOptionFocusRect* theWrappedObject){ return theWrappedObject->backgroundColor; }
 };
@@ -392,14 +392,14 @@ QColor  py_get_backgroundColor(QStyleOptionFocusRect* theWrappedObject){ return 
 class PythonQtShell_QStyleOptionFrame : public QStyleOptionFrame
 {
 public:
-    PythonQtShell_QStyleOptionFrame():QStyleOptionFrame(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionFrame(const QStyleOptionFrame&  other):QStyleOptionFrame(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionFrame(int  version):QStyleOptionFrame(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionFrame():QStyleOptionFrame(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionFrame(const QStyleOptionFrame&  other):QStyleOptionFrame(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionFrame(int  version):QStyleOptionFrame(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionFrame();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionFrame : public QObject
@@ -418,7 +418,7 @@ public slots:
 QStyleOptionFrame* new_QStyleOptionFrame();
 QStyleOptionFrame* new_QStyleOptionFrame(const QStyleOptionFrame&  other);
 QStyleOptionFrame* new_QStyleOptionFrame(int  version);
-void delete_QStyleOptionFrame(QStyleOptionFrame* obj) { delete obj; } 
+void delete_QStyleOptionFrame(QStyleOptionFrame* obj) { delete obj; }
 void py_set_features(QStyleOptionFrame* theWrappedObject, QStyleOptionFrame::FrameFeatures  features){ theWrappedObject->features = features; }
 QStyleOptionFrame::FrameFeatures  py_get_features(QStyleOptionFrame* theWrappedObject){ return theWrappedObject->features; }
 void py_set_frameShape(QStyleOptionFrame* theWrappedObject, QFrame::Shape  frameShape){ theWrappedObject->frameShape = frameShape; }
@@ -436,12 +436,12 @@ int  py_get_midLineWidth(QStyleOptionFrame* theWrappedObject){ return theWrapped
 class PythonQtShell_QStyleOptionFrameV2 : public QStyleOptionFrameV2
 {
 public:
-    PythonQtShell_QStyleOptionFrameV2():QStyleOptionFrameV2(),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionFrameV2():QStyleOptionFrameV2(),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionFrameV2();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionFrameV2 : public QObject
@@ -453,7 +453,7 @@ QStyleOptionFrameV2* new_QStyleOptionFrameV2(const QStyleOptionFrameV2& other) {
 PythonQtShell_QStyleOptionFrameV2* a = new PythonQtShell_QStyleOptionFrameV2();
 *((QStyleOptionFrameV2*)a) = other;
 return a; }
-void delete_QStyleOptionFrameV2(QStyleOptionFrameV2* obj) { delete obj; } 
+void delete_QStyleOptionFrameV2(QStyleOptionFrameV2* obj) { delete obj; }
 };
 
 
@@ -463,12 +463,12 @@ void delete_QStyleOptionFrameV2(QStyleOptionFrameV2* obj) { delete obj; }
 class PythonQtShell_QStyleOptionFrameV3 : public QStyleOptionFrameV3
 {
 public:
-    PythonQtShell_QStyleOptionFrameV3():QStyleOptionFrameV3(),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionFrameV3():QStyleOptionFrameV3(),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionFrameV3();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionFrameV3 : public QObject
@@ -480,7 +480,7 @@ QStyleOptionFrameV3* new_QStyleOptionFrameV3(const QStyleOptionFrameV3& other) {
 PythonQtShell_QStyleOptionFrameV3* a = new PythonQtShell_QStyleOptionFrameV3();
 *((QStyleOptionFrameV3*)a) = other;
 return a; }
-void delete_QStyleOptionFrameV3(QStyleOptionFrameV3* obj) { delete obj; } 
+void delete_QStyleOptionFrameV3(QStyleOptionFrameV3* obj) { delete obj; }
 };
 
 
@@ -490,14 +490,14 @@ void delete_QStyleOptionFrameV3(QStyleOptionFrameV3* obj) { delete obj; }
 class PythonQtShell_QStyleOptionGraphicsItem : public QStyleOptionGraphicsItem
 {
 public:
-    PythonQtShell_QStyleOptionGraphicsItem():QStyleOptionGraphicsItem(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionGraphicsItem(const QStyleOptionGraphicsItem&  other):QStyleOptionGraphicsItem(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionGraphicsItem(int  version):QStyleOptionGraphicsItem(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionGraphicsItem():QStyleOptionGraphicsItem(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionGraphicsItem(const QStyleOptionGraphicsItem&  other):QStyleOptionGraphicsItem(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionGraphicsItem(int  version):QStyleOptionGraphicsItem(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionGraphicsItem();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionGraphicsItem : public QObject
@@ -512,7 +512,7 @@ public slots:
 QStyleOptionGraphicsItem* new_QStyleOptionGraphicsItem();
 QStyleOptionGraphicsItem* new_QStyleOptionGraphicsItem(const QStyleOptionGraphicsItem&  other);
 QStyleOptionGraphicsItem* new_QStyleOptionGraphicsItem(int  version);
-void delete_QStyleOptionGraphicsItem(QStyleOptionGraphicsItem* obj) { delete obj; } 
+void delete_QStyleOptionGraphicsItem(QStyleOptionGraphicsItem* obj) { delete obj; }
    qreal  static_QStyleOptionGraphicsItem_levelOfDetailFromTransform(const QTransform&  worldTransform);
 void py_set_exposedRect(QStyleOptionGraphicsItem* theWrappedObject, QRectF  exposedRect){ theWrappedObject->exposedRect = exposedRect; }
 QRectF  py_get_exposedRect(QStyleOptionGraphicsItem* theWrappedObject){ return theWrappedObject->exposedRect; }
@@ -529,14 +529,14 @@ QMatrix  py_get_matrix(QStyleOptionGraphicsItem* theWrappedObject){ return theWr
 class PythonQtShell_QStyleOptionGroupBox : public QStyleOptionGroupBox
 {
 public:
-    PythonQtShell_QStyleOptionGroupBox():QStyleOptionGroupBox(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionGroupBox(const QStyleOptionGroupBox&  other):QStyleOptionGroupBox(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionGroupBox(int  version):QStyleOptionGroupBox(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionGroupBox():QStyleOptionGroupBox(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionGroupBox(const QStyleOptionGroupBox&  other):QStyleOptionGroupBox(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionGroupBox(int  version):QStyleOptionGroupBox(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionGroupBox();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionGroupBox : public QObject
@@ -551,7 +551,7 @@ public slots:
 QStyleOptionGroupBox* new_QStyleOptionGroupBox();
 QStyleOptionGroupBox* new_QStyleOptionGroupBox(const QStyleOptionGroupBox&  other);
 QStyleOptionGroupBox* new_QStyleOptionGroupBox(int  version);
-void delete_QStyleOptionGroupBox(QStyleOptionGroupBox* obj) { delete obj; } 
+void delete_QStyleOptionGroupBox(QStyleOptionGroupBox* obj) { delete obj; }
 void py_set_features(QStyleOptionGroupBox* theWrappedObject, QStyleOptionFrame::FrameFeatures  features){ theWrappedObject->features = features; }
 QStyleOptionFrame::FrameFeatures  py_get_features(QStyleOptionGroupBox* theWrappedObject){ return theWrappedObject->features; }
 void py_set_lineWidth(QStyleOptionGroupBox* theWrappedObject, int  lineWidth){ theWrappedObject->lineWidth = lineWidth; }
@@ -573,14 +573,14 @@ QColor  py_get_textColor(QStyleOptionGroupBox* theWrappedObject){ return theWrap
 class PythonQtShell_QStyleOptionHeader : public QStyleOptionHeader
 {
 public:
-    PythonQtShell_QStyleOptionHeader():QStyleOptionHeader(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionHeader(const QStyleOptionHeader&  other):QStyleOptionHeader(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionHeader(int  version):QStyleOptionHeader(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionHeader():QStyleOptionHeader(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionHeader(const QStyleOptionHeader&  other):QStyleOptionHeader(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionHeader(int  version):QStyleOptionHeader(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionHeader();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionHeader : public QObject
@@ -601,7 +601,7 @@ public slots:
 QStyleOptionHeader* new_QStyleOptionHeader();
 QStyleOptionHeader* new_QStyleOptionHeader(const QStyleOptionHeader&  other);
 QStyleOptionHeader* new_QStyleOptionHeader(int  version);
-void delete_QStyleOptionHeader(QStyleOptionHeader* obj) { delete obj; } 
+void delete_QStyleOptionHeader(QStyleOptionHeader* obj) { delete obj; }
 void py_set_icon(QStyleOptionHeader* theWrappedObject, QIcon  icon){ theWrappedObject->icon = icon; }
 QIcon  py_get_icon(QStyleOptionHeader* theWrappedObject){ return theWrappedObject->icon; }
 void py_set_iconAlignment(QStyleOptionHeader* theWrappedObject, Qt::Alignment  iconAlignment){ theWrappedObject->iconAlignment = iconAlignment; }
@@ -628,14 +628,14 @@ Qt::Alignment  py_get_textAlignment(QStyleOptionHeader* theWrappedObject){ retur
 class PythonQtShell_QStyleOptionMenuItem : public QStyleOptionMenuItem
 {
 public:
-    PythonQtShell_QStyleOptionMenuItem():QStyleOptionMenuItem(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionMenuItem(const QStyleOptionMenuItem&  other):QStyleOptionMenuItem(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionMenuItem(int  version):QStyleOptionMenuItem(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionMenuItem():QStyleOptionMenuItem(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionMenuItem(const QStyleOptionMenuItem&  other):QStyleOptionMenuItem(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionMenuItem(int  version):QStyleOptionMenuItem(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionMenuItem();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionMenuItem : public QObject
@@ -654,7 +654,7 @@ public slots:
 QStyleOptionMenuItem* new_QStyleOptionMenuItem();
 QStyleOptionMenuItem* new_QStyleOptionMenuItem(const QStyleOptionMenuItem&  other);
 QStyleOptionMenuItem* new_QStyleOptionMenuItem(int  version);
-void delete_QStyleOptionMenuItem(QStyleOptionMenuItem* obj) { delete obj; } 
+void delete_QStyleOptionMenuItem(QStyleOptionMenuItem* obj) { delete obj; }
 void py_set_checkType(QStyleOptionMenuItem* theWrappedObject, QStyleOptionMenuItem::CheckType  checkType){ theWrappedObject->checkType = checkType; }
 QStyleOptionMenuItem::CheckType  py_get_checkType(QStyleOptionMenuItem* theWrappedObject){ return theWrappedObject->checkType; }
 void py_set_checked(QStyleOptionMenuItem* theWrappedObject, bool  checked){ theWrappedObject->checked = checked; }
@@ -684,14 +684,14 @@ QString  py_get_text(QStyleOptionMenuItem* theWrappedObject){ return theWrappedO
 class PythonQtShell_QStyleOptionProgressBar : public QStyleOptionProgressBar
 {
 public:
-    PythonQtShell_QStyleOptionProgressBar():QStyleOptionProgressBar(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionProgressBar(const QStyleOptionProgressBar&  other):QStyleOptionProgressBar(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionProgressBar(int  version):QStyleOptionProgressBar(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionProgressBar():QStyleOptionProgressBar(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionProgressBar(const QStyleOptionProgressBar&  other):QStyleOptionProgressBar(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionProgressBar(int  version):QStyleOptionProgressBar(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionProgressBar();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionProgressBar : public QObject
@@ -706,7 +706,7 @@ public slots:
 QStyleOptionProgressBar* new_QStyleOptionProgressBar();
 QStyleOptionProgressBar* new_QStyleOptionProgressBar(const QStyleOptionProgressBar&  other);
 QStyleOptionProgressBar* new_QStyleOptionProgressBar(int  version);
-void delete_QStyleOptionProgressBar(QStyleOptionProgressBar* obj) { delete obj; } 
+void delete_QStyleOptionProgressBar(QStyleOptionProgressBar* obj) { delete obj; }
 void py_set_bottomToTop(QStyleOptionProgressBar* theWrappedObject, bool  bottomToTop){ theWrappedObject->bottomToTop = bottomToTop; }
 bool  py_get_bottomToTop(QStyleOptionProgressBar* theWrappedObject){ return theWrappedObject->bottomToTop; }
 void py_set_invertedAppearance(QStyleOptionProgressBar* theWrappedObject, bool  invertedAppearance){ theWrappedObject->invertedAppearance = invertedAppearance; }
@@ -734,12 +734,12 @@ bool  py_get_textVisible(QStyleOptionProgressBar* theWrappedObject){ return theW
 class PythonQtShell_QStyleOptionProgressBarV2 : public QStyleOptionProgressBarV2
 {
 public:
-    PythonQtShell_QStyleOptionProgressBarV2():QStyleOptionProgressBarV2(),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionProgressBarV2():QStyleOptionProgressBarV2(),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionProgressBarV2();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionProgressBarV2 : public QObject
@@ -751,7 +751,7 @@ QStyleOptionProgressBarV2* new_QStyleOptionProgressBarV2(const QStyleOptionProgr
 PythonQtShell_QStyleOptionProgressBarV2* a = new PythonQtShell_QStyleOptionProgressBarV2();
 *((QStyleOptionProgressBarV2*)a) = other;
 return a; }
-void delete_QStyleOptionProgressBarV2(QStyleOptionProgressBarV2* obj) { delete obj; } 
+void delete_QStyleOptionProgressBarV2(QStyleOptionProgressBarV2* obj) { delete obj; }
 };
 
 
@@ -761,14 +761,14 @@ void delete_QStyleOptionProgressBarV2(QStyleOptionProgressBarV2* obj) { delete o
 class PythonQtShell_QStyleOptionRubberBand : public QStyleOptionRubberBand
 {
 public:
-    PythonQtShell_QStyleOptionRubberBand():QStyleOptionRubberBand(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionRubberBand(const QStyleOptionRubberBand&  other):QStyleOptionRubberBand(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionRubberBand(int  version):QStyleOptionRubberBand(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionRubberBand():QStyleOptionRubberBand(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionRubberBand(const QStyleOptionRubberBand&  other):QStyleOptionRubberBand(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionRubberBand(int  version):QStyleOptionRubberBand(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionRubberBand();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionRubberBand : public QObject
@@ -783,7 +783,7 @@ public slots:
 QStyleOptionRubberBand* new_QStyleOptionRubberBand();
 QStyleOptionRubberBand* new_QStyleOptionRubberBand(const QStyleOptionRubberBand&  other);
 QStyleOptionRubberBand* new_QStyleOptionRubberBand(int  version);
-void delete_QStyleOptionRubberBand(QStyleOptionRubberBand* obj) { delete obj; } 
+void delete_QStyleOptionRubberBand(QStyleOptionRubberBand* obj) { delete obj; }
 void py_set_opaque(QStyleOptionRubberBand* theWrappedObject, bool  opaque){ theWrappedObject->opaque = opaque; }
 bool  py_get_opaque(QStyleOptionRubberBand* theWrappedObject){ return theWrappedObject->opaque; }
 void py_set_shape(QStyleOptionRubberBand* theWrappedObject, QRubberBand::Shape  shape){ theWrappedObject->shape = shape; }
@@ -797,14 +797,14 @@ QRubberBand::Shape  py_get_shape(QStyleOptionRubberBand* theWrappedObject){ retu
 class PythonQtShell_QStyleOptionSizeGrip : public QStyleOptionSizeGrip
 {
 public:
-    PythonQtShell_QStyleOptionSizeGrip():QStyleOptionSizeGrip(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionSizeGrip(const QStyleOptionSizeGrip&  other):QStyleOptionSizeGrip(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionSizeGrip(int  version):QStyleOptionSizeGrip(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionSizeGrip():QStyleOptionSizeGrip(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionSizeGrip(const QStyleOptionSizeGrip&  other):QStyleOptionSizeGrip(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionSizeGrip(int  version):QStyleOptionSizeGrip(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionSizeGrip();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionSizeGrip : public QObject
@@ -819,7 +819,7 @@ public slots:
 QStyleOptionSizeGrip* new_QStyleOptionSizeGrip();
 QStyleOptionSizeGrip* new_QStyleOptionSizeGrip(const QStyleOptionSizeGrip&  other);
 QStyleOptionSizeGrip* new_QStyleOptionSizeGrip(int  version);
-void delete_QStyleOptionSizeGrip(QStyleOptionSizeGrip* obj) { delete obj; } 
+void delete_QStyleOptionSizeGrip(QStyleOptionSizeGrip* obj) { delete obj; }
 void py_set_corner(QStyleOptionSizeGrip* theWrappedObject, Qt::Corner  corner){ theWrappedObject->corner = corner; }
 Qt::Corner  py_get_corner(QStyleOptionSizeGrip* theWrappedObject){ return theWrappedObject->corner; }
 };
@@ -831,14 +831,14 @@ Qt::Corner  py_get_corner(QStyleOptionSizeGrip* theWrappedObject){ return theWra
 class PythonQtShell_QStyleOptionSlider : public QStyleOptionSlider
 {
 public:
-    PythonQtShell_QStyleOptionSlider():QStyleOptionSlider(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionSlider(const QStyleOptionSlider&  other):QStyleOptionSlider(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionSlider(int  version):QStyleOptionSlider(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionSlider():QStyleOptionSlider(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionSlider(const QStyleOptionSlider&  other):QStyleOptionSlider(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionSlider(int  version):QStyleOptionSlider(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionSlider();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionSlider : public QObject
@@ -853,7 +853,7 @@ public slots:
 QStyleOptionSlider* new_QStyleOptionSlider();
 QStyleOptionSlider* new_QStyleOptionSlider(const QStyleOptionSlider&  other);
 QStyleOptionSlider* new_QStyleOptionSlider(int  version);
-void delete_QStyleOptionSlider(QStyleOptionSlider* obj) { delete obj; } 
+void delete_QStyleOptionSlider(QStyleOptionSlider* obj) { delete obj; }
 void py_set_dialWrapping(QStyleOptionSlider* theWrappedObject, bool  dialWrapping){ theWrappedObject->dialWrapping = dialWrapping; }
 bool  py_get_dialWrapping(QStyleOptionSlider* theWrappedObject){ return theWrappedObject->dialWrapping; }
 void py_set_maximum(QStyleOptionSlider* theWrappedObject, int  maximum){ theWrappedObject->maximum = maximum; }
@@ -887,14 +887,14 @@ bool  py_get_upsideDown(QStyleOptionSlider* theWrappedObject){ return theWrapped
 class PythonQtShell_QStyleOptionSpinBox : public QStyleOptionSpinBox
 {
 public:
-    PythonQtShell_QStyleOptionSpinBox():QStyleOptionSpinBox(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionSpinBox(const QStyleOptionSpinBox&  other):QStyleOptionSpinBox(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionSpinBox(int  version):QStyleOptionSpinBox(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionSpinBox():QStyleOptionSpinBox(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionSpinBox(const QStyleOptionSpinBox&  other):QStyleOptionSpinBox(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionSpinBox(int  version):QStyleOptionSpinBox(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionSpinBox();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionSpinBox : public QObject
@@ -909,7 +909,7 @@ public slots:
 QStyleOptionSpinBox* new_QStyleOptionSpinBox();
 QStyleOptionSpinBox* new_QStyleOptionSpinBox(const QStyleOptionSpinBox&  other);
 QStyleOptionSpinBox* new_QStyleOptionSpinBox(int  version);
-void delete_QStyleOptionSpinBox(QStyleOptionSpinBox* obj) { delete obj; } 
+void delete_QStyleOptionSpinBox(QStyleOptionSpinBox* obj) { delete obj; }
 void py_set_buttonSymbols(QStyleOptionSpinBox* theWrappedObject, QAbstractSpinBox::ButtonSymbols  buttonSymbols){ theWrappedObject->buttonSymbols = buttonSymbols; }
 QAbstractSpinBox::ButtonSymbols  py_get_buttonSymbols(QStyleOptionSpinBox* theWrappedObject){ return theWrappedObject->buttonSymbols; }
 void py_set_frame(QStyleOptionSpinBox* theWrappedObject, bool  frame){ theWrappedObject->frame = frame; }
@@ -925,14 +925,14 @@ QAbstractSpinBox::StepEnabled  py_get_stepEnabled(QStyleOptionSpinBox* theWrappe
 class PythonQtShell_QStyleOptionTab : public QStyleOptionTab
 {
 public:
-    PythonQtShell_QStyleOptionTab():QStyleOptionTab(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionTab(const QStyleOptionTab&  other):QStyleOptionTab(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionTab(int  version):QStyleOptionTab(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionTab():QStyleOptionTab(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionTab(const QStyleOptionTab&  other):QStyleOptionTab(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionTab(int  version):QStyleOptionTab(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionTab();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionTab : public QObject
@@ -958,7 +958,7 @@ public slots:
 QStyleOptionTab* new_QStyleOptionTab();
 QStyleOptionTab* new_QStyleOptionTab(const QStyleOptionTab&  other);
 QStyleOptionTab* new_QStyleOptionTab(int  version);
-void delete_QStyleOptionTab(QStyleOptionTab* obj) { delete obj; } 
+void delete_QStyleOptionTab(QStyleOptionTab* obj) { delete obj; }
 void py_set_cornerWidgets(QStyleOptionTab* theWrappedObject, QStyleOptionTab::CornerWidgets  cornerWidgets){ theWrappedObject->cornerWidgets = cornerWidgets; }
 QStyleOptionTab::CornerWidgets  py_get_cornerWidgets(QStyleOptionTab* theWrappedObject){ return theWrappedObject->cornerWidgets; }
 void py_set_documentMode(QStyleOptionTab* theWrappedObject, bool  documentMode){ theWrappedObject->documentMode = documentMode; }
@@ -992,14 +992,14 @@ QString  py_get_text(QStyleOptionTab* theWrappedObject){ return theWrappedObject
 class PythonQtShell_QStyleOptionTabBarBase : public QStyleOptionTabBarBase
 {
 public:
-    PythonQtShell_QStyleOptionTabBarBase():QStyleOptionTabBarBase(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionTabBarBase(const QStyleOptionTabBarBase&  other):QStyleOptionTabBarBase(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionTabBarBase(int  version):QStyleOptionTabBarBase(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionTabBarBase():QStyleOptionTabBarBase(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionTabBarBase(const QStyleOptionTabBarBase&  other):QStyleOptionTabBarBase(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionTabBarBase(int  version):QStyleOptionTabBarBase(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionTabBarBase();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionTabBarBase : public QObject
@@ -1014,7 +1014,7 @@ public slots:
 QStyleOptionTabBarBase* new_QStyleOptionTabBarBase();
 QStyleOptionTabBarBase* new_QStyleOptionTabBarBase(const QStyleOptionTabBarBase&  other);
 QStyleOptionTabBarBase* new_QStyleOptionTabBarBase(int  version);
-void delete_QStyleOptionTabBarBase(QStyleOptionTabBarBase* obj) { delete obj; } 
+void delete_QStyleOptionTabBarBase(QStyleOptionTabBarBase* obj) { delete obj; }
 void py_set_documentMode(QStyleOptionTabBarBase* theWrappedObject, bool  documentMode){ theWrappedObject->documentMode = documentMode; }
 bool  py_get_documentMode(QStyleOptionTabBarBase* theWrappedObject){ return theWrappedObject->documentMode; }
 void py_set_selectedTabRect(QStyleOptionTabBarBase* theWrappedObject, QRect  selectedTabRect){ theWrappedObject->selectedTabRect = selectedTabRect; }
@@ -1032,12 +1032,12 @@ QRect  py_get_tabBarRect(QStyleOptionTabBarBase* theWrappedObject){ return theWr
 class PythonQtShell_QStyleOptionTabBarBaseV2 : public QStyleOptionTabBarBaseV2
 {
 public:
-    PythonQtShell_QStyleOptionTabBarBaseV2():QStyleOptionTabBarBaseV2(),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionTabBarBaseV2():QStyleOptionTabBarBaseV2(),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionTabBarBaseV2();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionTabBarBaseV2 : public QObject
@@ -1049,7 +1049,7 @@ QStyleOptionTabBarBaseV2* new_QStyleOptionTabBarBaseV2(const QStyleOptionTabBarB
 PythonQtShell_QStyleOptionTabBarBaseV2* a = new PythonQtShell_QStyleOptionTabBarBaseV2();
 *((QStyleOptionTabBarBaseV2*)a) = other;
 return a; }
-void delete_QStyleOptionTabBarBaseV2(QStyleOptionTabBarBaseV2* obj) { delete obj; } 
+void delete_QStyleOptionTabBarBaseV2(QStyleOptionTabBarBaseV2* obj) { delete obj; }
 };
 
 
@@ -1059,12 +1059,12 @@ void delete_QStyleOptionTabBarBaseV2(QStyleOptionTabBarBaseV2* obj) { delete obj
 class PythonQtShell_QStyleOptionTabV2 : public QStyleOptionTabV2
 {
 public:
-    PythonQtShell_QStyleOptionTabV2():QStyleOptionTabV2(),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionTabV2():QStyleOptionTabV2(),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionTabV2();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionTabV2 : public QObject
@@ -1076,7 +1076,7 @@ QStyleOptionTabV2* new_QStyleOptionTabV2(const QStyleOptionTabV2& other) {
 PythonQtShell_QStyleOptionTabV2* a = new PythonQtShell_QStyleOptionTabV2();
 *((QStyleOptionTabV2*)a) = other;
 return a; }
-void delete_QStyleOptionTabV2(QStyleOptionTabV2* obj) { delete obj; } 
+void delete_QStyleOptionTabV2(QStyleOptionTabV2* obj) { delete obj; }
 };
 
 
@@ -1086,12 +1086,12 @@ void delete_QStyleOptionTabV2(QStyleOptionTabV2* obj) { delete obj; }
 class PythonQtShell_QStyleOptionTabV3 : public QStyleOptionTabV3
 {
 public:
-    PythonQtShell_QStyleOptionTabV3():QStyleOptionTabV3(),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionTabV3():QStyleOptionTabV3(),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionTabV3();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionTabV3 : public QObject
@@ -1103,7 +1103,7 @@ QStyleOptionTabV3* new_QStyleOptionTabV3(const QStyleOptionTabV3& other) {
 PythonQtShell_QStyleOptionTabV3* a = new PythonQtShell_QStyleOptionTabV3();
 *((QStyleOptionTabV3*)a) = other;
 return a; }
-void delete_QStyleOptionTabV3(QStyleOptionTabV3* obj) { delete obj; } 
+void delete_QStyleOptionTabV3(QStyleOptionTabV3* obj) { delete obj; }
 };
 
 
@@ -1113,14 +1113,14 @@ void delete_QStyleOptionTabV3(QStyleOptionTabV3* obj) { delete obj; }
 class PythonQtShell_QStyleOptionTabWidgetFrame : public QStyleOptionTabWidgetFrame
 {
 public:
-    PythonQtShell_QStyleOptionTabWidgetFrame():QStyleOptionTabWidgetFrame(),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionTabWidgetFrame(const QStyleOptionTabWidgetFrame&  other):QStyleOptionTabWidgetFrame(other),_wrapper(NULL) {};
-    PythonQtShell_QStyleOptionTabWidgetFrame(int  version):QStyleOptionTabWidgetFrame(version),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionTabWidgetFrame():QStyleOptionTabWidgetFrame(),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionTabWidgetFrame(const QStyleOptionTabWidgetFrame&  other):QStyleOptionTabWidgetFrame(other),_wrapper(nullptr) {};
+    PythonQtShell_QStyleOptionTabWidgetFrame(int  version):QStyleOptionTabWidgetFrame(version),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionTabWidgetFrame();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionTabWidgetFrame : public QObject
@@ -1135,7 +1135,7 @@ public slots:
 QStyleOptionTabWidgetFrame* new_QStyleOptionTabWidgetFrame();
 QStyleOptionTabWidgetFrame* new_QStyleOptionTabWidgetFrame(const QStyleOptionTabWidgetFrame&  other);
 QStyleOptionTabWidgetFrame* new_QStyleOptionTabWidgetFrame(int  version);
-void delete_QStyleOptionTabWidgetFrame(QStyleOptionTabWidgetFrame* obj) { delete obj; } 
+void delete_QStyleOptionTabWidgetFrame(QStyleOptionTabWidgetFrame* obj) { delete obj; }
 void py_set_leftCornerWidgetSize(QStyleOptionTabWidgetFrame* theWrappedObject, QSize  leftCornerWidgetSize){ theWrappedObject->leftCornerWidgetSize = leftCornerWidgetSize; }
 QSize  py_get_leftCornerWidgetSize(QStyleOptionTabWidgetFrame* theWrappedObject){ return theWrappedObject->leftCornerWidgetSize; }
 void py_set_lineWidth(QStyleOptionTabWidgetFrame* theWrappedObject, int  lineWidth){ theWrappedObject->lineWidth = lineWidth; }
@@ -1161,12 +1161,12 @@ QSize  py_get_tabBarSize(QStyleOptionTabWidgetFrame* theWrappedObject){ return t
 class PythonQtShell_QStyleOptionTabWidgetFrameV2 : public QStyleOptionTabWidgetFrameV2
 {
 public:
-    PythonQtShell_QStyleOptionTabWidgetFrameV2():QStyleOptionTabWidgetFrameV2(),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionTabWidgetFrameV2():QStyleOptionTabWidgetFrameV2(),_wrapper(nullptr) {};
 
    ~PythonQtShell_QStyleOptionTabWidgetFrameV2();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QStyleOptionTabWidgetFrameV2 : public QObject
@@ -1178,7 +1178,7 @@ QStyleOptionTabWidgetFrameV2* new_QStyleOptionTabWidgetFrameV2(const QStyleOptio
 PythonQtShell_QStyleOptionTabWidgetFrameV2* a = new PythonQtShell_QStyleOptionTabWidgetFrameV2();
 *((QStyleOptionTabWidgetFrameV2*)a) = other;
 return a; }
-void delete_QStyleOptionTabWidgetFrameV2(QStyleOptionTabWidgetFrameV2* obj) { delete obj; } 
+void delete_QStyleOptionTabWidgetFrameV2(QStyleOptionTabWidgetFrameV2* obj) { delete obj; }
 };
 
 
