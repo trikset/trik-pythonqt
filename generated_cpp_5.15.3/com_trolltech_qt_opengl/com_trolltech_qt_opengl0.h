@@ -1,8 +1,19 @@
 #include <PythonQt.h>
 #include <QImage>
 #include <QObject>
+#include <QPixmap>
 #include <QVariant>
+#include <qaction.h>
+#include <qbackingstore.h>
+#include <qbitmap.h>
+#include <qbytearray.h>
+#include <qcolor.h>
+#include <qcoreevent.h>
+#include <qcursor.h>
 #include <qevent.h>
+#include <qfont.h>
+#include <qfontinfo.h>
+#include <qfontmetrics.h>
 #include <qgl.h>
 #include <qglbuffer.h>
 #include <qglcolormap.h>
@@ -10,18 +21,39 @@
 #include <qglfunctions.h>
 #include <qglpixelbuffer.h>
 #include <qglshaderprogram.h>
+#include <qgraphicseffect.h>
+#include <qgraphicsproxywidget.h>
+#include <qicon.h>
 #include <qimage.h>
+#include <qkeysequence.h>
+#include <qlayout.h>
+#include <qlist.h>
+#include <qlocale.h>
+#include <qmargins.h>
 #include <qmatrix4x4.h>
+#include <qmetaobject.h>
+#include <qobject.h>
 #include <qopenglcontext.h>
 #include <qpaintdevice.h>
 #include <qpaintengine.h>
 #include <qpainter.h>
+#include <qpalette.h>
+#include <qpixmap.h>
+#include <qpoint.h>
 #include <qrect.h>
+#include <qregion.h>
+#include <qscreen.h>
+#include <qsize.h>
+#include <qsizepolicy.h>
+#include <qstyle.h>
 #include <qsurfaceformat.h>
 #include <qthread.h>
+#include <qtransform.h>
 #include <qvector2d.h>
 #include <qvector3d.h>
 #include <qvector4d.h>
+#include <qwidget.h>
+#include <qwindow.h>
 
 
 
@@ -39,7 +71,7 @@ public slots:
 QGLBuffer* new_QGLBuffer();
 QGLBuffer* new_QGLBuffer(QGLBuffer::Type  type);
 QGLBuffer* new_QGLBuffer(const QGLBuffer&  other);
-void delete_QGLBuffer(QGLBuffer* obj) { delete obj; } 
+void delete_QGLBuffer(QGLBuffer* obj) { delete obj; }
    void allocate(QGLBuffer* theWrappedObject, const void*  data, int  count);
    void allocate(QGLBuffer* theWrappedObject, int  count);
    bool  bind(QGLBuffer* theWrappedObject);
@@ -67,13 +99,13 @@ void delete_QGLBuffer(QGLBuffer* obj) { delete obj; }
 class PythonQtShell_QGLColormap : public QGLColormap
 {
 public:
-    PythonQtShell_QGLColormap():QGLColormap(),_wrapper(NULL) {};
-    PythonQtShell_QGLColormap(const QGLColormap&  arg__1):QGLColormap(arg__1),_wrapper(NULL) {};
+    PythonQtShell_QGLColormap():QGLColormap(),_wrapper(nullptr) {};
+    PythonQtShell_QGLColormap(const QGLColormap&  arg__1):QGLColormap(arg__1),_wrapper(nullptr) {};
 
    ~PythonQtShell_QGLColormap();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QGLColormap : public QGLColormap
@@ -88,7 +120,7 @@ public:
 public slots:
 QGLColormap* new_QGLColormap();
 QGLColormap* new_QGLColormap(const QGLColormap&  arg__1);
-void delete_QGLColormap(QGLColormap* obj) { delete obj; } 
+void delete_QGLColormap(QGLColormap* obj) { delete obj; }
    QColor  entryColor(QGLColormap* theWrappedObject, int  idx) const;
    unsigned int  entryRgb(QGLColormap* theWrappedObject, int  idx) const;
    int  find(QGLColormap* theWrappedObject, unsigned int  color) const;
@@ -109,18 +141,18 @@ void delete_QGLColormap(QGLColormap* obj) { delete obj; }
 class PythonQtShell_QGLContext : public QGLContext
 {
 public:
-    PythonQtShell_QGLContext(const QGLFormat&  format):QGLContext(format),_wrapper(NULL) {};
-    PythonQtShell_QGLContext(const QGLFormat&  format, QPaintDevice*  device):QGLContext(format, device),_wrapper(NULL) {};
+    PythonQtShell_QGLContext(const QGLFormat&  format):QGLContext(format),_wrapper(nullptr) {};
+    PythonQtShell_QGLContext(const QGLFormat&  format, QPaintDevice*  device):QGLContext(format, device),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QGLContext();
+   ~PythonQtShell_QGLContext() override;
 
-virtual bool  chooseContext(const QGLContext*  shareContext = nullptr);
-virtual bool  create(const QGLContext*  shareContext = nullptr);
-virtual void doneCurrent();
-virtual void makeCurrent();
-virtual void swapBuffers() const;
+bool  chooseContext(const QGLContext*  shareContext = nullptr) override;
+bool  create(const QGLContext*  shareContext = nullptr) override;
+void doneCurrent() override;
+void makeCurrent() override;
+void swapBuffers() const override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QGLContext : public QGLContext
@@ -151,7 +183,7 @@ Q_DECLARE_FLAGS(BindOptions, BindOption)
 public slots:
 QGLContext* new_QGLContext(const QGLFormat&  format);
 QGLContext* new_QGLContext(const QGLFormat&  format, QPaintDevice*  device);
-void delete_QGLContext(QGLContext* obj) { delete obj; } 
+void delete_QGLContext(QGLContext* obj) { delete obj; }
    bool  static_QGLContext_areSharing(const QGLContext*  context1, const QGLContext*  context2);
    GLuint  bindTexture(QGLContext* theWrappedObject, const QImage&  image, GLenum  target = 0x0DE1, GLint  format = 0x1908);
    GLuint  bindTexture(QGLContext* theWrappedObject, const QImage&  image, GLenum  target, GLint  format, QGLContext::BindOptions  options);
@@ -214,7 +246,7 @@ public slots:
 QGLFormat* new_QGLFormat();
 QGLFormat* new_QGLFormat(QGL::FormatOptions  options, int  plane = 0);
 QGLFormat* new_QGLFormat(const QGLFormat&  other);
-void delete_QGLFormat(QGLFormat* obj) { delete obj; } 
+void delete_QGLFormat(QGLFormat* obj) { delete obj; }
    bool  accum(QGLFormat* theWrappedObject) const;
    int  accumBufferSize(QGLFormat* theWrappedObject) const;
    bool  alpha(QGLFormat* theWrappedObject) const;
@@ -234,6 +266,7 @@ void delete_QGLFormat(QGLFormat* obj) { delete obj; }
    int  majorVersion(QGLFormat* theWrappedObject) const;
    int  minorVersion(QGLFormat* theWrappedObject) const;
    QGLFormat::OpenGLVersionFlags  static_QGLFormat_openGLVersionFlags();
+   bool  __ne__(QGLFormat* theWrappedObject, const QGLFormat&  arg__2);
    bool  __eq__(QGLFormat* theWrappedObject, const QGLFormat&  arg__2);
    int  plane(QGLFormat* theWrappedObject) const;
    QGLFormat::OpenGLContextProfile  profile(QGLFormat* theWrappedObject) const;
@@ -282,23 +315,23 @@ void delete_QGLFormat(QGLFormat* obj) { delete obj; }
 class PythonQtShell_QGLFramebufferObject : public QGLFramebufferObject
 {
 public:
-    PythonQtShell_QGLFramebufferObject(const QSize&  size, GLenum  target = 0x0DE1):QGLFramebufferObject(size, target),_wrapper(NULL) {};
-    PythonQtShell_QGLFramebufferObject(const QSize&  size, QGLFramebufferObject::Attachment  attachment, GLenum  target = 0x0DE1, GLenum  internal_format = 0):QGLFramebufferObject(size, attachment, target, internal_format),_wrapper(NULL) {};
-    PythonQtShell_QGLFramebufferObject(const QSize&  size, const QGLFramebufferObjectFormat&  format):QGLFramebufferObject(size, format),_wrapper(NULL) {};
-    PythonQtShell_QGLFramebufferObject(int  width, int  height, GLenum  target = 0x0DE1):QGLFramebufferObject(width, height, target),_wrapper(NULL) {};
-    PythonQtShell_QGLFramebufferObject(int  width, int  height, QGLFramebufferObject::Attachment  attachment, GLenum  target = 0x0DE1, GLenum  internal_format = 0):QGLFramebufferObject(width, height, attachment, target, internal_format),_wrapper(NULL) {};
-    PythonQtShell_QGLFramebufferObject(int  width, int  height, const QGLFramebufferObjectFormat&  format):QGLFramebufferObject(width, height, format),_wrapper(NULL) {};
+    PythonQtShell_QGLFramebufferObject(const QSize&  size, GLenum  target = 0x0DE1):QGLFramebufferObject(size, target),_wrapper(nullptr) {};
+    PythonQtShell_QGLFramebufferObject(const QSize&  size, QGLFramebufferObject::Attachment  attachment, GLenum  target = 0x0DE1, GLenum  internal_format = 0):QGLFramebufferObject(size, attachment, target, internal_format),_wrapper(nullptr) {};
+    PythonQtShell_QGLFramebufferObject(const QSize&  size, const QGLFramebufferObjectFormat&  format):QGLFramebufferObject(size, format),_wrapper(nullptr) {};
+    PythonQtShell_QGLFramebufferObject(int  width, int  height, GLenum  target = 0x0DE1):QGLFramebufferObject(width, height, target),_wrapper(nullptr) {};
+    PythonQtShell_QGLFramebufferObject(int  width, int  height, QGLFramebufferObject::Attachment  attachment, GLenum  target = 0x0DE1, GLenum  internal_format = 0):QGLFramebufferObject(width, height, attachment, target, internal_format),_wrapper(nullptr) {};
+    PythonQtShell_QGLFramebufferObject(int  width, int  height, const QGLFramebufferObjectFormat&  format):QGLFramebufferObject(width, height, format),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QGLFramebufferObject();
+   ~PythonQtShell_QGLFramebufferObject() override;
 
-virtual int  devType() const;
-virtual void initPainter(QPainter*  painter) const;
-virtual int  metric(QPaintDevice::PaintDeviceMetric  metric) const;
-virtual QPaintEngine*  paintEngine() const;
-virtual QPaintDevice*  redirected(QPoint*  offset) const;
-virtual QPainter*  sharedPainter() const;
+int  devType() const override;
+void initPainter(QPainter*  painter) const override;
+int  metric(QPaintDevice::PaintDeviceMetric  metric) const override;
+QPaintEngine*  paintEngine() const override;
+QPaintDevice*  redirected(QPoint*  offset) const override;
+QPainter*  sharedPainter() const override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QGLFramebufferObject : public QGLFramebufferObject
@@ -323,7 +356,7 @@ QGLFramebufferObject* new_QGLFramebufferObject(const QSize&  size, const QGLFram
 QGLFramebufferObject* new_QGLFramebufferObject(int  width, int  height, GLenum  target = 0x0DE1);
 QGLFramebufferObject* new_QGLFramebufferObject(int  width, int  height, QGLFramebufferObject::Attachment  attachment, GLenum  target = 0x0DE1, GLenum  internal_format = 0);
 QGLFramebufferObject* new_QGLFramebufferObject(int  width, int  height, const QGLFramebufferObjectFormat&  format);
-void delete_QGLFramebufferObject(QGLFramebufferObject* obj) { delete obj; } 
+void delete_QGLFramebufferObject(QGLFramebufferObject* obj) { delete obj; }
    QGLFramebufferObject::Attachment  attachment(QGLFramebufferObject* theWrappedObject) const;
    bool  bind(QGLFramebufferObject* theWrappedObject);
    bool  static_QGLFramebufferObject_bindDefault();
@@ -356,7 +389,7 @@ public:
 public slots:
 QGLFramebufferObjectFormat* new_QGLFramebufferObjectFormat();
 QGLFramebufferObjectFormat* new_QGLFramebufferObjectFormat(const QGLFramebufferObjectFormat&  other);
-void delete_QGLFramebufferObjectFormat(QGLFramebufferObjectFormat* obj) { delete obj; } 
+void delete_QGLFramebufferObjectFormat(QGLFramebufferObjectFormat* obj) { delete obj; }
    QGLFramebufferObject::Attachment  attachment(QGLFramebufferObjectFormat* theWrappedObject) const;
    GLenum  internalTextureFormat(QGLFramebufferObjectFormat* theWrappedObject) const;
    bool  mipmap(QGLFramebufferObjectFormat* theWrappedObject) const;
@@ -387,7 +420,7 @@ Q_DECLARE_FLAGS(OpenGLFeatures, OpenGLFeature)
 public slots:
 QGLFunctions* new_QGLFunctions();
 QGLFunctions* new_QGLFunctions(const QGLContext*  context);
-void delete_QGLFunctions(QGLFunctions* obj) { delete obj; } 
+void delete_QGLFunctions(QGLFunctions* obj) { delete obj; }
    void glActiveTexture(QGLFunctions* theWrappedObject, GLenum  texture);
    void glAttachShader(QGLFunctions* theWrappedObject, GLuint  program, GLuint  shader);
    void glBindAttribLocation(QGLFunctions* theWrappedObject, GLuint  program, GLuint  index, const char*  name);
@@ -495,19 +528,19 @@ void delete_QGLFunctions(QGLFunctions* obj) { delete obj; }
 class PythonQtShell_QGLPixelBuffer : public QGLPixelBuffer
 {
 public:
-    PythonQtShell_QGLPixelBuffer(const QSize&  size, const QGLFormat&  format = QGLFormat::defaultFormat(), QGLWidget*  shareWidget = nullptr):QGLPixelBuffer(size, format, shareWidget),_wrapper(NULL) {};
-    PythonQtShell_QGLPixelBuffer(int  width, int  height, const QGLFormat&  format = QGLFormat::defaultFormat(), QGLWidget*  shareWidget = nullptr):QGLPixelBuffer(width, height, format, shareWidget),_wrapper(NULL) {};
+    PythonQtShell_QGLPixelBuffer(const QSize&  size, const QGLFormat&  format = QGLFormat::defaultFormat(), QGLWidget*  shareWidget = nullptr):QGLPixelBuffer(size, format, shareWidget),_wrapper(nullptr) {};
+    PythonQtShell_QGLPixelBuffer(int  width, int  height, const QGLFormat&  format = QGLFormat::defaultFormat(), QGLWidget*  shareWidget = nullptr):QGLPixelBuffer(width, height, format, shareWidget),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QGLPixelBuffer();
+   ~PythonQtShell_QGLPixelBuffer() override;
 
-virtual int  devType() const;
-virtual void initPainter(QPainter*  painter) const;
-virtual int  metric(QPaintDevice::PaintDeviceMetric  metric) const;
-virtual QPaintEngine*  paintEngine() const;
-virtual QPaintDevice*  redirected(QPoint*  offset) const;
-virtual QPainter*  sharedPainter() const;
+int  devType() const override;
+void initPainter(QPainter*  painter) const override;
+int  metric(QPaintDevice::PaintDeviceMetric  metric) const override;
+QPaintEngine*  paintEngine() const override;
+QPaintDevice*  redirected(QPoint*  offset) const override;
+QPainter*  sharedPainter() const override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QGLPixelBuffer : public QGLPixelBuffer
@@ -525,7 +558,7 @@ public:
 public slots:
 QGLPixelBuffer* new_QGLPixelBuffer(const QSize&  size, const QGLFormat&  format = QGLFormat::defaultFormat(), QGLWidget*  shareWidget = nullptr);
 QGLPixelBuffer* new_QGLPixelBuffer(int  width, int  height, const QGLFormat&  format = QGLFormat::defaultFormat(), QGLWidget*  shareWidget = nullptr);
-void delete_QGLPixelBuffer(QGLPixelBuffer* obj) { delete obj; } 
+void delete_QGLPixelBuffer(QGLPixelBuffer* obj) { delete obj; }
    GLuint  bindTexture(QGLPixelBuffer* theWrappedObject, const QImage&  image, GLenum  target = 0x0DE1);
    GLuint  bindTexture(QGLPixelBuffer* theWrappedObject, const QPixmap&  pixmap, GLenum  target = 0x0DE1);
    GLuint  bindTexture(QGLPixelBuffer* theWrappedObject, const QString&  fileName);
@@ -558,15 +591,20 @@ void delete_QGLPixelBuffer(QGLPixelBuffer* obj) { delete obj; }
 class PythonQtShell_QGLShader : public QGLShader
 {
 public:
-    PythonQtShell_QGLShader(QGLShader::ShaderType  type, QObject*  parent = nullptr):QGLShader(type, parent),_wrapper(NULL) {};
-    PythonQtShell_QGLShader(QGLShader::ShaderType  type, const QGLContext*  context, QObject*  parent = nullptr):QGLShader(type, context, parent),_wrapper(NULL) {};
+    PythonQtShell_QGLShader(QGLShader::ShaderType  type, QObject*  parent = nullptr):QGLShader(type, parent),_wrapper(nullptr) {};
+    PythonQtShell_QGLShader(QGLShader::ShaderType  type, const QGLContext*  context, QObject*  parent = nullptr):QGLShader(type, context, parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QGLShader();
+   ~PythonQtShell_QGLShader() override;
 
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QGLShader : public QObject
@@ -580,7 +618,7 @@ Q_DECLARE_FLAGS(ShaderType, ShaderTypeBit)
 public slots:
 QGLShader* new_QGLShader(QGLShader::ShaderType  type, QObject*  parent = nullptr);
 QGLShader* new_QGLShader(QGLShader::ShaderType  type, const QGLContext*  context, QObject*  parent = nullptr);
-void delete_QGLShader(QGLShader* obj) { delete obj; } 
+void delete_QGLShader(QGLShader* obj) { delete obj; }
    bool  compileSourceCode(QGLShader* theWrappedObject, const QByteArray&  source);
    bool  compileSourceCode(QGLShader* theWrappedObject, const QString&  source);
    bool  compileSourceCode(QGLShader* theWrappedObject, const char*  source);
@@ -600,16 +638,21 @@ void delete_QGLShader(QGLShader* obj) { delete obj; }
 class PythonQtShell_QGLShaderProgram : public QGLShaderProgram
 {
 public:
-    PythonQtShell_QGLShaderProgram(QObject*  parent = nullptr):QGLShaderProgram(parent),_wrapper(NULL) {};
-    PythonQtShell_QGLShaderProgram(const QGLContext*  context, QObject*  parent = nullptr):QGLShaderProgram(context, parent),_wrapper(NULL) {};
+    PythonQtShell_QGLShaderProgram(QObject*  parent = nullptr):QGLShaderProgram(parent),_wrapper(nullptr) {};
+    PythonQtShell_QGLShaderProgram(const QGLContext*  context, QObject*  parent = nullptr):QGLShaderProgram(context, parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QGLShaderProgram();
+   ~PythonQtShell_QGLShaderProgram() override;
 
-virtual bool  link();
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  link() override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QGLShaderProgram : public QGLShaderProgram
@@ -623,7 +666,7 @@ public:
 public slots:
 QGLShaderProgram* new_QGLShaderProgram(QObject*  parent = nullptr);
 QGLShaderProgram* new_QGLShaderProgram(const QGLContext*  context, QObject*  parent = nullptr);
-void delete_QGLShaderProgram(QGLShaderProgram* obj) { delete obj; } 
+void delete_QGLShaderProgram(QGLShaderProgram* obj) { delete obj; }
    bool  addShader(QGLShaderProgram* theWrappedObject, QGLShader*  shader);
    bool  addShaderFromSourceCode(QGLShaderProgram* theWrappedObject, QGLShader::ShaderType  type, const QByteArray&  source);
    bool  addShaderFromSourceCode(QGLShaderProgram* theWrappedObject, QGLShader::ShaderType  type, const QString&  source);
@@ -733,6 +776,173 @@ void delete_QGLShaderProgram(QGLShaderProgram* obj) { delete obj; }
    int  uniformLocation(QGLShaderProgram* theWrappedObject, const QByteArray&  name) const;
    int  uniformLocation(QGLShaderProgram* theWrappedObject, const QString&  name) const;
    int  uniformLocation(QGLShaderProgram* theWrappedObject, const char*  name) const;
+};
+
+
+
+
+
+class PythonQtShell_QGLWidget : public QGLWidget
+{
+public:
+    PythonQtShell_QGLWidget(QGLContext*  context, QWidget*  parent = nullptr, const QGLWidget*  shareWidget = nullptr, Qt::WindowFlags  f = Qt::WindowFlags()):QGLWidget(context, parent, shareWidget, f),_wrapper(nullptr) {};
+    PythonQtShell_QGLWidget(QWidget*  parent = nullptr, const QGLWidget*  shareWidget = nullptr, Qt::WindowFlags  f = Qt::WindowFlags()):QGLWidget(parent, shareWidget, f),_wrapper(nullptr) {};
+    PythonQtShell_QGLWidget(const QGLFormat&  format, QWidget*  parent = nullptr, const QGLWidget*  shareWidget = nullptr, Qt::WindowFlags  f = Qt::WindowFlags()):QGLWidget(format, parent, shareWidget, f),_wrapper(nullptr) {};
+
+   ~PythonQtShell_QGLWidget() override;
+
+void actionEvent(QActionEvent*  event) override;
+void changeEvent(QEvent*  arg__1) override;
+void childEvent(QChildEvent*  event) override;
+void closeEvent(QCloseEvent*  event) override;
+void contextMenuEvent(QContextMenuEvent*  event) override;
+void customEvent(QEvent*  event) override;
+int  devType() const override;
+void dragEnterEvent(QDragEnterEvent*  event) override;
+void dragLeaveEvent(QDragLeaveEvent*  event) override;
+void dragMoveEvent(QDragMoveEvent*  event) override;
+void dropEvent(QDropEvent*  event) override;
+void enterEvent(QEvent*  event) override;
+bool  event(QEvent*  arg__1) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void focusInEvent(QFocusEvent*  event) override;
+bool  focusNextPrevChild(bool  next) override;
+void focusOutEvent(QFocusEvent*  event) override;
+void glDraw() override;
+void glInit() override;
+bool  hasHeightForWidth() const override;
+int  heightForWidth(int  arg__1) const override;
+void hideEvent(QHideEvent*  event) override;
+void initPainter(QPainter*  painter) const override;
+void initializeGL() override;
+void initializeOverlayGL() override;
+void inputMethodEvent(QInputMethodEvent*  arg__1) override;
+QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const override;
+void keyPressEvent(QKeyEvent*  event) override;
+void keyReleaseEvent(QKeyEvent*  event) override;
+void leaveEvent(QEvent*  event) override;
+int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const override;
+QSize  minimumSizeHint() const override;
+void mouseDoubleClickEvent(QMouseEvent*  event) override;
+void mouseMoveEvent(QMouseEvent*  event) override;
+void mousePressEvent(QMouseEvent*  event) override;
+void mouseReleaseEvent(QMouseEvent*  event) override;
+void moveEvent(QMoveEvent*  event) override;
+bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result) override;
+QPaintEngine*  paintEngine() const override;
+void paintEvent(QPaintEvent*  arg__1) override;
+void paintGL() override;
+void paintOverlayGL() override;
+QPaintDevice*  redirected(QPoint*  offset) const override;
+void resizeEvent(QResizeEvent*  arg__1) override;
+void resizeGL(int  w, int  h) override;
+void resizeOverlayGL(int  w, int  h) override;
+void setVisible(bool  visible) override;
+QPainter*  sharedPainter() const override;
+void showEvent(QShowEvent*  event) override;
+QSize  sizeHint() const override;
+void tabletEvent(QTabletEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
+void updateGL() override;
+void updateOverlayGL() override;
+void wheelEvent(QWheelEvent*  event) override;
+
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
+};
+
+class PythonQtPublicPromoter_QGLWidget : public QGLWidget
+{ public:
+inline bool  promoted_autoBufferSwap() const { return this->autoBufferSwap(); }
+inline bool  promoted_event(QEvent*  arg__1) { return this->event(arg__1); }
+inline void promoted_glDraw() { this->glDraw(); }
+inline void promoted_glInit() { this->glInit(); }
+inline void promoted_initializeGL() { this->initializeGL(); }
+inline void promoted_initializeOverlayGL() { this->initializeOverlayGL(); }
+inline void promoted_paintEvent(QPaintEvent*  arg__1) { this->paintEvent(arg__1); }
+inline void promoted_paintGL() { this->paintGL(); }
+inline void promoted_paintOverlayGL() { this->paintOverlayGL(); }
+inline void promoted_resizeEvent(QResizeEvent*  arg__1) { this->resizeEvent(arg__1); }
+inline void promoted_resizeGL(int  w, int  h) { this->resizeGL(w, h); }
+inline void promoted_resizeOverlayGL(int  w, int  h) { this->resizeOverlayGL(w, h); }
+inline void promoted_setAutoBufferSwap(bool  on) { this->setAutoBufferSwap(on); }
+inline bool  py_q_event(QEvent*  arg__1) { return QGLWidget::event(arg__1); }
+inline void py_q_glDraw() { QGLWidget::glDraw(); }
+inline void py_q_glInit() { QGLWidget::glInit(); }
+inline void py_q_initializeGL() { QGLWidget::initializeGL(); }
+inline void py_q_initializeOverlayGL() { QGLWidget::initializeOverlayGL(); }
+inline QPaintEngine*  py_q_paintEngine() const { return QGLWidget::paintEngine(); }
+inline void py_q_paintEvent(QPaintEvent*  arg__1) { QGLWidget::paintEvent(arg__1); }
+inline void py_q_paintGL() { QGLWidget::paintGL(); }
+inline void py_q_paintOverlayGL() { QGLWidget::paintOverlayGL(); }
+inline void py_q_resizeEvent(QResizeEvent*  arg__1) { QGLWidget::resizeEvent(arg__1); }
+inline void py_q_resizeGL(int  w, int  h) { QGLWidget::resizeGL(w, h); }
+inline void py_q_resizeOverlayGL(int  w, int  h) { QGLWidget::resizeOverlayGL(w, h); }
+inline void py_q_updateGL() { QGLWidget::updateGL(); }
+inline void py_q_updateOverlayGL() { QGLWidget::updateOverlayGL(); }
+};
+
+class PythonQtWrapper_QGLWidget : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QGLWidget* new_QGLWidget(QGLContext*  context, QWidget*  parent = nullptr, const QGLWidget*  shareWidget = nullptr, Qt::WindowFlags  f = Qt::WindowFlags());
+QGLWidget* new_QGLWidget(QWidget*  parent = nullptr, const QGLWidget*  shareWidget = nullptr, Qt::WindowFlags  f = Qt::WindowFlags());
+QGLWidget* new_QGLWidget(const QGLFormat&  format, QWidget*  parent = nullptr, const QGLWidget*  shareWidget = nullptr, Qt::WindowFlags  f = Qt::WindowFlags());
+void delete_QGLWidget(QGLWidget* obj) { delete obj; }
+   bool  autoBufferSwap(QGLWidget* theWrappedObject) const;
+   GLuint  bindTexture(QGLWidget* theWrappedObject, const QImage&  image, GLenum  target = 0x0DE1, GLint  format = 0x1908);
+   GLuint  bindTexture(QGLWidget* theWrappedObject, const QImage&  image, GLenum  target, GLint  format, QGLContext::BindOptions  options);
+   GLuint  bindTexture(QGLWidget* theWrappedObject, const QPixmap&  pixmap, GLenum  target = 0x0DE1, GLint  format = 0x1908);
+   GLuint  bindTexture(QGLWidget* theWrappedObject, const QPixmap&  pixmap, GLenum  target, GLint  format, QGLContext::BindOptions  options);
+   GLuint  bindTexture(QGLWidget* theWrappedObject, const QString&  fileName);
+   const QGLColormap*  colormap(QGLWidget* theWrappedObject) const;
+   QGLContext*  context(QGLWidget* theWrappedObject) const;
+   QImage  static_QGLWidget_convertToGLFormat(const QImage&  img);
+   void deleteTexture(QGLWidget* theWrappedObject, GLuint  tx_id);
+   void doneCurrent(QGLWidget* theWrappedObject);
+   bool  doubleBuffer(QGLWidget* theWrappedObject) const;
+   void drawTexture(QGLWidget* theWrappedObject, const QPointF&  point, GLuint  textureId, GLenum  textureTarget = 0x0DE1);
+   void drawTexture(QGLWidget* theWrappedObject, const QRectF&  target, GLuint  textureId, GLenum  textureTarget = 0x0DE1);
+   bool  py_q_event(QGLWidget* theWrappedObject, QEvent*  arg__1){  return (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_event(arg__1));}
+   QGLFormat  format(QGLWidget* theWrappedObject) const;
+   void glDraw(QGLWidget* theWrappedObject);
+   void py_q_glDraw(QGLWidget* theWrappedObject){  (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_glDraw());}
+   void glInit(QGLWidget* theWrappedObject);
+   void py_q_glInit(QGLWidget* theWrappedObject){  (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_glInit());}
+   QImage  grabFrameBuffer(QGLWidget* theWrappedObject, bool  withAlpha = false);
+   void initializeGL(QGLWidget* theWrappedObject);
+   void py_q_initializeGL(QGLWidget* theWrappedObject){  (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_initializeGL());}
+   void initializeOverlayGL(QGLWidget* theWrappedObject);
+   void py_q_initializeOverlayGL(QGLWidget* theWrappedObject){  (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_initializeOverlayGL());}
+   bool  isSharing(QGLWidget* theWrappedObject) const;
+   bool  isValid(QGLWidget* theWrappedObject) const;
+   void makeCurrent(QGLWidget* theWrappedObject);
+   void makeOverlayCurrent(QGLWidget* theWrappedObject);
+   const QGLContext*  overlayContext(QGLWidget* theWrappedObject) const;
+   QPaintEngine*  py_q_paintEngine(QGLWidget* theWrappedObject) const{  return (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_paintEngine());}
+   void py_q_paintEvent(QGLWidget* theWrappedObject, QPaintEvent*  arg__1){  (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_paintEvent(arg__1));}
+   void paintGL(QGLWidget* theWrappedObject);
+   void py_q_paintGL(QGLWidget* theWrappedObject){  (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_paintGL());}
+   void paintOverlayGL(QGLWidget* theWrappedObject);
+   void py_q_paintOverlayGL(QGLWidget* theWrappedObject){  (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_paintOverlayGL());}
+   void qglClearColor(QGLWidget* theWrappedObject, const QColor&  c) const;
+   void qglColor(QGLWidget* theWrappedObject, const QColor&  c) const;
+   QPixmap  renderPixmap(QGLWidget* theWrappedObject, int  w = 0, int  h = 0, bool  useContext = false);
+   void renderText(QGLWidget* theWrappedObject, double  x, double  y, double  z, const QString&  str, const QFont&  fnt = QFont());
+   void renderText(QGLWidget* theWrappedObject, int  x, int  y, const QString&  str, const QFont&  fnt = QFont());
+   void py_q_resizeEvent(QGLWidget* theWrappedObject, QResizeEvent*  arg__1){  (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_resizeEvent(arg__1));}
+   void resizeGL(QGLWidget* theWrappedObject, int  w, int  h);
+   void py_q_resizeGL(QGLWidget* theWrappedObject, int  w, int  h){  (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_resizeGL(w, h));}
+   void resizeOverlayGL(QGLWidget* theWrappedObject, int  w, int  h);
+   void py_q_resizeOverlayGL(QGLWidget* theWrappedObject, int  w, int  h){  (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_resizeOverlayGL(w, h));}
+   void setAutoBufferSwap(QGLWidget* theWrappedObject, bool  on);
+   void setColormap(QGLWidget* theWrappedObject, const QGLColormap&  map);
+   void swapBuffers(QGLWidget* theWrappedObject);
+   void py_q_updateGL(QGLWidget* theWrappedObject){  (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_updateGL());}
+   void py_q_updateOverlayGL(QGLWidget* theWrappedObject){  (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_updateOverlayGL());}
+    bool __nonzero__(QGLWidget* obj) { return obj->isValid(); }
 };
 
 

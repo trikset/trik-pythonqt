@@ -3,9 +3,11 @@
 #include <QVariant>
 #include <qabstractvideobuffer.h>
 #include <qaudiodeviceinfo.h>
-#include <qevent.h>
+#include <qbytearray.h>
+#include <qcoreevent.h>
 #include <qimage.h>
 #include <qiodevice.h>
+#include <qlist.h>
 #include <qmediacontent.h>
 #include <qmediacontrol.h>
 #include <qmediaencodersettings.h>
@@ -21,14 +23,20 @@
 #include <qmediavideoprobecontrol.h>
 #include <qmetadatareadercontrol.h>
 #include <qmetadatawritercontrol.h>
+#include <qmetaobject.h>
 #include <qmultimedia.h>
+#include <qnetworkrequest.h>
+#include <qobject.h>
 #include <qpair.h>
 #include <qradiodata.h>
 #include <qradiodatacontrol.h>
 #include <qradiotuner.h>
 #include <qradiotunercontrol.h>
+#include <qsize.h>
 #include <qsound.h>
 #include <qsoundeffect.h>
+#include <qstringlist.h>
+#include <qthread.h>
 #include <qurl.h>
 #include <qvideodeviceselectorcontrol.h>
 #include <qvideoencodersettingscontrol.h>
@@ -40,16 +48,21 @@
 class PythonQtShell_QMediaPlaylist : public QMediaPlaylist
 {
 public:
-    PythonQtShell_QMediaPlaylist(QObject*  parent = nullptr):QMediaPlaylist(parent),_wrapper(NULL) {};
+    PythonQtShell_QMediaPlaylist(QObject*  parent = nullptr):QMediaPlaylist(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaPlaylist();
+   ~PythonQtShell_QMediaPlaylist() override;
 
-virtual QMediaObject*  mediaObject() const;
-virtual bool  setMediaObject(QMediaObject*  object);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QMediaObject*  mediaObject() const override;
+bool  setMediaObject(QMediaObject*  object) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaPlaylist : public QMediaPlaylist
@@ -64,7 +77,7 @@ class PythonQtWrapper_QMediaPlaylist : public QObject
 public:
 public slots:
 QMediaPlaylist* new_QMediaPlaylist(QObject*  parent = nullptr);
-void delete_QMediaPlaylist(QMediaPlaylist* obj) { delete obj; } 
+void delete_QMediaPlaylist(QMediaPlaylist* obj) { delete obj; }
    bool  addMedia(QMediaPlaylist* theWrappedObject, const QList<QMediaContent >&  items);
    bool  addMedia(QMediaPlaylist* theWrappedObject, const QMediaContent&  content);
    bool  clear(QMediaPlaylist* theWrappedObject);
@@ -81,7 +94,6 @@ void delete_QMediaPlaylist(QMediaPlaylist* obj) { delete obj; }
    void load(QMediaPlaylist* theWrappedObject, const QUrl&  location, const char*  format = nullptr);
    QMediaContent  media(QMediaPlaylist* theWrappedObject, int  index) const;
    int  mediaCount(QMediaPlaylist* theWrappedObject) const;
-   QMediaObject*  mediaObject(QMediaPlaylist* theWrappedObject) const;
    QMediaObject*  py_q_mediaObject(QMediaPlaylist* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMediaPlaylist*)theWrappedObject)->py_q_mediaObject());}
    bool  moveMedia(QMediaPlaylist* theWrappedObject, int  from, int  to);
    int  nextIndex(QMediaPlaylist* theWrappedObject, int  steps = 1) const;
@@ -91,7 +103,6 @@ void delete_QMediaPlaylist(QMediaPlaylist* obj) { delete obj; }
    bool  removeMedia(QMediaPlaylist* theWrappedObject, int  start, int  end);
    bool  save(QMediaPlaylist* theWrappedObject, QIODevice*  device, const char*  format);
    bool  save(QMediaPlaylist* theWrappedObject, const QUrl&  location, const char*  format = nullptr);
-   bool  setMediaObject(QMediaPlaylist* theWrappedObject, QMediaObject*  object);
    bool  py_q_setMediaObject(QMediaPlaylist* theWrappedObject, QMediaObject*  object){  return (((PythonQtPublicPromoter_QMediaPlaylist*)theWrappedObject)->py_q_setMediaObject(object));}
    void setPlaybackMode(QMediaPlaylist* theWrappedObject, QMediaPlaylist::PlaybackMode  mode);
     bool __nonzero__(QMediaPlaylist* obj) { return !obj->isEmpty(); }
@@ -104,16 +115,21 @@ void delete_QMediaPlaylist(QMediaPlaylist* obj) { delete obj; }
 class PythonQtShell_QMediaRecorder : public QMediaRecorder
 {
 public:
-    PythonQtShell_QMediaRecorder(QMediaObject*  mediaObject, QObject*  parent = nullptr):QMediaRecorder(mediaObject, parent),_wrapper(NULL) {};
+    PythonQtShell_QMediaRecorder(QMediaObject*  mediaObject, QObject*  parent = nullptr):QMediaRecorder(mediaObject, parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaRecorder();
+   ~PythonQtShell_QMediaRecorder() override;
 
-virtual QMediaObject*  mediaObject() const;
-virtual bool  setMediaObject(QMediaObject*  object);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QMediaObject*  mediaObject() const override;
+bool  setMediaObject(QMediaObject*  object) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaRecorder : public QMediaRecorder
@@ -128,7 +144,7 @@ class PythonQtWrapper_QMediaRecorder : public QObject
 public:
 public slots:
 QMediaRecorder* new_QMediaRecorder(QMediaObject*  mediaObject, QObject*  parent = nullptr);
-void delete_QMediaRecorder(QMediaRecorder* obj) { delete obj; } 
+void delete_QMediaRecorder(QMediaRecorder* obj) { delete obj; }
    QUrl  actualLocation(QMediaRecorder* theWrappedObject) const;
    QString  audioCodecDescription(QMediaRecorder* theWrappedObject, const QString&  codecName) const;
    QAudioEncoderSettings  audioSettings(QMediaRecorder* theWrappedObject) const;
@@ -143,14 +159,12 @@ void delete_QMediaRecorder(QMediaRecorder* obj) { delete obj; }
    bool  isMetaDataAvailable(QMediaRecorder* theWrappedObject) const;
    bool  isMetaDataWritable(QMediaRecorder* theWrappedObject) const;
    bool  isMuted(QMediaRecorder* theWrappedObject) const;
-   QMediaObject*  mediaObject(QMediaRecorder* theWrappedObject) const;
    QMediaObject*  py_q_mediaObject(QMediaRecorder* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMediaRecorder*)theWrappedObject)->py_q_mediaObject());}
    QVariant  metaData(QMediaRecorder* theWrappedObject, const QString&  key) const;
    QUrl  outputLocation(QMediaRecorder* theWrappedObject) const;
    void setAudioSettings(QMediaRecorder* theWrappedObject, const QAudioEncoderSettings&  audioSettings);
    void setContainerFormat(QMediaRecorder* theWrappedObject, const QString&  container);
    void setEncodingSettings(QMediaRecorder* theWrappedObject, const QAudioEncoderSettings&  audioSettings, const QVideoEncoderSettings&  videoSettings = QVideoEncoderSettings(), const QString&  containerMimeType = QString());
-   bool  setMediaObject(QMediaRecorder* theWrappedObject, QMediaObject*  object);
    bool  py_q_setMediaObject(QMediaRecorder* theWrappedObject, QMediaObject*  object){  return (((PythonQtPublicPromoter_QMediaRecorder*)theWrappedObject)->py_q_setMediaObject(object));}
    void setMetaData(QMediaRecorder* theWrappedObject, const QString&  key, const QVariant&  value);
    bool  setOutputLocation(QMediaRecorder* theWrappedObject, const QUrl&  location);
@@ -175,25 +189,30 @@ void delete_QMediaRecorder(QMediaRecorder* obj) { delete obj; }
 class PythonQtShell_QMediaRecorderControl : public QMediaRecorderControl
 {
 public:
-    PythonQtShell_QMediaRecorderControl(QObject*  parent = nullptr):QMediaRecorderControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QMediaRecorderControl(QObject*  parent = nullptr):QMediaRecorderControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaRecorderControl();
+   ~PythonQtShell_QMediaRecorderControl() override;
 
-virtual void applySettings();
-virtual qint64  duration() const;
-virtual bool  isMuted() const;
-virtual QUrl  outputLocation() const;
-virtual void setMuted(bool  muted);
-virtual bool  setOutputLocation(const QUrl&  location);
-virtual void setState(QMediaRecorder::State  state);
-virtual void setVolume(qreal  volume);
-virtual QMediaRecorder::State  state() const;
-virtual QMediaRecorder::Status  status() const;
-virtual qreal  volume() const;
+void applySettings() override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+qint64  duration() const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isMuted() const override;
+QUrl  outputLocation() const override;
+void setMuted(bool  muted) override;
+bool  setOutputLocation(const QUrl&  location) override;
+void setState(QMediaRecorder::State  state) override;
+void setVolume(qreal  volume) override;
+QMediaRecorder::State  state() const override;
+QMediaRecorder::Status  status() const override;
+void timerEvent(QTimerEvent*  event) override;
+qreal  volume() const override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaRecorderControl : public QMediaRecorderControl
@@ -216,7 +235,7 @@ class PythonQtWrapper_QMediaRecorderControl : public QObject
 public:
 public slots:
 QMediaRecorderControl* new_QMediaRecorderControl(QObject*  parent = nullptr);
-void delete_QMediaRecorderControl(QMediaRecorderControl* obj) { delete obj; } 
+void delete_QMediaRecorderControl(QMediaRecorderControl* obj) { delete obj; }
    void applySettings(QMediaRecorderControl* theWrappedObject);
    void py_q_applySettings(QMediaRecorderControl* theWrappedObject){  (((PythonQtPublicPromoter_QMediaRecorderControl*)theWrappedObject)->py_q_applySettings());}
    qint64  duration(QMediaRecorderControl* theWrappedObject) const;
@@ -250,7 +269,7 @@ QMediaResource* new_QMediaResource();
 QMediaResource* new_QMediaResource(const QMediaResource&  other);
 QMediaResource* new_QMediaResource(const QNetworkRequest&  request, const QString&  mimeType = QString());
 QMediaResource* new_QMediaResource(const QUrl&  url, const QString&  mimeType = QString());
-void delete_QMediaResource(QMediaResource* obj) { delete obj; } 
+void delete_QMediaResource(QMediaResource* obj) { delete obj; }
    int  audioBitRate(QMediaResource* theWrappedObject) const;
    QString  audioCodec(QMediaResource* theWrappedObject) const;
    int  channelCount(QMediaResource* theWrappedObject) const;
@@ -287,16 +306,21 @@ void delete_QMediaResource(QMediaResource* obj) { delete obj; }
 class PythonQtShell_QMediaService : public QMediaService
 {
 public:
-    PythonQtShell_QMediaService(QObject*  parent):QMediaService(parent),_wrapper(NULL) {};
+    PythonQtShell_QMediaService(QObject*  parent):QMediaService(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaService();
+   ~PythonQtShell_QMediaService() override;
 
-virtual void releaseControl(QMediaControl*  control);
-virtual QMediaControl*  requestControl(const char*  name);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void releaseControl(QMediaControl*  control) override;
+QMediaControl*  requestControl(const char*  name) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaService : public QMediaService
@@ -310,7 +334,7 @@ class PythonQtWrapper_QMediaService : public QObject
 public:
 public slots:
 QMediaService* new_QMediaService(QObject*  parent);
-void delete_QMediaService(QMediaService* obj) { delete obj; } 
+void delete_QMediaService(QMediaService* obj) { delete obj; }
    void releaseControl(QMediaService* theWrappedObject, QMediaControl*  control);
    void py_q_releaseControl(QMediaService* theWrappedObject, QMediaControl*  control){  (((PythonQtPublicPromoter_QMediaService*)theWrappedObject)->py_q_releaseControl(control));}
    QMediaControl*  requestControl(QMediaService* theWrappedObject, const char*  name);
@@ -324,14 +348,14 @@ void delete_QMediaService(QMediaService* obj) { delete obj; }
 class PythonQtShell_QMediaServiceCameraInfoInterface : public QMediaServiceCameraInfoInterface
 {
 public:
-    PythonQtShell_QMediaServiceCameraInfoInterface():QMediaServiceCameraInfoInterface(),_wrapper(NULL) {};
+    PythonQtShell_QMediaServiceCameraInfoInterface():QMediaServiceCameraInfoInterface(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaServiceCameraInfoInterface();
+   ~PythonQtShell_QMediaServiceCameraInfoInterface() override;
 
-virtual int  cameraOrientation(const QByteArray&  device) const;
-virtual QCamera::Position  cameraPosition(const QByteArray&  device) const;
+int  cameraOrientation(const QByteArray&  device) const override;
+QCamera::Position  cameraPosition(const QByteArray&  device) const override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaServiceCameraInfoInterface : public QMediaServiceCameraInfoInterface
@@ -345,7 +369,7 @@ class PythonQtWrapper_QMediaServiceCameraInfoInterface : public QObject
 public:
 public slots:
 QMediaServiceCameraInfoInterface* new_QMediaServiceCameraInfoInterface();
-void delete_QMediaServiceCameraInfoInterface(QMediaServiceCameraInfoInterface* obj) { delete obj; } 
+void delete_QMediaServiceCameraInfoInterface(QMediaServiceCameraInfoInterface* obj) { delete obj; }
    int  cameraOrientation(QMediaServiceCameraInfoInterface* theWrappedObject, const QByteArray&  device) const;
    int  py_q_cameraOrientation(QMediaServiceCameraInfoInterface* theWrappedObject, const QByteArray&  device) const{  return (((PythonQtPublicPromoter_QMediaServiceCameraInfoInterface*)theWrappedObject)->py_q_cameraOrientation(device));}
    QCamera::Position  cameraPosition(QMediaServiceCameraInfoInterface* theWrappedObject, const QByteArray&  device) const;
@@ -359,13 +383,13 @@ void delete_QMediaServiceCameraInfoInterface(QMediaServiceCameraInfoInterface* o
 class PythonQtShell_QMediaServiceDefaultDeviceInterface : public QMediaServiceDefaultDeviceInterface
 {
 public:
-    PythonQtShell_QMediaServiceDefaultDeviceInterface():QMediaServiceDefaultDeviceInterface(),_wrapper(NULL) {};
+    PythonQtShell_QMediaServiceDefaultDeviceInterface():QMediaServiceDefaultDeviceInterface(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaServiceDefaultDeviceInterface();
+   ~PythonQtShell_QMediaServiceDefaultDeviceInterface() override;
 
-virtual QByteArray  defaultDevice(const QByteArray&  service) const;
+QByteArray  defaultDevice(const QByteArray&  service) const override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaServiceDefaultDeviceInterface : public QMediaServiceDefaultDeviceInterface
@@ -378,7 +402,7 @@ class PythonQtWrapper_QMediaServiceDefaultDeviceInterface : public QObject
 public:
 public slots:
 QMediaServiceDefaultDeviceInterface* new_QMediaServiceDefaultDeviceInterface();
-void delete_QMediaServiceDefaultDeviceInterface(QMediaServiceDefaultDeviceInterface* obj) { delete obj; } 
+void delete_QMediaServiceDefaultDeviceInterface(QMediaServiceDefaultDeviceInterface* obj) { delete obj; }
    QByteArray  defaultDevice(QMediaServiceDefaultDeviceInterface* theWrappedObject, const QByteArray&  service) const;
    QByteArray  py_q_defaultDevice(QMediaServiceDefaultDeviceInterface* theWrappedObject, const QByteArray&  service) const{  return (((PythonQtPublicPromoter_QMediaServiceDefaultDeviceInterface*)theWrappedObject)->py_q_defaultDevice(service));}
 };
@@ -390,14 +414,14 @@ void delete_QMediaServiceDefaultDeviceInterface(QMediaServiceDefaultDeviceInterf
 class PythonQtShell_QMediaServiceProviderFactoryInterface : public QMediaServiceProviderFactoryInterface
 {
 public:
-    PythonQtShell_QMediaServiceProviderFactoryInterface():QMediaServiceProviderFactoryInterface(),_wrapper(NULL) {};
+    PythonQtShell_QMediaServiceProviderFactoryInterface():QMediaServiceProviderFactoryInterface(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaServiceProviderFactoryInterface();
+   ~PythonQtShell_QMediaServiceProviderFactoryInterface() override;
 
-virtual QMediaService*  create(const QString&  key);
-virtual void release(QMediaService*  service);
+QMediaService*  create(const QString&  key) override;
+void release(QMediaService*  service) override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaServiceProviderFactoryInterface : public QMediaServiceProviderFactoryInterface
@@ -411,7 +435,7 @@ class PythonQtWrapper_QMediaServiceProviderFactoryInterface : public QObject
 public:
 public slots:
 QMediaServiceProviderFactoryInterface* new_QMediaServiceProviderFactoryInterface();
-void delete_QMediaServiceProviderFactoryInterface(QMediaServiceProviderFactoryInterface* obj) { delete obj; } 
+void delete_QMediaServiceProviderFactoryInterface(QMediaServiceProviderFactoryInterface* obj) { delete obj; }
    QMediaService*  create(QMediaServiceProviderFactoryInterface* theWrappedObject, const QString&  key);
    QMediaService*  py_q_create(QMediaServiceProviderFactoryInterface* theWrappedObject, const QString&  key){  return (((PythonQtPublicPromoter_QMediaServiceProviderFactoryInterface*)theWrappedObject)->py_q_create(key));}
    void release(QMediaServiceProviderFactoryInterface* theWrappedObject, QMediaService*  service);
@@ -436,7 +460,7 @@ QMediaServiceProviderHint* new_QMediaServiceProviderHint(QCamera::Position  posi
 QMediaServiceProviderHint* new_QMediaServiceProviderHint(const QByteArray&  device);
 QMediaServiceProviderHint* new_QMediaServiceProviderHint(const QMediaServiceProviderHint&  other);
 QMediaServiceProviderHint* new_QMediaServiceProviderHint(const QString&  mimeType, const QStringList&  codecs);
-void delete_QMediaServiceProviderHint(QMediaServiceProviderHint* obj) { delete obj; } 
+void delete_QMediaServiceProviderHint(QMediaServiceProviderHint* obj) { delete obj; }
    QCamera::Position  cameraPosition(QMediaServiceProviderHint* theWrappedObject) const;
    QStringList  codecs(QMediaServiceProviderHint* theWrappedObject) const;
    QByteArray  device(QMediaServiceProviderHint* theWrappedObject) const;
@@ -456,16 +480,16 @@ void delete_QMediaServiceProviderHint(QMediaServiceProviderHint* obj) { delete o
 class PythonQtShell_QMediaServiceProviderPlugin : public QMediaServiceProviderPlugin
 {
 public:
-    PythonQtShell_QMediaServiceProviderPlugin():QMediaServiceProviderPlugin(),_wrapper(NULL) {};
+    PythonQtShell_QMediaServiceProviderPlugin():QMediaServiceProviderPlugin(),_wrapper(nullptr) {};
 
    ~PythonQtShell_QMediaServiceProviderPlugin();
 
-virtual QMediaService*  create(const QString&  key);
-virtual void release(QMediaService*  service);
+QMediaService*  create(const QString&  key) override;
+void release(QMediaService*  service) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaServiceProviderPlugin : public QMediaServiceProviderPlugin
@@ -479,7 +503,7 @@ class PythonQtWrapper_QMediaServiceProviderPlugin : public QObject
 public:
 public slots:
 QMediaServiceProviderPlugin* new_QMediaServiceProviderPlugin();
-void delete_QMediaServiceProviderPlugin(QMediaServiceProviderPlugin* obj) { delete obj; } 
+void delete_QMediaServiceProviderPlugin(QMediaServiceProviderPlugin* obj) { delete obj; }
    QMediaService*  create(QMediaServiceProviderPlugin* theWrappedObject, const QString&  key);
    QMediaService*  py_q_create(QMediaServiceProviderPlugin* theWrappedObject, const QString&  key){  return (((PythonQtPublicPromoter_QMediaServiceProviderPlugin*)theWrappedObject)->py_q_create(key));}
    void release(QMediaServiceProviderPlugin* theWrappedObject, QMediaService*  service);
@@ -493,14 +517,14 @@ void delete_QMediaServiceProviderPlugin(QMediaServiceProviderPlugin* obj) { dele
 class PythonQtShell_QMediaServiceSupportedDevicesInterface : public QMediaServiceSupportedDevicesInterface
 {
 public:
-    PythonQtShell_QMediaServiceSupportedDevicesInterface():QMediaServiceSupportedDevicesInterface(),_wrapper(NULL) {};
+    PythonQtShell_QMediaServiceSupportedDevicesInterface():QMediaServiceSupportedDevicesInterface(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaServiceSupportedDevicesInterface();
+   ~PythonQtShell_QMediaServiceSupportedDevicesInterface() override;
 
-virtual QString  deviceDescription(const QByteArray&  service, const QByteArray&  device);
-virtual QList<QByteArray >  devices(const QByteArray&  service) const;
+QString  deviceDescription(const QByteArray&  service, const QByteArray&  device) override;
+QList<QByteArray >  devices(const QByteArray&  service) const override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaServiceSupportedDevicesInterface : public QMediaServiceSupportedDevicesInterface
@@ -514,7 +538,7 @@ class PythonQtWrapper_QMediaServiceSupportedDevicesInterface : public QObject
 public:
 public slots:
 QMediaServiceSupportedDevicesInterface* new_QMediaServiceSupportedDevicesInterface();
-void delete_QMediaServiceSupportedDevicesInterface(QMediaServiceSupportedDevicesInterface* obj) { delete obj; } 
+void delete_QMediaServiceSupportedDevicesInterface(QMediaServiceSupportedDevicesInterface* obj) { delete obj; }
    QString  deviceDescription(QMediaServiceSupportedDevicesInterface* theWrappedObject, const QByteArray&  service, const QByteArray&  device);
    QString  py_q_deviceDescription(QMediaServiceSupportedDevicesInterface* theWrappedObject, const QByteArray&  service, const QByteArray&  device){  return (((PythonQtPublicPromoter_QMediaServiceSupportedDevicesInterface*)theWrappedObject)->py_q_deviceDescription(service, device));}
    QList<QByteArray >  devices(QMediaServiceSupportedDevicesInterface* theWrappedObject, const QByteArray&  service) const;
@@ -528,14 +552,14 @@ void delete_QMediaServiceSupportedDevicesInterface(QMediaServiceSupportedDevices
 class PythonQtShell_QMediaServiceSupportedFormatsInterface : public QMediaServiceSupportedFormatsInterface
 {
 public:
-    PythonQtShell_QMediaServiceSupportedFormatsInterface():QMediaServiceSupportedFormatsInterface(),_wrapper(NULL) {};
+    PythonQtShell_QMediaServiceSupportedFormatsInterface():QMediaServiceSupportedFormatsInterface(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaServiceSupportedFormatsInterface();
+   ~PythonQtShell_QMediaServiceSupportedFormatsInterface() override;
 
-virtual QMultimedia::SupportEstimate  hasSupport(const QString&  mimeType, const QStringList&  codecs) const;
-virtual QStringList  supportedMimeTypes() const;
+QMultimedia::SupportEstimate  hasSupport(const QString&  mimeType, const QStringList&  codecs) const override;
+QStringList  supportedMimeTypes() const override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaServiceSupportedFormatsInterface : public QMediaServiceSupportedFormatsInterface
@@ -549,7 +573,7 @@ class PythonQtWrapper_QMediaServiceSupportedFormatsInterface : public QObject
 public:
 public slots:
 QMediaServiceSupportedFormatsInterface* new_QMediaServiceSupportedFormatsInterface();
-void delete_QMediaServiceSupportedFormatsInterface(QMediaServiceSupportedFormatsInterface* obj) { delete obj; } 
+void delete_QMediaServiceSupportedFormatsInterface(QMediaServiceSupportedFormatsInterface* obj) { delete obj; }
    QMultimedia::SupportEstimate  hasSupport(QMediaServiceSupportedFormatsInterface* theWrappedObject, const QString&  mimeType, const QStringList&  codecs) const;
    QMultimedia::SupportEstimate  py_q_hasSupport(QMediaServiceSupportedFormatsInterface* theWrappedObject, const QString&  mimeType, const QStringList&  codecs) const{  return (((PythonQtPublicPromoter_QMediaServiceSupportedFormatsInterface*)theWrappedObject)->py_q_hasSupport(mimeType, codecs));}
    QStringList  supportedMimeTypes(QMediaServiceSupportedFormatsInterface* theWrappedObject) const;
@@ -563,19 +587,24 @@ void delete_QMediaServiceSupportedFormatsInterface(QMediaServiceSupportedFormats
 class PythonQtShell_QMediaStreamsControl : public QMediaStreamsControl
 {
 public:
-    PythonQtShell_QMediaStreamsControl(QObject*  parent = nullptr):QMediaStreamsControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QMediaStreamsControl(QObject*  parent = nullptr):QMediaStreamsControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaStreamsControl();
+   ~PythonQtShell_QMediaStreamsControl() override;
 
-virtual bool  isActive(int  streamNumber);
-virtual QVariant  metaData(int  streamNumber, const QString&  key);
-virtual void setActive(int  streamNumber, bool  state);
-virtual int  streamCount();
-virtual QMediaStreamsControl::StreamType  streamType(int  streamNumber);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isActive(int  streamNumber) override;
+QVariant  metaData(int  streamNumber, const QString&  key) override;
+void setActive(int  streamNumber, bool  state) override;
+int  streamCount() override;
+QMediaStreamsControl::StreamType  streamType(int  streamNumber) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaStreamsControl : public QMediaStreamsControl
@@ -595,7 +624,7 @@ enum StreamType{
   UnknownStream = QMediaStreamsControl::UnknownStream,   VideoStream = QMediaStreamsControl::VideoStream,   AudioStream = QMediaStreamsControl::AudioStream,   SubPictureStream = QMediaStreamsControl::SubPictureStream,   DataStream = QMediaStreamsControl::DataStream};
 public slots:
 QMediaStreamsControl* new_QMediaStreamsControl(QObject*  parent = nullptr);
-void delete_QMediaStreamsControl(QMediaStreamsControl* obj) { delete obj; } 
+void delete_QMediaStreamsControl(QMediaStreamsControl* obj) { delete obj; }
    bool  isActive(QMediaStreamsControl* theWrappedObject, int  streamNumber);
    bool  py_q_isActive(QMediaStreamsControl* theWrappedObject, int  streamNumber){  return (((PythonQtPublicPromoter_QMediaStreamsControl*)theWrappedObject)->py_q_isActive(streamNumber));}
    QVariant  metaData(QMediaStreamsControl* theWrappedObject, int  streamNumber, const QString&  key);
@@ -619,11 +648,13 @@ public slots:
 QMediaTimeInterval* new_QMediaTimeInterval();
 QMediaTimeInterval* new_QMediaTimeInterval(const QMediaTimeInterval&  arg__1);
 QMediaTimeInterval* new_QMediaTimeInterval(qint64  start, qint64  end);
-void delete_QMediaTimeInterval(QMediaTimeInterval* obj) { delete obj; } 
+void delete_QMediaTimeInterval(QMediaTimeInterval* obj) { delete obj; }
    bool  contains(QMediaTimeInterval* theWrappedObject, qint64  time) const;
    qint64  end(QMediaTimeInterval* theWrappedObject) const;
    bool  isNormal(QMediaTimeInterval* theWrappedObject) const;
    QMediaTimeInterval  normalized(QMediaTimeInterval* theWrappedObject) const;
+   bool  __ne__(QMediaTimeInterval* theWrappedObject, const QMediaTimeInterval&  arg__2);
+   QMediaTimeInterval*  operator_assign(QMediaTimeInterval* theWrappedObject, const QMediaTimeInterval&  arg__1);
    bool  __eq__(QMediaTimeInterval* theWrappedObject, const QMediaTimeInterval&  arg__2);
    qint64  start(QMediaTimeInterval* theWrappedObject) const;
    QMediaTimeInterval  translated(QMediaTimeInterval* theWrappedObject, qint64  offset) const;
@@ -641,7 +672,7 @@ QMediaTimeRange* new_QMediaTimeRange();
 QMediaTimeRange* new_QMediaTimeRange(const QMediaTimeInterval&  arg__1);
 QMediaTimeRange* new_QMediaTimeRange(const QMediaTimeRange&  range);
 QMediaTimeRange* new_QMediaTimeRange(qint64  start, qint64  end);
-void delete_QMediaTimeRange(QMediaTimeRange* obj) { delete obj; } 
+void delete_QMediaTimeRange(QMediaTimeRange* obj) { delete obj; }
    void addInterval(QMediaTimeRange* theWrappedObject, const QMediaTimeInterval&  interval);
    void addInterval(QMediaTimeRange* theWrappedObject, qint64  start, qint64  end);
    void addTimeRange(QMediaTimeRange* theWrappedObject, const QMediaTimeRange&  arg__1);
@@ -652,6 +683,7 @@ void delete_QMediaTimeRange(QMediaTimeRange* obj) { delete obj; }
    bool  isContinuous(QMediaTimeRange* theWrappedObject) const;
    bool  isEmpty(QMediaTimeRange* theWrappedObject) const;
    qint64  latestTime(QMediaTimeRange* theWrappedObject) const;
+   bool  __ne__(QMediaTimeRange* theWrappedObject, const QMediaTimeRange&  arg__2);
    QMediaTimeRange  __add__(QMediaTimeRange* theWrappedObject, const QMediaTimeRange&  arg__2);
    QMediaTimeRange*  __iadd__(QMediaTimeRange* theWrappedObject, const QMediaTimeInterval&  arg__1);
    QMediaTimeRange*  __iadd__(QMediaTimeRange* theWrappedObject, const QMediaTimeRange&  arg__1);
@@ -675,14 +707,19 @@ void delete_QMediaTimeRange(QMediaTimeRange* obj) { delete obj; }
 class PythonQtShell_QMediaVideoProbeControl : public QMediaVideoProbeControl
 {
 public:
-    PythonQtShell_QMediaVideoProbeControl(QObject*  parent = nullptr):QMediaVideoProbeControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QMediaVideoProbeControl(QObject*  parent = nullptr):QMediaVideoProbeControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaVideoProbeControl();
+   ~PythonQtShell_QMediaVideoProbeControl() override;
 
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QMediaVideoProbeControl : public QObject
@@ -690,7 +727,7 @@ class PythonQtWrapper_QMediaVideoProbeControl : public QObject
 public:
 public slots:
 QMediaVideoProbeControl* new_QMediaVideoProbeControl(QObject*  parent = nullptr);
-void delete_QMediaVideoProbeControl(QMediaVideoProbeControl* obj) { delete obj; } 
+void delete_QMediaVideoProbeControl(QMediaVideoProbeControl* obj) { delete obj; }
 };
 
 
@@ -700,17 +737,22 @@ void delete_QMediaVideoProbeControl(QMediaVideoProbeControl* obj) { delete obj; 
 class PythonQtShell_QMetaDataReaderControl : public QMetaDataReaderControl
 {
 public:
-    PythonQtShell_QMetaDataReaderControl(QObject*  parent = nullptr):QMetaDataReaderControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QMetaDataReaderControl(QObject*  parent = nullptr):QMetaDataReaderControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMetaDataReaderControl();
+   ~PythonQtShell_QMetaDataReaderControl() override;
 
-virtual QStringList  availableMetaData() const;
-virtual bool  isMetaDataAvailable() const;
-virtual QVariant  metaData(const QString&  key) const;
+QStringList  availableMetaData() const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isMetaDataAvailable() const override;
+QVariant  metaData(const QString&  key) const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMetaDataReaderControl : public QMetaDataReaderControl
@@ -725,7 +767,7 @@ class PythonQtWrapper_QMetaDataReaderControl : public QObject
 public:
 public slots:
 QMetaDataReaderControl* new_QMetaDataReaderControl(QObject*  parent = nullptr);
-void delete_QMetaDataReaderControl(QMetaDataReaderControl* obj) { delete obj; } 
+void delete_QMetaDataReaderControl(QMetaDataReaderControl* obj) { delete obj; }
    QStringList  availableMetaData(QMetaDataReaderControl* theWrappedObject) const;
    QStringList  py_q_availableMetaData(QMetaDataReaderControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMetaDataReaderControl*)theWrappedObject)->py_q_availableMetaData());}
    bool  isMetaDataAvailable(QMetaDataReaderControl* theWrappedObject) const;
@@ -741,19 +783,24 @@ void delete_QMetaDataReaderControl(QMetaDataReaderControl* obj) { delete obj; }
 class PythonQtShell_QMetaDataWriterControl : public QMetaDataWriterControl
 {
 public:
-    PythonQtShell_QMetaDataWriterControl(QObject*  parent = nullptr):QMetaDataWriterControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QMetaDataWriterControl(QObject*  parent = nullptr):QMetaDataWriterControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMetaDataWriterControl();
+   ~PythonQtShell_QMetaDataWriterControl() override;
 
-virtual QStringList  availableMetaData() const;
-virtual bool  isMetaDataAvailable() const;
-virtual bool  isWritable() const;
-virtual QVariant  metaData(const QString&  key) const;
-virtual void setMetaData(const QString&  key, const QVariant&  value);
+QStringList  availableMetaData() const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isMetaDataAvailable() const override;
+bool  isWritable() const override;
+QVariant  metaData(const QString&  key) const override;
+void setMetaData(const QString&  key, const QVariant&  value) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMetaDataWriterControl : public QMetaDataWriterControl
@@ -770,7 +817,7 @@ class PythonQtWrapper_QMetaDataWriterControl : public QObject
 public:
 public slots:
 QMetaDataWriterControl* new_QMetaDataWriterControl(QObject*  parent = nullptr);
-void delete_QMetaDataWriterControl(QMetaDataWriterControl* obj) { delete obj; } 
+void delete_QMetaDataWriterControl(QMetaDataWriterControl* obj) { delete obj; }
    QStringList  availableMetaData(QMetaDataWriterControl* theWrappedObject) const;
    QStringList  py_q_availableMetaData(QMetaDataWriterControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMetaDataWriterControl*)theWrappedObject)->py_q_availableMetaData());}
    bool  isMetaDataAvailable(QMetaDataWriterControl* theWrappedObject) const;
@@ -809,16 +856,21 @@ public slots:
 class PythonQtShell_QRadioData : public QRadioData
 {
 public:
-    PythonQtShell_QRadioData(QMediaObject*  mediaObject, QObject*  parent = nullptr):QRadioData(mediaObject, parent),_wrapper(NULL) {};
+    PythonQtShell_QRadioData(QMediaObject*  mediaObject, QObject*  parent = nullptr):QRadioData(mediaObject, parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QRadioData();
+   ~PythonQtShell_QRadioData() override;
 
-virtual QMediaObject*  mediaObject() const;
-virtual bool  setMediaObject(QMediaObject*  arg__1);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QMediaObject*  mediaObject() const override;
+bool  setMediaObject(QMediaObject*  arg__1) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QRadioData : public QRadioData
@@ -833,17 +885,15 @@ class PythonQtWrapper_QRadioData : public QObject
 public:
 public slots:
 QRadioData* new_QRadioData(QMediaObject*  mediaObject, QObject*  parent = nullptr);
-void delete_QRadioData(QRadioData* obj) { delete obj; } 
+void delete_QRadioData(QRadioData* obj) { delete obj; }
    QMultimedia::AvailabilityStatus  availability(QRadioData* theWrappedObject) const;
    QRadioData::Error  error(QRadioData* theWrappedObject) const;
    QString  errorString(QRadioData* theWrappedObject) const;
    bool  isAlternativeFrequenciesEnabled(QRadioData* theWrappedObject) const;
-   QMediaObject*  mediaObject(QRadioData* theWrappedObject) const;
    QMediaObject*  py_q_mediaObject(QRadioData* theWrappedObject) const{  return (((PythonQtPublicPromoter_QRadioData*)theWrappedObject)->py_q_mediaObject());}
    QRadioData::ProgramType  programType(QRadioData* theWrappedObject) const;
    QString  programTypeName(QRadioData* theWrappedObject) const;
    QString  radioText(QRadioData* theWrappedObject) const;
-   bool  setMediaObject(QRadioData* theWrappedObject, QMediaObject*  arg__1);
    bool  py_q_setMediaObject(QRadioData* theWrappedObject, QMediaObject*  arg__1){  return (((PythonQtPublicPromoter_QRadioData*)theWrappedObject)->py_q_setMediaObject(arg__1));}
    QString  stationId(QRadioData* theWrappedObject) const;
    QString  stationName(QRadioData* theWrappedObject) const;
@@ -856,23 +906,28 @@ void delete_QRadioData(QRadioData* obj) { delete obj; }
 class PythonQtShell_QRadioDataControl : public QRadioDataControl
 {
 public:
-    PythonQtShell_QRadioDataControl(QObject*  parent = nullptr):QRadioDataControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QRadioDataControl(QObject*  parent = nullptr):QRadioDataControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QRadioDataControl();
+   ~PythonQtShell_QRadioDataControl() override;
 
-virtual QRadioData::Error  error() const;
-virtual QString  errorString() const;
-virtual bool  isAlternativeFrequenciesEnabled() const;
-virtual QRadioData::ProgramType  programType() const;
-virtual QString  programTypeName() const;
-virtual QString  radioText() const;
-virtual void setAlternativeFrequenciesEnabled(bool  enabled);
-virtual QString  stationId() const;
-virtual QString  stationName() const;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+QRadioData::Error  error() const override;
+QString  errorString() const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isAlternativeFrequenciesEnabled() const override;
+QRadioData::ProgramType  programType() const override;
+QString  programTypeName() const override;
+QString  radioText() const override;
+void setAlternativeFrequenciesEnabled(bool  enabled) override;
+QString  stationId() const override;
+QString  stationName() const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QRadioDataControl : public QRadioDataControl
@@ -893,7 +948,7 @@ class PythonQtWrapper_QRadioDataControl : public QObject
 public:
 public slots:
 QRadioDataControl* new_QRadioDataControl(QObject*  parent = nullptr);
-void delete_QRadioDataControl(QRadioDataControl* obj) { delete obj; } 
+void delete_QRadioDataControl(QRadioDataControl* obj) { delete obj; }
    QRadioData::Error  error(QRadioDataControl* theWrappedObject) const;
    QRadioData::Error  py_q_error(QRadioDataControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QRadioDataControl*)theWrappedObject)->py_q_error());}
    QString  errorString(QRadioDataControl* theWrappedObject) const;
@@ -921,19 +976,24 @@ void delete_QRadioDataControl(QRadioDataControl* obj) { delete obj; }
 class PythonQtShell_QRadioTuner : public QRadioTuner
 {
 public:
-    PythonQtShell_QRadioTuner(QObject*  parent = nullptr):QRadioTuner(parent),_wrapper(NULL) {};
+    PythonQtShell_QRadioTuner(QObject*  parent = nullptr):QRadioTuner(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QRadioTuner();
+   ~PythonQtShell_QRadioTuner() override;
 
-virtual QMultimedia::AvailabilityStatus  availability() const;
-virtual bool  bind(QObject*  arg__1);
-virtual bool  isAvailable() const;
-virtual QMediaService*  service() const;
-virtual void unbind(QObject*  arg__1);
+QMultimedia::AvailabilityStatus  availability() const override;
+bool  bind(QObject*  arg__1) override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isAvailable() const override;
+QMediaService*  service() const override;
+void timerEvent(QTimerEvent*  event) override;
+void unbind(QObject*  arg__1) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QRadioTuner : public QRadioTuner
@@ -946,7 +1006,7 @@ class PythonQtWrapper_QRadioTuner : public QObject
 public:
 public slots:
 QRadioTuner* new_QRadioTuner(QObject*  parent = nullptr);
-void delete_QRadioTuner(QRadioTuner* obj) { delete obj; } 
+void delete_QRadioTuner(QRadioTuner* obj) { delete obj; }
    QMultimedia::AvailabilityStatus  py_q_availability(QRadioTuner* theWrappedObject) const{  return (((PythonQtPublicPromoter_QRadioTuner*)theWrappedObject)->py_q_availability());}
    QRadioTuner::Band  band(QRadioTuner* theWrappedObject) const;
    QRadioTuner::Error  error(QRadioTuner* theWrappedObject) const;
@@ -974,40 +1034,45 @@ void delete_QRadioTuner(QRadioTuner* obj) { delete obj; }
 class PythonQtShell_QRadioTunerControl : public QRadioTunerControl
 {
 public:
-    PythonQtShell_QRadioTunerControl(QObject*  parent = nullptr):QRadioTunerControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QRadioTunerControl(QObject*  parent = nullptr):QRadioTunerControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QRadioTunerControl();
+   ~PythonQtShell_QRadioTunerControl() override;
 
-virtual QRadioTuner::Band  band() const;
-virtual void cancelSearch();
-virtual QRadioTuner::Error  error() const;
-virtual QString  errorString() const;
-virtual int  frequency() const;
-virtual QPair<int , int >  frequencyRange(QRadioTuner::Band  b) const;
-virtual int  frequencyStep(QRadioTuner::Band  b) const;
-virtual bool  isAntennaConnected() const;
-virtual bool  isBandSupported(QRadioTuner::Band  b) const;
-virtual bool  isMuted() const;
-virtual bool  isSearching() const;
-virtual bool  isStereo() const;
-virtual void searchAllStations(QRadioTuner::SearchMode  searchMode = QRadioTuner::SearchFast);
-virtual void searchBackward();
-virtual void searchForward();
-virtual void setBand(QRadioTuner::Band  b);
-virtual void setFrequency(int  frequency);
-virtual void setMuted(bool  muted);
-virtual void setStereoMode(QRadioTuner::StereoMode  mode);
-virtual void setVolume(int  volume);
-virtual int  signalStrength() const;
-virtual void start();
-virtual QRadioTuner::State  state() const;
-virtual QRadioTuner::StereoMode  stereoMode() const;
-virtual void stop();
-virtual int  volume() const;
+QRadioTuner::Band  band() const override;
+void cancelSearch() override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+QRadioTuner::Error  error() const override;
+QString  errorString() const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+int  frequency() const override;
+QPair<int , int >  frequencyRange(QRadioTuner::Band  b) const override;
+int  frequencyStep(QRadioTuner::Band  b) const override;
+bool  isAntennaConnected() const override;
+bool  isBandSupported(QRadioTuner::Band  b) const override;
+bool  isMuted() const override;
+bool  isSearching() const override;
+bool  isStereo() const override;
+void searchAllStations(QRadioTuner::SearchMode  searchMode = QRadioTuner::SearchFast) override;
+void searchBackward() override;
+void searchForward() override;
+void setBand(QRadioTuner::Band  b) override;
+void setFrequency(int  frequency) override;
+void setMuted(bool  muted) override;
+void setStereoMode(QRadioTuner::StereoMode  mode) override;
+void setVolume(int  volume) override;
+int  signalStrength() const override;
+void start() override;
+QRadioTuner::State  state() const override;
+QRadioTuner::StereoMode  stereoMode() const override;
+void stop() override;
+void timerEvent(QTimerEvent*  event) override;
+int  volume() const override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QRadioTunerControl : public QRadioTunerControl
@@ -1045,7 +1110,7 @@ class PythonQtWrapper_QRadioTunerControl : public QObject
 public:
 public slots:
 QRadioTunerControl* new_QRadioTunerControl(QObject*  parent = nullptr);
-void delete_QRadioTunerControl(QRadioTunerControl* obj) { delete obj; } 
+void delete_QRadioTunerControl(QRadioTunerControl* obj) { delete obj; }
    QRadioTuner::Band  band(QRadioTunerControl* theWrappedObject) const;
    QRadioTuner::Band  py_q_band(QRadioTunerControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QRadioTunerControl*)theWrappedObject)->py_q_band());}
    void cancelSearch(QRadioTunerControl* theWrappedObject);
@@ -1104,6 +1169,24 @@ void delete_QRadioTunerControl(QRadioTunerControl* obj) { delete obj; }
 
 
 
+class PythonQtShell_QSound : public QSound
+{
+public:
+    PythonQtShell_QSound(const QString&  filename, QObject*  parent = nullptr):QSound(filename, parent),_wrapper(nullptr) {};
+
+   ~PythonQtShell_QSound() override;
+
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
+
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
+};
+
 class PythonQtWrapper_QSound : public QObject
 { Q_OBJECT
 public:
@@ -1112,7 +1195,7 @@ enum Loop{
   Infinite = QSound::Infinite};
 public slots:
 QSound* new_QSound(const QString&  filename, QObject*  parent = nullptr);
-void delete_QSound(QSound* obj) { delete obj; } 
+void delete_QSound(QSound* obj) { delete obj; }
    QString  fileName(QSound* theWrappedObject) const;
    bool  isFinished(QSound* theWrappedObject) const;
    int  loops(QSound* theWrappedObject) const;
@@ -1128,29 +1211,29 @@ void delete_QSound(QSound* obj) { delete obj; }
 class PythonQtShell_QSoundEffect : public QSoundEffect
 {
 public:
-    PythonQtShell_QSoundEffect(QObject*  parent = nullptr):QSoundEffect(parent),_wrapper(NULL) {};
-    PythonQtShell_QSoundEffect(const QAudioDeviceInfo&  audioDevice, QObject*  parent = nullptr):QSoundEffect(audioDevice, parent),_wrapper(NULL) {};
+    PythonQtShell_QSoundEffect(QObject*  parent = nullptr):QSoundEffect(parent),_wrapper(nullptr) {};
+    PythonQtShell_QSoundEffect(const QAudioDeviceInfo&  audioDevice, QObject*  parent = nullptr):QSoundEffect(audioDevice, parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSoundEffect();
+   ~PythonQtShell_QSoundEffect() override;
 
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSoundEffect : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(Loop Status )
-enum Loop{
-  Infinite = QSoundEffect::Infinite};
-enum Status{
-  Null = QSoundEffect::Null,   Loading = QSoundEffect::Loading,   Ready = QSoundEffect::Ready,   Error = QSoundEffect::Error};
 public slots:
 QSoundEffect* new_QSoundEffect(QObject*  parent = nullptr);
 QSoundEffect* new_QSoundEffect(const QAudioDeviceInfo&  audioDevice, QObject*  parent = nullptr);
-void delete_QSoundEffect(QSoundEffect* obj) { delete obj; } 
+void delete_QSoundEffect(QSoundEffect* obj) { delete obj; }
    QString  category(QSoundEffect* theWrappedObject) const;
    bool  isLoaded(QSoundEffect* theWrappedObject) const;
    bool  isMuted(QSoundEffect* theWrappedObject) const;
@@ -1175,20 +1258,25 @@ void delete_QSoundEffect(QSoundEffect* obj) { delete obj; }
 class PythonQtShell_QVideoDeviceSelectorControl : public QVideoDeviceSelectorControl
 {
 public:
-    PythonQtShell_QVideoDeviceSelectorControl(QObject*  parent = nullptr):QVideoDeviceSelectorControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QVideoDeviceSelectorControl(QObject*  parent = nullptr):QVideoDeviceSelectorControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QVideoDeviceSelectorControl();
+   ~PythonQtShell_QVideoDeviceSelectorControl() override;
 
-virtual int  defaultDevice() const;
-virtual int  deviceCount() const;
-virtual QString  deviceDescription(int  index) const;
-virtual QString  deviceName(int  index) const;
-virtual int  selectedDevice() const;
-virtual void setSelectedDevice(int  index);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+int  defaultDevice() const override;
+int  deviceCount() const override;
+QString  deviceDescription(int  index) const override;
+QString  deviceName(int  index) const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+int  selectedDevice() const override;
+void setSelectedDevice(int  index) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QVideoDeviceSelectorControl : public QVideoDeviceSelectorControl
@@ -1206,7 +1294,7 @@ class PythonQtWrapper_QVideoDeviceSelectorControl : public QObject
 public:
 public slots:
 QVideoDeviceSelectorControl* new_QVideoDeviceSelectorControl(QObject*  parent = nullptr);
-void delete_QVideoDeviceSelectorControl(QVideoDeviceSelectorControl* obj) { delete obj; } 
+void delete_QVideoDeviceSelectorControl(QVideoDeviceSelectorControl* obj) { delete obj; }
    int  defaultDevice(QVideoDeviceSelectorControl* theWrappedObject) const;
    int  py_q_defaultDevice(QVideoDeviceSelectorControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QVideoDeviceSelectorControl*)theWrappedObject)->py_q_defaultDevice());}
    int  deviceCount(QVideoDeviceSelectorControl* theWrappedObject) const;
@@ -1230,7 +1318,7 @@ public:
 public slots:
 QVideoEncoderSettings* new_QVideoEncoderSettings();
 QVideoEncoderSettings* new_QVideoEncoderSettings(const QVideoEncoderSettings&  other);
-void delete_QVideoEncoderSettings(QVideoEncoderSettings* obj) { delete obj; } 
+void delete_QVideoEncoderSettings(QVideoEncoderSettings* obj) { delete obj; }
    int  bitRate(QVideoEncoderSettings* theWrappedObject) const;
    QString  codec(QVideoEncoderSettings* theWrappedObject) const;
    QMultimedia::EncodingMode  encodingMode(QVideoEncoderSettings* theWrappedObject) const;
@@ -1262,20 +1350,25 @@ void delete_QVideoEncoderSettings(QVideoEncoderSettings* obj) { delete obj; }
 class PythonQtShell_QVideoEncoderSettingsControl : public QVideoEncoderSettingsControl
 {
 public:
-    PythonQtShell_QVideoEncoderSettingsControl(QObject*  parent = nullptr):QVideoEncoderSettingsControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QVideoEncoderSettingsControl(QObject*  parent = nullptr):QVideoEncoderSettingsControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QVideoEncoderSettingsControl();
+   ~PythonQtShell_QVideoEncoderSettingsControl() override;
 
-virtual void setVideoSettings(const QVideoEncoderSettings&  settings);
-virtual QList<qreal >  supportedFrameRates(const QVideoEncoderSettings&  settings, bool*  continuous = nullptr) const;
-virtual QList<QSize >  supportedResolutions(const QVideoEncoderSettings&  settings, bool*  continuous = nullptr) const;
-virtual QStringList  supportedVideoCodecs() const;
-virtual QString  videoCodecDescription(const QString&  codec) const;
-virtual QVideoEncoderSettings  videoSettings() const;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void setVideoSettings(const QVideoEncoderSettings&  settings) override;
+QList<qreal >  supportedFrameRates(const QVideoEncoderSettings&  settings, bool*  continuous = nullptr) const override;
+QList<QSize >  supportedResolutions(const QVideoEncoderSettings&  settings, bool*  continuous = nullptr) const override;
+QStringList  supportedVideoCodecs() const override;
+void timerEvent(QTimerEvent*  event) override;
+QString  videoCodecDescription(const QString&  codec) const override;
+QVideoEncoderSettings  videoSettings() const override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QVideoEncoderSettingsControl : public QVideoEncoderSettingsControl
@@ -1293,7 +1386,7 @@ class PythonQtWrapper_QVideoEncoderSettingsControl : public QObject
 public:
 public slots:
 QVideoEncoderSettingsControl* new_QVideoEncoderSettingsControl(QObject*  parent = nullptr);
-void delete_QVideoEncoderSettingsControl(QVideoEncoderSettingsControl* obj) { delete obj; } 
+void delete_QVideoEncoderSettingsControl(QVideoEncoderSettingsControl* obj) { delete obj; }
    void setVideoSettings(QVideoEncoderSettingsControl* theWrappedObject, const QVideoEncoderSettings&  settings);
    void py_q_setVideoSettings(QVideoEncoderSettingsControl* theWrappedObject, const QVideoEncoderSettings&  settings){  (((PythonQtPublicPromoter_QVideoEncoderSettingsControl*)theWrappedObject)->py_q_setVideoSettings(settings));}
    QList<qreal >  supportedFrameRates(QVideoEncoderSettingsControl* theWrappedObject, const QVideoEncoderSettings&  settings, bool*  continuous = nullptr) const;
@@ -1326,7 +1419,7 @@ QVideoFrame* new_QVideoFrame(QAbstractVideoBuffer*  buffer, const QSize&  size, 
 QVideoFrame* new_QVideoFrame(const QImage&  image);
 QVideoFrame* new_QVideoFrame(const QVideoFrame&  other);
 QVideoFrame* new_QVideoFrame(int  bytes, const QSize&  size, int  bytesPerLine, QVideoFrame::PixelFormat  format);
-void delete_QVideoFrame(QVideoFrame* obj) { delete obj; } 
+void delete_QVideoFrame(QVideoFrame* obj) { delete obj; }
    QMap<QString , QVariant >  availableMetaData(QVideoFrame* theWrappedObject) const;
    uchar*  bits(QVideoFrame* theWrappedObject);
    const uchar*  bits(QVideoFrame* theWrappedObject) const;
@@ -1375,14 +1468,19 @@ void delete_QVideoFrame(QVideoFrame* obj) { delete obj; }
 class PythonQtShell_QVideoProbe : public QVideoProbe
 {
 public:
-    PythonQtShell_QVideoProbe(QObject*  parent = nullptr):QVideoProbe(parent),_wrapper(NULL) {};
+    PythonQtShell_QVideoProbe(QObject*  parent = nullptr):QVideoProbe(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QVideoProbe();
+   ~PythonQtShell_QVideoProbe() override;
 
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QVideoProbe : public QObject
@@ -1390,7 +1488,7 @@ class PythonQtWrapper_QVideoProbe : public QObject
 public:
 public slots:
 QVideoProbe* new_QVideoProbe(QObject*  parent = nullptr);
-void delete_QVideoProbe(QVideoProbe* obj) { delete obj; } 
+void delete_QVideoProbe(QVideoProbe* obj) { delete obj; }
    bool  isActive(QVideoProbe* theWrappedObject) const;
    bool  setSource(QVideoProbe* theWrappedObject, QMediaObject*  source);
    bool  setSource(QVideoProbe* theWrappedObject, QMediaRecorder*  source);

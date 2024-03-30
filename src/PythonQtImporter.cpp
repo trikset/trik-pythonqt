@@ -222,7 +222,7 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 {
   PythonQtImporter *self = (PythonQtImporter *)obj;
   PyObject *code = nullptr, *mod = nullptr, *dict = nullptr;
-  char *fullname;
+  char *fullname = NULL;
 
   if (!PyArg_ParseTuple(args, "s:PythonQtImporter.load_module",
 			&fullname))
@@ -338,7 +338,7 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 	  QVariantList list = result.toList();
 	  if (list.count()==3) {
 		// We prepend the full module name (including package prefix)
-		list.prepend(fullname);
+        list.prepend(QString(fullname));
 #ifdef __linux
   #ifdef _DEBUG
 		// imp_find_module() does not respect the debug suffix '_d' on Linux,
@@ -716,6 +716,18 @@ QString PythonQtImport::getSourceFilename(const QString& cacheFile)
   return pyFilename;
 }
 
+namespace
+{
+    qint64 toSecsSinceEpoch(const QDateTime& time)
+  {
+#if QT_VERSION < 0x060000
+    return time.toTime_t();
+#else
+    return time.toSecsSinceEpoch();
+#endif
+  }
+}
+
 /* Return the code object for the module named by 'fullname' from the
    Zip archive as a new reference. */
 PyObject *
@@ -753,7 +765,7 @@ PythonQtImport::getCodeFromData(const QString& path, int isbytecode,int /*ispack
 	  QString cacheFilename =  getCacheFilename(path, /*isOptimizedFilename=*/false);
 	#if !defined(WIN32) || defined(_MSC_VER)
 	  // If Python was build with MSVC, then we can crash on FILE* operations when compiling this code with GCC
-	  writeCompiledModule((PyCodeObject*)code, cacheFilename, time.toTime_t(), /*sourceSize=*/qdata.length());
+	  writeCompiledModule((PyCodeObject*)code, cacheFilename, toSecsSinceEpoch(time), /*sourceSize=*/qdata.length());
 	#endif
 	}
   }
@@ -768,7 +780,7 @@ PythonQtImport::getMTimeOfSource(const QString& path)
   if (PythonQt::importInterface()->exists(path2)) {
 	QDateTime t = PythonQt::importInterface()->lastModifiedDate(path2);
 	if (t.isValid()) {
-	  mtime = t.toTime_t();
+      mtime = toSecsSinceEpoch(t);
 	}
   }
 
@@ -920,8 +932,8 @@ void PythonQtImport::init()
 #ifdef PY3K
   mod = PyModule_Create(&PythonQtImport_def);
 #else
-  mod = Py_InitModule4("PythonQtImport", nullptr, mlabimport_doc,
-		   nullptr, PYTHON_API_VERSION);
+  mod = Py_InitModule4("PythonQtImport", NULL, mlabimport_doc,
+           NULL, PYTHON_API_VERSION);
 #endif
 
   PythonQtImportError = PyErr_NewException(const_cast<char*>("PythonQtImport.PythonQtImportError"),

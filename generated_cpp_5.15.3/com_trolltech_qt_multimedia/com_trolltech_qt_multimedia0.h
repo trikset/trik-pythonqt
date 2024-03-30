@@ -19,6 +19,7 @@
 #include <qaudiorolecontrol.h>
 #include <qaudiosystem.h>
 #include <qaudiosystemplugin.h>
+#include <qbytearray.h>
 #include <qcamera.h>
 #include <qcameracapturebufferformatcontrol.h>
 #include <qcameracapturedestinationcontrol.h>
@@ -31,13 +32,20 @@
 #include <qcameraimageprocessing.h>
 #include <qcamerainfo.h>
 #include <qcameraviewfindersettings.h>
-#include <qevent.h>
+#include <qcoreevent.h>
 #include <qgraphicsvideoitem.h>
 #include <qiodevice.h>
+#include <qlist.h>
 #include <qmediaencodersettings.h>
 #include <qmediaobject.h>
 #include <qmediarecorder.h>
 #include <qmediaservice.h>
+#include <qmetaobject.h>
+#include <qobject.h>
+#include <qpoint.h>
+#include <qsize.h>
+#include <qstringlist.h>
+#include <qthread.h>
 #include <qurl.h>
 #include <qvideoframe.h>
 #include <qvideosurfaceformat.h>
@@ -48,23 +56,28 @@
 class PythonQtShell_QAbstractAudioDeviceInfo : public QAbstractAudioDeviceInfo
 {
 public:
-    PythonQtShell_QAbstractAudioDeviceInfo():QAbstractAudioDeviceInfo(),_wrapper(NULL) {};
+    PythonQtShell_QAbstractAudioDeviceInfo():QAbstractAudioDeviceInfo(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAbstractAudioDeviceInfo();
+   ~PythonQtShell_QAbstractAudioDeviceInfo() override;
 
-virtual QString  deviceName() const;
-virtual bool  isFormatSupported(const QAudioFormat&  format) const;
-virtual QAudioFormat  preferredFormat() const;
-virtual QList<QAudioFormat::Endian >  supportedByteOrders();
-virtual QList<int >  supportedChannelCounts();
-virtual QStringList  supportedCodecs();
-virtual QList<int >  supportedSampleRates();
-virtual QList<int >  supportedSampleSizes();
-virtual QList<QAudioFormat::SampleType >  supportedSampleTypes();
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+QString  deviceName() const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isFormatSupported(const QAudioFormat&  format) const override;
+QAudioFormat  preferredFormat() const override;
+QList<QAudioFormat::Endian >  supportedByteOrders() override;
+QList<int >  supportedChannelCounts() override;
+QStringList  supportedCodecs() override;
+QList<int >  supportedSampleRates() override;
+QList<int >  supportedSampleSizes() override;
+QList<QAudioFormat::SampleType >  supportedSampleTypes() override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAbstractAudioDeviceInfo : public QAbstractAudioDeviceInfo
@@ -85,7 +98,7 @@ class PythonQtWrapper_QAbstractAudioDeviceInfo : public QObject
 public:
 public slots:
 QAbstractAudioDeviceInfo* new_QAbstractAudioDeviceInfo();
-void delete_QAbstractAudioDeviceInfo(QAbstractAudioDeviceInfo* obj) { delete obj; } 
+void delete_QAbstractAudioDeviceInfo(QAbstractAudioDeviceInfo* obj) { delete obj; }
    QString  deviceName(QAbstractAudioDeviceInfo* theWrappedObject) const;
    QString  py_q_deviceName(QAbstractAudioDeviceInfo* theWrappedObject) const{  return (((PythonQtPublicPromoter_QAbstractAudioDeviceInfo*)theWrappedObject)->py_q_deviceName());}
    bool  isFormatSupported(QAbstractAudioDeviceInfo* theWrappedObject, const QAudioFormat&  format) const;
@@ -113,34 +126,39 @@ void delete_QAbstractAudioDeviceInfo(QAbstractAudioDeviceInfo* obj) { delete obj
 class PythonQtShell_QAbstractAudioInput : public QAbstractAudioInput
 {
 public:
-    PythonQtShell_QAbstractAudioInput():QAbstractAudioInput(),_wrapper(NULL) {};
+    PythonQtShell_QAbstractAudioInput():QAbstractAudioInput(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAbstractAudioInput();
+   ~PythonQtShell_QAbstractAudioInput() override;
 
-virtual int  bufferSize() const;
-virtual int  bytesReady() const;
-virtual qint64  elapsedUSecs() const;
-virtual QAudio::Error  error() const;
-virtual QAudioFormat  format() const;
-virtual int  notifyInterval() const;
-virtual int  periodSize() const;
-virtual qint64  processedUSecs() const;
-virtual void reset();
-virtual void resume();
-virtual void setBufferSize(int  value);
-virtual void setFormat(const QAudioFormat&  fmt);
-virtual void setNotifyInterval(int  milliSeconds);
-virtual void setVolume(qreal  arg__1);
-virtual QIODevice*  start();
-virtual void start(QIODevice*  device);
-virtual QAudio::State  state() const;
-virtual void stop();
-virtual void suspend();
-virtual qreal  volume() const;
+int  bufferSize() const override;
+int  bytesReady() const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+qint64  elapsedUSecs() const override;
+QAudio::Error  error() const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QAudioFormat  format() const override;
+int  notifyInterval() const override;
+int  periodSize() const override;
+qint64  processedUSecs() const override;
+void reset() override;
+void resume() override;
+void setBufferSize(int  value) override;
+void setFormat(const QAudioFormat&  fmt) override;
+void setNotifyInterval(int  milliSeconds) override;
+void setVolume(qreal  arg__1) override;
+QIODevice*  start() override;
+void start(QIODevice*  device) override;
+QAudio::State  state() const override;
+void stop() override;
+void suspend() override;
+void timerEvent(QTimerEvent*  event) override;
+qreal  volume() const override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAbstractAudioInput : public QAbstractAudioInput
@@ -172,7 +190,7 @@ class PythonQtWrapper_QAbstractAudioInput : public QObject
 public:
 public slots:
 QAbstractAudioInput* new_QAbstractAudioInput();
-void delete_QAbstractAudioInput(QAbstractAudioInput* obj) { delete obj; } 
+void delete_QAbstractAudioInput(QAbstractAudioInput* obj) { delete obj; }
    int  bufferSize(QAbstractAudioInput* theWrappedObject) const;
    int  py_q_bufferSize(QAbstractAudioInput* theWrappedObject) const{  return (((PythonQtPublicPromoter_QAbstractAudioInput*)theWrappedObject)->py_q_bufferSize());}
    int  bytesReady(QAbstractAudioInput* theWrappedObject) const;
@@ -222,36 +240,41 @@ void delete_QAbstractAudioInput(QAbstractAudioInput* obj) { delete obj; }
 class PythonQtShell_QAbstractAudioOutput : public QAbstractAudioOutput
 {
 public:
-    PythonQtShell_QAbstractAudioOutput():QAbstractAudioOutput(),_wrapper(NULL) {};
+    PythonQtShell_QAbstractAudioOutput():QAbstractAudioOutput(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAbstractAudioOutput();
+   ~PythonQtShell_QAbstractAudioOutput() override;
 
-virtual int  bufferSize() const;
-virtual int  bytesFree() const;
-virtual QString  category() const;
-virtual qint64  elapsedUSecs() const;
-virtual QAudio::Error  error() const;
-virtual QAudioFormat  format() const;
-virtual int  notifyInterval() const;
-virtual int  periodSize() const;
-virtual qint64  processedUSecs() const;
-virtual void reset();
-virtual void resume();
-virtual void setBufferSize(int  value);
-virtual void setCategory(const QString&  arg__1);
-virtual void setFormat(const QAudioFormat&  fmt);
-virtual void setNotifyInterval(int  milliSeconds);
-virtual void setVolume(qreal  arg__1);
-virtual QIODevice*  start();
-virtual void start(QIODevice*  device);
-virtual QAudio::State  state() const;
-virtual void stop();
-virtual void suspend();
-virtual qreal  volume() const;
+int  bufferSize() const override;
+int  bytesFree() const override;
+QString  category() const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+qint64  elapsedUSecs() const override;
+QAudio::Error  error() const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QAudioFormat  format() const override;
+int  notifyInterval() const override;
+int  periodSize() const override;
+qint64  processedUSecs() const override;
+void reset() override;
+void resume() override;
+void setBufferSize(int  value) override;
+void setCategory(const QString&  arg__1) override;
+void setFormat(const QAudioFormat&  fmt) override;
+void setNotifyInterval(int  milliSeconds) override;
+void setVolume(qreal  arg__1) override;
+QIODevice*  start() override;
+void start(QIODevice*  device) override;
+QAudio::State  state() const override;
+void stop() override;
+void suspend() override;
+void timerEvent(QTimerEvent*  event) override;
+qreal  volume() const override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAbstractAudioOutput : public QAbstractAudioOutput
@@ -285,7 +308,7 @@ class PythonQtWrapper_QAbstractAudioOutput : public QObject
 public:
 public slots:
 QAbstractAudioOutput* new_QAbstractAudioOutput();
-void delete_QAbstractAudioOutput(QAbstractAudioOutput* obj) { delete obj; } 
+void delete_QAbstractAudioOutput(QAbstractAudioOutput* obj) { delete obj; }
    int  bufferSize(QAbstractAudioOutput* theWrappedObject) const;
    int  py_q_bufferSize(QAbstractAudioOutput* theWrappedObject) const{  return (((PythonQtPublicPromoter_QAbstractAudioOutput*)theWrappedObject)->py_q_bufferSize());}
    int  bytesFree(QAbstractAudioOutput* theWrappedObject) const;
@@ -339,17 +362,17 @@ void delete_QAbstractAudioOutput(QAbstractAudioOutput* obj) { delete obj; }
 class PythonQtShell_QAbstractVideoBuffer : public QAbstractVideoBuffer
 {
 public:
-    PythonQtShell_QAbstractVideoBuffer(QAbstractVideoBuffer::HandleType  type):QAbstractVideoBuffer(type),_wrapper(NULL) {};
+    PythonQtShell_QAbstractVideoBuffer(QAbstractVideoBuffer::HandleType  type):QAbstractVideoBuffer(type),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAbstractVideoBuffer();
+   ~PythonQtShell_QAbstractVideoBuffer() override;
 
-virtual QVariant  handle() const;
-virtual uchar*  map(QAbstractVideoBuffer::MapMode  mode, int*  numBytes, int*  bytesPerLine);
-virtual QAbstractVideoBuffer::MapMode  mapMode() const;
-virtual void release();
-virtual void unmap();
+QVariant  handle() const override;
+uchar*  map(QAbstractVideoBuffer::MapMode  mode, int*  numBytes, int*  bytesPerLine) override;
+QAbstractVideoBuffer::MapMode  mapMode() const override;
+void release() override;
+void unmap() override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAbstractVideoBuffer : public QAbstractVideoBuffer
@@ -371,7 +394,7 @@ enum MapMode{
   NotMapped = QAbstractVideoBuffer::NotMapped,   ReadOnly = QAbstractVideoBuffer::ReadOnly,   WriteOnly = QAbstractVideoBuffer::WriteOnly,   ReadWrite = QAbstractVideoBuffer::ReadWrite};
 public slots:
 QAbstractVideoBuffer* new_QAbstractVideoBuffer(QAbstractVideoBuffer::HandleType  type);
-void delete_QAbstractVideoBuffer(QAbstractVideoBuffer* obj) { delete obj; } 
+void delete_QAbstractVideoBuffer(QAbstractVideoBuffer* obj) { delete obj; }
    QVariant  handle(QAbstractVideoBuffer* theWrappedObject) const;
    QVariant  py_q_handle(QAbstractVideoBuffer* theWrappedObject) const{  return (((PythonQtPublicPromoter_QAbstractVideoBuffer*)theWrappedObject)->py_q_handle());}
    QAbstractVideoBuffer::HandleType  handleType(QAbstractVideoBuffer* theWrappedObject) const;
@@ -392,20 +415,25 @@ void delete_QAbstractVideoBuffer(QAbstractVideoBuffer* obj) { delete obj; }
 class PythonQtShell_QAbstractVideoSurface : public QAbstractVideoSurface
 {
 public:
-    PythonQtShell_QAbstractVideoSurface(QObject*  parent = nullptr):QAbstractVideoSurface(parent),_wrapper(NULL) {};
+    PythonQtShell_QAbstractVideoSurface(QObject*  parent = nullptr):QAbstractVideoSurface(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAbstractVideoSurface();
+   ~PythonQtShell_QAbstractVideoSurface() override;
 
-virtual bool  isFormatSupported(const QVideoSurfaceFormat&  format) const;
-virtual QVideoSurfaceFormat  nearestFormat(const QVideoSurfaceFormat&  format) const;
-virtual bool  present(const QVideoFrame&  frame);
-virtual bool  start(const QVideoSurfaceFormat&  format);
-virtual void stop();
-virtual QList<QVideoFrame::PixelFormat >  supportedPixelFormats(QAbstractVideoBuffer::HandleType  type = QAbstractVideoBuffer::NoHandle) const;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isFormatSupported(const QVideoSurfaceFormat&  format) const override;
+QVideoSurfaceFormat  nearestFormat(const QVideoSurfaceFormat&  format) const override;
+bool  present(const QVideoFrame&  frame) override;
+bool  start(const QVideoSurfaceFormat&  format) override;
+void stop() override;
+QList<QVideoFrame::PixelFormat >  supportedPixelFormats(QAbstractVideoBuffer::HandleType  type = QAbstractVideoBuffer::NoHandle) const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAbstractVideoSurface : public QAbstractVideoSurface
@@ -428,7 +456,7 @@ enum Error{
   NoError = QAbstractVideoSurface::NoError,   UnsupportedFormatError = QAbstractVideoSurface::UnsupportedFormatError,   IncorrectFormatError = QAbstractVideoSurface::IncorrectFormatError,   StoppedError = QAbstractVideoSurface::StoppedError,   ResourceError = QAbstractVideoSurface::ResourceError};
 public slots:
 QAbstractVideoSurface* new_QAbstractVideoSurface(QObject*  parent = nullptr);
-void delete_QAbstractVideoSurface(QAbstractVideoSurface* obj) { delete obj; } 
+void delete_QAbstractVideoSurface(QAbstractVideoSurface* obj) { delete obj; }
    QAbstractVideoSurface::Error  error(QAbstractVideoSurface* theWrappedObject) const;
    bool  isActive(QAbstractVideoSurface* theWrappedObject) const;
    bool  isFormatSupported(QAbstractVideoSurface* theWrappedObject, const QVideoSurfaceFormat&  format) const;
@@ -483,7 +511,7 @@ QAudioBuffer* new_QAudioBuffer();
 QAudioBuffer* new_QAudioBuffer(const QAudioBuffer&  other);
 QAudioBuffer* new_QAudioBuffer(const QByteArray&  data, const QAudioFormat&  format, qint64  startTime = -1);
 QAudioBuffer* new_QAudioBuffer(int  numFrames, const QAudioFormat&  format, qint64  startTime = -1);
-void delete_QAudioBuffer(QAudioBuffer* obj) { delete obj; } 
+void delete_QAudioBuffer(QAudioBuffer* obj) { delete obj; }
    int  byteCount(QAudioBuffer* theWrappedObject) const;
    const void*  constData(QAudioBuffer* theWrappedObject) const;
    void*  data(QAudioBuffer* theWrappedObject);
@@ -505,19 +533,24 @@ void delete_QAudioBuffer(QAudioBuffer* obj) { delete obj; }
 class PythonQtShell_QAudioDecoder : public QAudioDecoder
 {
 public:
-    PythonQtShell_QAudioDecoder(QObject*  parent = nullptr):QAudioDecoder(parent),_wrapper(NULL) {};
+    PythonQtShell_QAudioDecoder(QObject*  parent = nullptr):QAudioDecoder(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAudioDecoder();
+   ~PythonQtShell_QAudioDecoder() override;
 
-virtual QMultimedia::AvailabilityStatus  availability() const;
-virtual bool  bind(QObject*  arg__1);
-virtual bool  isAvailable() const;
-virtual QMediaService*  service() const;
-virtual void unbind(QObject*  arg__1);
+QMultimedia::AvailabilityStatus  availability() const override;
+bool  bind(QObject*  arg__1) override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isAvailable() const override;
+QMediaService*  service() const override;
+void timerEvent(QTimerEvent*  event) override;
+void unbind(QObject*  arg__1) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAudioDecoder : public QAudioDecoder
@@ -531,7 +564,7 @@ class PythonQtWrapper_QAudioDecoder : public QObject
 public:
 public slots:
 QAudioDecoder* new_QAudioDecoder(QObject*  parent = nullptr);
-void delete_QAudioDecoder(QAudioDecoder* obj) { delete obj; } 
+void delete_QAudioDecoder(QAudioDecoder* obj) { delete obj; }
    QAudioFormat  audioFormat(QAudioDecoder* theWrappedObject) const;
    bool  py_q_bind(QAudioDecoder* theWrappedObject, QObject*  arg__1){  return (((PythonQtPublicPromoter_QAudioDecoder*)theWrappedObject)->py_q_bind(arg__1));}
    bool  bufferAvailable(QAudioDecoder* theWrappedObject) const;
@@ -557,27 +590,32 @@ void delete_QAudioDecoder(QAudioDecoder* obj) { delete obj; }
 class PythonQtShell_QAudioDecoderControl : public QAudioDecoderControl
 {
 public:
-    PythonQtShell_QAudioDecoderControl(QObject*  parent = nullptr):QAudioDecoderControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QAudioDecoderControl(QObject*  parent = nullptr):QAudioDecoderControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAudioDecoderControl();
+   ~PythonQtShell_QAudioDecoderControl() override;
 
-virtual QAudioFormat  audioFormat() const;
-virtual bool  bufferAvailable() const;
-virtual qint64  duration() const;
-virtual qint64  position() const;
-virtual QAudioBuffer  read();
-virtual void setAudioFormat(const QAudioFormat&  format);
-virtual void setSourceDevice(QIODevice*  device);
-virtual void setSourceFilename(const QString&  fileName);
-virtual QIODevice*  sourceDevice() const;
-virtual QString  sourceFilename() const;
-virtual void start();
-virtual QAudioDecoder::State  state() const;
-virtual void stop();
+QAudioFormat  audioFormat() const override;
+bool  bufferAvailable() const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+qint64  duration() const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+qint64  position() const override;
+QAudioBuffer  read() override;
+void setAudioFormat(const QAudioFormat&  format) override;
+void setSourceDevice(QIODevice*  device) override;
+void setSourceFilename(const QString&  fileName) override;
+QIODevice*  sourceDevice() const override;
+QString  sourceFilename() const override;
+void start() override;
+QAudioDecoder::State  state() const override;
+void stop() override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAudioDecoderControl : public QAudioDecoderControl
@@ -602,7 +640,7 @@ class PythonQtWrapper_QAudioDecoderControl : public QObject
 public:
 public slots:
 QAudioDecoderControl* new_QAudioDecoderControl(QObject*  parent = nullptr);
-void delete_QAudioDecoderControl(QAudioDecoderControl* obj) { delete obj; } 
+void delete_QAudioDecoderControl(QAudioDecoderControl* obj) { delete obj; }
    QAudioFormat  audioFormat(QAudioDecoderControl* theWrappedObject) const;
    QAudioFormat  py_q_audioFormat(QAudioDecoderControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QAudioDecoderControl*)theWrappedObject)->py_q_audioFormat());}
    bool  bufferAvailable(QAudioDecoderControl* theWrappedObject) const;
@@ -641,7 +679,7 @@ public:
 public slots:
 QAudioDeviceInfo* new_QAudioDeviceInfo();
 QAudioDeviceInfo* new_QAudioDeviceInfo(const QAudioDeviceInfo&  other);
-void delete_QAudioDeviceInfo(QAudioDeviceInfo* obj) { delete obj; } 
+void delete_QAudioDeviceInfo(QAudioDeviceInfo* obj) { delete obj; }
    QList<QAudioDeviceInfo >  static_QAudioDeviceInfo_availableDevices(QAudio::Mode  mode);
    QAudioDeviceInfo  static_QAudioDeviceInfo_defaultInputDevice();
    QAudioDeviceInfo  static_QAudioDeviceInfo_defaultOutputDevice();
@@ -673,7 +711,7 @@ public:
 public slots:
 QAudioEncoderSettings* new_QAudioEncoderSettings();
 QAudioEncoderSettings* new_QAudioEncoderSettings(const QAudioEncoderSettings&  other);
-void delete_QAudioEncoderSettings(QAudioEncoderSettings* obj) { delete obj; } 
+void delete_QAudioEncoderSettings(QAudioEncoderSettings* obj) { delete obj; }
    int  bitRate(QAudioEncoderSettings* theWrappedObject) const;
    int  channelCount(QAudioEncoderSettings* theWrappedObject) const;
    QString  codec(QAudioEncoderSettings* theWrappedObject) const;
@@ -704,19 +742,24 @@ void delete_QAudioEncoderSettings(QAudioEncoderSettings* obj) { delete obj; }
 class PythonQtShell_QAudioEncoderSettingsControl : public QAudioEncoderSettingsControl
 {
 public:
-    PythonQtShell_QAudioEncoderSettingsControl(QObject*  parent = nullptr):QAudioEncoderSettingsControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QAudioEncoderSettingsControl(QObject*  parent = nullptr):QAudioEncoderSettingsControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAudioEncoderSettingsControl();
+   ~PythonQtShell_QAudioEncoderSettingsControl() override;
 
-virtual QAudioEncoderSettings  audioSettings() const;
-virtual QString  codecDescription(const QString&  codecName) const;
-virtual void setAudioSettings(const QAudioEncoderSettings&  settings);
-virtual QStringList  supportedAudioCodecs() const;
-virtual QList<int >  supportedSampleRates(const QAudioEncoderSettings&  settings, bool*  continuous = nullptr) const;
+QAudioEncoderSettings  audioSettings() const override;
+void childEvent(QChildEvent*  event) override;
+QString  codecDescription(const QString&  codecName) const override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void setAudioSettings(const QAudioEncoderSettings&  settings) override;
+QStringList  supportedAudioCodecs() const override;
+QList<int >  supportedSampleRates(const QAudioEncoderSettings&  settings, bool*  continuous = nullptr) const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAudioEncoderSettingsControl : public QAudioEncoderSettingsControl
@@ -733,7 +776,7 @@ class PythonQtWrapper_QAudioEncoderSettingsControl : public QObject
 public:
 public slots:
 QAudioEncoderSettingsControl* new_QAudioEncoderSettingsControl(QObject*  parent = nullptr);
-void delete_QAudioEncoderSettingsControl(QAudioEncoderSettingsControl* obj) { delete obj; } 
+void delete_QAudioEncoderSettingsControl(QAudioEncoderSettingsControl* obj) { delete obj; }
    QAudioEncoderSettings  audioSettings(QAudioEncoderSettingsControl* theWrappedObject) const;
    QAudioEncoderSettings  py_q_audioSettings(QAudioEncoderSettingsControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QAudioEncoderSettingsControl*)theWrappedObject)->py_q_audioSettings());}
    QString  codecDescription(QAudioEncoderSettingsControl* theWrappedObject, const QString&  codecName) const;
@@ -761,7 +804,7 @@ enum SampleType{
 public slots:
 QAudioFormat* new_QAudioFormat();
 QAudioFormat* new_QAudioFormat(const QAudioFormat&  other);
-void delete_QAudioFormat(QAudioFormat* obj) { delete obj; } 
+void delete_QAudioFormat(QAudioFormat* obj) { delete obj; }
    QAudioFormat::Endian  byteOrder(QAudioFormat* theWrappedObject) const;
    int  bytesForDuration(QAudioFormat* theWrappedObject, qint64  duration) const;
    int  bytesForFrames(QAudioFormat* theWrappedObject, int  frameCount) const;
@@ -796,15 +839,20 @@ void delete_QAudioFormat(QAudioFormat* obj) { delete obj; }
 class PythonQtShell_QAudioInput : public QAudioInput
 {
 public:
-    PythonQtShell_QAudioInput(const QAudioDeviceInfo&  audioDeviceInfo, const QAudioFormat&  format = QAudioFormat(), QObject*  parent = nullptr):QAudioInput(audioDeviceInfo, format, parent),_wrapper(NULL) {};
-    PythonQtShell_QAudioInput(const QAudioFormat&  format = QAudioFormat(), QObject*  parent = nullptr):QAudioInput(format, parent),_wrapper(NULL) {};
+    PythonQtShell_QAudioInput(const QAudioDeviceInfo&  audioDeviceInfo, const QAudioFormat&  format = QAudioFormat(), QObject*  parent = nullptr):QAudioInput(audioDeviceInfo, format, parent),_wrapper(nullptr) {};
+    PythonQtShell_QAudioInput(const QAudioFormat&  format = QAudioFormat(), QObject*  parent = nullptr):QAudioInput(format, parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAudioInput();
+   ~PythonQtShell_QAudioInput() override;
 
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QAudioInput : public QObject
@@ -813,7 +861,7 @@ public:
 public slots:
 QAudioInput* new_QAudioInput(const QAudioDeviceInfo&  audioDeviceInfo, const QAudioFormat&  format = QAudioFormat(), QObject*  parent = nullptr);
 QAudioInput* new_QAudioInput(const QAudioFormat&  format = QAudioFormat(), QObject*  parent = nullptr);
-void delete_QAudioInput(QAudioInput* obj) { delete obj; } 
+void delete_QAudioInput(QAudioInput* obj) { delete obj; }
    int  bufferSize(QAudioInput* theWrappedObject) const;
    int  bytesReady(QAudioInput* theWrappedObject) const;
    qint64  elapsedUSecs(QAudioInput* theWrappedObject) const;
@@ -842,19 +890,24 @@ void delete_QAudioInput(QAudioInput* obj) { delete obj; }
 class PythonQtShell_QAudioInputSelectorControl : public QAudioInputSelectorControl
 {
 public:
-    PythonQtShell_QAudioInputSelectorControl(QObject*  parent = nullptr):QAudioInputSelectorControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QAudioInputSelectorControl(QObject*  parent = nullptr):QAudioInputSelectorControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAudioInputSelectorControl();
+   ~PythonQtShell_QAudioInputSelectorControl() override;
 
-virtual QString  activeInput() const;
-virtual QList<QString >  availableInputs() const;
-virtual QString  defaultInput() const;
-virtual QString  inputDescription(const QString&  name) const;
-virtual void setActiveInput(const QString&  name);
+QString  activeInput() const override;
+QList<QString >  availableInputs() const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+QString  defaultInput() const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QString  inputDescription(const QString&  name) const override;
+void setActiveInput(const QString&  name) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAudioInputSelectorControl : public QAudioInputSelectorControl
@@ -871,7 +924,7 @@ class PythonQtWrapper_QAudioInputSelectorControl : public QObject
 public:
 public slots:
 QAudioInputSelectorControl* new_QAudioInputSelectorControl(QObject*  parent = nullptr);
-void delete_QAudioInputSelectorControl(QAudioInputSelectorControl* obj) { delete obj; } 
+void delete_QAudioInputSelectorControl(QAudioInputSelectorControl* obj) { delete obj; }
    QString  activeInput(QAudioInputSelectorControl* theWrappedObject) const;
    QString  py_q_activeInput(QAudioInputSelectorControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QAudioInputSelectorControl*)theWrappedObject)->py_q_activeInput());}
    QList<QString >  availableInputs(QAudioInputSelectorControl* theWrappedObject) const;
@@ -890,15 +943,20 @@ void delete_QAudioInputSelectorControl(QAudioInputSelectorControl* obj) { delete
 class PythonQtShell_QAudioOutput : public QAudioOutput
 {
 public:
-    PythonQtShell_QAudioOutput(const QAudioDeviceInfo&  audioDeviceInfo, const QAudioFormat&  format = QAudioFormat(), QObject*  parent = nullptr):QAudioOutput(audioDeviceInfo, format, parent),_wrapper(NULL) {};
-    PythonQtShell_QAudioOutput(const QAudioFormat&  format = QAudioFormat(), QObject*  parent = nullptr):QAudioOutput(format, parent),_wrapper(NULL) {};
+    PythonQtShell_QAudioOutput(const QAudioDeviceInfo&  audioDeviceInfo, const QAudioFormat&  format = QAudioFormat(), QObject*  parent = nullptr):QAudioOutput(audioDeviceInfo, format, parent),_wrapper(nullptr) {};
+    PythonQtShell_QAudioOutput(const QAudioFormat&  format = QAudioFormat(), QObject*  parent = nullptr):QAudioOutput(format, parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAudioOutput();
+   ~PythonQtShell_QAudioOutput() override;
 
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QAudioOutput : public QObject
@@ -907,7 +965,7 @@ public:
 public slots:
 QAudioOutput* new_QAudioOutput(const QAudioDeviceInfo&  audioDeviceInfo, const QAudioFormat&  format = QAudioFormat(), QObject*  parent = nullptr);
 QAudioOutput* new_QAudioOutput(const QAudioFormat&  format = QAudioFormat(), QObject*  parent = nullptr);
-void delete_QAudioOutput(QAudioOutput* obj) { delete obj; } 
+void delete_QAudioOutput(QAudioOutput* obj) { delete obj; }
    int  bufferSize(QAudioOutput* theWrappedObject) const;
    int  bytesFree(QAudioOutput* theWrappedObject) const;
    QString  category(QAudioOutput* theWrappedObject) const;
@@ -938,19 +996,24 @@ void delete_QAudioOutput(QAudioOutput* obj) { delete obj; }
 class PythonQtShell_QAudioOutputSelectorControl : public QAudioOutputSelectorControl
 {
 public:
-    PythonQtShell_QAudioOutputSelectorControl(QObject*  parent = nullptr):QAudioOutputSelectorControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QAudioOutputSelectorControl(QObject*  parent = nullptr):QAudioOutputSelectorControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAudioOutputSelectorControl();
+   ~PythonQtShell_QAudioOutputSelectorControl() override;
 
-virtual QString  activeOutput() const;
-virtual QList<QString >  availableOutputs() const;
-virtual QString  defaultOutput() const;
-virtual QString  outputDescription(const QString&  name) const;
-virtual void setActiveOutput(const QString&  name);
+QString  activeOutput() const override;
+QList<QString >  availableOutputs() const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+QString  defaultOutput() const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QString  outputDescription(const QString&  name) const override;
+void setActiveOutput(const QString&  name) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAudioOutputSelectorControl : public QAudioOutputSelectorControl
@@ -967,7 +1030,7 @@ class PythonQtWrapper_QAudioOutputSelectorControl : public QObject
 public:
 public slots:
 QAudioOutputSelectorControl* new_QAudioOutputSelectorControl(QObject*  parent = nullptr);
-void delete_QAudioOutputSelectorControl(QAudioOutputSelectorControl* obj) { delete obj; } 
+void delete_QAudioOutputSelectorControl(QAudioOutputSelectorControl* obj) { delete obj; }
    QString  activeOutput(QAudioOutputSelectorControl* theWrappedObject) const;
    QString  py_q_activeOutput(QAudioOutputSelectorControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QAudioOutputSelectorControl*)theWrappedObject)->py_q_activeOutput());}
    QList<QString >  availableOutputs(QAudioOutputSelectorControl* theWrappedObject) const;
@@ -986,14 +1049,19 @@ void delete_QAudioOutputSelectorControl(QAudioOutputSelectorControl* obj) { dele
 class PythonQtShell_QAudioProbe : public QAudioProbe
 {
 public:
-    PythonQtShell_QAudioProbe(QObject*  parent = nullptr):QAudioProbe(parent),_wrapper(NULL) {};
+    PythonQtShell_QAudioProbe(QObject*  parent = nullptr):QAudioProbe(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAudioProbe();
+   ~PythonQtShell_QAudioProbe() override;
 
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QAudioProbe : public QObject
@@ -1001,7 +1069,7 @@ class PythonQtWrapper_QAudioProbe : public QObject
 public:
 public slots:
 QAudioProbe* new_QAudioProbe(QObject*  parent = nullptr);
-void delete_QAudioProbe(QAudioProbe* obj) { delete obj; } 
+void delete_QAudioProbe(QAudioProbe* obj) { delete obj; }
    bool  isActive(QAudioProbe* theWrappedObject) const;
    bool  setSource(QAudioProbe* theWrappedObject, QMediaObject*  source);
    bool  setSource(QAudioProbe* theWrappedObject, QMediaRecorder*  source);
@@ -1014,16 +1082,21 @@ void delete_QAudioProbe(QAudioProbe* obj) { delete obj; }
 class PythonQtShell_QAudioRecorder : public QAudioRecorder
 {
 public:
-    PythonQtShell_QAudioRecorder(QObject*  parent = nullptr):QAudioRecorder(parent),_wrapper(NULL) {};
+    PythonQtShell_QAudioRecorder(QObject*  parent = nullptr):QAudioRecorder(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAudioRecorder();
+   ~PythonQtShell_QAudioRecorder() override;
 
-virtual QMediaObject*  mediaObject() const;
-virtual bool  setMediaObject(QMediaObject*  object);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QMediaObject*  mediaObject() const override;
+bool  setMediaObject(QMediaObject*  object) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QAudioRecorder : public QObject
@@ -1031,7 +1104,7 @@ class PythonQtWrapper_QAudioRecorder : public QObject
 public:
 public slots:
 QAudioRecorder* new_QAudioRecorder(QObject*  parent = nullptr);
-void delete_QAudioRecorder(QAudioRecorder* obj) { delete obj; } 
+void delete_QAudioRecorder(QAudioRecorder* obj) { delete obj; }
    QString  audioInput(QAudioRecorder* theWrappedObject) const;
    QString  audioInputDescription(QAudioRecorder* theWrappedObject, const QString&  name) const;
    QStringList  audioInputs(QAudioRecorder* theWrappedObject) const;
@@ -1045,17 +1118,22 @@ void delete_QAudioRecorder(QAudioRecorder* obj) { delete obj; }
 class PythonQtShell_QAudioRoleControl : public QAudioRoleControl
 {
 public:
-    PythonQtShell_QAudioRoleControl(QObject*  parent = nullptr):QAudioRoleControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QAudioRoleControl(QObject*  parent = nullptr):QAudioRoleControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAudioRoleControl();
+   ~PythonQtShell_QAudioRoleControl() override;
 
-virtual QAudio::Role  audioRole() const;
-virtual void setAudioRole(QAudio::Role  role);
-virtual QList<QAudio::Role >  supportedAudioRoles() const;
+QAudio::Role  audioRole() const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void setAudioRole(QAudio::Role  role) override;
+QList<QAudio::Role >  supportedAudioRoles() const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAudioRoleControl : public QAudioRoleControl
@@ -1070,7 +1148,7 @@ class PythonQtWrapper_QAudioRoleControl : public QObject
 public:
 public slots:
 QAudioRoleControl* new_QAudioRoleControl(QObject*  parent = nullptr);
-void delete_QAudioRoleControl(QAudioRoleControl* obj) { delete obj; } 
+void delete_QAudioRoleControl(QAudioRoleControl* obj) { delete obj; }
    QAudio::Role  audioRole(QAudioRoleControl* theWrappedObject) const;
    QAudio::Role  py_q_audioRole(QAudioRoleControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QAudioRoleControl*)theWrappedObject)->py_q_audioRole());}
    void setAudioRole(QAudioRoleControl* theWrappedObject, QAudio::Role  role);
@@ -1086,16 +1164,16 @@ void delete_QAudioRoleControl(QAudioRoleControl* obj) { delete obj; }
 class PythonQtShell_QAudioSystemFactoryInterface : public QAudioSystemFactoryInterface
 {
 public:
-    PythonQtShell_QAudioSystemFactoryInterface():QAudioSystemFactoryInterface(),_wrapper(NULL) {};
+    PythonQtShell_QAudioSystemFactoryInterface():QAudioSystemFactoryInterface(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAudioSystemFactoryInterface();
+   ~PythonQtShell_QAudioSystemFactoryInterface() override;
 
-virtual QList<QByteArray >  availableDevices(QAudio::Mode  arg__1) const;
-virtual QAbstractAudioDeviceInfo*  createDeviceInfo(const QByteArray&  device, QAudio::Mode  mode);
-virtual QAbstractAudioInput*  createInput(const QByteArray&  device);
-virtual QAbstractAudioOutput*  createOutput(const QByteArray&  device);
+QList<QByteArray >  availableDevices(QAudio::Mode  arg__1) const override;
+QAbstractAudioDeviceInfo*  createDeviceInfo(const QByteArray&  device, QAudio::Mode  mode) override;
+QAbstractAudioInput*  createInput(const QByteArray&  device) override;
+QAbstractAudioOutput*  createOutput(const QByteArray&  device) override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAudioSystemFactoryInterface : public QAudioSystemFactoryInterface
@@ -1111,7 +1189,7 @@ class PythonQtWrapper_QAudioSystemFactoryInterface : public QObject
 public:
 public slots:
 QAudioSystemFactoryInterface* new_QAudioSystemFactoryInterface();
-void delete_QAudioSystemFactoryInterface(QAudioSystemFactoryInterface* obj) { delete obj; } 
+void delete_QAudioSystemFactoryInterface(QAudioSystemFactoryInterface* obj) { delete obj; }
    QList<QByteArray >  availableDevices(QAudioSystemFactoryInterface* theWrappedObject, QAudio::Mode  arg__1) const;
    QList<QByteArray >  py_q_availableDevices(QAudioSystemFactoryInterface* theWrappedObject, QAudio::Mode  arg__1) const{  return (((PythonQtPublicPromoter_QAudioSystemFactoryInterface*)theWrappedObject)->py_q_availableDevices(arg__1));}
    QAbstractAudioDeviceInfo*  createDeviceInfo(QAudioSystemFactoryInterface* theWrappedObject, const QByteArray&  device, QAudio::Mode  mode);
@@ -1129,18 +1207,18 @@ void delete_QAudioSystemFactoryInterface(QAudioSystemFactoryInterface* obj) { de
 class PythonQtShell_QAudioSystemPlugin : public QAudioSystemPlugin
 {
 public:
-    PythonQtShell_QAudioSystemPlugin(QObject*  parent = nullptr):QAudioSystemPlugin(parent),_wrapper(NULL) {};
+    PythonQtShell_QAudioSystemPlugin(QObject*  parent = nullptr):QAudioSystemPlugin(parent),_wrapper(nullptr) {};
 
    ~PythonQtShell_QAudioSystemPlugin();
 
-virtual QList<QByteArray >  availableDevices(QAudio::Mode  arg__1) const;
-virtual QAbstractAudioDeviceInfo*  createDeviceInfo(const QByteArray&  device, QAudio::Mode  mode);
-virtual QAbstractAudioInput*  createInput(const QByteArray&  device);
-virtual QAbstractAudioOutput*  createOutput(const QByteArray&  device);
+QList<QByteArray >  availableDevices(QAudio::Mode  arg__1) const override;
+QAbstractAudioDeviceInfo*  createDeviceInfo(const QByteArray&  device, QAudio::Mode  mode) override;
+QAbstractAudioInput*  createInput(const QByteArray&  device) override;
+QAbstractAudioOutput*  createOutput(const QByteArray&  device) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAudioSystemPlugin : public QAudioSystemPlugin
@@ -1156,7 +1234,7 @@ class PythonQtWrapper_QAudioSystemPlugin : public QObject
 public:
 public slots:
 QAudioSystemPlugin* new_QAudioSystemPlugin(QObject*  parent = nullptr);
-void delete_QAudioSystemPlugin(QAudioSystemPlugin* obj) { delete obj; } 
+void delete_QAudioSystemPlugin(QAudioSystemPlugin* obj) { delete obj; }
    QList<QByteArray >  availableDevices(QAudioSystemPlugin* theWrappedObject, QAudio::Mode  arg__1) const;
    QList<QByteArray >  py_q_availableDevices(QAudioSystemPlugin* theWrappedObject, QAudio::Mode  arg__1) const{  return (((PythonQtPublicPromoter_QAudioSystemPlugin*)theWrappedObject)->py_q_availableDevices(arg__1));}
    QAbstractAudioDeviceInfo*  createDeviceInfo(QAudioSystemPlugin* theWrappedObject, const QByteArray&  device, QAudio::Mode  mode);
@@ -1174,22 +1252,27 @@ void delete_QAudioSystemPlugin(QAudioSystemPlugin* obj) { delete obj; }
 class PythonQtShell_QCamera : public QCamera
 {
 public:
-    PythonQtShell_QCamera(QCamera::Position  position, QObject*  parent = nullptr):QCamera(position, parent),_wrapper(NULL) {};
-    PythonQtShell_QCamera(QObject*  parent = nullptr):QCamera(parent),_wrapper(NULL) {};
-    PythonQtShell_QCamera(const QByteArray&  deviceName, QObject*  parent = nullptr):QCamera(deviceName, parent),_wrapper(NULL) {};
-    PythonQtShell_QCamera(const QCameraInfo&  cameraInfo, QObject*  parent = nullptr):QCamera(cameraInfo, parent),_wrapper(NULL) {};
+    PythonQtShell_QCamera(QCamera::Position  position, QObject*  parent = nullptr):QCamera(position, parent),_wrapper(nullptr) {};
+    PythonQtShell_QCamera(QObject*  parent = nullptr):QCamera(parent),_wrapper(nullptr) {};
+    PythonQtShell_QCamera(const QByteArray&  deviceName, QObject*  parent = nullptr):QCamera(deviceName, parent),_wrapper(nullptr) {};
+    PythonQtShell_QCamera(const QCameraInfo&  cameraInfo, QObject*  parent = nullptr):QCamera(cameraInfo, parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCamera();
+   ~PythonQtShell_QCamera() override;
 
-virtual QMultimedia::AvailabilityStatus  availability() const;
-virtual bool  bind(QObject*  arg__1);
-virtual bool  isAvailable() const;
-virtual QMediaService*  service() const;
-virtual void unbind(QObject*  arg__1);
+QMultimedia::AvailabilityStatus  availability() const override;
+bool  bind(QObject*  arg__1) override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isAvailable() const override;
+QMediaService*  service() const override;
+void timerEvent(QTimerEvent*  event) override;
+void unbind(QObject*  arg__1) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCamera : public QCamera
@@ -1213,7 +1296,7 @@ QCamera* new_QCamera(QCamera::Position  position, QObject*  parent = nullptr);
 QCamera* new_QCamera(QObject*  parent = nullptr);
 QCamera* new_QCamera(const QByteArray&  deviceName, QObject*  parent = nullptr);
 QCamera* new_QCamera(const QCameraInfo&  cameraInfo, QObject*  parent = nullptr);
-void delete_QCamera(QCamera* obj) { delete obj; } 
+void delete_QCamera(QCamera* obj) { delete obj; }
    QMultimedia::AvailabilityStatus  py_q_availability(QCamera* theWrappedObject) const{  return (((PythonQtPublicPromoter_QCamera*)theWrappedObject)->py_q_availability());}
    QList<QByteArray >  static_QCamera_availableDevices();
    QCamera::CaptureModes  captureMode(QCamera* theWrappedObject) const;
@@ -1248,17 +1331,22 @@ void delete_QCamera(QCamera* obj) { delete obj; }
 class PythonQtShell_QCameraCaptureBufferFormatControl : public QCameraCaptureBufferFormatControl
 {
 public:
-    PythonQtShell_QCameraCaptureBufferFormatControl(QObject*  parent = nullptr):QCameraCaptureBufferFormatControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraCaptureBufferFormatControl(QObject*  parent = nullptr):QCameraCaptureBufferFormatControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraCaptureBufferFormatControl();
+   ~PythonQtShell_QCameraCaptureBufferFormatControl() override;
 
-virtual QVideoFrame::PixelFormat  bufferFormat() const;
-virtual void setBufferFormat(QVideoFrame::PixelFormat  format);
-virtual QList<QVideoFrame::PixelFormat >  supportedBufferFormats() const;
+QVideoFrame::PixelFormat  bufferFormat() const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void setBufferFormat(QVideoFrame::PixelFormat  format) override;
+QList<QVideoFrame::PixelFormat >  supportedBufferFormats() const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraCaptureBufferFormatControl : public QCameraCaptureBufferFormatControl
@@ -1273,7 +1361,7 @@ class PythonQtWrapper_QCameraCaptureBufferFormatControl : public QObject
 public:
 public slots:
 QCameraCaptureBufferFormatControl* new_QCameraCaptureBufferFormatControl(QObject*  parent = nullptr);
-void delete_QCameraCaptureBufferFormatControl(QCameraCaptureBufferFormatControl* obj) { delete obj; } 
+void delete_QCameraCaptureBufferFormatControl(QCameraCaptureBufferFormatControl* obj) { delete obj; }
    QVideoFrame::PixelFormat  bufferFormat(QCameraCaptureBufferFormatControl* theWrappedObject) const;
    QVideoFrame::PixelFormat  py_q_bufferFormat(QCameraCaptureBufferFormatControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QCameraCaptureBufferFormatControl*)theWrappedObject)->py_q_bufferFormat());}
    void setBufferFormat(QCameraCaptureBufferFormatControl* theWrappedObject, QVideoFrame::PixelFormat  format);
@@ -1289,17 +1377,22 @@ void delete_QCameraCaptureBufferFormatControl(QCameraCaptureBufferFormatControl*
 class PythonQtShell_QCameraCaptureDestinationControl : public QCameraCaptureDestinationControl
 {
 public:
-    PythonQtShell_QCameraCaptureDestinationControl(QObject*  parent = nullptr):QCameraCaptureDestinationControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraCaptureDestinationControl(QObject*  parent = nullptr):QCameraCaptureDestinationControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraCaptureDestinationControl();
+   ~PythonQtShell_QCameraCaptureDestinationControl() override;
 
-virtual QCameraImageCapture::CaptureDestinations  captureDestination() const;
-virtual bool  isCaptureDestinationSupported(QCameraImageCapture::CaptureDestinations  destination) const;
-virtual void setCaptureDestination(QCameraImageCapture::CaptureDestinations  destination);
+QCameraImageCapture::CaptureDestinations  captureDestination() const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isCaptureDestinationSupported(QCameraImageCapture::CaptureDestinations  destination) const override;
+void setCaptureDestination(QCameraImageCapture::CaptureDestinations  destination) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraCaptureDestinationControl : public QCameraCaptureDestinationControl
@@ -1314,7 +1407,7 @@ class PythonQtWrapper_QCameraCaptureDestinationControl : public QObject
 public:
 public slots:
 QCameraCaptureDestinationControl* new_QCameraCaptureDestinationControl(QObject*  parent = nullptr);
-void delete_QCameraCaptureDestinationControl(QCameraCaptureDestinationControl* obj) { delete obj; } 
+void delete_QCameraCaptureDestinationControl(QCameraCaptureDestinationControl* obj) { delete obj; }
    QCameraImageCapture::CaptureDestinations  captureDestination(QCameraCaptureDestinationControl* theWrappedObject) const;
    QCameraImageCapture::CaptureDestinations  py_q_captureDestination(QCameraCaptureDestinationControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QCameraCaptureDestinationControl*)theWrappedObject)->py_q_captureDestination());}
    bool  isCaptureDestinationSupported(QCameraCaptureDestinationControl* theWrappedObject, QCameraImageCapture::CaptureDestinations  destination) const;
@@ -1330,21 +1423,26 @@ void delete_QCameraCaptureDestinationControl(QCameraCaptureDestinationControl* o
 class PythonQtShell_QCameraControl : public QCameraControl
 {
 public:
-    PythonQtShell_QCameraControl(QObject*  parent = nullptr):QCameraControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraControl(QObject*  parent = nullptr):QCameraControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraControl();
+   ~PythonQtShell_QCameraControl() override;
 
-virtual bool  canChangeProperty(QCameraControl::PropertyChangeType  changeType, QCamera::Status  status) const;
-virtual QCamera::CaptureModes  captureMode() const;
-virtual bool  isCaptureModeSupported(QCamera::CaptureModes  mode) const;
-virtual void setCaptureMode(QCamera::CaptureModes  arg__1);
-virtual void setState(QCamera::State  state);
-virtual QCamera::State  state() const;
-virtual QCamera::Status  status() const;
+bool  canChangeProperty(QCameraControl::PropertyChangeType  changeType, QCamera::Status  status) const override;
+QCamera::CaptureModes  captureMode() const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isCaptureModeSupported(QCamera::CaptureModes  mode) const override;
+void setCaptureMode(QCamera::CaptureModes  arg__1) override;
+void setState(QCamera::State  state) override;
+QCamera::State  state() const override;
+QCamera::Status  status() const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraControl : public QCameraControl
@@ -1366,7 +1464,7 @@ enum PropertyChangeType{
   CaptureMode = QCameraControl::CaptureMode,   ImageEncodingSettings = QCameraControl::ImageEncodingSettings,   VideoEncodingSettings = QCameraControl::VideoEncodingSettings,   Viewfinder = QCameraControl::Viewfinder,   ViewfinderSettings = QCameraControl::ViewfinderSettings};
 public slots:
 QCameraControl* new_QCameraControl(QObject*  parent = nullptr);
-void delete_QCameraControl(QCameraControl* obj) { delete obj; } 
+void delete_QCameraControl(QCameraControl* obj) { delete obj; }
    bool  canChangeProperty(QCameraControl* theWrappedObject, QCameraControl::PropertyChangeType  changeType, QCamera::Status  status) const;
    bool  py_q_canChangeProperty(QCameraControl* theWrappedObject, QCameraControl::PropertyChangeType  changeType, QCamera::Status  status) const{  return (((PythonQtPublicPromoter_QCameraControl*)theWrappedObject)->py_q_canChangeProperty(changeType, status));}
    QCamera::CaptureModes  captureMode(QCameraControl* theWrappedObject) const;
@@ -1382,6 +1480,9 @@ void delete_QCameraControl(QCameraControl* obj) { delete obj; }
    QCamera::Status  status(QCameraControl* theWrappedObject) const;
    QCamera::Status  py_q_status(QCameraControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QCameraControl*)theWrappedObject)->py_q_status());}
 };
+
+
+
 
 
 class PythonQtWrapper_QCameraExposure : public QObject
@@ -1422,19 +1523,24 @@ public slots:
 class PythonQtShell_QCameraExposureControl : public QCameraExposureControl
 {
 public:
-    PythonQtShell_QCameraExposureControl(QObject*  parent = nullptr):QCameraExposureControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraExposureControl(QObject*  parent = nullptr):QCameraExposureControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraExposureControl();
+   ~PythonQtShell_QCameraExposureControl() override;
 
-virtual QVariant  actualValue(QCameraExposureControl::ExposureParameter  parameter) const;
-virtual bool  isParameterSupported(QCameraExposureControl::ExposureParameter  parameter) const;
-virtual QVariant  requestedValue(QCameraExposureControl::ExposureParameter  parameter) const;
-virtual bool  setValue(QCameraExposureControl::ExposureParameter  parameter, const QVariant&  value);
-virtual QList<QVariant >  supportedParameterRange(QCameraExposureControl::ExposureParameter  parameter, bool*  continuous) const;
+QVariant  actualValue(QCameraExposureControl::ExposureParameter  parameter) const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isParameterSupported(QCameraExposureControl::ExposureParameter  parameter) const override;
+QVariant  requestedValue(QCameraExposureControl::ExposureParameter  parameter) const override;
+bool  setValue(QCameraExposureControl::ExposureParameter  parameter, const QVariant&  value) override;
+QList<QVariant >  supportedParameterRange(QCameraExposureControl::ExposureParameter  parameter, bool*  continuous) const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraExposureControl : public QCameraExposureControl
@@ -1451,7 +1557,7 @@ class PythonQtWrapper_QCameraExposureControl : public QObject
 public:
 public slots:
 QCameraExposureControl* new_QCameraExposureControl(QObject*  parent = nullptr);
-void delete_QCameraExposureControl(QCameraExposureControl* obj) { delete obj; } 
+void delete_QCameraExposureControl(QCameraExposureControl* obj) { delete obj; }
    QVariant  actualValue(QCameraExposureControl* theWrappedObject, QCameraExposureControl::ExposureParameter  parameter) const;
    QVariant  py_q_actualValue(QCameraExposureControl* theWrappedObject, QCameraExposureControl::ExposureParameter  parameter) const{  return (((PythonQtPublicPromoter_QCameraExposureControl*)theWrappedObject)->py_q_actualValue(parameter));}
    bool  isParameterSupported(QCameraExposureControl* theWrappedObject, QCameraExposureControl::ExposureParameter  parameter) const;
@@ -1464,22 +1570,31 @@ void delete_QCameraExposureControl(QCameraExposureControl* obj) { delete obj; }
    QList<QVariant >  py_q_supportedParameterRange(QCameraExposureControl* theWrappedObject, QCameraExposureControl::ExposureParameter  parameter, bool*  continuous) const{  return (((PythonQtPublicPromoter_QCameraExposureControl*)theWrappedObject)->py_q_supportedParameterRange(parameter, continuous));}
 };
 
+
+
+
+
 class PythonQtShell_QCameraFeedbackControl : public QCameraFeedbackControl
 {
 public:
-    PythonQtShell_QCameraFeedbackControl(QObject*  parent = nullptr):QCameraFeedbackControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraFeedbackControl(QObject*  parent = nullptr):QCameraFeedbackControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraFeedbackControl();
+   ~PythonQtShell_QCameraFeedbackControl() override;
 
-virtual bool  isEventFeedbackEnabled(QCameraFeedbackControl::EventType  arg__1) const;
-virtual bool  isEventFeedbackLocked(QCameraFeedbackControl::EventType  arg__1) const;
-virtual void resetEventFeedback(QCameraFeedbackControl::EventType  arg__1);
-virtual bool  setEventFeedbackEnabled(QCameraFeedbackControl::EventType  arg__1, bool  arg__2);
-virtual bool  setEventFeedbackSound(QCameraFeedbackControl::EventType  arg__1, const QString&  filePath);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isEventFeedbackEnabled(QCameraFeedbackControl::EventType  arg__1) const override;
+bool  isEventFeedbackLocked(QCameraFeedbackControl::EventType  arg__1) const override;
+void resetEventFeedback(QCameraFeedbackControl::EventType  arg__1) override;
+bool  setEventFeedbackEnabled(QCameraFeedbackControl::EventType  arg__1, bool  arg__2) override;
+bool  setEventFeedbackSound(QCameraFeedbackControl::EventType  arg__1, const QString&  filePath) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraFeedbackControl : public QCameraFeedbackControl
@@ -1499,7 +1614,7 @@ enum EventType{
   ViewfinderStarted = QCameraFeedbackControl::ViewfinderStarted,   ViewfinderStopped = QCameraFeedbackControl::ViewfinderStopped,   ImageCaptured = QCameraFeedbackControl::ImageCaptured,   ImageSaved = QCameraFeedbackControl::ImageSaved,   ImageError = QCameraFeedbackControl::ImageError,   RecordingStarted = QCameraFeedbackControl::RecordingStarted,   RecordingInProgress = QCameraFeedbackControl::RecordingInProgress,   RecordingStopped = QCameraFeedbackControl::RecordingStopped,   AutoFocusInProgress = QCameraFeedbackControl::AutoFocusInProgress,   AutoFocusLocked = QCameraFeedbackControl::AutoFocusLocked,   AutoFocusFailed = QCameraFeedbackControl::AutoFocusFailed};
 public slots:
 QCameraFeedbackControl* new_QCameraFeedbackControl(QObject*  parent = nullptr);
-void delete_QCameraFeedbackControl(QCameraFeedbackControl* obj) { delete obj; } 
+void delete_QCameraFeedbackControl(QCameraFeedbackControl* obj) { delete obj; }
    bool  isEventFeedbackEnabled(QCameraFeedbackControl* theWrappedObject, QCameraFeedbackControl::EventType  arg__1) const;
    bool  py_q_isEventFeedbackEnabled(QCameraFeedbackControl* theWrappedObject, QCameraFeedbackControl::EventType  arg__1) const{  return (((PythonQtPublicPromoter_QCameraFeedbackControl*)theWrappedObject)->py_q_isEventFeedbackEnabled(arg__1));}
    bool  isEventFeedbackLocked(QCameraFeedbackControl* theWrappedObject, QCameraFeedbackControl::EventType  arg__1) const;
@@ -1519,18 +1634,23 @@ void delete_QCameraFeedbackControl(QCameraFeedbackControl* obj) { delete obj; }
 class PythonQtShell_QCameraFlashControl : public QCameraFlashControl
 {
 public:
-    PythonQtShell_QCameraFlashControl(QObject*  parent = nullptr):QCameraFlashControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraFlashControl(QObject*  parent = nullptr):QCameraFlashControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraFlashControl();
+   ~PythonQtShell_QCameraFlashControl() override;
 
-virtual QCameraExposure::FlashModes  flashMode() const;
-virtual bool  isFlashModeSupported(QCameraExposure::FlashModes  mode) const;
-virtual bool  isFlashReady() const;
-virtual void setFlashMode(QCameraExposure::FlashModes  mode);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QCameraExposure::FlashModes  flashMode() const override;
+bool  isFlashModeSupported(QCameraExposure::FlashModes  mode) const override;
+bool  isFlashReady() const override;
+void setFlashMode(QCameraExposure::FlashModes  mode) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraFlashControl : public QCameraFlashControl
@@ -1546,7 +1666,7 @@ class PythonQtWrapper_QCameraFlashControl : public QObject
 public:
 public slots:
 QCameraFlashControl* new_QCameraFlashControl(QObject*  parent = nullptr);
-void delete_QCameraFlashControl(QCameraFlashControl* obj) { delete obj; } 
+void delete_QCameraFlashControl(QCameraFlashControl* obj) { delete obj; }
    QCameraExposure::FlashModes  flashMode(QCameraFlashControl* theWrappedObject) const;
    QCameraExposure::FlashModes  py_q_flashMode(QCameraFlashControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QCameraFlashControl*)theWrappedObject)->py_q_flashMode());}
    bool  isFlashModeSupported(QCameraFlashControl* theWrappedObject, QCameraExposure::FlashModes  mode) const;
