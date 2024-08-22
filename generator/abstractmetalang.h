@@ -49,7 +49,7 @@
 #include <QSet>
 #include <QStringList>
 #include <QTextStream>
-
+#include <QSharedPointer>
 
 class AbstractMeta;
 class AbstractMetaClass;
@@ -71,6 +71,7 @@ public:
     AbstractMetaClass *findClass(const QString &name) const;
     AbstractMetaEnumValue *findEnumValue(const QString &string) const;
     AbstractMetaEnum *findEnum(const EnumTypeEntry *entry) const;
+    void sort();
 
 };
 
@@ -161,6 +162,8 @@ private:
 class AbstractMetaType
 {
 public:
+    typedef QSharedPointer<AbstractMetaType> shared_pointer;
+    typedef QSharedPointer<const AbstractMetaType> const_shared_pointer;
     enum TypeUsagePattern {
         InvalidPattern,
         PrimitivePattern,
@@ -197,9 +200,9 @@ public:
 
     // true when use pattern is container
     bool hasInstantiations() const { return !m_instantiations.isEmpty(); }
-    void addInstantiation(AbstractMetaType *inst) { m_instantiations << inst; }
-	void setInstantiations(const QList<AbstractMetaType *> &insts) { m_instantiations = insts; }
-    QList<AbstractMetaType *> instantiations() const { return m_instantiations; }
+    void addInstantiation(AbstractMetaType::shared_pointer inst) { m_instantiations << inst; }
+    void setInstantiations(const QList<AbstractMetaType::shared_pointer> &insts) { m_instantiations = insts; }
+    const QList<AbstractMetaType::shared_pointer> &instantiations() const { return m_instantiations; }
     void setInstantiationInCpp(bool incpp) { m_cpp_instantiation = incpp; }
     bool hasInstantiationInCpp() const { return hasInstantiations() && m_cpp_instantiation; }
 
@@ -272,12 +275,12 @@ public:
     void setArrayElementCount(int n) { m_array_element_count = n; }
     int arrayElementCount() const { return m_array_element_count; }
 
-    AbstractMetaType *arrayElementType() const { return m_array_element_type; }
-    void setArrayElementType(AbstractMetaType *t) { m_array_element_type = t; }
+    AbstractMetaType::shared_pointer arrayElementType() const { return m_array_element_type; }
+    void setArrayElementType(AbstractMetaType::shared_pointer t) { m_array_element_type = t; }
 
     QString cppSignature() const;
 
-    AbstractMetaType *copy() const;
+    AbstractMetaType::shared_pointer copy() const;
 
     const TypeEntry *typeEntry() const { return m_type_entry; }
     void setTypeEntry(const TypeEntry *type) { m_type_entry = type; }
@@ -285,18 +288,18 @@ public:
     void setOriginalTypeDescription(const QString &otd) { m_original_type_description = otd; }
     QString originalTypeDescription() const { return m_original_type_description; }
 
-    void setOriginalTemplateType(const AbstractMetaType *type) { m_original_template_type = type; }
-    const AbstractMetaType *originalTemplateType() const { return m_original_template_type; }
+    void setOriginalTemplateType(AbstractMetaType::const_shared_pointer type) { m_original_template_type =  type; }
+    AbstractMetaType::const_shared_pointer originalTemplateType() const { return m_original_template_type; }
 
 private:
     const TypeEntry *m_type_entry{};
-    QList <AbstractMetaType *> m_instantiations;
+    QList <AbstractMetaType::shared_pointer> m_instantiations;
     QString m_package;
     QString m_original_type_description;
 
     int m_array_element_count{};
-    AbstractMetaType *m_array_element_type{};
-    const AbstractMetaType *m_original_template_type{};
+    AbstractMetaType::shared_pointer m_array_element_type{};
+    AbstractMetaType::const_shared_pointer m_original_template_type{};
 
     TypeUsagePattern m_pattern{InvalidPattern};
     uint m_constant : 1;
@@ -310,16 +313,17 @@ class AbstractMetaVariable
 {
 public:
     AbstractMetaVariable() = default;
+    virtual ~AbstractMetaVariable();
 
-    AbstractMetaType *type() const { return m_type; }
-    void setType(AbstractMetaType *type) { m_type = type; }
+    AbstractMetaType::shared_pointer type() const { return m_type; }
+    void setType(AbstractMetaType::shared_pointer type) { m_type = type; }
 
     QString name() const { return m_name; }
     void setName(const QString &name) { m_name = name; }
 
 private:
     QString m_name;
-    AbstractMetaType *m_type{};
+    AbstractMetaType::shared_pointer m_type{};
 };
 
 
@@ -410,6 +414,7 @@ public:
 
     AbstractMetaFunction() :
           m_constant(false),
+          m_constexpr(false),
           m_invalid(false)
     {
     }
@@ -442,8 +447,8 @@ public:
 
     bool isModifiedRemoved(int types = TypeSystem::All) const;
 
-    AbstractMetaType *type() const { return m_type; }
-    void setType(AbstractMetaType *type) { m_type = type; }
+    AbstractMetaType::shared_pointer type() const { return m_type; }
+    void setType(AbstractMetaType::shared_pointer type) { m_type = type; }
 
     // The class that has this function as a member.
     const AbstractMetaClass *ownerClass() const { return m_class; }
@@ -486,6 +491,12 @@ public:
 
     bool isConstant() const { return m_constant; }
     void setConstant(bool constant) { m_constant = constant; }
+
+    bool isConstexpr() const { return m_constexpr; }
+    void setConstexpr(bool constant) { m_constexpr = constant; }
+
+    bool isAuto() const { return m_auto; }
+    void setAuto(bool isAuto) { m_auto = isAuto; }
 
     QString exception() const { return m_exception; }
     void setException(const QString &exception) { m_exception = exception; }
@@ -541,7 +552,7 @@ private:
     mutable QString m_cached_modified_name;
 
     FunctionType m_function_type{NormalFunction};
-    AbstractMetaType *m_type{};
+    AbstractMetaType::shared_pointer m_type{};
     const AbstractMetaClass *m_class{};
     const AbstractMetaClass *m_implementing_class{};
     const AbstractMetaClass *m_declaring_class{};
@@ -550,6 +561,8 @@ private:
     AbstractMetaArgumentList m_arguments;
     QString m_exception;
     uint m_constant                 : 1;
+    uint m_constexpr                : 1;
+    uint m_auto                     : 1;
     uint m_invalid                  : 1;
 };
 
@@ -589,6 +602,7 @@ class AbstractMetaEnum : public AbstractMetaAttributes
 {
 public:
     AbstractMetaEnum() : m_has_qenums_declaration(false) {}
+    ~AbstractMetaEnum() { qDeleteAll(m_enum_values); }
 
     AbstractMetaEnumValueList values() const { return m_enum_values; }
     void addEnumValue(AbstractMetaEnumValue *enumValue) { m_enum_values << enumValue; }
@@ -665,6 +679,8 @@ public:
           m_has_equals_operator(false),
           m_has_clone_operator(false),
           m_is_type_alias(false),
+          m_has_actual_declaration(false),
+          m_is_global_namespace(false),
           m_qDebug_stream_function(0)
     {
     }
@@ -676,7 +692,8 @@ public:
 
     AbstractMetaFunctionList functions() const { return m_functions; }
     void setFunctions(const AbstractMetaFunctionList &functions);
-    void addFunction(AbstractMetaFunction *function);
+    void addFunction(AbstractMetaFunction *function, bool check_duplicates = false);
+    void removeFunction(AbstractMetaFunction* function);
     bool hasFunction(const AbstractMetaFunction *f) const;
     bool hasFunction(const QString &str) const;
     bool hasSignal(const AbstractMetaFunction *f) const;
@@ -786,6 +803,12 @@ public:
     void setHasCloneOperator(bool on) { m_has_clone_operator = on; }
     bool hasCloneOperator() const { return m_has_clone_operator; }
 
+    void setHasActualDeclaration(bool on) { m_has_actual_declaration = on; }
+    bool hasActualDeclaration() const { return m_has_actual_declaration; }
+
+    void setIsGlobalNamespace(bool on) { m_is_global_namespace = on; }
+    bool isGlobalNamespace() const { return m_is_global_namespace; }
+
     QString getDefaultNonZeroFunction() const;
 
     void addPropertySpec(QPropertySpec *spec) { m_property_specs << spec; }
@@ -826,6 +849,11 @@ public:
       return qualifiedCppName() < a.qualifiedCppName();
     }
 
+    static bool less_than(const AbstractMetaClass *cl,
+            const AbstractMetaClass *cr) {
+        return cl->name() < cr->name();
+    }
+
 private:
     uint m_namespace : 1;
     uint m_qobject : 1;
@@ -841,7 +869,9 @@ private:
     uint m_has_equals_operator : 1;
     uint m_has_clone_operator :1;
     uint m_is_type_alias : 1;
-    uint m_reserved : 18;
+    uint m_has_actual_declaration : 1;
+    uint m_is_global_namespace : 1;
+    uint m_reserved : 16;
     QString m_destructor_exception;
 
     const AbstractMetaClass *m_enclosing_class{};

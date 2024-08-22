@@ -39,13 +39,15 @@
 **
 ****************************************************************************/
 
+#include <algorithm> // for std::stable_sort
+
 #include "abstractmetalang.h"
 #include "reporthandler.h"
 
 /*******************************************************************************
  * AbstractMetaType
  */
-AbstractMetaType *AbstractMetaType::copy() const
+AbstractMetaType::shared_pointer AbstractMetaType::copy() const
 {
     AbstractMetaType *cpy = new AbstractMetaType;
 
@@ -53,7 +55,7 @@ AbstractMetaType *AbstractMetaType::copy() const
     cpy->setConstant(isConstant());
     cpy->setReference(isReference());
     cpy->setIndirections(indirections());
-	cpy->setInstantiations(instantiations());
+    cpy->setInstantiations(instantiations());
     cpy->setArrayElementCount(arrayElementCount());
     cpy->setOriginalTypeDescription(originalTypeDescription());
     cpy->setOriginalTemplateType(originalTemplateType() ? originalTemplateType()->copy() : 0);
@@ -62,7 +64,7 @@ AbstractMetaType *AbstractMetaType::copy() const
 
     cpy->setTypeEntry(typeEntry());
 
-    return cpy;
+    return AbstractMetaType::shared_pointer(cpy);
 }
 
 QString AbstractMetaType::cppSignature() const
@@ -75,7 +77,7 @@ QString AbstractMetaType::cppSignature() const
     s += typeEntry()->qualifiedCppName();
 
     if (hasInstantiationInCpp()) {
-        QList<AbstractMetaType *> types = instantiations();
+        auto &types = instantiations();
         s += "<";
         for (int i=0; i<types.count(); ++i) {
             if (i > 0)
@@ -96,6 +98,13 @@ QString AbstractMetaType::cppSignature() const
 }
 
 /*******************************************************************************
+ * AbstractMetaVariable
+ */
+AbstractMetaVariable::~AbstractMetaVariable()
+{
+}
+
+/*******************************************************************************
  * AbstractMetaArgument
  */
 AbstractMetaArgument *AbstractMetaArgument::copy() const
@@ -103,7 +112,7 @@ AbstractMetaArgument *AbstractMetaArgument::copy() const
     AbstractMetaArgument *cpy = new AbstractMetaArgument;
     cpy->setName(AbstractMetaVariable::name());
     cpy->setDefaultValueExpression(defaultValueExpression());
-    cpy->setType(type()->copy());
+    cpy->setType(type());
     cpy->setArgumentIndex(argumentIndex());
 
     return cpy;
@@ -141,7 +150,6 @@ QString AbstractMetaArgument::name() const
 AbstractMetaFunction::~AbstractMetaFunction()
 {
     qDeleteAll(m_arguments);
-    delete m_type;
 }
 
 /*******************************************************************************
@@ -242,8 +250,8 @@ uint AbstractMetaFunction::compareTo(const AbstractMetaFunction *other) const
     }
 
     // Compare types
-    AbstractMetaType *t = type();
-    AbstractMetaType *ot = other->type();
+    AbstractMetaType::shared_pointer t = type();
+    AbstractMetaType::shared_pointer ot = other->type();
     if ((!t && !ot) || ((t && ot && t->name() == ot->name()))) {
         result |= EqualReturnType;
     }
@@ -311,8 +319,10 @@ AbstractMetaFunction *AbstractMetaFunction::copy() const
     cpy->setAttributes(attributes());
     cpy->setDeclaringClass(declaringClass());
     if (type())
-        cpy->setType(type()->copy());
+        cpy->setType(type());
     cpy->setConstant(isConstant());
+    cpy->setConstexpr(isConstexpr());
+    cpy->setAuto(isAuto());
     cpy->setException(exception());
     cpy->setOriginalAttributes(originalAttributes());
 
@@ -645,7 +655,7 @@ QString AbstractMetaFunction::minimalSignature() const
     AbstractMetaArgumentList arguments = this->arguments();
 
     for (int i=0; i<arguments.count(); ++i) {
-        AbstractMetaType *t = arguments.at(i)->type();
+        AbstractMetaType::shared_pointer t = arguments.at(i)->type();
 
         if (i > 0)
             minimalSignature += ",";
@@ -742,6 +752,7 @@ AbstractMetaClass::~AbstractMetaClass()
 {
     qDeleteAll(m_functions);
     qDeleteAll(m_fields);
+    qDeleteAll(m_property_specs);
 }
 
 /*AbstractMetaClass *AbstractMetaClass::copy() const
@@ -972,7 +983,7 @@ AbstractMetaFunctionList AbstractMetaClass::virtualOverrideFunctions() const
 
 void AbstractMetaClass::sortFunctions()
 {
-    qSort(m_functions.begin(), m_functions.end(), function_sorter);
+    std::sort(m_functions.begin(), m_functions.end(), function_sorter);
 }
 
 void AbstractMetaClass::setFunctions(const AbstractMetaFunctionList &functions)
@@ -1018,8 +1029,8 @@ void AbstractMetaClass::setFunctions(const AbstractMetaFunctionList &functions)
     }
 
 #ifndef QT_NO_DEBUG
-	bool duplicate_function = false;
-	for (int j=0; j<m_functions.size(); ++j) {
+    bool duplicate_function = false;
+    for (int j=0; j<m_functions.size(); ++j) {
         FunctionModificationList mods = m_functions.at(j)->modifications(m_functions.at(j)->implementingClass());
 
         bool removed = false;
@@ -1058,7 +1069,7 @@ void AbstractMetaClass::setFunctions(const AbstractMetaFunctionList &functions)
             }
         }
     }
-	Q_UNUSED(duplicate_function); //Use: Q_ASSERT(!duplicate_function);
+    //Q_ASSERT(!duplicate_function);
 #endif
 }
 
@@ -1083,20 +1094,35 @@ bool AbstractMetaClass::hasDefaultToStringFunction() const
     return false;
 }
 
-void AbstractMetaClass::addFunction(AbstractMetaFunction *function)
+void AbstractMetaClass::addFunction(AbstractMetaFunction *function, bool check_duplicates)
 {
     function->setOwnerClass(this);
+
+    if (check_duplicates) {
+        for (const auto f : m_functions) {
+            if (f->name() == function->name() &&
+                f->minimalSignature() == function->minimalSignature())
+            {
+                return;
+            }
+        }
+    }
 
     if (!function->isDestructor()) {
         m_functions << function;
         // seems like this is not needed and takes a lot of performance
-        //qSort(m_functions.begin(), m_functions.end(), function_sorter);
+        //std::sort(m_functions.begin(), m_functions.end(), function_sorter);
     }
 
 
     m_has_virtual_slots |= function->isVirtualSlot();
     m_has_virtuals |= !function->isFinal() || function->isVirtualSlot();
     m_has_nonpublic |= !function->isPublic();
+}
+
+void AbstractMetaClass::removeFunction(AbstractMetaFunction* function)
+{
+  m_functions.removeOne(function);
 }
 
 bool AbstractMetaClass::hasSignal(const AbstractMetaFunction *other) const
@@ -1195,7 +1221,7 @@ bool AbstractMetaClass::hasVirtualDestructor() const
 static bool functions_contains(const AbstractMetaFunctionList &l, const AbstractMetaFunction *func)
 {
     foreach (const AbstractMetaFunction *f, l) {
-		if ((f->compareTo(func) & AbstractMetaFunction::PrettySimilar) == AbstractMetaFunction::PrettySimilar)
+                if ((f->compareTo(func) & AbstractMetaFunction::PrettySimilar) == AbstractMetaFunction::PrettySimilar)
             return true;
     }
     return false;
@@ -1213,7 +1239,7 @@ AbstractMetaField *AbstractMetaField::copy() const
     returned->setEnclosingClass(0);
     returned->setAttributes(attributes());
     returned->setName(name());
-    returned->setType(type()->copy());
+    returned->setType(type());
     returned->setOriginalAttributes(originalAttributes());
 
     return returned;
@@ -1291,7 +1317,7 @@ const AbstractMetaFunction *AbstractMetaField::setter() const
                                 AbstractMetaAttributes::SetterFunction);
         AbstractMetaArgumentList arguments;
         AbstractMetaArgument *argument = new AbstractMetaArgument;
-        argument->setType(type()->copy());
+        argument->setType(type());
         argument->setName(name());
         arguments.append(argument);
         m_setter->setArguments(arguments);
@@ -1594,7 +1620,7 @@ AbstractMetaEnum *AbstractMetaClass::findEnumForValue(const QString &enumValueNa
 }
 
 
-static void add_extra_include_for_type(AbstractMetaClass *meta_class, const AbstractMetaType *type)
+static void add_extra_include_for_type(AbstractMetaClass *meta_class, AbstractMetaType::const_shared_pointer type)
 {
 
     if (type == 0)
@@ -1610,8 +1636,8 @@ static void add_extra_include_for_type(AbstractMetaClass *meta_class, const Abst
     }
 
     if (type->hasInstantiations()) {
-        QList<AbstractMetaType *> instantiations = type->instantiations();
-        foreach (AbstractMetaType *instantiation, instantiations)
+        auto &instantiations = type->instantiations();
+        for(auto &&instantiation: instantiations)
             add_extra_include_for_type(meta_class, instantiation);
     }
 }
@@ -1679,7 +1705,7 @@ void AbstractMetaClass::fixFunctions()
                 AbstractMetaFunction *f = funcs.at(fi);
                 if (f->isRemovedFromAllLanguages(f->implementingClass()))
                     continue;
-
+                
                 uint cmp = f->compareTo(sf);
 
                 if (cmp & AbstractMetaFunction::EqualModifiedName) {
@@ -1824,7 +1850,7 @@ void AbstractMetaClass::fixFunctions()
             super_class = super_class->baseClass();
         } else {
             iface_idx++;
-    }
+        }
     }
 
 //     printf("end fix functions for %s\n", qPrintable(name()));
@@ -1904,7 +1930,7 @@ QString AbstractMetaType::minimalSignature() const
         minimalSignature += "const ";
     minimalSignature += typeEntry()->qualifiedCppName();
     if (hasInstantiations()) {
-        QList<AbstractMetaType *> instantiations = this->instantiations();
+        auto &instantiations = this->instantiations();
         minimalSignature += "<";
         for (int i=0;i<instantiations.size();++i) {
             if (i > 0)
@@ -2014,4 +2040,10 @@ AbstractMetaClass *AbstractMetaClassList::findClass(const QString &name) const
     }
 
     return 0;
+}
+
+
+void AbstractMetaClassList::sort(void)
+{
+   std::stable_sort(begin(), end(), AbstractMetaClass::less_than);
 }

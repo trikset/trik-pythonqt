@@ -46,8 +46,6 @@
 #include "metaqtscript.h"
 #include "prigenerator.h"
 
-#define MAX_CLASSES_PER_FILE 30
-
 class ShellGenerator : public Generator
 {
     Q_OBJECT
@@ -55,10 +53,10 @@ class ShellGenerator : public Generator
 public:
     virtual QString subDirectoryForClass(const AbstractMetaClass *cls) const
     {
-        return "generated_cpp/" + cls->package().replace(".", "_") + "/";
+        return "generated_cpp/" + toFileNameBase(cls->package()) + "/";
     }
 
-    void writeTypeInfo(QTextStream &s, const AbstractMetaType *type, Option option = NoOption, TypeSystem::Ownership ownership = TypeSystem::InvalidOwnership);
+    void writeTypeInfo(QTextStream &s, AbstractMetaType::const_shared_pointer type, Option option = NoOption, TypeSystem::Ownership ownership = TypeSystem::InvalidOwnership);
     void writeFunctionSignature(QTextStream &s, const AbstractMetaFunction *meta_function,
                                 const AbstractMetaClass *implementor = 0,
                                 const QString &name_prefix = QString(),
@@ -97,11 +95,19 @@ public:
     static bool isBuiltIn(const QString& name);
 
     static bool isSpecialStreamingOperator(const AbstractMetaFunction *fun);
-    
+
+    static QString toFileNameBase(QString packageName) { return packageName.replace('.', '_').toLower(); }
+
     static void writeInclude(QTextStream &stream, const Include &inc);
   
+    // this scope is used in writeFunctionArguments
+    const AbstractMetaClass* setCurrentScope(const AbstractMetaClass* scope);
+    const AbstractMetaClass* currentScope() const { return _currentScope; }
+
  protected:
-    PriGenerator *priGenerator;
+    PriGenerator* priGenerator{};
+
+    const AbstractMetaClass* _currentScope{};
 
 };
 

@@ -39,6 +39,8 @@
 **
 ****************************************************************************/
 
+#include <algorithm> // for std::sort
+
 #include "shellimplgenerator.h"
 #include "reporthandler.h"
 #include "fileout.h"
@@ -68,8 +70,11 @@ static void writeHelperCode(QTextStream &, const AbstractMetaClass *)
 
 void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_class)
 {
+  setCurrentScope(meta_class);
+
   QString builtIn = ShellGenerator::isBuiltIn(meta_class->name())?"_builtin":"";
-  QString pro_file_name = meta_class->package().replace(".", "_") + builtIn + "/" + meta_class->package().replace(".", "_") + builtIn + ".pri";
+  QString fileBaseName = toFileNameBase(meta_class->package() + builtIn);
+  QString pro_file_name = fileBaseName + "/" + fileBaseName + ".pri";
   priGenerator->addSource(pro_file_name, fileNameForClass(meta_class));
   
   s << "#include \"PythonQtWrapper_" << meta_class->name() << ".h\"" << endl << endl;
@@ -82,7 +87,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
   //    return;
 
   IncludeList list = meta_class->typeEntry()->extraIncludes();
-  qSort(list.begin(), list.end());
+  std::sort(list.begin(), list.end());
   foreach (const Include &inc, list) {
     ShellGenerator::writeInclude(s, inc);
   }  
@@ -118,7 +123,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
 
     AbstractMetaFunctionList virtualsForShell = getVirtualFunctionsForShell(meta_class);
     foreach (const AbstractMetaFunction *fun, virtualsForShell) {
-      bool hasReturnValue = (fun->type());
+      bool hasReturnValue = !fun->type().isNull();
       writeFunctionSignature(s, fun, meta_class, QString(),
         Option(OriginalName | ShowStatic | UnderscoreSpaces | UseIndexedName),
         "PythonQtShell_");
@@ -176,7 +181,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
           s << "        }" << endl;
           s << "      }" << endl;
         }
-        s << "      if (result) { Py_DECREF(result); } " << endl;
+        s << "      if (result) { Py_DECREF(result); }" << endl;
         s << "      Py_DECREF(obj);" << endl;
         // ugly hack, we don't support QGraphicsScene* nor QGraphicsItem* QVariants in PythonQt...
         if (fun->name() == "itemChange" && fun->type() && fun->type()->isVariant()) {
@@ -300,15 +305,21 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
         }
       }
       s << "(";
-      if (scriptFunctionName.startsWith("operator>>")) {
+      if (scriptFunctionName.startsWith("operator>>") && !fun->wasProtected()) {
         s << wrappedObject << " >>" << args.at(0)->argumentName();
-      } else if (scriptFunctionName.startsWith("operator<<")) {
+      } else if (scriptFunctionName.startsWith("operator<<") && !fun->wasProtected()) {
         s << wrappedObject << " <<" << args.at(0)->argumentName();
-      } else if (scriptFunctionName.startsWith("operator[]")) {
+      } else if (scriptFunctionName.startsWith("operator[]") && !fun->wasProtected()) {
         s << wrappedObject << "[" << args.at(0)->argumentName() << "]";
-      } else if (scriptFunctionName.startsWith("operator") && args.size()==1) {
+      } else if (scriptFunctionName.startsWith("operator") && args.size()==1 && !fun->wasProtected()) {
         QString op = scriptFunctionName.mid(8);
         s << wrappedObject << op << " " << args.at(0)->argumentName();
+      }
+      else if (scriptFunctionName.startsWith("operator") && args.size() == 0 && scriptFunctionName.length() == 9 && !fun->wasProtected()) {
+        // only the unary operators consisting of one char can be applied by prepending the operator...
+        QString op = scriptFunctionName.mid(8);
+        // unary operator
+        s << op << " " << wrappedObject;
       } else {
         if (fun->isStatic()) {
           if (fun->wasProtected()) {
@@ -324,7 +335,13 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
             s << " theWrappedObject->";
           }
         }
-        s  << fun->originalName() << "(";
+        if (fun->wasProtected()) {
+          // this is different e.g. for operators
+          s << fun->name() << "(";
+        }
+        else {
+          s << fun->originalName() << "(";
+        }
         for (int i = 0; i < args.size(); ++i) {
           if (i > 0)
             s << ", ";
@@ -358,6 +375,8 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
   if (meta_class->qualifiedCppName().contains("Ssl")) {
     s << "#endif"  << endl;
   }
+
+  setCurrentScope(nullptr);
 }
 
 void ShellImplGenerator::writeInjectedCode(QTextStream &s, const AbstractMetaClass *meta_class)
