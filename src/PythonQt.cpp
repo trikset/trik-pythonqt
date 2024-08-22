@@ -260,7 +260,6 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 	PythonQtRegisterToolClassesTemplateConverterForKnownClass(QPen);
 	PythonQtRegisterToolClassesTemplateConverterForKnownClass(QTextLength);
 	PythonQtRegisterToolClassesTemplateConverterForKnownClass(QTextFormat);
-	PythonQtRegisterToolClassesTemplateConverterForKnownClass(QMatrix);
 
     PyObject* pack = PythonQt::priv()->packageByName("QtCore");
     PyObject* pack2 = PythonQt::priv()->packageByName("Qt");

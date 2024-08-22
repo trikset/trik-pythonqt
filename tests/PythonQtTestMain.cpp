@@ -42,11 +42,11 @@
 #include "PythonQt.h"
 #include "PythonQtTests.h"
 
-#include <QApplication>
+#include <QCoreApplication>
 
 int main( int argc, char **argv )
 {
-  QApplication qapp(argc, argv);
+  QCoreApplication qapp(argc, argv);
 
   if (QProcessEnvironment::systemEnvironment().contains("PYTHONQT_RUN_ONLY_MEMORY_TESTS")) {
     PythonQtMemoryTests test;
