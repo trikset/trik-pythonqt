@@ -238,6 +238,8 @@ public:
   //! cleanup of the singleton
   static void cleanup();
 
+  static void preCleanup();
+
   //! get the singleton instance
   static PythonQt* self();
 
@@ -660,6 +662,7 @@ class PYTHONQT_EXPORT PythonQtPrivate : public QObject {
 
 public:
   PythonQtPrivate();
+  void preCleanup();
   ~PythonQtPrivate() override;
 
   enum DecoratorTypes {
