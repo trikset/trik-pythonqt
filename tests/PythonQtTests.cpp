@@ -41,6 +41,43 @@
 
 #include "PythonQtTests.h"
 
+void PythonQtMemoryTests::testBaseCleanup()
+{
+  PythonQt::init();
+  PythonQt::cleanup();
+}
+
+void PythonQtMemoryTests::testCleanupWithFlags()
+{
+  PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
+  PythonQt::cleanup();
+}
+
+void PythonQtMemoryTests::testInitAlreadyInitialized()
+{
+  Py_InitializeEx(true);
+  PythonQt::init(PythonQt::PythonAlreadyInitialized);
+  PythonQt::cleanup();
+}
+
+void PythonQtMemoryTests::testSeveralCleanup() {
+  PythonQt::init();
+  PythonQt::cleanup();
+
+  PythonQt::init();
+  PythonQt::cleanup();
+}
+
+void PythonQtMemoryTests::testInitWithPreconfig() {
+#if PY_VERSION_HEX >= 0x03080000
+  PyConfig config;
+  PyConfig_InitPythonConfig(&config);
+  Py_InitializeFromConfig(&config);
+  PythonQt::init(PythonQt::RedirectStdOut | PythonQt::PythonAlreadyInitialized);
+  PythonQt::cleanup();
+#endif
+}
+
 void PythonQtTestSlotCalling::initTestCase()
 {
   _helper = new PythonQtTestSlotCallingHelper(this);
@@ -193,7 +230,11 @@ void PythonQtTestSlotCalling::testPODSlotCalls()
   QVERIFY(_helper->runScript("if obj.getUInt(42)==42: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getShort(-43)==-43: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getUShort(43)==43: obj.setPassed();\n"));
+#if (CHAR_MIN + 0)
   QVERIFY(_helper->runScript("if obj.getChar(-12)==-12: obj.setPassed();\n"));
+#else
+  QVERIFY(_helper->runScript("if obj.getChar(250)==250: obj.setPassed();\n"));
+#endif
   QVERIFY(_helper->runScript("if obj.getUChar(12)==12: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getLong(-256*256*256)==-256*256*256: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getULong(256*256*256)==256*256*256: obj.setPassed();\n"));
@@ -386,8 +427,8 @@ void PythonQtTestSignalHandler::testSignalHandler()
   QVERIFY(_helper->emitVariantSignal(12));
   _helper->setExpectedVariant(QStringList() << "test1" << "test2");
   QVERIFY(_helper->emitVariantSignal(QStringList() << "test1" << "test2"));
-  _helper->setExpectedVariant(qVariantFromValue((QObject*)_helper));
-  QVERIFY(_helper->emitVariantSignal(qVariantFromValue((QObject*)_helper)));
+  _helper->setExpectedVariant(QVariant::fromValue((QObject*)_helper));
+  QVERIFY(_helper->emitVariantSignal(QVariant::fromValue((QObject*)_helper)));
 
   PyRun_SimpleString("def testComplexSignal(a,b,l,o):\n  if a==12 and b==13 and l==('test1','test2') and o == obj: obj.setPassed();\n");
   // intentionally not normalized signal:
@@ -497,7 +538,7 @@ void PythonQtTestApi::testCall()
   QVERIFY(_helper->call("testCall1", QVariantList() << QVariant("test"), QVariant(QString("test2"))));
 
   PyRun_SimpleString("def testCall2(a, b):\n if a=='test' and b==obj: obj.setPassed();\n return obj;\n");
-  QVariant r = PythonQt::self()->call(PythonQt::self()->getMainModule(), "testCall2", QVariantList() << QVariant("test") << qVariantFromValue((QObject*)_helper));
+  QVariant r = PythonQt::self()->call(PythonQt::self()->getMainModule(), "testCall2", QVariantList() << QVariant("test") << QVariant::fromValue((QObject*)_helper));
   QObject* p = qvariant_cast<QObject*>(r);
   QVERIFY(p==_helper);
 }
@@ -512,11 +553,17 @@ void PythonQtTestApi::testVariables()
   QVariant v2 = PythonQt::self()->getVariable(PythonQt::self()->getMainModule(), "someObject2");
   QVERIFY(v2==QVariant());
 
-  PythonQt::self()->addVariable(PythonQt::self()->getMainModule(), "someValue", QStringList() << "test1" << "test2");
+  QVariant someValue = QStringList() << "test1" << "test2";
+  PythonQt::self()->addVariable(PythonQt::self()->getMainModule(), "someValue", someValue);
   QVariant v3 = PythonQt::self()->getVariable(PythonQt::self()->getMainModule(), "someValue");
-  QVERIFY(v3 == QVariant(QStringList() << "test1" << "test2"));
+#if QT_VERSION >= 0x060000
 
-  QStringList l = PythonQt::self()->introspection(PythonQt::self()->getMainModule(), QString::null, PythonQt::Variable);
+  // value first, so we replicate this first (otherwise the comparison QVariantList <-> QStringList fails)
+  QVERIFY(someValue.convert(v3.metaType()));
+#endif
+  QVERIFY(v3 == someValue);
+
+  QStringList l = PythonQt::self()->introspection(PythonQt::self()->getMainModule(), QString(), PythonQt::Variable);
   QSet<QString> s;
   // check that at least these three variables are set
   s << "obj" << "someObject" << "someValue";
