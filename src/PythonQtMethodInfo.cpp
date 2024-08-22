@@ -398,7 +398,6 @@ int PythonQtMethodInfo::nameToType(const char* name)
     _parameterTypeDict.insert("QMatrix4x4", QMetaType::QMatrix4x4);
     _parameterTypeDict.insert("QTransform", QMetaType::QTransform);
 	_parameterTypeDict.insert("QTextFormat", QMetaType::QTextFormat);
-	_parameterTypeDict.insert("QMatrix", QMetaType::QMatrix);
 	_parameterTypeDict.insert("QVariant", PythonQtMethodInfo::Variant);
 	// own special types... (none so far, could be e.g. ObjectList
   }

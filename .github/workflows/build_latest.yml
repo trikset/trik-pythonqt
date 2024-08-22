@@ -105,12 +105,13 @@ jobs:
         echo ============================
         qmake -r PythonQt.pro CONFIG+=ccache CONFIG+=release CONFIG+=force_debug_info \
         CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
+        CONFIG+=tests \
         PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
         PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
         make -j $(nproc)
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-          make check TESTARGS="-platform offscreen"
+          make check
           
     - name: Build PythonQt Windows
       shell: cmd
@@ -119,6 +120,7 @@ jobs:
         qmake -query
         python --version
         qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target ^
+        CONFIG+=tests ^
            "PYTHONQTALL_CONFIG=${{ matrix.pythonqtall-config }}" ^
            "PYTHON_PATH=%pythonLocation%" ^
            "PYTHON_VERSION=${{ steps.setenv.outputs.PYTHON_VERSION_SHORT }}" ^
@@ -126,4 +128,4 @@ jobs:
         set PYTHONDEVMODE=1
         set PYTHONASYNCIODEBUG=1
         set PYTHONWARNINGS=error
-        nmake && nmake check "TESTARGS=-platform offscreen"
+        nmake && nmake check

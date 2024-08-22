@@ -67,12 +67,13 @@ jobs:
         echo ============================
         qmake -r PythonQt.pro CONFIG+=ccache CONFIG+=release CONFIG+=force_debug_info \
         CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
+        CONFIG+=tests CONFIG+=generator \
         PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
         PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
         make -j $(nproc)
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-          make check TESTARGS="-platform offscreen"
+          make check
 
     - name: Run memory tests with sanitizers
       run: |
@@ -84,7 +85,7 @@ jobs:
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=1:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
         PYTHONQT_RUN_ONLY_MEMORY_TESTS=1 \
-          make check TESTARGS="-platform minimal"
+          make check
       
     - name: Generate Wrappers
       run: |
@@ -155,10 +156,11 @@ jobs:
         echo PYTHON_VERSION_SHORT=${PYTHON_VERSION_SHORT}
         echo PYTHON_DIR=${PYTHON_DIR}
         qmake-qt5 -r PythonQt.pro CONFIG+=${{ matrix.configuration }} \
+        CONFIG+=tests CONFIG+=generator \
           "PYTHON_VERSION=${PYTHON_VERSION_SHORT}" "PYTHON_DIR=${PYTHON_DIR}"
         make -j $(nproc) && \
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
-          make check TESTARGS="-platform offscreen"
+          make check
 
     - name: Generate Wrappers
       run: |
@@ -237,10 +239,11 @@ jobs:
         uname -a; gcc --version | head -n 1; python --version; qmake --version
         echo ============================
         PYTHON_VERSION_MAJOR=$(cut -d . -f1 <<< ${{ steps.versions.outputs.PYTHON_VERSION_SHORT }})
-        for i in "python${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}-embed" "python${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}" \
+        for i in "python-${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}-embed" "python-${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}" \
                  "python${PYTHON_VERSION_MAJOR}-embed" "python${PYTHON_VERSION_MAJOR}"
         do if pkg-config --exists "$i"; then PYTHON_PKGCONFIG_NAME="$i"; break; fi; done
         qmake CONFIG+=ccache CONFIG+=${{ matrix.configuration }} CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
+          CONFIG+=tests CONFIG+=generator \
           PYTHON_VERSION=${{ steps.versions.outputs.PYTHON_VERSION_SHORT }} \
           PYTHON_DIR="$pythonLocation" \
           PKGCONFIG+=$PYTHON_PKGCONFIG_NAME \
@@ -248,7 +251,7 @@ jobs:
         make -j $(nproc)
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-          make check TESTARGS="-platform offscreen"
+          make check
 
     - name: Generate Wrappers
       if: ${{ contains(matrix.configuration, 'release') }}
@@ -352,14 +355,15 @@ jobs:
         python --version
         set PYTHONQTALL_CONFIG=${{ matrix.pythonqtall-config }}
         qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target ^
+        CONFIG+=tests CONFIG+=generator ^
            "PYTHON_PATH=%pythonLocation%" ^
            "PYTHON_VERSION=${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}" ^
            PythonQt.pro
         set PYTHONDEVMODE=1
         set PYTHONASYNCIODEBUG=1
         set PYTHONWARNINGS=error
-        mingw32-make -j 2 && mingw32-make check "TESTARGS=-platform offscreen" ^
-          || set CL=/MP && nmake && nmake check "TESTARGS=-platform offscreen"
+        mingw32-make -j 2 && mingw32-make check ^
+          || set CL=/MP && nmake && nmake check
 
     - name: Generate Wrappers
       shell: cmd
