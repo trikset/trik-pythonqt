@@ -18,6 +18,7 @@
 #include <qimage.h>
 #include <qjsvalue.h>
 #include <qkeysequence.h>
+#include <qlayout.h>
 #include <qlist.h>
 #include <qlocale.h>
 #include <qmargins.h>
@@ -50,6 +51,7 @@
 #include <qrect.h>
 #include <qregion.h>
 #include <qrunnable.h>
+#include <qscreen.h>
 #include <qsgabstractrenderer.h>
 #include <qsgengine.h>
 #include <qsgflatcolormaterial.h>
@@ -59,6 +61,7 @@
 #include <qsgninepatchnode.h>
 #include <qsgnode.h>
 #include <qsgrectanglenode.h>
+#include <qsgrendererinterface.h>
 #include <qsgtexture.h>
 #include <qsgtextureprovider.h>
 #include <qsize.h>
@@ -122,7 +125,7 @@ void windowDeactivateEvent() override;
 
   const QMetaObject* metaObject() const override;
   int qt_metacall(QMetaObject::Call call, int id, void** args) override;
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QQuickFramebufferObject : public QQuickFramebufferObject
@@ -171,7 +174,7 @@ QOpenGLFramebufferObject*  createFramebufferObject(const QSize&  size) override;
 void render() override;
 void synchronize(QQuickFramebufferObject*  arg__1) override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QQuickFramebufferObject__Renderer : public QQuickFramebufferObject::Renderer
@@ -273,7 +276,7 @@ void windowDeactivateEvent() override;
 
   const QMetaObject* metaObject() const override;
   int qt_metacall(QMetaObject::Call call, int id, void** args) override;
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QQuickItem : public QQuickItem
@@ -624,7 +627,7 @@ void windowDeactivateEvent() override;
 
   const QMetaObject* metaObject() const override;
   int qt_metacall(QMetaObject::Call call, int id, void** args) override;
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QQuickPaintedItem : public QQuickPaintedItem
@@ -695,7 +698,7 @@ void timerEvent(QTimerEvent*  event) override;
 
   const QMetaObject* metaObject() const override;
   int qt_metacall(QMetaObject::Call call, int id, void** args) override;
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QQuickRenderControl : public QQuickRenderControl
@@ -740,7 +743,7 @@ void timerEvent(QTimerEvent*  event) override;
 
   const QMetaObject* metaObject() const override;
   int qt_metacall(QMetaObject::Call call, int id, void** args) override;
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QQuickTextDocument : public QObject
@@ -772,7 +775,7 @@ void timerEvent(QTimerEvent*  event) override;
 
   const QMetaObject* metaObject() const override;
   int qt_metacall(QMetaObject::Call call, int id, void** args) override;
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QQuickTransform : public QQuickTransform
@@ -836,7 +839,7 @@ void wheelEvent(QWheelEvent*  arg__1) override;
 
   const QMetaObject* metaObject() const override;
   int qt_metacall(QMetaObject::Call call, int id, void** args) override;
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QQuickView : public QQuickView
@@ -946,7 +949,7 @@ void wheelEvent(QWheelEvent*  arg__1) override;
 
   const QMetaObject* metaObject() const override;
   int qt_metacall(QMetaObject::Call call, int id, void** args) override;
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QQuickWidget : public QQuickWidget
@@ -1081,7 +1084,7 @@ void wheelEvent(QWheelEvent*  arg__1) override;
 
   const QMetaObject* metaObject() const override;
   int qt_metacall(QMetaObject::Call call, int id, void** args) override;
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QQuickWindow : public QQuickWindow
@@ -1161,6 +1164,7 @@ void delete_QQuickWindow(QQuickWindow* obj) { delete obj; }
    QOpenGLFramebufferObject*  renderTarget(QQuickWindow* theWrappedObject) const;
    uint  renderTargetId(QQuickWindow* theWrappedObject) const;
    QSize  renderTargetSize(QQuickWindow* theWrappedObject) const;
+   QSGRendererInterface*  rendererInterface(QQuickWindow* theWrappedObject) const;
    void resetOpenGLState(QQuickWindow* theWrappedObject);
    void py_q_resizeEvent(QQuickWindow* theWrappedObject, QResizeEvent*  arg__1){  (((PythonQtPublicPromoter_QQuickWindow*)theWrappedObject)->py_q_resizeEvent(arg__1));}
    QString  static_QQuickWindow_sceneGraphBackend();
@@ -1173,6 +1177,7 @@ void delete_QQuickWindow(QQuickWindow* obj) { delete obj; }
    void setPersistentSceneGraph(QQuickWindow* theWrappedObject, bool  persistent);
    void setRenderTarget(QQuickWindow* theWrappedObject, QOpenGLFramebufferObject*  fbo);
    void setRenderTarget(QQuickWindow* theWrappedObject, uint  fboId, const QSize&  size);
+   void static_QQuickWindow_setSceneGraphBackend(QSGRendererInterface::GraphicsApi  api);
    void static_QQuickWindow_setSceneGraphBackend(const QString&  backend);
    void static_QQuickWindow_setTextRenderType(QQuickWindow::TextRenderType  renderType);
    void py_q_showEvent(QQuickWindow* theWrappedObject, QShowEvent*  arg__1){  (((PythonQtPublicPromoter_QQuickWindow*)theWrappedObject)->py_q_showEvent(arg__1));}
@@ -1202,7 +1207,7 @@ void timerEvent(QTimerEvent*  event) override;
 
   const QMetaObject* metaObject() const override;
   int qt_metacall(QMetaObject::Call call, int id, void** args) override;
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSGAbstractRenderer : public QSGAbstractRenderer
@@ -1254,7 +1259,7 @@ public:
 bool  isSubtreeBlocked() const override;
 void preprocess() override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSGBasicGeometryNode : public QObject
@@ -1286,7 +1291,7 @@ public:
 bool  isSubtreeBlocked() const override;
 void preprocess() override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSGClipNode : public QObject
@@ -1329,7 +1334,7 @@ bool  updateTexture() override;
 
   const QMetaObject* metaObject() const override;
   int qt_metacall(QMetaObject::Call call, int id, void** args) override;
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSGDynamicTexture : public QSGDynamicTexture
@@ -1366,7 +1371,7 @@ void timerEvent(QTimerEvent*  event) override;
 
   const QMetaObject* metaObject() const override;
   int qt_metacall(QMetaObject::Call call, int id, void** args) override;
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSGEngine : public QObject
@@ -1384,6 +1389,7 @@ void delete_QSGEngine(QSGEngine* obj) { delete obj; }
    QSGAbstractRenderer*  createRenderer(QSGEngine* theWrappedObject) const;
    void initialize(QSGEngine* theWrappedObject, QOpenGLContext*  context);
    void invalidate(QSGEngine* theWrappedObject);
+   QSGRendererInterface*  rendererInterface(QSGEngine* theWrappedObject) const;
 };
 
 
@@ -1399,7 +1405,7 @@ public:
 
 QSGMaterialType*  type() const override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSGFlatColorMaterial : public QSGFlatColorMaterial
@@ -1431,7 +1437,7 @@ public:
    ~PythonQtShell_QSGGeometry() override;
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSGGeometry : public QObject
@@ -1503,7 +1509,7 @@ public:
 bool  isSubtreeBlocked() const override;
 void preprocess() override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSGGeometryNode : public QObject
@@ -1531,7 +1537,7 @@ public:
    ~PythonQtShell_QSGGeometry__Attribute();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSGGeometry__Attribute : public QObject
@@ -1568,7 +1574,7 @@ public:
    ~PythonQtShell_QSGGeometry__AttributeSet();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSGGeometry__AttributeSet : public QObject
@@ -1596,7 +1602,7 @@ public:
    ~PythonQtShell_QSGGeometry__ColoredPoint2D();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSGGeometry__ColoredPoint2D : public QObject
@@ -1632,7 +1638,7 @@ public:
    ~PythonQtShell_QSGGeometry__Point2D();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSGGeometry__Point2D : public QObject
@@ -1660,7 +1666,7 @@ public:
    ~PythonQtShell_QSGGeometry__TexturedPoint2D();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSGGeometry__TexturedPoint2D : public QObject
@@ -1748,7 +1754,7 @@ public:
    ~PythonQtShell_QSGMaterialType();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSGMaterialType : public QObject
@@ -1778,7 +1784,7 @@ void setPadding(qreal  left, qreal  top, qreal  right, qreal  bottom) override;
 void setTexture(QSGTexture*  texture) override;
 void update() override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSGNinePatchNode : public QSGNinePatchNode
@@ -1824,7 +1830,7 @@ public:
 bool  isSubtreeBlocked() const override;
 void preprocess() override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSGNode : public QSGNode

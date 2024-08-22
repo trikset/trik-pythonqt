@@ -41,6 +41,7 @@ PythonQt::priv()->registerCPPClass("QSGOpacityNode", "QSGNode", "QtQuick", Pytho
 PythonQt::priv()->registerCPPClass("QSGRectangleNode", "QSGGeometryNode", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGRectangleNode>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGRectangleNode>, module, 0);
 PythonQt::priv()->registerCPPClass("QSGRenderNode", "QSGNode", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGRenderNode>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGRenderNode>, module, 0);
 PythonQt::priv()->registerCPPClass("QSGRenderNode::RenderState", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGRenderNode__RenderState>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGRenderNode__RenderState>, module, 0);
+PythonQt::priv()->registerCPPClass("QSGRendererInterface", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGRendererInterface>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGRendererInterface>, module, 0);
 PythonQt::priv()->registerCPPClass("QSGRootNode", "QSGNode", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGRootNode>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGRootNode>, module, 0);
 PythonQt::priv()->registerClass(&QSGTexture::staticMetaObject, "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGTexture>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGTexture>, module, 0);
 PythonQt::priv()->registerCPPClass("QSGTextureMaterial", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGTextureMaterial>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGTextureMaterial>, module, 0);

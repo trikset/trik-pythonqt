@@ -331,24 +331,31 @@ void PythonQt::cleanup()
   }
 }
 
+void PythonQt::preCleanup()
+{
+   _self->priv()->preCleanup();
+}
+
 PythonQt* PythonQt::self() { return _self; }
 
 PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
 {
-#if PY_MAJOR_VERSION == 3 && PY_MINOR_VERSION >= 8 && defined(__linux__)
+// #if PY_MAJOR_VERSION == 3 && PY_MINOR_VERSION >= 8 && defined(__linux__)
 /* Starting from python 3.8, python C extensions no longer link to libpython3.X.so
-   This is a problem, since libpython3.X.so is loaded through a reference in libtrikScriptRunner.so
+   This is a possible problem, since libpython3.X.so is loaded through a reference in libtrikScriptRunner.so
    and (somehow) ld.so does not place it's symbols into global symbol table. This results into a failure to load any C module.
    Loading libpython3.X.so with dlopen and RTLD_GLOBAL flag effectively solves this issue. */
 
 // TODO: Someting like PyRun_String("sysconfig.get_config_var('LDLIBRARY')")
 // should be used to extract shared object name for current interpreter
-  const auto &libName = QString("libpython3.%1.so.1.0").arg(PY_MINOR_VERSION).toStdString();
-  if (NULL == dlopen(libName.c_str(), RTLD_GLOBAL | RTLD_LAZY)) {
-	  qFatal("Failed to load %s", libName.c_str());
-	  abort();
-  }
-#endif
+
+// NOTE 2023-07-07: On Centos7 .so is a link named `libpython3.8.so` and points to `libpython3.8.so.rh-python38-1.0`
+//  const auto &libName = QString("libpython3.%1.so.1.0").arg(PY_MINOR_VERSION).toStdString();
+//  if (NULL == dlopen(libName.c_str(), RTLD_GLOBAL | RTLD_LAZY)) {
+	  //qFatal("Failed to load %s", libName.c_str());
+	  //abort();
+//  }
+// #endif
   _p = new PythonQtPrivate;
   _p->_initFlags = flags;
 
@@ -1547,6 +1554,15 @@ PythonQtPrivate::PythonQtPrivate()
   _configAPI = new PythonQtConfigAPI(this);
 }
 
+void PythonQtPrivate::preCleanup()
+{
+	_pySourceFileLoader = nullptr;
+	_pySourcelessFileLoader = nullptr;
+	_pyEnsureFuture = nullptr;
+	_pyFutureClass = nullptr;
+	_pyTaskDoneCallback = nullptr;
+}
+
 void PythonQtPrivate::setupSharedLibrarySuffixes()
 {
   _sharedLibrarySuffixes.clear();
@@ -1915,7 +1931,11 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
   Py_XDECREF(old_module_names);
 
 #ifdef PY3K
-  PyDict_SetItem(PyObject_GetAttrString(sys.object(), "modules"), PyUnicode_FromString(name.constData()), _p->_pythonQtModule.object());
+  PyObject* modulesAttr = PyObject_GetAttrString(sys.object(), "modules");
+  PyObject* pyUnicodeObject = PyUnicode_FromString(name.constData());
+  PyDict_SetItem(modulesAttr, pyUnicodeObject, _p->_pythonQtModule.object());
+  Py_XDECREF(modulesAttr);
+  Py_XDECREF(pyUnicodeObject);
 #endif
 }
 
