@@ -140,7 +140,7 @@ public:
   inline std::size_t cursor() const
   { return index; }
 
-  inline void rewind(int i)
+  inline void rewind(std::size_t i)
   { index = i; }
 
   void resize(std::size_t size)
@@ -168,10 +168,10 @@ public:
   inline std::size_t matchingBrace(std::size_t i) const
   { return tokens[i].extra.right_brace; }
 
-  inline Token &operator[](int i)
+  inline Token &operator[](std::size_t i)
   { return tokens[i]; }
 
-  inline const Token &token(int i) const
+  inline const Token &token(std::size_t i) const
   { return tokens[i]; }
 
 private:
@@ -232,8 +232,12 @@ private:
   void scan_identifier_or_keyword();
   void scan_identifier_or_literal();
   void scan_int_constant();
-  void scan_char_constant();
-  void scan_string_constant();
+  void scan_char_constant() { scan_char_constant_with_prefix(nullptr); }
+  void scan_string_constant() { scan_string_constant_with_prefix(nullptr); }
+  // the _with_prefix variants take the start of an optional prefix (e.g., the R in R"")
+  void scan_char_constant_with_prefix(const unsigned char* prefix);
+  void scan_string_constant_with_prefix(const unsigned char* prefix);
+  void scan_raw_string_constant_with_prefix(const unsigned char* prefix);
   void scan_invalid_input();
   void scan_preprocessor();
 

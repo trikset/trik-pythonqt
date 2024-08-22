@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.gui">
+<typesystem package="com.trolltech.qt.Gui">
   <rejection class="QColormap"/>
   <rejection class="QIconEngineV2"/>
   <rejection class="QTextBlock::iterator"/>
@@ -22,11 +22,13 @@
 <rejection class="QAccessible"/>
 <rejection class="QAccessibleActionInterface"/>
 <rejection class="QAccessibleBridge"/>
+<rejection class="QAccessibleHyperlinkInterface"/>
 <rejection class="QAccessibleImageInterface"/>
 <rejection class="QAccessibleInterface"/>
 <rejection class="QAccessibleObject"/>
 <rejection class="QAccessiblePlugin"/>
 <rejection class="QAccessibleStateChangeEvent"/>
+<rejection class="QAccessibleSelectionInterface"/>
 <rejection class="QAccessibleTableCellInterface"/>
 <rejection class="QAccessibleTableInterface"/>
 <rejection class="QAccessibleTableModelChangeEvent"/>
@@ -84,6 +86,7 @@
   <rejection class="QAbstractUndoItem"/>
   <rejection class="QAccessibleApplication"/>
   <rejection class="QBrushData"/>
+  <rejection class="QBrushDataPointerDeleter"/>
   <rejection class="QImageTextKeyLang"/>
   <rejection class="QItemEditorCreator"/>
   <rejection class="QLinkedList"/>
@@ -104,6 +107,7 @@
   <rejection class="QWindowSurface"/>
   <rejection class="QWindowsXPStyle"/>
   <rejection class="QWindowsVistaStyle"/>
+  <rejection class="QWindowsMimeConverter"/>
   <rejection class="QWSEmbedWidget"/>
   <rejection class="QRegion::QRegionData"/>
   <rejection class="JObject_key"/>
@@ -156,14 +160,18 @@
   <rejection class="QWidgetItem" field-name="wid"/>
   <rejection class="QFont" enum-name="ResolveProperties"/>
   <rejection class="QGradient" enum-name="InterpolationMode"/>
+  <rejection class="QIconEngine::ScaledPixmapArgument" since-version="5.9"/>
   <rejection class="QIconEngineV2::AvailableSizesArgument"/>
   <rejection class="QIconEngineV2" enum-name="IconEngineHook"/>
+  <rejection class="QGradient::QGradientData"/>
   <rejection class="QGradient" enum-name="InterpolationMode"/>
   <rejection class="QGradient" function-name="setInterpolationMode"/>
   <rejection class="QGradient" function-name="interpolationMode"/>
   <rejection class="QAbstractTextDocumentLayout" function-name="handlerForObject"/>
-    <rejection class="QPixmap" function-name="fromImageInPlace"/>
-  
+  <rejection class="QPixmap" function-name="fromImageInPlace"/>
+
+  <rejection class="QRhiWidget" since-version="6.7"/> <!-- rest of QRhi API currently not available -->
+
   <enum-type name="QStaticText::PerformanceHint"/>
   <enum-type name="QTextBlockFormat::LineHeightTypes"/>
   <enum-type name="QStyleOptionTabWidgetFrameV2::StyleOptionVersion"/>
@@ -190,6 +198,7 @@
   <enum-type name="QAbstractSlider::SliderChange"/>
   <enum-type name="QAbstractSpinBox::ButtonSymbols"/>
   <enum-type name="QAbstractSpinBox::CorrectionMode"/>
+  <enum-type name="QAbstractSpinBox::StepType"/>
   <enum-type name="QAbstractSpinBox::StepEnabledFlag" flags="QAbstractSpinBox::StepEnabled"/>
   <enum-type name="QAccessible::Event"/>
   <enum-type name="QAccessible::Method"/>
@@ -206,6 +215,7 @@
   <enum-type name="QMdiArea::WindowOrder"/>
   <enum-type name="QMdiArea::ViewMode"/>
   <enum-type name="QFileSystemModel::Roles"/>
+  <enum-type name="QFileSystemModel::Option" flags="QFileSystemModel::Options"/>
   <enum-type name="QFormLayout::FieldGrowthPolicy"/>
   <enum-type name="QFormLayout::FormStyle"/>
   <enum-type name="QFormLayout::ItemRole"/>
@@ -246,7 +256,8 @@
   <enum-type name="QFileDialog::FileMode"/>
   <enum-type name="QFileDialog::Option" flags="QFileDialog::Options"/>
   <enum-type name="QFileDialog::ViewMode"/>
-  <enum-type name="QFileIconProvider::IconType"/>
+  <enum-type name="QFileIconProvider::IconType" before-version="6"/>
+  <enum-type name="QAbstractFileIconProvider::IconType" since-version="6"/>
   <enum-type name="QFont::Stretch"/>
   <enum-type name="QFont::Style"/>
   <enum-type name="QFont::StyleStrategy"/>
@@ -256,6 +267,7 @@
   <enum-type name="QFrame::Shape"/>
   <enum-type name="QFrame::StyleMask"/>
   <enum-type name="QGradient::CoordinateMode"/>
+  <enum-type name="QGradient::Preset"/>
   <enum-type name="QGradient::Spread" lower-bound="QGradient.PadSpread" upper-bound="QGradient.RepeatSpread"/>
   <enum-type name="QGradient::Type"/>
   <enum-type name="QGraphicsEllipseItem::enum_1"/>
@@ -281,6 +293,7 @@
   <enum-type name="QGraphicsView::ViewportUpdateMode"/>
   <enum-type name="QIcon::Mode"/>
   <enum-type name="QIcon::State"/>
+  <enum-type name="QIcon::ThemeIcon" since-version="6.7"/>
   <enum-type name="QImage::Format"/>
   <enum-type name="QImage::InvertMode"/>
   <enum-type name="QImageIOHandler::ImageOption"/>
@@ -386,6 +399,8 @@
   <enum-type name="QStyleOptionHeader::SortIndicator"/>
   <enum-type name="QStyleOptionHeader::StyleOptionType"/>
   <enum-type name="QStyleOptionHeader::StyleOptionVersion"/>
+  <enum-type name="QStyleOptionHeaderV2::StyleOptionType"/>
+  <enum-type name="QStyleOptionHeaderV2::StyleOptionVersion"/>
   <enum-type name="QStyleOptionMenuItem::CheckType"/>
   <enum-type name="QStyleOptionMenuItem::MenuItemType"/>
   <enum-type name="QStyleOptionMenuItem::StyleOptionType"/>
@@ -447,6 +462,7 @@
   <enum-type name="QTextDocument::FindFlag" flags="QTextDocument::FindFlags"/>
   <enum-type name="QTextDocument::MetaInformation"/>
   <enum-type name="QTextDocument::ResourceType"/>
+  <enum-type name="QTextDocument::MarkdownFeature" flags="QTextDocument::MarkdownFeatures"/>
   <enum-type name="QTextEdit::AutoFormattingFlag" flags="QTextEdit::AutoFormatting"/>
   <enum-type name="QTextEdit::LineWrapMode"/>
   <enum-type name="QTextFormat::ObjectTypes"/>
@@ -521,8 +537,8 @@
   </enum-type>
 
 
-  <enum-type name="QMessageBox::StandardButton" flags="QMessageBox::StandardButtons">
-  </enum-type>
+  <enum-type name="QMessageBox::StandardButton" flags="QMessageBox::StandardButtons"/>
+  <enum-type name="QMessageBox::Option" flags="QMessageBox::Options"/>
 
   <enum-type name="QPalette::ColorGroup">
   </enum-type>
@@ -569,7 +585,8 @@
   <enum-type name="QFontDatabase::SystemFont"/>
   <enum-type name="QStyleOptionToolBox::SelectedPosition"/>
   <enum-type name="QStyleOptionToolBox::TabPosition"/>
-  <enum-type name="QFileIconProvider::Option" flags="QFileIconProvider::Options"/>
+  <enum-type name="QFileIconProvider::Option" flags="QFileIconProvider::Options" before-version="6"/>
+  <enum-type name="QAbstractFileIconProvider::Option" flags="QAbstractFileIconProvider::Options" since-version="6"/>
   <enum-type name="QIconEngine::IconEngineHook"/>
   <enum-type name="QPagedPaintDevice::PageSize"/>
 
@@ -600,6 +617,8 @@
     <modify-function signature="operator/=(double)" access="private"/>
     <modify-function signature="operator*(QTransform)const" rename="multiplied"/>
     <modify-function signature="operator*=(QTransform)" access="private"/>
+
+    <modify-function signature="asAffineMatrix()" remove="all"/>
   
       <modify-function signature="inverted(bool*)const">
         <modify-argument index="1">
@@ -607,6 +626,7 @@
         </modify-argument>
       </modify-function>
   </value-type>
+  <rejection class="QTransform::Affine"/>
 
   <value-type name="QStyleOption" polymorphic-base="yes" polymorphic-id-expression="%1-&gt;type == QStyleOption::SO_Default">
       <modify-function signature="operator=(QStyleOption)" remove="all"/>
@@ -633,6 +653,7 @@
 
   <value-type name="QStyleOptionGroupBox" polymorphic-id-expression="%1-&gt;type == QStyleOptionGroupBox::Type &amp;&amp; %1-&gt;version == QStyleOptionGroupBox::Version"/>
   <value-type name="QStyleOptionHeader" polymorphic-id-expression="%1-&gt;type == QStyleOptionHeader::Type &amp;&amp; %1-&gt;version == QStyleOptionHeader::Version"/>
+  <value-type name="QStyleOptionHeaderV2" polymorphic-id-expression="%1-&gt;type == QStyleOptionHeaderV2::Type &amp;&amp; %1-&gt;version == QStyleOptionHeaderV2::Version"/>
   <value-type name="QStyleOptionMenuItem" polymorphic-id-expression="%1-&gt;type == QStyleOptionMenuItem::Type &amp;&amp; %1-&gt;version == QStyleOptionMenuItem::Version"/>
   <value-type name="QStyleOptionProgressBar" polymorphic-id-expression="%1-&gt;type == QStyleOptionProgressBar::Type &amp;&amp; %1-&gt;version == QStyleOptionProgressBar::Version"/>
 
@@ -723,6 +744,7 @@
     <modify-function signature="operator int()const" access="private"/>
     <modify-function signature="operator[](uint)const" access="private"/>
   </value-type>
+  <value-type name="QKeyCombination" since-version="6"/>
 
   <value-type name="QPicture">
     <modify-function signature="operator=(QPicture)" remove="all"/>
@@ -764,6 +786,7 @@
     <modify-function signature="operator=(QTextBlock)" remove="all"/>
   </value-type>
   <value-type name="QTextBlockFormat"/>
+  <enum-type name="QTextBlockFormat::MarkerType"/>
   <value-type name="QTextTableCellFormat"/>
   <value-type name="QTextCharFormat">
     <modify-function signature="isValid()const" access="non-final"/>
@@ -775,8 +798,8 @@
     <modify-function signature="operator=(QTextFormat)" remove="all"/>
     <modify-function signature="isValid()const" access="non-final"/>
 
-  
-    <modify-function signature="setProperty(int,QVector&lt;QTextLength&gt;)" rename="setLengthVectorProperty"/>
+    <modify-function signature="setProperty(int,QVector&lt;QTextLength&gt;)" rename="setLengthVectorProperty" before-version="6"/>
+    <modify-function signature="setProperty(int,const QList&lt;QTextLength&gt;&amp;)" rename="setLengthVectorProperty" since-version="6"/>
   </value-type>
 
   <value-type name="QTextListFormat"/>
@@ -785,8 +808,6 @@
     <modify-function signature="operator+(QVector&lt;QPoint&gt;)const" remove="all"/>
     <modify-function signature="operator&lt;&lt;(QPoint)" remove="all"/>
     <modify-function signature="operator&lt;&lt;(QVector&lt;QPoint&gt;)" remove="all"/>
-
-
   </value-type>
 
   <value-type name="QPolygonF">
@@ -884,6 +905,7 @@
     <modify-function signature="data()const" remove="all"/>
     <modify-function signature="operator()(int, int)const" remove="all"/>
   </value-type>
+  <rejection class="QMatrix4x4" enum-name="Flag"/>
   <value-type name="QMatrix">
       <extra-includes>
         <include file-name="QPainterPath" location="global"/>
@@ -935,6 +957,25 @@
     <modify-function signature="operator=(QFont)" remove="all"/>
   </value-type>
 
+  <value-type name="QFont::Tag" since-version="6.7">
+    <inject-code class="pywrap-h">
+    // a little bit complicated, since we currently dont't support std::optional:
+    QFont::Tag static_QFont__Tag_fromString(const QString&amp; name) {
+      return QFont::Tag::fromString(name).value_or(QFont::Tag());
+    }
+    QFont::Tag static_QFont__Tag_fromValue(unsigned int key) {
+      return QFont::Tag::fromValue(key).value_or(QFont::Tag());
+    }
+    // basically the same as above:
+    QFont::Tag* new_QFont__Tag(const QString&amp; name) {
+      return new QFont::Tag(static_QFont__Tag_fromString(name));
+    }
+    QFont::Tag* new_QFont__Tag(unsigned int key) {
+      return new QFont::Tag(static_QFont__Tag_fromValue(key));
+    }
+    </inject-code>
+  </value-type>
+
   <value-type name="QTextTableCell">
     <extra-includes>
         <include file-name="QTextCursor" location="global"/>
@@ -970,7 +1011,7 @@
 
     <extra-includes>
         <include file-name="QStringList" location="global"/>
-        <include file-name="QMatrix" location="global"/>
+        <include file-name="QMatrix" location="global" before-version="6"/>
     </extra-includes>
     <modify-function signature="operator=(QImage)" remove="all"/>
 
@@ -1004,7 +1045,11 @@
 QImage* new_QImage( const uchar * data, int width, int height, QImage::Format format )
 {
   QImage* image = new QImage(width, height, format);
+#if QT_VERSION &gt;= QT_VERSION_CHECK(5,10,0)
+  memcpy(image-&gt;bits(), data, image-&gt;sizeInBytes());
+#else
   memcpy(image-&gt;bits(), data, image-&gt;byteCount());
+#endif
   return image;
 }
 
@@ -1012,7 +1057,11 @@ PyObject* bits(QImage* image) {
   return PythonQtPrivate::wrapMemoryAsBuffer(image-&gt;bits(), image-&gt;bytesPerLine()* image-&gt;height());
 }
 
-#if QT_VERSION &gt;= QT_VERSION_CHECK(4,7,0)
+#if QT_VERSION &gt;= QT_VERSION_CHECK(5,10,0)
+PyObject* constBits(QImage* image) {
+  return PythonQtPrivate::wrapMemoryAsBuffer(image-&gt;constBits(), image-&gt;sizeInBytes());
+}
+#elif QT_VERSION &gt;= QT_VERSION_CHECK(4,7,0)
 PyObject* constBits(QImage* image) {
   return PythonQtPrivate::wrapMemoryAsBuffer(image-&gt;constBits(), image-&gt;byteCount());
 }
@@ -1104,6 +1153,7 @@ PyObject* constScanLine(QImage* image, int line) {
       <modify-function signature="dark(int)const" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="light(int)const" remove="all"/> <!--### Obsolete in 4.3-->
   </value-type>
+  <rejection class="QColor::CT"/>
 
   <value-type name="QFontMetricsF" expense-cost="1" expense-limit="1000">
     <modify-function signature="operator!=(const QFontMetricsF &amp;)">
@@ -1264,6 +1314,7 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
   <object-type name="QDoubleValidator"/>
   <object-type name="QFileIconProvider"/>
+  <object-type name="QAbstractFileIconProvider" since-version="6"/>
   <object-type name="QWizard">
     <!-- ### Requires correct class name in meta object -->
     <modify-function signature="setDefaultProperty(const char *, const char *, const char *)" remove="all"/>
@@ -1309,6 +1360,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QHeaderView">
   </object-type>
   <object-type name="QIconEngine">
+    <modify-function signature="virtual_hook(int,void*)" remove="all"/>
   </object-type>
   <object-type name="QIconEngineV2">
     <modify-function signature="virtual_hook(int,void*)" remove="all"/>
@@ -1387,10 +1439,6 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
 
   <object-type name="QPixmapCache">
-    <modify-function signature="find(QString)">
-        <remove/>
-    </modify-function>
-    <modify-function signature="find(QString,QPixmap*)" remove="all"/>
   </object-type>
   <object-type name="QPlastiqueStyle">
     <modify-function signature="standardPixmap(QStyle::StandardPixmap, const QStyleOption*, const QWidget*)const" remove="all"/> <!--### Obsolete in 4.3-->
@@ -1651,11 +1699,26 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QInputEvent">
     <modify-function signature="modifiers()const" access="non-final"/>
   </object-type>
+  <group since-version="6">
+    <object-type name="QPointerEvent"/>
+    <object-type name="QEventPoint"/>
+    <enum-type name="QEventPoint::State"  flags="QEventPoint::States" />
+    <object-type name="QSinglePointEvent"/>
+    <object-type name="QInputDevice"/>
+    <enum-type name="QInputDevice::Capability" flags="QInputDevice::Capabilities"/>
+    <enum-type name="QInputDevice::DeviceType" flags="QInputDevice::DeviceTypes"/>
+    <object-type name="QPointingDevice"/>
+    <enum-type name="QPointingDevice::PointerType" flags="QPointingDevice::PointerTypes"/>
+    <value-type name="QPointingDeviceUniqueId"/>
+  </group>
+  
   <object-type name="QGestureEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Gesture || %1-&gt;type() == QEvent::GestureOverride"/>
   <object-type name="QKeyEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::KeyPress || %1-&gt;type() == QEvent::KeyRelease || %1-&gt;type() == QEvent::ShortcutOverride"/>
   <object-type name="QMouseEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::MouseButtonDblClick || %1-&gt;type() == QEvent::MouseButtonPress || %1-&gt;type() == QEvent::MouseButtonRelease || %1-&gt;type() == QEvent::MouseMove"/>
   <object-type name="QPaintEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Paint"/>
   <object-type name="QAccessibleEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::AccessibilityDescription || %1-&gt;type() == QEvent::AccessibilityHelp"/>
+
+  <object-type name="QChildWindowEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::ChildWindowAdded || %1-&gt;type() == QEvent::ChildWindowRemoved" since-version="6.7"/>
 
   <object-type name="QAbstractButton"/>
 
@@ -1670,7 +1733,7 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="getColor(const QColor &amp;, QWidget *)">
     </modify-function>
   </object-type>
-<!--
+
   <object-type name="QLayout">
 
     <modify-function signature="removeWidget(QWidget*)">
@@ -1716,9 +1779,9 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="spacing()const" rename="widgetSpacing"/>
     <modify-function signature="getContentsMargins(int*,int*,int*,int*)const" remove="all"/>
 
-    <modify-function signature="margin()const" remove="all"/>
+    <modify-function signature="margin()const" remove="all"/> <!--### Obsolete in 4.3-->
   </object-type>
-	  -->
+
   <object-type name="QStackedLayout">
     <modify-function signature="insertWidget(int,QWidget*)">
       <modify-argument index="2">
@@ -2080,18 +2143,20 @@ PyObject* constScanLine(QImage* image, int line) {
       </modify-argument>
     </modify-function>
     
-    <modify-function signature="setItemHidden(const QListWidgetItem*,bool)">
-        <remove/>
-    </modify-function>
-    <modify-function signature="isItemHidden(const QListWidgetItem*)const">
-        <remove/>
-    </modify-function>
-    <modify-function signature="setItemSelected(const QListWidgetItem*,bool)">
-        <remove/>
-    </modify-function>
-    <modify-function signature="isItemSelected(const QListWidgetItem*)const">
-        <remove/>
-    </modify-function>
+    <group before-version="6">
+      <modify-function signature="setItemHidden(const QListWidgetItem*,bool)">
+          <remove/>
+      </modify-function>
+      <modify-function signature="isItemHidden(const QListWidgetItem*)const">
+          <remove/>
+      </modify-function>
+      <modify-function signature="setItemSelected(const QListWidgetItem*,bool)">
+          <remove/>
+      </modify-function>
+      <modify-function signature="isItemSelected(const QListWidgetItem*)const">
+          <remove/>
+      </modify-function>
+    </group>
     <modify-function signature="mimeData(const QList&lt;QListWidgetItem*&gt;)const">
       <modify-argument index="return">
         <define-ownership owner="python" />
@@ -2425,7 +2490,7 @@ PyObject* constScanLine(QImage* image, int line) {
 
   <object-type name="QScrollBar">
   </object-type>
-  <!--
+
   <object-type name="QClipboard">
     <extra-includes>
         <include file-name="QImage" location="global"/>
@@ -2441,7 +2506,7 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="event(QEvent*)" remove="all"/>
     <modify-function signature="connectNotify(const char*)" remove="all"/>
   </object-type>
-  -->
+
   <object-type name="QAbstractScrollArea">
     <modify-function signature="setupViewport(QWidget *)" access="non-final"/>
 
@@ -2485,12 +2550,18 @@ PyObject* constScanLine(QImage* image, int line) {
     <extra-includes>
         <include file-name="QTextOption" location="global"/>
     </extra-includes>
-    <modify-function signature="draw(QPainter*,const QPointF &amp;,const QVector&lt;QTextLayout::FormatRange&gt;  &amp;,const QRectF &amp;)const">
+    <modify-function signature="draw(QPainter*,const QPointF &amp;,const QVector&lt;QTextLayout::FormatRange&gt;  &amp;,const QRectF &amp;)const" before-version="6">
       <modify-argument index="3">
         <replace-default-expression with="QVector&lt;QTextLayout::FormatRange&gt;()"/>
       </modify-argument>
-     </modify-function>
+    </modify-function>
+    <modify-function signature="draw(QPainter*,const QPointF &amp;,const QList&lt;QTextLayout::FormatRange&gt;  &amp;,const QRectF &amp;)const" since-version="6">
+      <modify-argument index="3">
+        <replace-default-expression with="{}"/>
+      </modify-argument>
+    </modify-function>
   </object-type>
+  <enum-type name="QTextLayout::GlyphRunRetrievalFlag" flags="QTextLayout::GlyphRunRetrievalFlags" since-version="6.5"/>
 
   <object-type name="QTableWidget">
 
@@ -2898,6 +2969,7 @@ PyObject* constScanLine(QImage* image, int line) {
       </modify-argument>
     </modify-function>
   </object-type>
+  <value-type name="QFormLayout::TakeRowResult" since-version="5.8"/>
     
   <object-type name="QGraphicsGridLayout">
     <modify-function signature="addItem(QGraphicsLayoutItem*,int,int,QFlags&lt;Qt::AlignmentFlag&gt;)">
@@ -2987,11 +3059,10 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QGraphicsAnchor"/>
   <object-type name="QGraphicsEffect"/>
   <object-type name="QStaticText"/>
-	  <!--
-	  <object-type name="QGraphicsObject">
+  <object-type name="QGraphicsObject">
+    <!-- Duplicate function to QObject::children() to override accidental shadowing which is not present in Jambi -->
     <modify-function signature="children()const" remove="all"/>
   </object-type>
-	  -->
   <object-type name="QGraphicsBlurEffect"/>
   <object-type name="QGraphicsColorizeEffect"/>
   <object-type name="QGraphicsDropShadowEffect"/>
@@ -3041,24 +3112,27 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QOpenGLTimeMonitor"/>
   <object-type name="QOpenGLTimerQuery"/>
   <object-type name="QOpenGLVersionProfile"/>
+  <object-type name="QOpenGLVersionFunctionsFactory" since-version="6"/>
   <object-type name="QOpenGLVertexArrayObject"/>
   <object-type name="QPageLayout"/>
   <object-type name="QPageSize"/>
   <object-type name="QPdfWriter"/>
   <object-type name="QRegularExpressionValidator"/>
-  <!--<object-type name="QScreen"/>-->
+  <object-type name="QScreen"/>
   <object-type name="QStyleHints"/>
   <object-type name="QTouchDevice"/>
   <object-type name="QWindow"/>
-	  <!-- <object-type name="QScroller"/>-->
+  <object-type name="QScroller"/>
   <object-type name="QScrollerProperties"/>
 
   <object-type name="QGuiApplication">
       <modify-function signature="QGuiApplication(int &amp;, char  **, int)" remove="all"/>
   </object-type>
-  <interface-type name="QPagedPaintDevice">
+  <interface-type name="QPagedPaintDevice" create-shell="no">
     <modify-function signature="devicePageLayout()const" remove="all"/>
   </interface-type>
+  <interface-type name="QPageRanges" since-version="6"/>
+  <value-type name="QPageRanges::Range" since-version="6"/>
 
    <interface-type name="QPlatformSurface"/>
    <interface-type name="QSurface"/>
@@ -3073,12 +3147,15 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QKeySequenceEdit"/>
   <object-type name="QOpenGLWindow"/>
   <object-type name="QOpenGLWidget"/>
-	  <!-- <object-type name="QPaintDeviceWindow"/>-->
+  <object-type name="QPaintDeviceWindow"/>
   <object-type name="QRasterWindow"/>
   <object-type name="QPixelFormat"/>
   <value-type name="QRgba64">
     <modify-function signature="operator quint64() const" remove="all"/>
   </value-type>
+  <!--  template class
+  <value-type name="QRgbaFloat" since-version="6.2"/>
+  -->
 
   <enum-type name="QScrollerProperties::ScrollMetric"/>
   <enum-type name="QScrollerProperties::OvershootPolicy"/>
@@ -3138,6 +3215,15 @@ PyObject* constScanLine(QImage* image, int line) {
 
   <object-type name="QOpenGLTextureBlitter"/>
   <enum-type name="QOpenGLTextureBlitter::Origin"/>
+  
+  <object-type name="QConcatenateTablesProxyModel" since-version="5.13"/>
+  <object-type name="QTransposeProxyModel" since-version="5.13"/>
+
+  <value-type name="QColorSpace" since-version="5.14"/>
+  <enum-type name="QColorSpace::NamedColorSpace" since-version="5.14"/>
+  <enum-type name="QColorSpace::Primaries" since-version="5.14"/>
+  <enum-type name="QColorSpace::TransferFunction" since-version="5.14"/>
+  <value-type name="QColorTransform" since-version="5.14"/>
 
   <!-- Inefficient hash codes -->
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QTextFrame_iterator' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
