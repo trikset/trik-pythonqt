@@ -74,10 +74,6 @@ static inline PyObject *PyCode_GetVarnames(PyCodeObject *o) {
 
 #include <vector>
 
-#ifdef __linux__
-#include <dlfcn.h>
-#endif
-
 PythonQt* PythonQt::_self = nullptr;
 int       PythonQt::_uniqueModuleCount = 0;
 
@@ -119,21 +115,21 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 
 	PythonQtMethodInfo::addParameterTypeAlias("QObjectList", "QList<QObject*>");
 	qRegisterMetaType<QList<QObject*> >("QList<void*>");
-//    qRegisterMetaType<QObjectList>("QObjectList");
+        qRegisterMetaType<QObjectList>("QObjectList");
 	qRegisterMetaType<QList<QObject*> >("QList<QObject*>");
 	if (QT_POINTER_SIZE == 8) {
 	  qRegisterMetaType<quint64>("size_t");
 	} else {
 	  qRegisterMetaType<quint32>("size_t");
 	}
-	int stringRefId = qRegisterMetaType<QStringRef>("QStringRef");
-	PythonQtConv::registerMetaTypeToPythonConverter(stringRefId, PythonQtConv::convertFromStringRef);
+    PythonQtConv::registerStringViewTypes();
 
 	int objectPtrListId = qRegisterMetaType<QList<PythonQtObjectPtr> >("QList<PythonQtObjectPtr>");
 	PythonQtConv::registerMetaTypeToPythonConverter(objectPtrListId, PythonQtConv::convertFromQListOfPythonQtObjectPtr);
 	PythonQtConv::registerPythonToMetaTypeConverter(objectPtrListId, PythonQtConv::convertToQListOfPythonQtObjectPtr);
 
 	PythonQtRegisterToolClassesTemplateConverter(int);
+    PythonQtRegisterToolClassesTemplateConverter(bool);
 	PythonQtRegisterToolClassesTemplateConverter(float);
 	PythonQtRegisterToolClassesTemplateConverter(double);
 	PythonQtRegisterToolClassesTemplateConverter(qint32);
@@ -243,7 +239,10 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 	PythonQtRegisterToolClassesTemplateConverterForKnownClass(QLineF);
 	PythonQtRegisterToolClassesTemplateConverterForKnownClass(QPoint);
 	PythonQtRegisterToolClassesTemplateConverterForKnownClass(QPointF);
+#if QT_VERSION < 0x060000
 	PythonQtRegisterToolClassesTemplateConverterForKnownClass(QRegExp);
+#endif
+    PythonQtRegisterToolClassesTemplateConverterForKnownClass(QRegularExpression);
 
 	PythonQtRegisterToolClassesTemplateConverterForKnownClass(QFont);
 	PythonQtRegisterToolClassesTemplateConverterForKnownClass(QPixmap);
@@ -340,22 +339,6 @@ PythonQt* PythonQt::self() { return _self; }
 
 PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
 {
-// #if PY_MAJOR_VERSION == 3 && PY_MINOR_VERSION >= 8 && defined(__linux__)
-/* Starting from python 3.8, python C extensions no longer link to libpython3.X.so
-   This is a possible problem, since libpython3.X.so is loaded through a reference in libtrikScriptRunner.so
-   and (somehow) ld.so does not place it's symbols into global symbol table. This results into a failure to load any C module.
-   Loading libpython3.X.so with dlopen and RTLD_GLOBAL flag effectively solves this issue. */
-
-// TODO: Someting like PyRun_String("sysconfig.get_config_var('LDLIBRARY')")
-// should be used to extract shared object name for current interpreter
-
-// NOTE 2023-07-07: On Centos7 .so is a link named `libpython3.8.so` and points to `libpython3.8.so.rh-python38-1.0`
-//  const auto &libName = QString("libpython3.%1.so.1.0").arg(PY_MINOR_VERSION).toStdString();
-//  if (NULL == dlopen(libName.c_str(), RTLD_GLOBAL | RTLD_LAZY)) {
-	  //qFatal("Failed to load %s", libName.c_str());
-	  //abort();
-//  }
-// #endif
   _p = new PythonQtPrivate;
   _p->_initFlags = flags;
 
@@ -2095,6 +2078,73 @@ void PythonQtPrivate::registerCPPClass(const char* typeName, const char* parentT
     // we don't want to rely on the wrong empty entries being evicted from the cache by chance):
     typeObj->tp_flags &= ~Py_TPFLAGS_VALID_VERSION_TAG;
   }
+}
+
+namespace {
+
+  void addObjectToPackage(PyObject* obj, const char* name, const char* packageName, PyObject* package)
+  {
+    if (PyModule_AddObject(package, name, obj) < 0) {
+      Py_DECREF(obj);
+      std::cerr << "failed to add " << name << " to " << packageName << "\n";
+    }
+  }
+
+};
+
+void PythonQtPrivate::registerGlobalNamespace(const char* typeName, const char* packageName, PythonQtQObjectCreatorFunctionCB* wrapperCreator, const QMetaObject& metaObject, PyObject* module)
+{
+  registerCPPClass(typeName, "", packageName, wrapperCreator, nullptr, module, 0);
+
+  PyObject* package = module ? module : PythonQt::priv()->packageByName(packageName);
+  PythonQtClassInfo* classInfo = PythonQt::priv()->getClassInfo(typeName);
+  PyObject* globalNamespace = classInfo->pythonQtClassWrapper();
+
+  // Collect the names of global methods
+  QSet<QByteArray> methodNames;
+  for (int i = metaObject.methodOffset(); i < metaObject.methodCount(); i++) {
+    methodNames.insert(metaObject.method(i).name());
+  }
+  QByteArray staticPrefix = "static_" + QByteArray(typeName) + "_"; // every static method starts with this string
+  for (auto name: methodNames) {
+    if (name.startsWith(staticPrefix)) {  // non-static methods wouldn't work (and should not exists)
+      name = name.mid(staticPrefix.length());
+      PyObject* obj = PyObject_GetAttrString(globalNamespace, name.constData());
+      if (obj) {
+        addObjectToPackage(obj, name, packageName, package);
+      }
+      else {
+        std::cerr << "method not found " << name.constData() << " in " << typeName << std::endl;
+      }
+    }
+  }
+
+  // Global enums
+  for (int i = metaObject.enumeratorOffset(); i < metaObject.enumeratorCount(); i++) {
+    QMetaEnum metaEnum = metaObject.enumerator(i);
+    PyObject* obj = PyObject_GetAttrString(globalNamespace, metaEnum.name());
+    if (obj) {
+      addObjectToPackage(obj, metaEnum.name(), packageName, package);
+    }
+    else {
+      std::cerr << "enum type not found " << metaEnum.name() << " in " << typeName << std::endl;
+    }
+#if QT_VERSION > 0x050800
+    bool isScoped = metaEnum.isScoped();
+#else
+    bool isScoped = false;
+#endif
+    if (!isScoped) {
+      for (int j = 0; j < metaEnum.keyCount(); j++) {
+        QByteArray key = PythonQtClassInfo::escapeReservedNames(metaEnum.key(j));
+        int value = metaEnum.value(j);
+        PyObject* obj = PyInt_FromLong(value);
+        addObjectToPackage(obj, key, packageName, package);
+      }
+    }
+  }
+
+  PythonQtClassInfo::addGlobalNamespaceWrapper(classInfo);
 }
 
 PyObject* PythonQtPrivate::packageByName(const char* name)
