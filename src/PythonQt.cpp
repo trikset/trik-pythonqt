@@ -331,6 +331,11 @@ void PythonQt::cleanup()
   }
 }
 
+void PythonQt::preCleanup()
+{
+   _self->priv()->preCleanup();
+}
+
 PythonQt* PythonQt::self() { return _self; }
 
 PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
@@ -1547,6 +1552,15 @@ PythonQtPrivate::PythonQtPrivate()
   _systemExitExceptionHandlerEnabled = false;
   _debugAPI = new PythonQtDebugAPI(this);
   _configAPI = new PythonQtConfigAPI(this);
+}
+
+void PythonQtPrivate::preCleanup()
+{
+	_pySourceFileLoader = nullptr;
+	_pySourcelessFileLoader = nullptr;
+	_pyEnsureFuture = nullptr;
+	_pyFutureClass = nullptr;
+	_pyTaskDoneCallback = nullptr;
 }
 
 void PythonQtPrivate::setupSharedLibrarySuffixes()
