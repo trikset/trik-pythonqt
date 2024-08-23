@@ -68,6 +68,8 @@ private Q_SLOTS:
   void testSeveralCleanup();
   void testInitWithPreconfig();
   void testInitAlreadyInitialized();
+
+  void cleanup();
 };
 
 //! test the PythonQt api
