@@ -242,6 +242,9 @@ public:
   //! Add a wrapper that contains global enums
   static void addGlobalNamespaceWrapper(PythonQtClassInfo* namespaceWrapper);
 
+  //! Clear all statically allocated caches and wrappers
+  static void clearInteralStaticData();
+
 private:
   void updateRefCountingCBs();
 
