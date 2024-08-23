@@ -25,10 +25,10 @@
 #include <qdiriterator.h>
 #include <qeasingcurve.h>
 #include <qelapsedtimer.h>
-#include <qevent.h>
 #include <qeventtransition.h>
 #include <qfileinfo.h>
 #include <qiodevice.h>
+#include <qlist.h>
 #include <qlocale.h>
 #include <qmetaobject.h>
 #include <qmimedata.h>
@@ -56,9 +56,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -78,9 +78,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -101,19 +101,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       int returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("duration", methodInfo, result);
           } else {
             returnValue = *((int*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -134,19 +134,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -167,19 +167,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue{};
-      void* args[3] = {NULL, (void*)&watched0, (void*)&event1};
+      void* args[3] = {nullptr, (void*)&watched0, (void*)&event1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -199,9 +199,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -221,9 +221,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&currentTime0};
+      void* args[2] = {nullptr, (void*)&currentTime0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -243,9 +243,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QAbstractAnimation::Direction"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&direction0};
+      void* args[2] = {nullptr, (void*)&direction0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -265,9 +265,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QAbstractAnimation::State" , "QAbstractAnimation::State"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      void* args[3] = {NULL, (void*)&newState0, (void*)&oldState1};
+      void* args[3] = {nullptr, (void*)&newState0, (void*)&oldState1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -381,19 +381,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QModelIndex returnValue{};
-      void* args[2] = {NULL, (void*)&index0};
+      void* args[2] = {nullptr, (void*)&index0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("buddy", methodInfo, result);
           } else {
             returnValue = *((QModelIndex*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -414,19 +414,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QMimeData*" , "Qt::DropAction" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
       bool returnValue{};
-      void* args[6] = {NULL, (void*)&data0, (void*)&action1, (void*)&row2, (void*)&column3, (void*)&parent4};
+      void* args[6] = {nullptr, (void*)&data0, (void*)&action1, (void*)&row2, (void*)&column3, (void*)&parent4};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("canDropMimeData", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -447,19 +447,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&parent0};
+      void* args[2] = {nullptr, (void*)&parent0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("canFetchMore", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -479,9 +479,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -502,19 +502,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       int returnValue{};
-      void* args[2] = {NULL, (void*)&parent0};
+      void* args[2] = {nullptr, (void*)&parent0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("columnCount", methodInfo, result);
           } else {
             returnValue = *((int*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -534,9 +534,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -557,19 +557,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QVariant" , "const QModelIndex&" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       QVariant returnValue{};
-      void* args[3] = {NULL, (void*)&index0, (void*)&role1};
+      void* args[3] = {nullptr, (void*)&index0, (void*)&role1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("data", methodInfo, result);
           } else {
             returnValue = *((QVariant*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -590,19 +590,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QMimeData*" , "Qt::DropAction" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
       bool returnValue{};
-      void* args[6] = {NULL, (void*)&data0, (void*)&action1, (void*)&row2, (void*)&column3, (void*)&parent4};
+      void* args[6] = {nullptr, (void*)&data0, (void*)&action1, (void*)&row2, (void*)&column3, (void*)&parent4};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("dropMimeData", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -623,19 +623,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -656,19 +656,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue{};
-      void* args[3] = {NULL, (void*)&watched0, (void*)&event1};
+      void* args[3] = {nullptr, (void*)&watched0, (void*)&event1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -688,9 +688,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&parent0};
+      void* args[2] = {nullptr, (void*)&parent0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -711,19 +711,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"Qt::ItemFlags" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       Qt::ItemFlags returnValue{};
-      void* args[2] = {NULL, (void*)&index0};
+      void* args[2] = {nullptr, (void*)&index0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("flags", methodInfo, result);
           } else {
             returnValue = *((Qt::ItemFlags*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -744,19 +744,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&parent0};
+      void* args[2] = {nullptr, (void*)&parent0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("hasChildren", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -777,19 +777,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QVariant" , "int" , "Qt::Orientation" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       QVariant returnValue{};
-      void* args[4] = {NULL, (void*)&section0, (void*)&orientation1, (void*)&role2};
+      void* args[4] = {nullptr, (void*)&section0, (void*)&orientation1, (void*)&role2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("headerData", methodInfo, result);
           } else {
             returnValue = *((QVariant*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -810,19 +810,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       QModelIndex returnValue{};
-      void* args[4] = {NULL, (void*)&row0, (void*)&column1, (void*)&parent2};
+      void* args[4] = {nullptr, (void*)&row0, (void*)&column1, (void*)&parent2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("index", methodInfo, result);
           } else {
             returnValue = *((QModelIndex*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -843,19 +843,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue{};
-      void* args[4] = {NULL, (void*)&column0, (void*)&count1, (void*)&parent2};
+      void* args[4] = {nullptr, (void*)&column0, (void*)&count1, (void*)&parent2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("insertColumns", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -876,19 +876,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue{};
-      void* args[4] = {NULL, (void*)&row0, (void*)&count1, (void*)&parent2};
+      void* args[4] = {nullptr, (void*)&row0, (void*)&count1, (void*)&parent2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("insertRows", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -909,19 +909,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QMap<int , QVariant >" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QMap<int , QVariant > returnValue{};
-      void* args[2] = {NULL, (void*)&index0};
+      void* args[2] = {nullptr, (void*)&index0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("itemData", methodInfo, result);
           } else {
             returnValue = *((QMap<int , QVariant >*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -942,19 +942,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QList<QModelIndex >" , "const QModelIndex&" , "int" , "const QVariant&" , "int" , "Qt::MatchFlags"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
       QList<QModelIndex > returnValue{};
-      void* args[6] = {NULL, (void*)&start0, (void*)&role1, (void*)&value2, (void*)&hits3, (void*)&flags4};
+      void* args[6] = {nullptr, (void*)&start0, (void*)&role1, (void*)&value2, (void*)&hits3, (void*)&flags4};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("match", methodInfo, result);
           } else {
             returnValue = *((QList<QModelIndex >*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -975,19 +975,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QMimeData*" , "const QList<QModelIndex >&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QMimeData* returnValue{};
-      void* args[2] = {NULL, (void*)&indexes0};
+      void* args[2] = {nullptr, (void*)&indexes0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("mimeData", methodInfo, result);
           } else {
             returnValue = *((QMimeData**)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1008,19 +1008,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QStringList"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       QStringList returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("mimeTypes", methodInfo, result);
           } else {
             returnValue = *((QStringList*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1041,19 +1041,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "int" , "int" , "const QModelIndex&" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
       bool returnValue{};
-      void* args[6] = {NULL, (void*)&sourceParent0, (void*)&sourceColumn1, (void*)&count2, (void*)&destinationParent3, (void*)&destinationChild4};
+      void* args[6] = {nullptr, (void*)&sourceParent0, (void*)&sourceColumn1, (void*)&count2, (void*)&destinationParent3, (void*)&destinationChild4};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("moveColumns", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1074,19 +1074,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "int" , "int" , "const QModelIndex&" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
       bool returnValue{};
-      void* args[6] = {NULL, (void*)&sourceParent0, (void*)&sourceRow1, (void*)&count2, (void*)&destinationParent3, (void*)&destinationChild4};
+      void* args[6] = {nullptr, (void*)&sourceParent0, (void*)&sourceRow1, (void*)&count2, (void*)&destinationParent3, (void*)&destinationChild4};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("moveRows", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1107,19 +1107,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QModelIndex returnValue{};
-      void* args[2] = {NULL, (void*)&child0};
+      void* args[2] = {nullptr, (void*)&child0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("parent", methodInfo, result);
           } else {
             returnValue = *((QModelIndex*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1140,19 +1140,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue{};
-      void* args[4] = {NULL, (void*)&column0, (void*)&count1, (void*)&parent2};
+      void* args[4] = {nullptr, (void*)&column0, (void*)&count1, (void*)&parent2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("removeColumns", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1173,19 +1173,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue{};
-      void* args[4] = {NULL, (void*)&row0, (void*)&count1, (void*)&parent2};
+      void* args[4] = {nullptr, (void*)&row0, (void*)&count1, (void*)&parent2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("removeRows", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1205,9 +1205,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={""};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -1228,19 +1228,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QHash<int , QByteArray >"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       QHash<int , QByteArray > returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("roleNames", methodInfo, result);
           } else {
             returnValue = *((QHash<int , QByteArray >*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1261,19 +1261,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       int returnValue{};
-      void* args[2] = {NULL, (void*)&parent0};
+      void* args[2] = {nullptr, (void*)&parent0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("rowCount", methodInfo, result);
           } else {
             returnValue = *((int*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1294,19 +1294,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QVariant&" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue{};
-      void* args[4] = {NULL, (void*)&index0, (void*)&value1, (void*)&role2};
+      void* args[4] = {nullptr, (void*)&index0, (void*)&value1, (void*)&role2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("setData", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1327,19 +1327,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "int" , "Qt::Orientation" , "const QVariant&" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(5, argumentList);
       bool returnValue{};
-      void* args[5] = {NULL, (void*)&section0, (void*)&orientation1, (void*)&value2, (void*)&role3};
+      void* args[5] = {nullptr, (void*)&section0, (void*)&orientation1, (void*)&value2, (void*)&role3};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("setHeaderData", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1360,19 +1360,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QMap<int , QVariant >&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue{};
-      void* args[3] = {NULL, (void*)&index0, (void*)&roles1};
+      void* args[3] = {nullptr, (void*)&index0, (void*)&roles1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("setItemData", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1393,19 +1393,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       QModelIndex returnValue{};
-      void* args[4] = {NULL, (void*)&row0, (void*)&column1, (void*)&idx2};
+      void* args[4] = {nullptr, (void*)&row0, (void*)&column1, (void*)&idx2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("sibling", methodInfo, result);
           } else {
             returnValue = *((QModelIndex*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1425,9 +1425,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      void* args[3] = {NULL, (void*)&column0, (void*)&order1};
+      void* args[3] = {nullptr, (void*)&column0, (void*)&order1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -1448,19 +1448,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QSize" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QSize returnValue{};
-      void* args[2] = {NULL, (void*)&index0};
+      void* args[2] = {nullptr, (void*)&index0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("span", methodInfo, result);
           } else {
             returnValue = *((QSize*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1481,19 +1481,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       bool returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("submit", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1514,19 +1514,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"Qt::DropActions"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       Qt::DropActions returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("supportedDragActions", methodInfo, result);
           } else {
             returnValue = *((Qt::DropActions*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1547,19 +1547,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"Qt::DropActions"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       Qt::DropActions returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("supportedDropActions", methodInfo, result);
           } else {
             returnValue = *((Qt::DropActions*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1579,9 +1579,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -1925,19 +1925,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QModelIndex returnValue{};
-      void* args[2] = {NULL, (void*)&index0};
+      void* args[2] = {nullptr, (void*)&index0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("buddy", methodInfo, result);
           } else {
             returnValue = *((QModelIndex*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1958,19 +1958,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QMimeData*" , "Qt::DropAction" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
       bool returnValue{};
-      void* args[6] = {NULL, (void*)&data0, (void*)&action1, (void*)&row2, (void*)&column3, (void*)&parent4};
+      void* args[6] = {nullptr, (void*)&data0, (void*)&action1, (void*)&row2, (void*)&column3, (void*)&parent4};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("canDropMimeData", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -1991,19 +1991,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&parent0};
+      void* args[2] = {nullptr, (void*)&parent0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("canFetchMore", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2023,9 +2023,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -2045,9 +2045,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -2068,19 +2068,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QVariant" , "const QModelIndex&" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       QVariant returnValue{};
-      void* args[3] = {NULL, (void*)&index0, (void*)&role1};
+      void* args[3] = {nullptr, (void*)&index0, (void*)&role1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("data", methodInfo, result);
           } else {
             returnValue = *((QVariant*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2101,19 +2101,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QMimeData*" , "Qt::DropAction" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
       bool returnValue{};
-      void* args[6] = {NULL, (void*)&data0, (void*)&action1, (void*)&row2, (void*)&column3, (void*)&parent4};
+      void* args[6] = {nullptr, (void*)&data0, (void*)&action1, (void*)&row2, (void*)&column3, (void*)&parent4};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("dropMimeData", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2134,19 +2134,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2167,19 +2167,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue{};
-      void* args[3] = {NULL, (void*)&watched0, (void*)&event1};
+      void* args[3] = {nullptr, (void*)&watched0, (void*)&event1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2199,9 +2199,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&parent0};
+      void* args[2] = {nullptr, (void*)&parent0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -2222,19 +2222,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"Qt::ItemFlags" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       Qt::ItemFlags returnValue{};
-      void* args[2] = {NULL, (void*)&index0};
+      void* args[2] = {nullptr, (void*)&index0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("flags", methodInfo, result);
           } else {
             returnValue = *((Qt::ItemFlags*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2255,19 +2255,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QVariant" , "int" , "Qt::Orientation" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       QVariant returnValue{};
-      void* args[4] = {NULL, (void*)&section0, (void*)&orientation1, (void*)&role2};
+      void* args[4] = {nullptr, (void*)&section0, (void*)&orientation1, (void*)&role2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("headerData", methodInfo, result);
           } else {
             returnValue = *((QVariant*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2288,19 +2288,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       QModelIndex returnValue{};
-      void* args[4] = {NULL, (void*)&row0, (void*)&column1, (void*)&parent2};
+      void* args[4] = {nullptr, (void*)&row0, (void*)&column1, (void*)&parent2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("index", methodInfo, result);
           } else {
             returnValue = *((QModelIndex*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2321,19 +2321,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue{};
-      void* args[4] = {NULL, (void*)&column0, (void*)&count1, (void*)&parent2};
+      void* args[4] = {nullptr, (void*)&column0, (void*)&count1, (void*)&parent2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("insertColumns", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2354,19 +2354,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue{};
-      void* args[4] = {NULL, (void*)&row0, (void*)&count1, (void*)&parent2};
+      void* args[4] = {nullptr, (void*)&row0, (void*)&count1, (void*)&parent2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("insertRows", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2387,19 +2387,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QMap<int , QVariant >" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QMap<int , QVariant > returnValue{};
-      void* args[2] = {NULL, (void*)&index0};
+      void* args[2] = {nullptr, (void*)&index0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("itemData", methodInfo, result);
           } else {
             returnValue = *((QMap<int , QVariant >*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2420,19 +2420,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QList<QModelIndex >" , "const QModelIndex&" , "int" , "const QVariant&" , "int" , "Qt::MatchFlags"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
       QList<QModelIndex > returnValue{};
-      void* args[6] = {NULL, (void*)&start0, (void*)&role1, (void*)&value2, (void*)&hits3, (void*)&flags4};
+      void* args[6] = {nullptr, (void*)&start0, (void*)&role1, (void*)&value2, (void*)&hits3, (void*)&flags4};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("match", methodInfo, result);
           } else {
             returnValue = *((QList<QModelIndex >*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2453,19 +2453,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QMimeData*" , "const QList<QModelIndex >&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QMimeData* returnValue{};
-      void* args[2] = {NULL, (void*)&indexes0};
+      void* args[2] = {nullptr, (void*)&indexes0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("mimeData", methodInfo, result);
           } else {
             returnValue = *((QMimeData**)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2486,19 +2486,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QStringList"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       QStringList returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("mimeTypes", methodInfo, result);
           } else {
             returnValue = *((QStringList*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2519,19 +2519,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "int" , "int" , "const QModelIndex&" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
       bool returnValue{};
-      void* args[6] = {NULL, (void*)&sourceParent0, (void*)&sourceColumn1, (void*)&count2, (void*)&destinationParent3, (void*)&destinationChild4};
+      void* args[6] = {nullptr, (void*)&sourceParent0, (void*)&sourceColumn1, (void*)&count2, (void*)&destinationParent3, (void*)&destinationChild4};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("moveColumns", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2552,19 +2552,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "int" , "int" , "const QModelIndex&" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
       bool returnValue{};
-      void* args[6] = {NULL, (void*)&sourceParent0, (void*)&sourceRow1, (void*)&count2, (void*)&destinationParent3, (void*)&destinationChild4};
+      void* args[6] = {nullptr, (void*)&sourceParent0, (void*)&sourceRow1, (void*)&count2, (void*)&destinationParent3, (void*)&destinationChild4};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("moveRows", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2585,19 +2585,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue{};
-      void* args[4] = {NULL, (void*)&column0, (void*)&count1, (void*)&parent2};
+      void* args[4] = {nullptr, (void*)&column0, (void*)&count1, (void*)&parent2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("removeColumns", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2618,19 +2618,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue{};
-      void* args[4] = {NULL, (void*)&row0, (void*)&count1, (void*)&parent2};
+      void* args[4] = {nullptr, (void*)&row0, (void*)&count1, (void*)&parent2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("removeRows", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2650,9 +2650,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={""};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -2673,19 +2673,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QHash<int , QByteArray >"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       QHash<int , QByteArray > returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("roleNames", methodInfo, result);
           } else {
             returnValue = *((QHash<int , QByteArray >*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2706,19 +2706,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       int returnValue{};
-      void* args[2] = {NULL, (void*)&parent0};
+      void* args[2] = {nullptr, (void*)&parent0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("rowCount", methodInfo, result);
           } else {
             returnValue = *((int*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2739,19 +2739,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QVariant&" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue{};
-      void* args[4] = {NULL, (void*)&index0, (void*)&value1, (void*)&role2};
+      void* args[4] = {nullptr, (void*)&index0, (void*)&value1, (void*)&role2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("setData", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2772,19 +2772,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "int" , "Qt::Orientation" , "const QVariant&" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(5, argumentList);
       bool returnValue{};
-      void* args[5] = {NULL, (void*)&section0, (void*)&orientation1, (void*)&value2, (void*)&role3};
+      void* args[5] = {nullptr, (void*)&section0, (void*)&orientation1, (void*)&value2, (void*)&role3};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("setHeaderData", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2805,19 +2805,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QMap<int , QVariant >&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue{};
-      void* args[3] = {NULL, (void*)&index0, (void*)&roles1};
+      void* args[3] = {nullptr, (void*)&index0, (void*)&roles1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("setItemData", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2838,19 +2838,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       QModelIndex returnValue{};
-      void* args[4] = {NULL, (void*)&row0, (void*)&column1, (void*)&idx2};
+      void* args[4] = {nullptr, (void*)&row0, (void*)&column1, (void*)&idx2};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("sibling", methodInfo, result);
           } else {
             returnValue = *((QModelIndex*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2870,9 +2870,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      void* args[3] = {NULL, (void*)&column0, (void*)&order1};
+      void* args[3] = {nullptr, (void*)&column0, (void*)&order1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -2893,19 +2893,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QSize" , "const QModelIndex&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QSize returnValue{};
-      void* args[2] = {NULL, (void*)&index0};
+      void* args[2] = {nullptr, (void*)&index0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("span", methodInfo, result);
           } else {
             returnValue = *((QSize*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2926,19 +2926,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       bool returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("submit", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2959,19 +2959,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"Qt::DropActions"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       Qt::DropActions returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("supportedDragActions", methodInfo, result);
           } else {
             returnValue = *((Qt::DropActions*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -2992,19 +2992,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"Qt::DropActions"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       Qt::DropActions returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("supportedDropActions", methodInfo, result);
           } else {
             returnValue = *((Qt::DropActions*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -3024,9 +3024,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3069,9 +3069,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3091,9 +3091,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3114,19 +3114,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&e0};
+      void* args[2] = {nullptr, (void*)&e0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -3147,19 +3147,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue{};
-      void* args[3] = {NULL, (void*)&watched0, (void*)&event1};
+      void* args[3] = {nullptr, (void*)&watched0, (void*)&event1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -3179,9 +3179,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3201,9 +3201,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3223,9 +3223,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3293,9 +3293,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3315,9 +3315,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3338,19 +3338,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&e0};
+      void* args[2] = {nullptr, (void*)&e0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -3371,19 +3371,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue{};
-      void* args[3] = {NULL, (void*)&watched0, (void*)&event1};
+      void* args[3] = {nullptr, (void*)&watched0, (void*)&event1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -3404,19 +3404,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("eventTest", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -3436,9 +3436,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3458,9 +3458,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3568,9 +3568,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3590,9 +3590,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3613,19 +3613,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       int returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("duration", methodInfo, result);
           } else {
             returnValue = *((int*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -3646,19 +3646,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -3679,19 +3679,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue{};
-      void* args[3] = {NULL, (void*)&watched0, (void*)&event1};
+      void* args[3] = {nullptr, (void*)&watched0, (void*)&event1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -3711,9 +3711,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3733,9 +3733,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&currentTime0};
+      void* args[2] = {nullptr, (void*)&currentTime0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3755,9 +3755,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QAbstractAnimation::Direction"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&direction0};
+      void* args[2] = {nullptr, (void*)&direction0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3777,9 +3777,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QAbstractAnimation::State" , "QAbstractAnimation::State"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      void* args[3] = {NULL, (void*)&newState0, (void*)&oldState1};
+      void* args[3] = {nullptr, (void*)&newState0, (void*)&oldState1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -3945,19 +3945,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       bool returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("atEnd", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -3978,19 +3978,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"qint64"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       qint64 returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("bytesAvailable", methodInfo, result);
           } else {
             returnValue = *((qint64*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4011,19 +4011,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"qint64"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       qint64 returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("bytesToWrite", methodInfo, result);
           } else {
             returnValue = *((qint64*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4044,19 +4044,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       bool returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("canReadLine", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4076,9 +4076,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -4098,9 +4098,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={""};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -4120,9 +4120,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "const QMetaMethod&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&arg__1};
+      void* args[2] = {nullptr, (void*)&arg__1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -4142,9 +4142,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -4164,9 +4164,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "const QMetaMethod&"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&arg__1};
+      void* args[2] = {nullptr, (void*)&arg__1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -4187,19 +4187,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4220,19 +4220,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue{};
-      void* args[3] = {NULL, (void*)&watched0, (void*)&event1};
+      void* args[3] = {nullptr, (void*)&watched0, (void*)&event1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4253,19 +4253,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       bool returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("isSequential", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4286,19 +4286,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QIODevice::OpenMode"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&openMode0};
+      void* args[2] = {nullptr, (void*)&openMode0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("open", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4319,19 +4319,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"qint64"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       qint64 returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("pos", methodInfo, result);
           } else {
             returnValue = *((qint64*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4352,19 +4352,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"qint64" , "char*" , "qint64"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       qint64 returnValue{};
-      void* args[3] = {NULL, (void*)&data0, (void*)&maxlen1};
+      void* args[3] = {nullptr, (void*)&data0, (void*)&maxlen1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("readData", methodInfo, result);
           } else {
             returnValue = *((qint64*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4385,19 +4385,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"qint64" , "char*" , "qint64"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       qint64 returnValue{};
-      void* args[3] = {NULL, (void*)&data0, (void*)&maxlen1};
+      void* args[3] = {nullptr, (void*)&data0, (void*)&maxlen1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("readLineData", methodInfo, result);
           } else {
             returnValue = *((qint64*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4418,19 +4418,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       bool returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("reset", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4451,19 +4451,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "qint64"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&off0};
+      void* args[2] = {nullptr, (void*)&off0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("seek", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4484,19 +4484,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"qint64"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       qint64 returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("size", methodInfo, result);
           } else {
             returnValue = *((qint64*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4516,9 +4516,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -4539,19 +4539,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&msecs0};
+      void* args[2] = {nullptr, (void*)&msecs0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("waitForBytesWritten", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4572,19 +4572,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "int"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&msecs0};
+      void* args[2] = {nullptr, (void*)&msecs0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("waitForReadyRead", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4605,19 +4605,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"qint64" , "const char*" , "qint64"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       qint64 returnValue{};
-      void* args[3] = {NULL, (void*)&data0, (void*)&len1};
+      void* args[3] = {nullptr, (void*)&data0, (void*)&len1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("writeData", methodInfo, result);
           } else {
             returnValue = *((qint64*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -4767,11 +4767,6 @@ int  PythonQtWrapper_QCollator::compare(QCollator* theWrappedObject, const QChar
 }
 
 int  PythonQtWrapper_QCollator::compare(QCollator* theWrappedObject, const QString&  s1, const QString&  s2) const
-{
-  return ( theWrappedObject->compare(s1, s2));
-}
-
-int  PythonQtWrapper_QCollator::compare(QCollator* theWrappedObject, const QStringRef&  s1, const QStringRef&  s2) const
 {
   return ( theWrappedObject->compare(s1, s2));
 }
@@ -5475,14 +5470,59 @@ bool  PythonQtWrapper_QDeadlineTimer::isForever(QDeadlineTimer* theWrappedObject
   return ( theWrappedObject->isForever());
 }
 
+bool  PythonQtWrapper_QDeadlineTimer::__ne__(QDeadlineTimer* theWrappedObject, QDeadlineTimer  d2)
+{
+  return ( (*theWrappedObject)!= d2);
+}
+
+QDeadlineTimer  PythonQtWrapper_QDeadlineTimer::__add__(QDeadlineTimer* theWrappedObject, qint64  msecs)
+{
+  return ( (*theWrappedObject)+ msecs);
+}
+
 QDeadlineTimer*  PythonQtWrapper_QDeadlineTimer::__iadd__(QDeadlineTimer* theWrappedObject, qint64  msecs)
 {
   return &( (*theWrappedObject)+= msecs);
 }
 
+qint64  PythonQtWrapper_QDeadlineTimer::__sub__(QDeadlineTimer* theWrappedObject, QDeadlineTimer  dt2)
+{
+  return ( (*theWrappedObject)- dt2);
+}
+
+QDeadlineTimer  PythonQtWrapper_QDeadlineTimer::__sub__(QDeadlineTimer* theWrappedObject, qint64  msecs)
+{
+  return ( (*theWrappedObject)- msecs);
+}
+
 QDeadlineTimer*  PythonQtWrapper_QDeadlineTimer::__isub__(QDeadlineTimer* theWrappedObject, qint64  msecs)
 {
   return &( (*theWrappedObject)-= msecs);
+}
+
+bool  PythonQtWrapper_QDeadlineTimer::__lt__(QDeadlineTimer* theWrappedObject, QDeadlineTimer  d2)
+{
+  return ( (*theWrappedObject)< d2);
+}
+
+bool  PythonQtWrapper_QDeadlineTimer::__le__(QDeadlineTimer* theWrappedObject, QDeadlineTimer  d2)
+{
+  return ( (*theWrappedObject)<= d2);
+}
+
+bool  PythonQtWrapper_QDeadlineTimer::__eq__(QDeadlineTimer* theWrappedObject, QDeadlineTimer  d2)
+{
+  return ( (*theWrappedObject)== d2);
+}
+
+bool  PythonQtWrapper_QDeadlineTimer::__gt__(QDeadlineTimer* theWrappedObject, QDeadlineTimer  d2)
+{
+  return ( (*theWrappedObject)> d2);
+}
+
+bool  PythonQtWrapper_QDeadlineTimer::__ge__(QDeadlineTimer* theWrappedObject, QDeadlineTimer  d2)
+{
+  return ( (*theWrappedObject)>= d2);
 }
 
 qint64  PythonQtWrapper_QDeadlineTimer::remainingTime(QDeadlineTimer* theWrappedObject) const
@@ -6104,6 +6144,11 @@ bool  PythonQtWrapper_QElapsedTimer::__ne__(QElapsedTimer* theWrappedObject, con
   return ( (*theWrappedObject)!= other);
 }
 
+bool  PythonQtWrapper_QElapsedTimer::__lt__(QElapsedTimer* theWrappedObject, const QElapsedTimer&  v2)
+{
+  return ( (*theWrappedObject)< v2);
+}
+
 bool  PythonQtWrapper_QElapsedTimer::__eq__(QElapsedTimer* theWrappedObject, const QElapsedTimer&  other) const
 {
   return ( (*theWrappedObject)== other);
@@ -6201,9 +6246,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -6223,9 +6268,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -6246,19 +6291,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -6279,19 +6324,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue{};
-      void* args[3] = {NULL, (void*)&watched0, (void*)&event1};
+      void* args[3] = {nullptr, (void*)&watched0, (void*)&event1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -6311,9 +6356,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -6386,9 +6431,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -6408,9 +6453,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -6431,19 +6476,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&e0};
+      void* args[2] = {nullptr, (void*)&e0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -6464,19 +6509,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue{};
-      void* args[3] = {NULL, (void*)&watched0, (void*)&event1};
+      void* args[3] = {nullptr, (void*)&watched0, (void*)&event1};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -6497,19 +6542,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue{};
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("eventTest", methodInfo, result);
           } else {
             returnValue = *((bool*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
@@ -6529,9 +6574,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -6551,9 +6596,9 @@ if (_wrapper) {
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      void* args[2] = {NULL, (void*)&event0};
+      void* args[2] = {nullptr, (void*)&event0};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return;
     } else {
@@ -6621,19 +6666,19 @@ if (_wrapper) {
       static const char* argumentList[] ={"QStringList"};
       static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       QStringList returnValue{};
-      void* args[1] = {NULL};
+      void* args[1] = {nullptr};
       PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
       if (result) {
-        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);
         if (args[0]!=&returnValue) {
-          if (args[0]==NULL) {
+          if (args[0]==nullptr) {
             PythonQt::priv()->handleVirtualOverloadReturnError("keys", methodInfo, result);
           } else {
             returnValue = *((QStringList*)args[0]);
           }
         }
       }
-      if (result) { Py_DECREF(result); } 
+      if (result) { Py_DECREF(result); }
       Py_DECREF(obj);
       return returnValue;
     } else {
