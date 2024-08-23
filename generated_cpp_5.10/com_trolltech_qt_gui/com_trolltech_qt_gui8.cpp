@@ -5,7 +5,7 @@
 #include <QVariant>
 #include <qbytearray.h>
 #include <qcoreevent.h>
-#include <qevent.h>
+#include <qlist.h>
 #include <qmetaobject.h>
 #include <qobject.h>
 #include <qstyleoption.h>
