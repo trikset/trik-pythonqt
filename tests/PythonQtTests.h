@@ -163,8 +163,9 @@ class PythonQtTestApiHelper : public QObject , public PythonQtImportFileInterfac
 {
   Q_OBJECT
 public:
-  PythonQtTestApiHelper() {
-  };
+  PythonQtTestApiHelper(QObject *parent = nullptr)
+	  :QObject(parent) {
+  }
 
   bool call(const QString& function, const QVariantList& args, const QVariant& expectedResult);
 

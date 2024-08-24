@@ -468,7 +468,7 @@ void PythonQtTestSignalHandler::testRecursiveSignalHandler()
 
 void PythonQtTestApi::initTestCase()
 {
-  _helper = new PythonQtTestApiHelper();
+  _helper = new PythonQtTestApiHelper(this);
   _main = PythonQt::self()->getMainModule();
   _main.evalScript("import PythonQt");
   _main.addObject("obj", _helper);

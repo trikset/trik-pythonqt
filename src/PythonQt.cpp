@@ -324,6 +324,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 void PythonQt::cleanup()
 {
   if (_self) {
+	_self->removeSignalHandlers();
 	delete _self;
     _self = nullptr;
   }
@@ -426,6 +427,9 @@ PythonQtPrivate::~PythonQtPrivate() {
   delete _defaultImporter;
   _defaultImporter = nullptr;
 
+  //qDeleteAll(_knownClassInfos);
+  //_knownClassInfos.clear();
+  //PythonQtClassInfo::clearInteralStaticData();
 
   PythonQtMethodInfo::cleanupCachedMethodInfos();
   PythonQtArgumentFrame::cleanupFreeList();
@@ -1540,8 +1544,13 @@ void PythonQtPrivate::preCleanup()
 	_pyEnsureFuture = nullptr;
 	_pyFutureClass = nullptr;
 	_pyTaskDoneCallback = nullptr;
-	qDeleteAll(_knownClassInfos);
-	_knownClassInfos.clear();
+	for(auto &ci: _knownClassInfos) {
+		if (!ci->referenceCountingUnrefCB()) {
+			//delete ci;
+			ci = nullptr;
+		}
+	}
+
 	PythonQtClassInfo::clearInteralStaticData();
 }
 
