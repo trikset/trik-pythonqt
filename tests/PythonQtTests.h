@@ -117,14 +117,14 @@ class ClassA {
 public:
   ClassA() { x = 1; }
   int x;
-  virtual ~ClassA() {};
+  virtual ~ClassA() = default;
 };
 
 class ClassB {
 public:
   ClassB() { y = 2; }
   int y;
- virtual ~ClassB() {};
+ virtual ~ClassB() = default;
   virtual int type() { return 2; }
 };
 
@@ -132,7 +132,7 @@ class ClassC : public ClassA, public ClassB {
 public:
   ClassC() { z = 3; }
   int z;
- virtual ~ClassC() {};
+  virtual ~ClassC() override = default;
   virtual int type() { return 3; }
 };
 
@@ -140,7 +140,7 @@ class ClassD : public QObject, public ClassA, public ClassB {
   Q_OBJECT
 public:
   ClassD() { d = 4; }
-  virtual ~ClassD() {};
+  virtual ~ClassD() override = default;
   public Q_SLOTS:
 	int getD() { return d; }
 private:
@@ -217,6 +217,7 @@ private:
 // test implementation of the wrapper factory
 class PythonQtTestCppFactory : public PythonQtCppWrapperFactory
 {
+  QObject _genericParent;
 public:
   virtual QObject* create(const QByteArray& name, void *ptr);
 };
