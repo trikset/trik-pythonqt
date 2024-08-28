@@ -290,9 +290,7 @@ bool PythonQtClassInfo::lookForEnumAndCache(const QMetaObject* meta, const char*
       if (escapeReservedNames(e.key(j)) == memberName) {
         PyObject* enumType = findEnumWrapper(e.name());
         if (enumType) {
-          PythonQtObjectPtr enumValuePtr;
-          enumValuePtr.setNewRef(PythonQtPrivate::createEnumValueInstance(enumType, e.value(j)));
-          PythonQtMemberInfo newInfo(enumValuePtr);
+		  PythonQtMemberInfo newInfo(PythonQtPrivate::createEnumValueInstance(enumType, e.value(j)));
           _cachedMembers.insert(memberName, newInfo);
   #ifdef PYTHONQT_DEBUG
           std::cout << "caching enum " << memberName << " on " << meta->className()->constData() << std::endl;
@@ -1120,34 +1118,4 @@ bool PythonQtClassInfo::supportsRichCompare()
     }
   }
   return (_typeSlots & PythonQt::Type_RichCompare);
-}
-
-//-------------------------------------------------------------------------
-
-PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info ) : _slot(info)
-{
-  if (info->metaMethod()->methodType() == QMetaMethod::Signal) {
-    _type = Signal;
-  } else {
-    _type = Slot;
-  }
-  _enumValue = nullptr;
-  _pythonType = nullptr;
-}
-
-PythonQtMemberInfo::PythonQtMemberInfo( const PythonQtObjectPtr& enumValue )
-{
-  _type = EnumValue;
-  _slot = nullptr;
-  _enumValue = enumValue;
-  _pythonType = nullptr;
-}
-
-PythonQtMemberInfo::PythonQtMemberInfo( const QMetaProperty& prop )
-{
-  _type = Property;
-  _slot = nullptr;
-  _property = prop;
-  _enumValue = nullptr;
-  _pythonType = nullptr;
 }
