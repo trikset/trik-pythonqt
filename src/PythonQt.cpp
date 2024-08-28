@@ -427,9 +427,9 @@ PythonQtPrivate::~PythonQtPrivate() {
   delete _defaultImporter;
   _defaultImporter = nullptr;
 
-  //qDeleteAll(_knownClassInfos);
-  //_knownClassInfos.clear();
-  //PythonQtClassInfo::clearInteralStaticData();
+  qDeleteAll(_knownClassInfos);
+  _knownClassInfos.clear();
+  PythonQtClassInfo::clearInteralStaticData();
 
   PythonQtMethodInfo::cleanupCachedMethodInfos();
   PythonQtArgumentFrame::cleanupFreeList();
@@ -1544,14 +1544,6 @@ void PythonQtPrivate::preCleanup()
 	_pyEnsureFuture = nullptr;
 	_pyFutureClass = nullptr;
 	_pyTaskDoneCallback = nullptr;
-	for(auto &ci: _knownClassInfos) {
-		if (!ci->referenceCountingUnrefCB()) {
-			//delete ci;
-			ci = nullptr;
-		}
-	}
-
-	PythonQtClassInfo::clearInteralStaticData();
 }
 
 void PythonQtPrivate::setupSharedLibrarySuffixes()
