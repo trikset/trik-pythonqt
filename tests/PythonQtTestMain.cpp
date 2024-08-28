@@ -50,8 +50,10 @@ int main( int argc, char **argv )
 
   //if (QProcessEnvironment::systemEnvironment().contains("PYTHONQT_RUN_ONLY_MEMORY_TESTS")) {
   int failCount = 0;
+  {
     PythonQtMemoryTests test;
   failCount += QTest::qExec(&test, argc, argv);
+  }
 
   PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
 

@@ -99,6 +99,7 @@ void PythonQtTestSlotCalling::init() {
 void PythonQtTestSlotCalling::cleanupTestCase()
 {
 	cleanupPtr();
+	delete _helper; _helper = nullptr;
 }
 
 void* polymorphic_ClassB_Handler(const void* ptr, const char** className) {
@@ -311,13 +312,13 @@ void PythonQtTestSlotCalling::testObjectSlotCalls()
 
 void PythonQtTestSlotCalling::testCppFactory()
 {
-  PythonQtTestCppFactory* f = new PythonQtTestCppFactory;
+  PythonQtTestCppFactory f;
   PythonQt::self()->addInstanceDecorators(new PQCppObjectDecorator);
   // do not register, since we want to know if that works as well
   //qRegisterMetaType<PQCppObjectNoWrap>("PQCppObjectNoWrap");
   PythonQt::self()->addDecorators(new PQCppObjectNoWrapDecorator);
 
-  PythonQt::self()->addWrapperFactory(f);
+  PythonQt::self()->addWrapperFactory(&f);
   QVERIFY(_helper->runScript("if obj.createPQCppObject(12).getHeight()==12: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.createPQCppObject(12).getH()==12: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("pq1 = obj.createPQCppObject(12);\n"
@@ -355,8 +356,7 @@ void PythonQtTestSlotCalling::testCppFactory()
   QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObject2\na = PQCppObject2()\nif a.testEnumFlag2(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
   // with int overload to check overloading
   QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObject2\na = PQCppObject2()\nif a.testEnumFlag3(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
-  PythonQt::self()->removeWrapperFactory(f);
-  delete f;
+  PythonQt::self()->removeWrapperFactory(&f);
 }
 
 PQCppObject2Decorator::TestEnumFlag PQCppObject2Decorator::testEnumFlag1(PQCppObject2* /*obj*/, PQCppObject2Decorator::TestEnumFlag flag) {
@@ -704,7 +704,9 @@ void PythonQtTestApiHelper::stdErr(const QString& s)
 QObject* PythonQtTestCppFactory::create(const QByteArray& name, void *ptr)
 {
   if (name == "PQCppObject") {
-	return new PQCppObjectWrapper(ptr);
+	  auto wrapper = new PQCppObjectWrapper(ptr);
+	  wrapper->setParent(&_genericParent);
+	  return wrapper;
   }
   return NULL;
 }
