@@ -40,9 +40,7 @@
 #include <QHash>
 #include <QByteArray>
 #include <QList>
-
-class PythonQtSlotInfo;
-class PythonQtClassInfo;
+#include <PythonQtMethodInfo.h>
 
 struct PythonQtDynamicClassInfo
 {
@@ -55,20 +53,28 @@ struct PythonQtMemberInfo {
     Invalid, Slot, Signal, EnumValue, EnumWrapper, Property, NestedClass, NotFound 
   };
 
-  PythonQtMemberInfo():_type(Invalid),_slot(nullptr),_pythonType(nullptr),_enumValue(nullptr) { }
-  
-  PythonQtMemberInfo(PythonQtSlotInfo* info);
+  PythonQtMemberInfo() = default;
 
-  PythonQtMemberInfo(const PythonQtObjectPtr& enumValue);
+  explicit PythonQtMemberInfo(PythonQtSlotInfo* info)
+	  : _type(info->metaMethod()->methodType() == QMetaMethod::Signal? Signal : Slot)
+	  , _slot(info)
+  {}
 
-  PythonQtMemberInfo(const QMetaProperty& prop);
+  explicit PythonQtMemberInfo(PyObject* enumValue)
+	  : _type (EnumValue), _enumValue(enumValue)
+  {}
 
-  Type              _type;
+
+  explicit PythonQtMemberInfo(const QMetaProperty& prop)
+	  : _type (Property), _property(prop)
+  {}
+
+  Type              _type { Invalid };
 
   // TODO: this could be a union...
   PythonQtSlotInfo* _slot {};
   PyObject*         _pythonType {};
-  PythonQtObjectPtr _enumValue;
+  PyObject*	     _enumValue {};
   QMetaProperty     _property;
 };
 
@@ -83,8 +89,9 @@ public:
 
   //! store information about parent classes
   struct ParentClassInfo {
-    ParentClassInfo(PythonQtClassInfo* parent, int upcastingOffset=0):_parent(parent),_upcastingOffset(upcastingOffset)
-    {};
+	ParentClassInfo(PythonQtClassInfo* parent, int upcastingOffset=0)
+		: _parent(parent), _upcastingOffset(upcastingOffset)
+	{}
 
     PythonQtClassInfo* _parent;
     int                _upcastingOffset;
