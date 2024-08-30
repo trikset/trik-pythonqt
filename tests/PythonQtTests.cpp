@@ -45,7 +45,11 @@ void PythonQtMemoryTests::cleanup()
 {
 	if(PythonQt::self()) {
 		PythonQt::preCleanup();
-		Py_FinalizeEx();
+#if PY_VERSION_HEX < 0x03060000
+  		Py_Finalize();
+#else
+  		Py_FinalizeEx();
+#endif
 		PythonQt::cleanup();
 	}
 }
