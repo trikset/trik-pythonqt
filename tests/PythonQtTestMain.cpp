@@ -73,7 +73,13 @@ int main( int argc, char **argv )
   }
 
   PythonQt::preCleanup();
+
+#if PY_VERSION_HEX < 0x03060000
+  Py_Finalize();
+#else
   Py_FinalizeEx();
+#endif
+
   PythonQt::cleanup();
 
   if (failCount) {
