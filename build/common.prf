@@ -39,7 +39,7 @@ PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp
 	error(Unsupported Qt version for PythonQt: missing generated_cpp)
 }
 
-greaterThan(QT_MAJOR_VERSION, 5) | greaterThan(QT_MINOR_VERSION, 9): CONFIG += c++latest c++11
+greaterThan(QT_MAJOR_VERSION, 5) | greaterThan(QT_MINOR_VERSION, 9): CONFIG += c++17 c++11
 win32: CONFIG += skip_target_version_ext
 gcc|win32-clang-msvc:QMAKE_CXXFLAGS += -Wno-deprecated-declarations -Wuninitialized -Winit-self -ansi -pedantic
 win32-clang-msvc:QMAKE_CXXFLAGS += -Wno-unused-command-line-argument
