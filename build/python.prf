@@ -79,16 +79,16 @@ contains(PKGCONFIG, "python.*"){
      error("PYTHON_PATH must be set to correct folder with \\libs and \\include subfolders ")
   }  
   mingw:DEFINES += HAVE_ROUND
-  #We need to destinguish 64-bit build to add a workaround option
+  #We need to distinguish 64-bit build to add a workaround option
   #The only known problematic case is MinGW with external (MSVC-built) Python2
   mingw:equals(PYTHON_VERSION_MAJOR, 2): isEmpty(QMAKE_TARGET.arch):system(\
   $$system_quote($$system_path($${PYTHON_PATH}/python.exe)) -c \
   $$system_quote(import sysconfig;exit(0 if 0 <= sysconfig.get_platform().find(\'win-amd64\') else 1))\
   ):DEFINES += MS_WIN64
 
-  INCLUDEPATH += $$shell_path($${PYTHON_PATH}/include)
+  INCLUDEPATH += $${PYTHON_PATH}/include
 
-  LIBS += $$shell_path(-L$${PYTHON_PATH}/libs)
+  LIBS += -L$${PYTHON_PATH}/libs
   LIBS += -lpython$${PYTHON_VERSION_MAJOR}$${PYTHON_VERSION_MINOR}$${DEBUG_EXT}
 
   # Hack for "CONFIG+=testcase" and 'make check' to add python's dll to PATH
