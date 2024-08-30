@@ -72,6 +72,8 @@ private Q_SLOTS:
   void cleanup();
 };
 
+// For the moment, it's not critical for tests;
+// the main thing is to be able to build with the correct g++ and sanitizers.
 template <typename T>
 class PtrRegistry {
 public:
@@ -85,8 +87,11 @@ public:
     }
 
 private:
-    static inline QList<T*> _objects;
+    static QList<T*> _objects;
 };
+
+template<typename T>
+QList<T*> PtrRegistry<T>::_objects;
 
 //! test the PythonQt api
 class PythonQtTestApi : public QObject
