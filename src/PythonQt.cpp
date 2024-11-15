@@ -72,7 +72,7 @@ static inline PyObject *PyCode_GetVarnames(PyCodeObject *o) {
 }
 #endif
 
-#if PY_VERSION_HEX > 0x03080000 && defined(__linux__)
+#if PY_VERSION_HEX >= 0x03080000 && defined(__linux__)
 #include <dlfcn.h>
 #include <link.h>
 #include <stdio.h>
@@ -345,7 +345,7 @@ void PythonQt::preCleanup()
 
 PythonQt* PythonQt::self() { return _self; }
 
-#if PY_VERSION_HEX > 0x03080000 && defined(__linux__)
+#if PY_VERSION_HEX >= 0x03080000 && defined(__linux__)
 int find_libpython_callback(struct dl_phdr_info *info, size_t size, void *data) {
   Q_UNUSED(size);
   auto *library_name = (const char *)data;
@@ -365,7 +365,7 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
   _p = new PythonQtPrivate;
   _p->_initFlags = flags;
 
-#if PY_VERSION_HEX > 0x03080000 && defined(__linux__)
+#if PY_VERSION_HEX >= 0x03080000 && defined(__linux__)
   if (flags & ExternalModule) {
     const char *library_name = "libpython";
     if (dl_iterate_phdr(find_libpython_callback, (void *)library_name) != LD_LIBPYTHON_LOAD) {
