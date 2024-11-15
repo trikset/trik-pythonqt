@@ -346,7 +346,7 @@ void PythonQt::preCleanup()
 PythonQt* PythonQt::self() { return _self; }
 
 #if PY_VERSION_HEX >= 0x03080000 && defined(__linux__)
-int find_libpython_callback(struct dl_phdr_info *info, size_t size, void *data) {
+static int find_libpython_callback(struct dl_phdr_info *info, size_t size, void *data) {
   Q_UNUSED(size);
   auto *library_name = (const char *)data;
   if (info->dlpi_name && strstr(info->dlpi_name, library_name)) {
