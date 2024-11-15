@@ -177,7 +177,8 @@ public:
     RedirectStdOut = 1,   //!<< sets if the std out/err is redirected to pythonStdOut() and pythonStdErr() signals
     IgnoreSiteModule = 2, //!<< sets if Python should ignore the site module
     ExternalHelp = 4,     //!<< sets if help() calls on PythonQt modules are forwarded to the pythonHelpRequest() signal
-    PythonAlreadyInitialized = 8 //!<< sets that PythonQt should not can PyInitialize, since it is already done
+    PythonAlreadyInitialized = 8, //!<< sets that PythonQt should not can PyInitialize, since it is already done
+    ExternalModule = 16
   };
 
   //! flags that tell PythonQt which operators to expect on the registered type

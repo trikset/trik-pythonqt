@@ -72,6 +72,14 @@ static inline PyObject *PyCode_GetVarnames(PyCodeObject *o) {
 }
 #endif
 
+#if PY_VERSION_HEX >= 0x03080000 && defined(__linux__)
+#include <dlfcn.h>
+#include <link.h>
+#include <stdio.h>
+constexpr int LD_LIBPYTHON_LOAD = 1;
+constexpr int LD_LIBPYTHON_NOT_LOAD = 2;
+#endif
+
 #include <vector>
 
 PythonQt* PythonQt::_self = nullptr;
@@ -337,10 +345,34 @@ void PythonQt::preCleanup()
 
 PythonQt* PythonQt::self() { return _self; }
 
+#if PY_VERSION_HEX >= 0x03080000 && defined(__linux__)
+static int find_libpython_callback(struct dl_phdr_info *info, size_t size, void *data) {
+  Q_UNUSED(size);
+  auto *library_name = (const char *)data;
+  if (info->dlpi_name && strstr(info->dlpi_name, library_name)) {
+    if (!dlopen(info->dlpi_name, RTLD_GLOBAL | RTLD_NOLOAD | RTLD_LAZY)) {
+      std::cerr << library_name << "not load";
+      return LD_LIBPYTHON_NOT_LOAD;
+    }
+    return LD_LIBPYTHON_LOAD;
+  }
+  return 0;
+}
+#endif
+
 PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
 {
   _p = new PythonQtPrivate;
   _p->_initFlags = flags;
+
+#if PY_VERSION_HEX >= 0x03080000 && defined(__linux__)
+  if (flags & ExternalModule) {
+    const char *library_name = "libpython";
+    if (dl_iterate_phdr(find_libpython_callback, (void *)library_name) != LD_LIBPYTHON_LOAD) {
+	    std::cerr << "The problem with supporting the import of third-party modules";
+    }
+}
+#endif
 
   if ((flags & PythonAlreadyInitialized) == 0) {
 #ifdef PY3K
