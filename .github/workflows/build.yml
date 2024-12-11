@@ -25,6 +25,7 @@ jobs:
         container_version:
         - '20.04'
         - '22.04'
+        - '24.04'
     runs-on: ubuntu-latest
     container: ubuntu:${{ matrix.container_version }}
     steps:
