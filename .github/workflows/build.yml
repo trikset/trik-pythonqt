@@ -127,7 +127,7 @@ jobs:
         apt-get clean
         
     - name: Checkout PythonQt
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       
     - name: Build PythonQt
       run: |
@@ -182,7 +182,7 @@ jobs:
         qt5-*-devel
 
     - name: Checkout PythonQt
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Build PythonQt
       run: |
