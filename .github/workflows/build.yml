@@ -53,7 +53,7 @@ jobs:
         apt-get clean
       
     - name: Checkout PythonQt
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Ccache
       uses: hendrikmuhs/ccache-action@v1.2.14
@@ -127,7 +127,7 @@ jobs:
         apt-get clean
         
     - name: Checkout PythonQt
-      uses: actions/checkout@v3
+      uses: actions/checkout@v6
       
     - name: Build PythonQt
       run: |
@@ -182,7 +182,7 @@ jobs:
         qt5-*-devel
 
     - name: Checkout PythonQt
-      uses: actions/checkout@v3
+      uses: actions/checkout@v6
 
     - name: Build PythonQt
       run: |
@@ -248,7 +248,7 @@ jobs:
         python-version: '${{ matrix.python-version }}'
 
     - name: Checkout PythonQt
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Ccache
       uses: hendrikmuhs/ccache-action@v1.2.14
@@ -348,7 +348,7 @@ jobs:
     steps:
 
     - name: Checkout PythonQt
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Reset PATH
       uses: egor-tensin/cleanup-path@v4
