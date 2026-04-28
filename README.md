@@ -1,3 +1,7 @@
+Archived. Obsolete. Patched version of upstream repo is in use. https://github.com/trikset/pythonqt
+--------
+
+
 # PythonQt
 
 [![License](https://img.shields.io/github/license/mevislab/pythonqt.svg?color=blue)](LICENSE)
